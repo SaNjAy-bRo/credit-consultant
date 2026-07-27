@@ -753,8 +753,8 @@ export function Home() {
                       </div>
                     </div>
 
-                    {/* Right Side Illustration — Height matching card height seamlessly */}
-                    <div className="w-full sm:w-[48%] h-44 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden relative z-0 flex items-center justify-center bg-white/40 shadow-inner border border-white/60">
+                    {/* Right Side Illustration — Enforced 100% identical aspect ratio & sizing across all cards */}
+                    <div className="w-full sm:w-[46%] aspect-[16/10] rounded-2xl overflow-hidden relative z-0 flex items-center justify-center bg-white/40 shadow-inner border border-white/60 self-center">
                       <img
                         src={item.img}
                         alt={item.label}
