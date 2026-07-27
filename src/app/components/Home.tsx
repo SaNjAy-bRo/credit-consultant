@@ -463,18 +463,20 @@ export function Home() {
           </div>
         </div>
 
-        {/* Integrated Stats Cards Bar */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {stats.map((stat, index) => (
-              <div key={index} className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-md p-3.5 sm:p-4 flex flex-col items-center justify-center text-center hover:scale-[1.03] transition-all duration-300">
-                <div className="text-2xl lg:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] mb-0.5 flex items-center justify-center gap-1">
-                  <span>{stat.value}</span>
-                  {stat.isStar && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />}
+        {/* Integrated Stats — SINGLE Combined Floating Card Container */}
+        <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+          <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-xl p-4 sm:p-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-4 lg:gap-y-0 divide-y sm:divide-y-0 lg:divide-x divide-slate-200/80">
+              {stats.map((stat, index) => (
+                <div key={index} className="flex flex-col items-center justify-center text-center px-2 py-1">
+                  <div className="text-2xl lg:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] mb-0.5 flex items-center justify-center gap-1">
+                    <span>{stat.value}</span>
+                    {stat.isStar && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />}
+                  </div>
+                  <div className="text-slate-600 text-xs font-semibold">{stat.label}</div>
                 </div>
-                <div className="text-slate-600 text-xs font-semibold">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
