@@ -104,7 +104,7 @@ export function Root() {
       >
         <button
           onClick={() => setScoreModalOpen(true)}
-          className="bg-[#00BC7D] hover:bg-[#00a36c] text-white font-bold px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-[#00BC7D]/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
+          className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-blue-500/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95 border border-blue-400/30"
         >
           <TrendingUp className="w-4.5 h-4.5" />
           <span>Boost your Score</span>
