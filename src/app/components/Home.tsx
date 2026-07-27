@@ -235,24 +235,27 @@ export function Home() {
       />
       {/* ── Hero Section — animated 3-D scene ───────────────────── */}
       <section
-        className="relative overflow-hidden text-white"
+        className="relative overflow-hidden w-full max-w-full text-white"
         style={{ minHeight: "92vh", background: "linear-gradient(135deg,#003d4a 0%,#006878 45%,#0097b2 100%)" }}
         aria-label="Credit Consultant — India's trusted credit repair and loan advisory service"
       >
-        {/* Animated mesh blobs — teal (primary) + orange (logo accent arc) */}
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-25 blur-3xl animate-blob"
-          style={{ background: "radial-gradient(circle, #0097b2, #005f73)" }} />
-        <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl animate-blob"
-          style={{ background: "radial-gradient(circle, #00b4cc, #007090)", animationDelay: "3s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl animate-blob"
-          style={{ background: "radial-gradient(circle, #f97316, #ea4519)", animationDelay: "6s" }} />
+        {/* Strictly clipped background container for decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none w-full max-w-full">
+          {/* Animated mesh blobs — teal (primary) + orange (logo accent arc) */}
+          <div className="absolute -top-40 -left-40 w-96 sm:w-[600px] h-96 sm:h-[600px] rounded-full opacity-25 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #0097b2, #005f73)" }} />
+          <div className="absolute -bottom-40 -right-40 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full opacity-20 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #00b4cc, #007090)", animationDelay: "3s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-[400px] h-72 sm:h-[400px] rounded-full opacity-15 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #f97316, #ea4519)", animationDelay: "6s" }} />
 
-        {/* Particle field */}
-        <Particles />
+          {/* Particle field */}
+          <Particles />
 
-        {/* Grid overlay */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+          {/* Grid overlay */}
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        </div>
 
         {/* Main content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-10 lg:gap-12 py-12 sm:py-16 lg:py-0 lg:min-h-[92vh]">
