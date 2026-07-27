@@ -526,9 +526,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Testimonials Carousel — Moved above How It Works as requested */}
-      <TestimonialsCarousel />
-
       {/* How It Works */}
       <HowItWorks bg="white" showCTA={true} />
 
@@ -646,6 +643,9 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Carousel — Positioned after Why 10,000+ Clients Trust Credit Consultant */}
+      <TestimonialsCarousel />
 
       {/* Loan Products Teaser — Rich Visual Cards with Overlay Text */}
       <section className="py-20 bg-white border-t border-slate-200/80">
