@@ -331,7 +331,7 @@ export function Home() {
 
             <p className="text-lg sm:text-xl lg:text-[22px] mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Expert credit repair, CIBIL score improvement, and home &amp; business loan advisory services.
-              Over 10,000 happy clients across India — get your free consultation today.
+              Over 10,000 happy clients across India.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
@@ -348,7 +348,7 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 border border-white/20" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-[#00bc7d] hover:bg-[#00a36c] text-white shadow-lg shadow-[#00bc7d]/30 border border-white/20" />
             </div>
 
             {/* Trust badges — ultra-clean inline feature list */}
@@ -529,6 +529,9 @@ export function Home() {
       {/* How It Works */}
       <HowItWorks bg="white" showCTA={true} />
 
+      {/* Testimonials Carousel — Placed right after How It Works */}
+      <TestimonialsCarousel />
+
       {/* Why Choose Us Section — Informative & Premium Redesign */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -546,12 +549,12 @@ export function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-            {/* Left Image & Overlay Badges */}
+            {/* Left Image & Overlay Badges — Authentic Indian Advisory Team */}
             <div className="lg:col-span-5 relative">
               <div className="absolute -top-6 -left-6 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbnN1bHRhdGlvbiUyMHRlYW18ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Professional Credit Advisory Team"
+                src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                alt="Professional Indian Credit Advisory Team"
                 className="rounded-3xl shadow-2xl border border-slate-200 w-full h-[480px] object-cover relative z-10"
               />
 
@@ -644,48 +647,48 @@ export function Home() {
         </div>
       </section>
 
-      {/* Loan Products Teaser */}
-      <section className="py-20 bg-gray-50">
+      {/* Loan Products Teaser — Enhanced & Prominent */}
+      <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Loan Products</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Financing solutions tailored to every need — home, business, personal, or vehicle.
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3.5 py-1 rounded-full inline-block mb-3">
+              PRE-APPROVED FINANCIAL SOLUTIONS
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">Loan Products &amp; Advisory</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-base mt-2 font-normal">
+              Financing solutions tailored to every need — home, business, personal, or vehicle loans at pre-approved interest rates.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: HomeIcon, label: "Home Loan", desc: "Competitive rates, up to ₹5 Cr, 30-year tenure.", color: "blue" },
-              { icon: Briefcase, label: "Business Loan", desc: "Collateral-free up to ₹50 L for SMEs & startups.", color: "indigo" },
-              { icon: User, label: "Personal Loan", desc: "Quick disbursal, no collateral, up to ₹40 L.", color: "purple" },
-              { icon: Car, label: "Car Loan", desc: "100% on-road financing for new & used vehicles.", color: "cyan" },
+              { icon: HomeIcon, label: "Home Loan", desc: "Competitive interest rates starting at 8.35% p.a., loan amount up to ₹5 Cr, 30-year tenure.", iconBg: "bg-blue-50 border-blue-200 text-blue-600" },
+              { icon: Briefcase, label: "Business Loan", desc: "Collateral-free SME loans up to ₹50 L with fast 48-hour disbursal for business expansion.", iconBg: "bg-indigo-50 border-indigo-200 text-indigo-600" },
+              { icon: User, label: "Personal Loan", desc: "Instant approval, no collateral needed, flexible repayment up to 5 years, up to ₹40 L.", iconBg: "bg-purple-50 border-purple-200 text-purple-600" },
+              { icon: Car, label: "Car Loan", desc: "Up to 100% on-road price financing for new & pre-owned vehicles with minimal documentation.", iconBg: "bg-emerald-50 border-emerald-200 text-emerald-600" },
             ].map((item) => {
               const Icon = item.icon;
-              const bgMap: Record<string, string> = { blue: "bg-teal-100", indigo: "bg-indigo-100", purple: "bg-purple-100", cyan: "bg-cyan-100" };
-              const textMap: Record<string, string> = { blue: "text-teal-600", indigo: "text-indigo-600", purple: "text-purple-600", cyan: "text-cyan-600" };
               return (
-                <Link to="/loans" key={item.label}>
-                  <Card className="hover:shadow-lg transition-shadow h-full cursor-pointer group">
-                    <CardHeader>
-                      <div className={`w-12 h-12 ${bgMap[item.color]} rounded-lg flex items-center justify-center mb-3`}>
-                        <Icon className={`w-6 h-6 ${textMap[item.color]}`} />
+                <Link to="/loans" key={item.label} className="block h-full group">
+                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between">
+                    <div>
+                      <div className={`w-14 h-14 ${item.iconBg} border rounded-2xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform`}>
+                        <Icon className="w-7 h-7" />
                       </div>
-                      <CardTitle className="text-base">{item.label}</CardTitle>
-                      <CardDescription>{item.desc}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <span className={`text-sm font-medium ${textMap[item.color]} flex items-center gap-1 group-hover:gap-2 transition-all`}>
-                        Learn more <ArrowRight className="w-3.5 h-3.5" />
-                      </span>
-                    </CardContent>
-                  </Card>
+                      <h3 className="text-xl font-extrabold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.label}</h3>
+                      <p className="text-slate-600 text-xs sm:text-sm font-normal leading-relaxed mb-6">{item.desc}</p>
+                    </div>
+                    <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-blue-600 font-bold text-sm group-hover:gap-2.5 transition-all">
+                      <span>Learn More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </div>
                 </Link>
               );
             })}
           </div>
           <div className="text-center mt-10">
             <Link to="/loans">
-              <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+              <Button size="lg" className="rounded-xl font-bold bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] hover:from-blue-800 hover:to-blue-600 text-white shadow-lg shadow-blue-500/20 px-8 py-3">
                 Explore All Loan Products <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -845,7 +848,7 @@ export function Home() {
           {/* Region quick links */}
           <div className="mt-8 pt-6 border-t border-gray-100">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">Browse by Region</p>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
               {[
                 { region: "north", label: "North India", cities: "Delhi, Gurgaon, Noida, Chandigarh, Jaipur…", color: "bg-blue-50 border-blue-200 text-blue-800" },
                 { region: "south", label: "South India", cities: "Bengaluru, Chennai, Hyderabad, Kochi…", color: "bg-indigo-50 border-indigo-200 text-indigo-800" },
