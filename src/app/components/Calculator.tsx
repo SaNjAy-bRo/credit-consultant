@@ -177,7 +177,7 @@ export function Calculator() {
                 </div>
 
                 {/* Manual Inputs */}
-                <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-100">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 border-t border-gray-100">
                   <div>
                     <label className="block text-xs text-gray-500 mb-1">Amount (₹)</label>
                     <input

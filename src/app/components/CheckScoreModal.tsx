@@ -39,14 +39,14 @@ function OtpInput({ value, onChange }: { value: string; onChange: (v: string) =>
   };
 
   return (
-    <div className="flex gap-2 justify-center">
+    <div className="flex gap-1.5 sm:gap-2 justify-center max-w-full px-1">
       {digits.map((d, i) => (
         <input key={i}
           ref={(el) => { refs.current[i] = el; }}
           type="text" inputMode="numeric" maxLength={1} value={d}
           onChange={(e) => handleChange(i, e.target.value)}
           onKeyDown={(e) => handleKey(i, e)} onPaste={handlePaste}
-          className={`w-11 h-12 text-center text-lg font-bold rounded-xl border-2 outline-none transition-all
+          className={`w-9.5 sm:w-11 h-11 sm:h-12 text-center text-base sm:text-lg font-bold rounded-lg sm:rounded-xl border-2 outline-none transition-all
             ${d ? "border-teal-600 bg-blue-50 text-blue-700" : "border-gray-200 bg-gray-50"}
             focus:border-blue-500 focus:bg-white`}
         />

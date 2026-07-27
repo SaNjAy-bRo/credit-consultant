@@ -78,25 +78,32 @@ export function Navigation() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <div className="md:hidden border-t border-gray-200 bg-white shadow-lg animate-in slide-in-from-top-2 duration-200">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block py-2 transition-colors ${
+                className={`block py-2.5 px-3 rounded-lg text-base font-medium transition-colors ${
                   isActive(link.path)
-                    ? "text-blue-600 font-semibold"
-                    : "text-gray-700"
+                    ? "text-blue-600 bg-blue-50 font-semibold"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Button onClick={() => { setIsOpen(false); setShowGetStarted(true); }} className="w-full bg-teal-600 hover:bg-teal-700">
-              Get Started
-            </Button>
+            <div className="pt-2 border-t border-gray-100 space-y-2">
+              <Link to="/dashboard" onClick={() => setIsOpen(false)} className="block">
+                <Button variant="outline" className="w-full gap-2 border-gray-300 text-gray-700 hover:text-blue-600 justify-center h-11">
+                  <LayoutDashboard className="w-4 h-4" /> My Dashboard
+                </Button>
+              </Link>
+              <Button onClick={() => { setIsOpen(false); setShowGetStarted(true); }} className="w-full bg-teal-600 hover:bg-teal-700 h-11 text-base font-semibold">
+                Get Started
+              </Button>
+            </div>
           </div>
         </div>
       )}
