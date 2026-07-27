@@ -665,7 +665,7 @@ export function Home() {
                 icon: HomeIcon,
                 label: "Home Loan",
                 desc: "Rates from 8.35% p.a., up to ₹5 Cr, 30-year tenure.",
-                img: "/home-loan-vector.png",
+                img: "/home-loan-vector-v2.png",
                 tag: "Rates from 8.35%",
                 accent: "bg-blue-50 border-blue-200 text-blue-600",
                 tagColor: "bg-blue-600",
@@ -674,7 +674,7 @@ export function Home() {
                 icon: Briefcase,
                 label: "Business Loan",
                 desc: "Collateral-free SME loans up to ₹50 L with 48-hr disbursal.",
-                img: "/business-loan-vector.png",
+                img: "/business-loan-vector-v2.png",
                 tag: "Up to ₹50 Lakhs",
                 accent: "bg-emerald-50 border-emerald-200 text-emerald-600",
                 tagColor: "bg-emerald-600",
@@ -683,7 +683,7 @@ export function Home() {
                 icon: User,
                 label: "Personal Loan",
                 desc: "Instant approval, no collateral, flexible repayment up to ₹40 L.",
-                img: "/personal-loan-vector.png",
+                img: "/personal-loan-vector-v2.png",
                 tag: "Instant Approval",
                 accent: "bg-purple-50 border-purple-200 text-purple-600",
                 tagColor: "bg-purple-600",
@@ -692,7 +692,7 @@ export function Home() {
                 icon: Car,
                 label: "Car Loan",
                 desc: "100% on-road price financing with minimal documentation.",
-                img: "/car-loan-vector.png",
+                img: "/car-loan-vector-v2.png",
                 tag: "100% On-Road",
                 accent: "bg-amber-50 border-amber-200 text-amber-600",
                 tagColor: "bg-amber-600",
@@ -701,40 +701,36 @@ export function Home() {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 h-96 sm:h-[390px] flex flex-col justify-between bg-slate-50">
-                    {/* Full-bleed clean vector illustration (No dark dim overlay) */}
-                    <img
-                      src={item.img}
-                      alt={item.label}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-
-                    {/* Soft light gradient at bottom for text contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
-
-                    {/* Tag Badge */}
-                    <span className={`absolute top-3.5 right-3.5 text-[11px] font-bold ${item.tagColor} text-white px-3 py-1 rounded-full shadow-md z-10`}>
-                      {item.tag}
-                    </span>
-
-                    {/* Top Icon Badge */}
-                    <div className="relative z-10 p-4">
-                      <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shadow-sm bg-white/90 backdrop-blur-md ${item.accent}`}>
-                        <Icon className="w-5.5 h-5.5" />
-                      </div>
+                  <div className="rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col">
+                    {/* Top Clean Illustration Container (100% clear artwork, no dark overlays) */}
+                    <div className="relative h-48 overflow-hidden bg-gradient-to-b from-sky-50/60 to-blue-50/30 border-b border-slate-100 flex items-center justify-center p-2">
+                      <img
+                        src={item.img}
+                        alt={item.label}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-2xl"
+                      />
+                      {/* Tag Badge floating at top right */}
+                      <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-3 py-1 rounded-full shadow-md z-10`}>
+                        {item.tag}
+                      </span>
                     </div>
 
-                    {/* Bottom Dark Text Content */}
-                    <div className="relative z-10 p-5 sm:p-6 pt-0">
-                      <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
-                        {item.label}
-                      </h3>
-                      <p className="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed mb-4 line-clamp-2">
+                    {/* Bottom Clean Text Content Area */}
+                    <div className="p-5 sm:p-6 flex flex-col flex-1 bg-white">
+                      <div className="flex items-center gap-3 mb-2.5">
+                        <div className={`w-10 h-10 rounded-2xl border flex items-center justify-center flex-shrink-0 ${item.accent}`}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors">
+                          {item.label}
+                        </h3>
+                      </div>
+                      <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed mb-4 flex-1 line-clamp-2">
                         {item.desc}
                       </p>
-                      <div className="flex items-center gap-2 text-blue-700 font-extrabold text-xs sm:text-sm group-hover:gap-3 transition-all">
+                      <div className="flex items-center gap-2 text-blue-600 font-extrabold text-xs sm:text-sm group-hover:gap-3 transition-all">
                         <span>Explore Rates &amp; Eligibility</span>
-                        <ArrowRight className="w-4 h-4 text-blue-600" />
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
