@@ -495,7 +495,7 @@ export function CheckScoreButton({ variant = "primary", className = "" }: { vari
   const cls =
     variant === "white"   ? "bg-white text-teal-700 hover:bg-teal-50 font-semibold shadow" :
     variant === "outline" ? "border-teal-600 text-teal-600 hover:bg-blue-50 font-semibold" :
-                            "bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-500 hover:to-teal-600 text-white font-semibold shadow-lg shadow-blue-500/30";
+                            "bg-[#00BC7D] hover:bg-[#00a36c] text-white font-semibold shadow-lg shadow-[#00BC7D]/30";
   return (
     <>
       <button onClick={() => setOpen(true)}

@@ -1003,8 +1003,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* CTA Banner Section — Light Blue Gradient Theme */}
-      <section className="py-20 bg-gradient-to-r from-[#1d4ed8] via-[#2563eb] to-[#31b0d0] text-white relative overflow-hidden shadow-2xl">
+      {/* CTA Banner Section — Medium Blue Gradient Theme */}
+      <section className="py-20 bg-gradient-to-r from-[#3b82f6] via-[#60a5fa] to-[#38bdf8] text-white relative overflow-hidden">
         {/* Background ambient lighting */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl" aria-hidden="true" />
 
@@ -1015,19 +1015,19 @@ export function Home() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight text-white">
             Ready to Improve Your Credit Score?
           </h2>
-          <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed font-medium">
+          <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
             Get started today with a 100% free consultation. Our certified CIBIL experts analyze your credit report and map out a step-by-step resolution strategy.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/30 border border-white/20 flex items-center justify-center gap-2">
+              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/25 border border-white/20 flex items-center justify-center gap-2">
                 <span>Get Free Consultation</span>
                 <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Button>
             </Link>
             <a href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-lg shadow-[#25D366]/30 border border-white/20 flex items-center justify-center gap-2.5">
+              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-lg shadow-[#25D366]/25 border border-white/20 flex items-center justify-center gap-2.5">
                 <svg viewBox="0 0 32 32" className="w-5 h-5 fill-white flex-shrink-0">
                   <path d="M16 2C8.27 2 2 8.27 2 16c0 2.44.64 4.73 1.76 6.72L2 30l7.5-1.73C11.38 29.38 13.64 30 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm7.18 19.54c-.3.84-1.77 1.6-2.44 1.7-.62.1-1.4.14-2.26-.14-.52-.17-1.19-.4-2.05-.78-3.6-1.56-5.94-5.18-6.12-5.42-.18-.24-1.46-1.94-1.46-3.7 0-1.76.92-2.62 1.25-2.98.3-.33.66-.41.88-.41.22 0 .44.002.63.01.2.01.48-.08.75.57.3.69 1.01 2.46 1.1 2.64.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.37.38-.16.74.21.36.95 1.57 2.05 2.54 1.41 1.26 2.6 1.65 2.97 1.84.37.18.58.15.8-.09.21-.24.92-1.07 1.16-1.44.24-.37.48-.3.8-.18.32.12 2.05.97 2.4 1.14.35.18.58.27.67.42.09.15.09.87-.21 1.71z"/>
                 </svg>
