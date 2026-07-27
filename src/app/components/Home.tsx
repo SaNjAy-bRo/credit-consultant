@@ -44,12 +44,12 @@ function ScoreRing({ target = 780 }: { target?: number }) {
   const circ = 2 * Math.PI * radius;
   const pct = (count - 300) / (850 - 300);
   const dash = circ * pct;
-  const color = count < 580 ? "#f97316" : count < 700 ? "#eab308" : "#22c55e";
+  const color = count < 580 ? "#f97316" : count < 700 ? "#2563eb" : "#16a34a";
 
   return (
     <div className="relative w-36 h-36 flex items-center justify-center">
       <svg className="absolute inset-0 -rotate-90" width="144" height="144" viewBox="0 0 144 144">
-        <circle cx="72" cy="72" r={radius} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+        <circle cx="72" cy="72" r={radius} fill="none" stroke="#dbeafe" strokeWidth="10" />
         <circle
           cx="72" cy="72" r={radius} fill="none"
           stroke={color} strokeWidth="10"
@@ -59,8 +59,8 @@ function ScoreRing({ target = 780 }: { target?: number }) {
         />
       </svg>
       <div className="text-center z-10">
-        <div className="text-3xl font-black text-white tabular-nums">{count}</div>
-        <div className="text-[10px] text-teal-200 uppercase tracking-widest">CIBIL Score</div>
+        <div className="text-3xl font-black text-slate-900 tabular-nums">{count}</div>
+        <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest">CIBIL Score</div>
       </div>
     </div>
   );
@@ -72,7 +72,7 @@ function FloatCard({
 }: { children: React.ReactNode; delay?: string; className?: string }) {
   return (
     <div
-      className={`animate-float backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-2xl ${className}`}
+      className={`animate-float backdrop-blur-xl bg-white/90 border border-white/90 rounded-2xl shadow-xl shadow-blue-900/5 ${className}`}
       style={{ animationDelay: delay }}
     >
       {children}
@@ -83,31 +83,31 @@ function FloatCard({
 /* ── Rising bar chart (pure CSS + SVG grid) ─────────────── */
 function BarChart3D() {
   const bars = [
-    { height: "38%", score: "600", label: "Q1", color: "from-cyan-500 to-blue-600" },
-    { height: "50%", score: "640", label: "Q2", color: "from-cyan-400 to-teal-500" },
-    { height: "45%", score: "630", label: "Q3", color: "from-blue-400 to-indigo-500" },
-    { height: "70%", score: "700", label: "Q4", color: "from-teal-400 to-emerald-500" },
-    { height: "85%", score: "740", label: "Q5", color: "from-emerald-400 to-green-500" },
-    { height: "98%", score: "780", label: "Q6", color: "from-yellow-400 to-amber-500" },
+    { height: "38%", score: "600", label: "Q1", color: "from-blue-500 to-blue-600" },
+    { height: "50%", score: "640", label: "Q2", color: "from-sky-400 to-blue-500" },
+    { height: "45%", score: "630", label: "Q3", color: "from-indigo-400 to-blue-600" },
+    { height: "70%", score: "700", label: "Q4", color: "from-blue-600 to-indigo-600" },
+    { height: "85%", score: "740", label: "Q5", color: "from-emerald-500 to-teal-600" },
+    { height: "98%", score: "780", label: "Q6", color: "from-amber-400 to-orange-500" },
   ];
   return (
     <div className="relative w-full">
       {/* Background grid lines */}
-      <div className="absolute inset-0 flex flex-col justify-between opacity-15 pointer-events-none mb-5">
-        <div className="w-full border-b border-dashed border-white" />
-        <div className="w-full border-b border-dashed border-white" />
-        <div className="w-full border-b border-dashed border-white" />
+      <div className="absolute inset-0 flex flex-col justify-between opacity-30 pointer-events-none mb-5">
+        <div className="w-full border-b border-dashed border-slate-200" />
+        <div className="w-full border-b border-dashed border-slate-200" />
+        <div className="w-full border-b border-dashed border-slate-200" />
       </div>
 
       <div className="flex items-end gap-1.5 h-28 px-0.5 relative z-10 pt-2">
         {bars.map((b, i) => (
           <div key={i} className="flex flex-col items-center gap-1 flex-1 h-full justify-end group">
-            <span className="text-[9px] font-bold text-teal-100 group-hover:text-yellow-300 transition-colors">
+            <span className="text-[9px] font-bold text-blue-700 group-hover:text-blue-900 transition-colors">
               {b.score}
             </span>
-            <div className="w-full bg-white/5 rounded-t-md overflow-hidden p-0.5 flex items-end h-full max-h-[75px]">
+            <div className="w-full bg-slate-100 rounded-t-md overflow-hidden p-0.5 flex items-end h-full max-h-[75px]">
               <div
-                className={`w-full rounded-t-sm bg-gradient-to-t ${b.color} shadow-md shadow-teal-500/20 transition-all duration-700 hover:brightness-125`}
+                className={`w-full rounded-t-sm bg-gradient-to-t ${b.color} shadow-md shadow-blue-500/20 transition-all duration-700 hover:brightness-110`}
                 style={{
                   height: b.height,
                   animation: `rise 0.8s cubic-bezier(0.34,1.56,0.64,1) ${i * 0.1 + 0.2}s both`,
@@ -115,7 +115,7 @@ function BarChart3D() {
                 }}
               />
             </div>
-            <span className="text-[9px] font-medium text-teal-200 uppercase">{b.label}</span>
+            <span className="text-[9px] font-medium text-slate-500 uppercase">{b.label}</span>
           </div>
         ))}
       </div>
@@ -233,28 +233,28 @@ export function Home() {
         keywords="credit repair India, CIBIL score improvement, credit consultant, home loan advisory, personal loan, business loan, debt management"
         schema={ORG_SCHEMA}
       />
-      {/* ── Hero Section — animated 3-D scene ───────────────────── */}
+      {/* ── Hero Section — Light Blue & Dominant White ───────────────────── */}
       <section
-        className="relative overflow-hidden w-full max-w-full text-white"
-        style={{ minHeight: "92vh", background: "linear-gradient(135deg,#003d4a 0%,#006878 45%,#0097b2 100%)" }}
+        className="relative overflow-hidden w-full max-w-full text-slate-900"
+        style={{ minHeight: "92vh", background: "linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #dbeafe 100%)" }}
         aria-label="Credit Consultant — India's trusted credit repair and loan advisory service"
       >
         {/* Strictly clipped background container for decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none w-full max-w-full">
-          {/* Animated mesh blobs — teal (primary) + orange (logo accent arc) */}
-          <div className="absolute -top-40 -left-40 w-96 sm:w-[600px] h-96 sm:h-[600px] rounded-full opacity-25 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #0097b2, #005f73)" }} />
+          {/* Animated mesh blobs — soft royal blue & sky blue */}
+          <div className="absolute -top-40 -left-40 w-96 sm:w-[600px] h-96 sm:h-[600px] rounded-full opacity-20 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #60a5fa 0%, #2563eb 100%)" }} />
           <div className="absolute -bottom-40 -right-40 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full opacity-20 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #00b4cc, #007090)", animationDelay: "3s" }} />
+            style={{ background: "radial-gradient(circle, #38bdf8 0%, #0284c7 100%)", animationDelay: "3s" }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-[400px] h-72 sm:h-[400px] rounded-full opacity-15 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #f97316, #ea4519)", animationDelay: "6s" }} />
+            style={{ background: "radial-gradient(circle, #818cf8 0%, #4f46e5 100%)", animationDelay: "6s" }} />
 
           {/* Particle field */}
           <Particles />
 
           {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute inset-0 opacity-[0.06]"
+            style={{ backgroundImage: "linear-gradient(rgba(37,99,235,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.08) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
 
         {/* Main content */}
@@ -262,26 +262,26 @@ export function Home() {
 
           {/* LEFT — copy */}
           <div className="flex-1 text-center lg:text-left w-full max-w-2xl lg:max-w-none mx-auto">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/10 border border-white/20 rounded-full px-3.5 py-1.5 text-xs sm:text-sm text-teal-200 mb-5 sm:mb-6 backdrop-blur-sm">
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400 flex-shrink-0" />
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-600/10 border border-blue-500/20 rounded-full px-3.5 py-1.5 text-xs sm:text-sm text-blue-700 font-bold mb-5 sm:mb-6 shadow-sm backdrop-blur-sm">
+              <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />
               <span>India's #1 Credit Repair & Loan Advisory</span>
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400 flex-shrink-0" />
+              <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-4 sm:mb-6 text-slate-900">
               Transform Your{" "}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text"
-                  style={{ backgroundImage: "linear-gradient(90deg,#facc15,#fb923c)" }}>
+                  style={{ backgroundImage: "linear-gradient(90deg,#2563eb,#0284c7)" }}>
                   Credit Score
                 </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
-                  style={{ background: "linear-gradient(90deg,#facc15,#fb923c)" }} />
+                <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full"
+                  style={{ background: "linear-gradient(90deg,#2563eb,#38bdf8)" }} />
               </span>{" "}
               &amp; Financial Future
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-teal-100 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Expert credit repair, CIBIL score improvement, and home &amp; business loan advisory services.
               Over 10,000 happy clients across India — get your free consultation today.
             </p>
@@ -289,18 +289,18 @@ export function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
               <Link to="/contact" className="w-full sm:w-auto">
                 <Button size="lg"
-                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 hover:from-yellow-300 hover:to-orange-300 shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center justify-center gap-2">
                   <span>Get Free Consultation</span>
                   <ArrowRight className="w-5 h-5 flex-shrink-0" />
                 </Button>
               </Link>
               <Link to="/calculator" className="w-full sm:w-auto">
-                <button className="w-full sm:w-auto h-12 sm:h-11 px-6 rounded-xl font-bold text-white bg-white/15 hover:bg-white/25 border border-white/35 backdrop-blur-md transition-all flex items-center justify-center gap-2 shadow-lg hover:border-white/50 active:scale-95 text-base sm:text-sm">
-                  <Calculator className="w-4.5 h-4.5 text-teal-200 flex-shrink-0" />
+                <button className="w-full sm:w-auto h-12 sm:h-11 px-6 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300/80 transition-all flex items-center justify-center gap-2 shadow-md hover:border-slate-400 active:scale-95 text-base sm:text-sm">
+                  <Calculator className="w-4.5 h-4.5 text-blue-600 flex-shrink-0" />
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="white" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold shadow-lg shadow-blue-500/20" />
             </div>
 
             {/* Trust badges */}
@@ -311,7 +311,7 @@ export function Home() {
                 { emoji: "✅", label: "RBI Compliant" },
                 { emoji: "🔒", label: "No Hidden Fees" },
               ].map(({ emoji, label }) => (
-                <span key={label} className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                <span key={label} className="inline-flex items-center gap-1.5 bg-white/90 border border-slate-200/90 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm">
                   <span>{emoji}</span> {label}
                 </span>
               ))}
@@ -324,8 +324,8 @@ export function Home() {
                   <svg key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 ))}
               </div>
-              <span className="text-white text-sm font-semibold">4.9</span>
-              <span className="text-teal-200 text-xs">· 500+ Google Reviews</span>
+              <span className="text-slate-800 text-sm font-bold">4.9</span>
+              <span className="text-slate-500 text-xs font-medium">· 500+ Google Reviews</span>
             </div>
           </div>
 
@@ -337,7 +337,7 @@ export function Home() {
 
               {/* Central glowing orb */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full animate-pulse-slow"
-                style={{ background: "radial-gradient(circle at 40% 40%, #3b82f6 0%, #1e40af 50%, #0f172a 100%)", boxShadow: "0 0 80px 20px rgba(59,130,246,0.4)" }} />
+                style={{ background: "radial-gradient(circle at 40% 40%, #60a5fa 0%, #2563eb 50%, #1e3a8a 100%)", boxShadow: "0 0 60px 15px rgba(59,130,246,0.3)" }} />
 
               {/* Score ring — centre */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -348,14 +348,14 @@ export function Home() {
               <FloatCard delay="0s" className="absolute top-4 left-2 w-60 p-4">
                 <div className="flex items-center justify-between mb-2">
                   <div>
-                    <p className="text-[10px] text-teal-200 uppercase tracking-widest font-semibold">Credit Growth</p>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Credit Growth</p>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-xl font-black text-white">+180</span>
-                      <span className="text-[10px] font-bold text-emerald-400">pts gain</span>
+                      <span className="text-xl font-black text-slate-900">+180</span>
+                      <span className="text-[10px] font-bold text-emerald-600">pts gain</span>
                     </div>
                   </div>
-                  <span className="bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <TrendingUp className="w-3 h-3 text-emerald-400" />
+                  <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <TrendingUp className="w-3 h-3 text-emerald-600" />
                     +24%
                   </span>
                 </div>
@@ -364,50 +364,50 @@ export function Home() {
 
               {/* Floating card — top right: Approval */}
               <FloatCard delay="1s" className="absolute top-6 right-0 w-44 p-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <CheckCircle className="w-5 h-5 text-green-400" />
-                  <span className="text-xs font-semibold text-green-300">Loan Approved!</span>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <CheckCircle className="w-4 h-4 text-emerald-600" />
+                  <span className="text-xs font-bold text-emerald-700">Loan Approved!</span>
                 </div>
-                <p className="text-2xl font-black text-white">₹25 L</p>
-                <p className="text-[10px] text-blue-300">Home Loan · 8.4% p.a.</p>
-                <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-green-400 rounded-full animate-progress" style={{ width: "72%" }} />
+                <p className="text-2xl font-black text-slate-900">₹25 L</p>
+                <p className="text-[10px] text-slate-500 font-medium">Home Loan · 8.4% p.a.</p>
+                <div className="mt-2 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 rounded-full animate-progress" style={{ width: "72%" }} />
                 </div>
               </FloatCard>
 
               {/* Floating card — bottom left: Stats */}
               <FloatCard delay="0.5s" className="absolute bottom-8 left-0 w-44 p-4">
-                <p className="text-[10px] text-teal-200 uppercase tracking-widest mb-2">Clients Helped</p>
-                <p className="text-3xl font-black text-white">10K+</p>
-                <div className="flex gap-0.5 mt-2">
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-2">Clients Helped</p>
+                <p className="text-3xl font-black text-slate-900">10K+</p>
+                <div className="flex gap-0.5 mt-1.5">
                   {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 text-yellow-400 fill-yellow-400" />)}
                 </div>
-                <p className="text-[10px] text-blue-300 mt-1">98% success rate</p>
+                <p className="text-[10px] text-blue-600 font-semibold mt-1">98% success rate</p>
               </FloatCard>
 
               {/* Floating card — bottom right: EMI */}
               <FloatCard delay="1.5s" className="absolute bottom-4 right-2 w-48 p-4">
-                <p className="text-[10px] text-teal-200 uppercase tracking-widest mb-1">Monthly EMI</p>
-                <p className="text-2xl font-black text-yellow-300">₹18,240</p>
-                <p className="text-[10px] text-blue-300">Personal Loan · 5 yrs</p>
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold mb-1">Monthly EMI</p>
+                <p className="text-2xl font-black text-blue-600">₹18,240</p>
+                <p className="text-[10px] text-slate-500 font-medium">Personal Loan · 5 yrs</p>
                 <div className="mt-2 flex gap-1 items-end h-7">
                   {[40,60,80,55,90,70].map((h, i) => (
-                    <div key={i} className="flex-1 rounded-sm bg-yellow-400/80 shadow-sm"
+                    <div key={i} className="flex-1 rounded-sm bg-blue-500/80 shadow-sm"
                       style={{ height: `${h}%`, animation: `rise 0.8s ease-out ${i * 0.1 + 1}s both`, transformOrigin: "bottom" }} />
                   ))}
                 </div>
               </FloatCard>
 
               {/* Orbit ring */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-white/10 animate-spin-slow" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-white/5 animate-spin-reverse" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-blue-200/50 animate-spin-slow" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-blue-100/50 animate-spin-reverse" />
 
               {/* Orbiting dot */}
               <div className="absolute top-1/2 left-1/2 animate-orbit">
-                <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-lg shadow-yellow-400/60" style={{ marginTop: "-144px" }} />
+                <div className="w-3 h-3 rounded-full bg-blue-600 shadow-lg shadow-blue-500/60" style={{ marginTop: "-144px" }} />
               </div>
               <div className="absolute top-1/2 left-1/2 animate-orbit" style={{ animationDelay: "-4s" }}>
-                <div className="w-2 h-2 rounded-full bg-blue-300 shadow-lg shadow-blue-300/60" style={{ marginTop: "-160px" }} />
+                <div className="w-2 h-2 rounded-full bg-sky-400 shadow-lg shadow-sky-400/60" style={{ marginTop: "-160px" }} />
               </div>
             </div>
           </div>
@@ -416,7 +416,7 @@ export function Home() {
         {/* Bottom wave divider */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
-            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 20C540 40 240 0 0 20L0 60Z" fill="white" />
+            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 20C540 40 240 0 0 20L0 60Z" className="fill-gray-50" />
           </svg>
         </div>
       </section>
