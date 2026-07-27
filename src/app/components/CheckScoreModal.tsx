@@ -490,17 +490,19 @@ export function CheckScoreModal({ open, onClose }: Props) {
 }
 
 /* ── Trigger button ─────────────────────────────────────────── */
-export function CheckScoreButton({ variant = "primary", className = "" }: { variant?: "primary"|"outline"|"white"; className?: string }) {
+export function CheckScoreButton({ variant = "primary", className = "", style }: { variant?: "primary"|"outline"|"white"; className?: string; style?: React.CSSProperties }) {
   const [open, setOpen] = useState(false);
   const cls =
-    variant === "white"   ? "bg-white text-teal-700 hover:bg-teal-50 font-semibold shadow" :
-    variant === "outline" ? "border-teal-600 text-teal-600 hover:bg-blue-50 font-semibold" :
-                            "bg-[#00BC7D] hover:bg-[#00a36c] text-white font-semibold shadow-lg shadow-[#00BC7D]/30";
+    variant === "white"   ? "bg-white text-teal-700 hover:bg-teal-50 shadow" :
+    variant === "outline" ? "border-teal-600 text-teal-600 hover:bg-blue-50" :
+                            "bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30";
   return (
     <>
       <button onClick={() => setOpen(true)}
-        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm transition-all ${cls} ${className}`}>
-        <TrendingUp className="w-4 h-4" /> Check Credit Score
+        style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif", ...style }}
+        className={`inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all active:scale-95 ${cls} ${className}`}>
+        <TrendingUp className="w-5 h-5 flex-shrink-0" />
+        <span>Check Credit Score</span>
       </button>
       <CheckScoreModal open={open} onClose={() => setOpen(false)} />
     </>

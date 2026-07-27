@@ -351,7 +351,11 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-14 sm:h-13 text-lg sm:text-base px-7 justify-center rounded-xl font-bold bg-[#00bc7d] hover:bg-[#00a36c] text-white shadow-lg shadow-[#00bc7d]/30 border border-white/20" />
+              <CheckScoreButton
+                variant="primary"
+                style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
+                className="w-full sm:w-auto h-14 sm:h-13 text-lg sm:text-base px-7 justify-center rounded-xl font-bold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20"
+              />
             </div>
 
             {/* Trust badges — ultra-clean inline feature list */}
