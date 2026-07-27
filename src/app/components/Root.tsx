@@ -1,8 +1,28 @@
-import { useEffect } from "react";
-import { Outlet } from "react-router";
+import { useEffect, useLayoutEffect } from "react";
+import { Outlet, useLocation } from "react-router";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { ORG_SCHEMA } from "./SEOHead";
+
+/**
+ * ScrollToTop helper component: ensures every route change instantly scrolls
+ * the browser window and document container to top (0, 0)
+ */
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    if (document.documentElement) {
+      document.documentElement.scrollTop = 0;
+    }
+    if (document.body) {
+      document.body.scrollTop = 0;
+    }
+  }, [pathname, search]);
+
+  return null;
+}
 
 function injectBaseHeadTags() {
   // Viewport
@@ -66,6 +86,7 @@ export function Root() {
 
   return (
     <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
+      <ScrollToTop />
       <Navigation />
       <main className="flex-1 w-full overflow-x-hidden">
         <Outlet />
