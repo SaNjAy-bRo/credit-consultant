@@ -337,13 +337,16 @@ export function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0" style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}>
               <Link to="/contact" className="w-full sm:w-auto">
                 <Button size="lg"
+                  style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
                   className="w-full sm:w-auto h-14 sm:h-13 rounded-xl text-lg sm:text-base font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/30 border border-white/20 flex items-center justify-center gap-2 px-7">
                   <span>Get Free Consultation</span>
                   <ArrowRight className="w-5 h-5 flex-shrink-0" />
                 </Button>
               </Link>
               <Link to="/calculator" className="hidden sm:inline-flex w-full sm:w-auto">
-                <button className="w-full sm:w-auto h-14 sm:h-13 px-7 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300/80 transition-all flex items-center justify-center gap-2 shadow-md hover:border-slate-400 active:scale-95 text-lg sm:text-base">
+                <button
+                  style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
+                  className="w-full sm:w-auto h-14 sm:h-13 px-7 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300/80 transition-all flex items-center justify-center gap-2 shadow-md hover:border-slate-400 active:scale-95 text-lg sm:text-base">
                   <Calculator className="w-5 h-5 text-[#31b0d0] flex-shrink-0" />
                   <span>EMI Calculator</span>
                 </button>
