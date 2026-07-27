@@ -497,27 +497,29 @@ export function Home() {
           </div>
         </div>
 
-        {/* Slow continuous carousel with Full Color Authentic Bank Logos */}
-        <div className="relative w-full overflow-hidden py-4 bg-slate-50/60 border-y border-slate-200/80">
-          <div className="animate-marquee flex items-center gap-8 sm:gap-12">
-            <div className="flex items-center gap-8 sm:gap-12 px-4">
+        {/* Slow continuous carousel with Full Color Authentic Bank Logos — No Cards */}
+        <div className="relative w-full overflow-hidden py-6 bg-slate-50/40 border-y border-slate-100">
+          <div className="animate-marquee flex items-center gap-10 sm:gap-14">
+            <div className="flex items-center gap-10 sm:gap-14 px-4">
               {bankLogos.map((bank) => (
-                <div key={bank.name} className="flex items-center justify-center h-12 sm:h-14 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+                <div key={bank.name} className="flex items-center justify-center h-10 sm:h-12 px-2 hover:scale-105 transition-transform duration-200">
                   <ImageWithFallback
                     src={bank.logo}
+                    fallbackSrc={bank.fallbackSvg}
                     alt={bank.name}
-                    className="h-7 sm:h-9 w-auto object-contain max-w-[140px] sm:max-w-[160px]"
+                    className="h-8 sm:h-10 w-auto object-contain max-w-[140px] sm:max-w-[170px]"
                   />
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-8 sm:gap-12 px-4" aria-hidden="true">
+            <div className="flex items-center gap-10 sm:gap-14 px-4" aria-hidden="true">
               {bankLogos.map((bank) => (
-                <div key={`${bank.name}-dup`} className="flex items-center justify-center h-12 sm:h-14 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+                <div key={`${bank.name}-dup`} className="flex items-center justify-center h-10 sm:h-12 px-2 hover:scale-105 transition-transform duration-200">
                   <ImageWithFallback
                     src={bank.logo}
+                    fallbackSrc={bank.fallbackSvg}
                     alt={bank.name}
-                    className="h-7 sm:h-9 w-auto object-contain max-w-[140px] sm:max-w-[160px]"
+                    className="h-8 sm:h-10 w-auto object-contain max-w-[140px] sm:max-w-[170px]"
                   />
                 </div>
               ))}
