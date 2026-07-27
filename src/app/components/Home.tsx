@@ -665,7 +665,7 @@ export function Home() {
                 icon: HomeIcon,
                 label: "Home Loan",
                 desc: "Rates from 8.35% p.a., up to ₹5 Cr, 30-year tenure.",
-                img: "/home-loan-vector-v2.png",
+                img: "/home-loan-user-given.jpg",
                 tag: "Rates from 8.35%",
                 accent: "bg-blue-50 border-blue-200 text-blue-600",
                 tagColor: "bg-blue-600",
