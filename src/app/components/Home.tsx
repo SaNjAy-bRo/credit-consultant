@@ -463,13 +463,13 @@ export function Home() {
           </div>
         </div>
 
-        {/* Integrated Stats — SINGLE Combined Floating Card Container */}
-        <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+        {/* Integrated Stats — SINGLE Combined Floating Card Container (Left Aligned on Desktop) */}
+        <div className="relative z-20 max-w-6xl mx-auto lg:mx-0 lg:max-w-none px-4 sm:px-6 lg:px-8 pb-12 pt-4">
           <div className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-xl p-4 sm:p-5">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-4 lg:gap-y-0 divide-y sm:divide-y-0 lg:divide-x divide-slate-200/80">
               {stats.map((stat, index) => (
-                <div key={index} className="flex flex-col items-center justify-center text-center px-2 py-1">
-                  <div className="text-2xl lg:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] mb-0.5 flex items-center justify-center gap-1">
+                <div key={index} className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left px-3 py-1">
+                  <div className="text-2xl lg:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] mb-0.5 flex items-center justify-center lg:justify-start gap-1">
                     <span>{stat.value}</span>
                     {stat.isStar && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />}
                   </div>
@@ -529,53 +529,117 @@ export function Home() {
       {/* How It Works */}
       <HowItWorks bg="white" showCTA={true} />
 
-      {/* Why Choose Us Section — Redesigned */}
+      {/* Why Choose Us Section — Informative & Premium Redesign */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3.5 py-1 rounded-full inline-block mb-3">
+              THE CREDIT CONSULTANT ADVANTAGE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Why 10,000+ Clients Trust Credit Consultant
+            </h2>
+            <p className="text-base text-slate-600 mt-3 leading-relaxed">
+              We combine deep credit bureau expertise, RBI-compliant legal processes, and direct lender advisory to deliver guaranteed CIBIL score improvements.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+            {/* Left Image & Overlay Badges */}
+            <div className="lg:col-span-5 relative">
+              <div className="absolute -top-6 -left-6 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbnN1bHRhdGlvbiUyMHRlYW18ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Professional Credit Advisory Team"
-                className="rounded-2xl shadow-2xl border border-slate-200 w-full h-[420px] object-cover relative z-10"
+                className="rounded-3xl shadow-2xl border border-slate-200 w-full h-[480px] object-cover relative z-10"
               />
-              <div className="absolute -bottom-6 -right-6 z-20 bg-white p-4 rounded-2xl border border-slate-200 shadow-xl hidden sm:flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+
+              {/* Floating Badge 1: RBI Compliant */}
+              <div className="absolute -bottom-6 -right-2 sm:right-4 z-20 bg-white p-4 rounded-2xl border border-slate-200 shadow-xl flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0">
                   <ShieldCheck className="w-6 h-6 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="font-extrabold text-slate-900 text-sm">RBI Compliant Process</p>
-                  <p className="text-xs text-slate-500">100% Legal Bureau Disputes</p>
+                  <p className="font-extrabold text-slate-900 text-sm">100% RBI Compliant</p>
+                  <p className="text-xs text-slate-500 font-medium">CICRA Act, 2005 Dispute Guidelines</p>
+                </div>
+              </div>
+
+              {/* Floating Badge 2: Average Score Gain */}
+              <div className="absolute top-6 -left-4 z-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg hidden sm:flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <p className="font-extrabold text-slate-900 text-xs">+150 Points Avg. Gain</p>
+                  <p className="text-[10px] text-slate-500">Achieved in 30–90 Days</p>
                 </div>
               </div>
             </div>
-            <div>
-              <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1 rounded-full inline-block mb-3">
-                OUR ADVANTAGE
-              </span>
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                Why Choose Credit Consultant?
-              </h2>
-              <p className="text-base text-slate-600 mb-8 leading-relaxed font-normal">
-                We are committed to providing India's most transparent, effective, and result-oriented credit repair and loan advisory services. Here is what sets us apart:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-sm">
-                    <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                    <span className="text-slate-800 text-sm font-semibold">{benefit}</span>
+
+            {/* Right Rich Feature Grid */}
+            <div className="lg:col-span-7 space-y-4">
+              {[
+                {
+                  title: "100% Legal & Bureau-Sanctioned Disputes",
+                  desc: "We file formal disputes under Section 21 of the Credit Information Companies (Regulation) Act, 2005 directly with CIBIL, Equifax, Experian and CRIF.",
+                  icon: ShieldCheck,
+                  iconBg: "bg-blue-50 border-blue-200 text-blue-600",
+                },
+                {
+                  title: "Personalized Case Strategy & Expert Advisory",
+                  desc: "No generic automated dispute templates. A dedicated senior credit manager analyzes your bureau report item-by-item and creates a tailored resolution plan.",
+                  icon: User,
+                  iconBg: "bg-indigo-50 border-indigo-200 text-indigo-600",
+                },
+                {
+                  title: "Multi-Bureau Settlement & Error Corrections",
+                  desc: "We clean up settled accounts, written-off tags, identity errors, wrong delinquency reporting, and unauthorized hard inquiries across all 4 bureaus.",
+                  icon: CheckCircle,
+                  iconBg: "bg-purple-50 border-purple-200 text-purple-600",
+                },
+                {
+                  title: "Direct Bank Loan Approval Advisory",
+                  desc: "Once your score reaches 750+, we assist in securing home, personal, and business loans from leading partner banks at pre-approved low interest rates.",
+                  icon: Building2,
+                  iconBg: "bg-emerald-50 border-emerald-200 text-emerald-600",
+                },
+                {
+                  title: "Zero Hidden Fees & Transparent Process",
+                  desc: "Free initial CIBIL credit report analysis. Clear milestone-based resolution steps with 100% transparency — no surprise charges or hidden clauses.",
+                  icon: Lock,
+                  iconBg: "bg-amber-50 border-amber-200 text-amber-600",
+                },
+              ].map((item, idx) => {
+                const IconComp = item.icon;
+                return (
+                  <div key={idx} className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-4">
+                    <div className={`w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0 mt-0.5 ${item.iconBg}`}>
+                      <IconComp className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-base mb-1">{item.title}</h3>
+                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">{item.desc}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-              <div>
+                );
+              })}
+
+              <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Link to="/about">
                   <Button size="lg" className="rounded-xl font-bold bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] hover:from-blue-800 hover:to-blue-600 text-white shadow-lg shadow-blue-500/20">
-                    Learn More About Us <ArrowRight className="ml-2 w-4 h-4" />
+                    Learn More About Our Team <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
+                </Link>
+                <Link to="/contact">
+                  <button className="px-5 py-3 rounded-xl font-bold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-all text-sm shadow-sm">
+                    Book Free Consultation
+                  </button>
                 </Link>
               </div>
             </div>
+
           </div>
         </div>
       </section>
