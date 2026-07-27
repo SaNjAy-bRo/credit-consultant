@@ -647,7 +647,7 @@ export function Home() {
       {/* Testimonials Carousel — Positioned after Why 10,000+ Clients Trust Credit Consultant */}
       <TestimonialsCarousel />
 
-      {/* Loan Products Teaser — Rich Visual Cards with Overlay Text */}
+      {/* Loan Products Teaser — Clean Vector Illustration Cards */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -665,52 +665,68 @@ export function Home() {
                 icon: HomeIcon,
                 label: "Home Loan",
                 desc: "Rates from 8.35% p.a., up to ₹5 Cr, 30-year tenure.",
-                img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                img: "/home-loan-vector.png",
                 tag: "Rates from 8.35%",
+                accent: "bg-blue-50 border-blue-200 text-blue-600",
+                tagColor: "bg-blue-600",
               },
               {
                 icon: Briefcase,
                 label: "Business Loan",
                 desc: "Collateral-free SME loans up to ₹50 L with 48-hr disbursal.",
-                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                img: "/business-loan-vector.png",
                 tag: "Up to ₹50 Lakhs",
+                accent: "bg-emerald-50 border-emerald-200 text-emerald-600",
+                tagColor: "bg-emerald-600",
               },
               {
                 icon: User,
                 label: "Personal Loan",
                 desc: "Instant approval, no collateral, flexible repayment up to ₹40 L.",
-                img: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                img: "/personal-loan-vector.png",
                 tag: "Instant Approval",
+                accent: "bg-purple-50 border-purple-200 text-purple-600",
+                tagColor: "bg-purple-600",
               },
               {
                 icon: Car,
                 label: "Car Loan",
                 desc: "100% on-road price financing with minimal documentation.",
-                img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                img: "/car-loan-vector.png",
                 tag: "100% On-Road",
+                accent: "bg-amber-50 border-amber-200 text-amber-600",
+                tagColor: "bg-amber-600",
               },
             ].map((item) => {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 h-80 flex flex-col justify-end p-6 border border-slate-200">
-                    <ImageWithFallback src={item.img} alt={item.label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/20" />
+                  <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col">
+                    {/* Vector Illustration */}
+                    <div className="relative h-44 overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-emerald-50/30 flex items-center justify-center p-4">
+                      <img
+                        src={item.img}
+                        alt={item.label}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+                      />
+                      {/* Tag Badge */}
+                      <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-2.5 py-1 rounded-full shadow-md`}>
+                        {item.tag}
+                      </span>
+                    </div>
 
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-white" />
+                    {/* Card Content */}
+                    <div className="p-5 flex flex-col flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-xl border flex items-center justify-center flex-shrink-0 ${item.accent}`}>
+                          <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-[11px] font-bold bg-[#31b0d0] text-white px-2.5 py-1 rounded-full shadow-sm">
-                          {item.tag}
-                        </span>
+                        <h3 className="text-xl font-extrabold text-slate-900">{item.label}</h3>
                       </div>
-                      <h3 className="text-2xl font-black text-white mb-1.5">{item.label}</h3>
-                      <p className="text-slate-200 text-xs font-normal leading-relaxed mb-4 line-clamp-2">{item.desc}</p>
-                      <div className="flex items-center gap-1.5 text-white font-bold text-xs group-hover:gap-2.5 transition-all">
+                      <p className="text-slate-600 text-sm font-normal leading-relaxed mb-4 flex-1">{item.desc}</p>
+                      <div className="flex items-center gap-1.5 text-blue-600 font-bold text-xs group-hover:gap-2.5 transition-all">
                         <span>Explore Rates &amp; Eligibility</span>
-                        <ArrowRight className="w-4 h-4 text-[#31b0d0]" />
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
