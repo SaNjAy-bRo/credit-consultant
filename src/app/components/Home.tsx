@@ -942,44 +942,61 @@ export function Home() {
       {/* Testimonials Carousel */}
       <TestimonialsCarousel />
 
-      {/* Newsletter */}
-      <section className="py-12 bg-teal-600">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-2">Stay Financially Informed</h2>
-          <p className="text-teal-100 text-sm mb-6">Get weekly CIBIL tips, loan rate alerts and financial guides. No spam, unsubscribe anytime.</p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="flex-1 px-4 py-3 rounded-xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
-            />
-            <button type="submit" className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
-              Subscribe Free
-            </button>
-          </form>
-          <p className="text-teal-200 text-xs mt-3">Join 5,000+ subscribers · No spam ever</p>
+      {/* Newsletter Section — Clean Royal Blue & Glass Card */}
+      <section className="py-14 bg-gradient-to-b from-slate-50 to-blue-50/50 border-t border-slate-200/80">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-lg p-8 sm:p-10 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 -mt-8 -mr-8 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl" />
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+                FREE FINANCIAL INSIGHTS
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">Stay Financially Informed</h2>
+              <p className="text-slate-600 text-sm max-w-xl mx-auto mb-6 leading-relaxed font-normal">
+                Get weekly CIBIL score repair tips, RBI policy updates, and loan interest rate alerts delivered straight to your inbox.
+              </p>
+              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="flex-1 px-4 py-3 rounded-xl border border-slate-300 bg-slate-50 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+                />
+                <button type="submit" className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg shadow-orange-500/25 transition-all whitespace-nowrap">
+                  Subscribe Free
+                </button>
+              </form>
+              <p className="text-slate-400 text-xs mt-3.5 font-medium">Join 5,000+ subscribers · No spam ever · Unsubscribe anytime</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      {/* CTA Banner Section — Executive Dark Royal Blue Theme */}
+      <section className="py-20 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white relative overflow-hidden border-t border-slate-800">
+        {/* Background ambient lighting */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" aria-hidden="true" />
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-block bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold px-3.5 py-1 rounded-full mb-4 uppercase tracking-widest">
+            START YOUR CREDIT RECOVERY TODAY
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight text-white">
             Ready to Improve Your Credit Score?
           </h2>
-          <p className="text-lg lg:text-xl mb-8 text-teal-100 max-w-2xl mx-auto">
-            Get started today with a free consultation. Our experts are ready to help you achieve your financial goals.
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
+            Get started today with a 100% free consultation. Our certified CIBIL experts analyze your credit report and map out a step-by-step resolution strategy.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50">
-                Get Your Free Consultation
-                <ArrowRight className="ml-2 w-5 h-5" />
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/contact" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/30 border border-white/20 flex items-center justify-center gap-2">
+                <span>Get Free Consultation</span>
+                <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Button>
             </Link>
-            <a href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-green-500 hover:bg-green-400 text-white border-0">
-                💬 WhatsApp Us
+            <a href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto h-12 rounded-xl text-base font-bold bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 border border-white/20 flex items-center justify-center gap-2">
+                <span>💬 WhatsApp Us</span>
               </Button>
             </a>
           </div>
