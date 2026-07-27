@@ -325,9 +325,7 @@ export function Home() {
                   style={{ backgroundImage: "linear-gradient(90deg,#1d4ed8 0%,#2563eb 50%,#31b0d0 100%)" }}>
                   Credit Score
                 </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full"
-                  style={{ background: "linear-gradient(90deg,#2563eb,#31b0d0)" }} />
-              </span>
+              </span>{" "}
               <span className="block sm:inline font-normal text-slate-700 mt-1 sm:mt-0">&amp; Financial Future</span>
             </h1>
 
@@ -339,7 +337,7 @@ export function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
               <Link to="/contact" className="w-full sm:w-auto">
                 <Button size="lg"
-                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-[#1d4ed8] via-[#2563eb] to-[#31b0d0] hover:from-[#1e40af] hover:to-[#229ab8] text-white shadow-xl shadow-[#31b0d0]/30 border border-white/20 flex items-center justify-center gap-2">
+                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/30 border border-white/20 flex items-center justify-center gap-2">
                   <span>Get Free Consultation</span>
                   <ArrowRight className="w-5 h-5 flex-shrink-0" />
                 </Button>
@@ -350,7 +348,7 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-400/25" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25 border border-white/20" />
             </div>
 
             {/* Trust badges — ultra-clean inline feature list */}
@@ -465,27 +463,25 @@ export function Home() {
           </div>
         </div>
 
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+        {/* Integrated Stats Cards Bar */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl lg:text-3xl font-black text-blue-600 mb-1 flex items-center justify-center gap-1">
+              <div key={index} className="bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-md p-3.5 sm:p-4 flex flex-col items-center justify-center text-center hover:scale-[1.03] transition-all duration-300">
+                <div className="text-2xl lg:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] mb-0.5 flex items-center justify-center gap-1">
                   <span>{stat.value}</span>
                   {stat.isStar && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />}
                 </div>
-                <div className="text-slate-500 text-xs font-semibold">{stat.label}</div>
+                <div className="text-slate-600 text-xs font-semibold">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
+
       </section>
 
-      {/* Partner Banks & NBFCs — Authentic Logo Carousel */}
-      <section className="py-10 bg-white border-b border-gray-100 overflow-hidden">
+      {/* Partner Banks & NBFCs — Authentic Logo Carousel with Cohesive Single Background */}
+      <section className="py-10 bg-slate-50/80 border-y border-slate-200/80 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <div className="text-center">
             <p className="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest leading-snug">
@@ -497,8 +493,8 @@ export function Home() {
           </div>
         </div>
 
-        {/* Slow continuous carousel with Full Color Authentic Bank Logos & Soft Cards */}
-        <div className="relative w-full overflow-hidden py-5 bg-slate-50/50 border-y border-slate-100">
+        {/* Slow continuous carousel */}
+        <div className="relative w-full overflow-hidden py-3">
           <div className="animate-marquee flex items-center gap-6 sm:gap-8">
             <div className="flex items-center gap-6 sm:gap-8 px-4">
               {bankLogos.map((bank) => (
@@ -531,77 +527,53 @@ export function Home() {
       {/* How It Works */}
       <HowItWorks bg="white" showCTA={true} />
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Why Choose Us Section — Redesigned */}
+      <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="relative">
+              <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" />
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Professional Team"
-                className="rounded-lg shadow-xl w-full h-[400px] object-cover"
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbnN1bHRhdGlvbiUyMHRlYW18ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Professional Credit Advisory Team"
+                className="rounded-2xl shadow-2xl border border-slate-200 w-full h-[420px] object-cover relative z-10"
               />
+              <div className="absolute -bottom-6 -right-6 z-20 bg-white p-4 rounded-2xl border border-slate-200 shadow-xl hidden sm:flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+                  <ShieldCheck className="w-6 h-6 text-emerald-600" />
+                </div>
+                <div>
+                  <p className="font-extrabold text-slate-900 text-sm">RBI Compliant Process</p>
+                  <p className="text-xs text-slate-500">100% Legal Bureau Disputes</p>
+                </div>
+              </div>
             </div>
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1 rounded-full inline-block mb-3">
+                OUR ADVANTAGE
+              </span>
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
                 Why Choose Credit Consultant?
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                We are committed to providing the best credit repair and financial consulting services in India. Here's what sets us apart:
+              <p className="text-base text-slate-600 mb-8 leading-relaxed font-normal">
+                We are committed to providing India's most transparent, effective, and result-oriented credit repair and loan advisory services. Here is what sets us apart:
               </p>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-700">{benefit}</span>
+                  <div key={index} className="flex items-center gap-3 bg-white p-3.5 rounded-xl border border-slate-200/90 shadow-sm">
+                    <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                    <span className="text-slate-800 text-sm font-semibold">{benefit}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
+              <div>
                 <Link to="/about">
-                  <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
-                    Learn More About Us
+                  <Button size="lg" className="rounded-xl font-bold bg-gradient-to-r from-blue-700 via-blue-600 to-[#31b0d0] hover:from-blue-800 hover:to-blue-600 text-white shadow-lg shadow-blue-500/20">
+                    Learn More About Us <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it - hear from our satisfied clients
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <div className="flex items-center gap-4 mb-4">
-                    <ImageWithFallback
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                    <div>
-                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                      <p className="text-sm text-gray-600">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 italic">"{testimonial.content}"</p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>

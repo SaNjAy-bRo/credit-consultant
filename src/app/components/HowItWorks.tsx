@@ -141,20 +141,83 @@ export function HowItWorks({
           )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        {/* Mobile Accordion View (< lg) */}
+        <div className="lg:hidden space-y-3">
+          {steps.map((step, i) => {
+            const pp = palette[step.color];
+            const StepIcon = step.icon;
+            const isActive = i === active;
+            return (
+              <div key={i} className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm transition-all duration-200">
+                <button
+                  id={`step-mobile-${step.number}`}
+                  onClick={() => goTo(i)}
+                  aria-expanded={isActive}
+                  className={`w-full flex items-center justify-between gap-3 p-4 text-left transition-all ${
+                    isActive ? `${pp.activePill} shadow-md` : "bg-white text-slate-800 hover:bg-slate-50"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className={`text-xs font-black px-2 py-0.5 rounded-md ${isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"}`}>
+                      {step.number}
+                    </span>
+                    <StepIcon className={`w-5 h-5 ${isActive ? "text-white" : pp.icon}`} />
+                    <span className="font-bold text-sm leading-tight">{step.title}</span>
+                  </div>
+                  <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${isActive ? "rotate-90 text-white" : "text-slate-400"}`} />
+                </button>
 
-          {/* Left — step list (always in DOM for SEO) */}
-          <ol className="lg:col-span-2 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0 scrollbar-hide"
-            itemScope itemType="https://schema.org/HowTo">
+                {/* Expanded Content Box on Mobile */}
+                {isActive && (
+                  <div
+                    className="p-5 border-t border-slate-100 transition-all duration-300"
+                    style={{
+                      background: step.color === "blue" ? "#eff6ff" : step.color === "indigo" ? "#eef2ff" : step.color === "purple" ? "#faf5ff" : step.color === "green" ? "#f0fdf4" : "#fff7ed",
+                    }}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${pp.tag}`}>{step.tag}</span>
+                      <span className={`text-xs font-medium ${pp.icon}`}>Step {i + 1} of {steps.length}</span>
+                    </div>
+
+                    <p className="text-slate-700 text-sm leading-relaxed mb-3 font-medium">{step.desc}</p>
+                    <p className="text-xs text-slate-500 italic border-l-2 border-slate-300 pl-3 mb-4">{step.cibil}</p>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-200/60">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); goTo(Math.max(0, i - 1)); }}
+                        disabled={i === 0}
+                        className="text-xs font-bold text-slate-600 hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        ← Previous
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); goTo(Math.min(steps.length - 1, i + 1)); }}
+                        disabled={i === steps.length - 1}
+                        className="text-xs font-bold text-blue-600 hover:text-blue-800 disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        Next Step →
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop View (>= lg) */}
+        <div className="hidden lg:grid grid-cols-5 gap-4">
+
+          {/* Left — step list */}
+          <ol className="col-span-2 flex flex-col gap-2.5" itemScope itemType="https://schema.org/HowTo">
             <meta itemProp="name" content="How Credit Consultant's CIBIL Dispute Process Works" />
             {steps.map((step, i) => {
               const pp = palette[step.color];
               const StepIcon = step.icon;
               const isActive = i === active;
               return (
-                <li key={i} className="flex-shrink-0 lg:flex-shrink"
-                  itemScope itemProp="step" itemType="https://schema.org/HowToStep">
-                  {/* Hidden SEO text — always visible to crawler */}
+                <li key={i} itemScope itemProp="step" itemType="https://schema.org/HowToStep">
                   <meta itemProp="position" content={String(i + 1)} />
                   <span itemProp="name" className="sr-only">{step.title}</span>
                   <span itemProp="text" className="sr-only">{step.desc}</span>
@@ -164,20 +227,20 @@ export function HowItWorks({
                     onClick={() => goTo(i)}
                     aria-expanded={isActive}
                     aria-controls={`step-detail-${i}`}
-                    className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left transition-all duration-200 ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all duration-200 ${
                       isActive
                         ? `${pp.activePill} shadow-md ring-2 ${pp.ring} ring-offset-1`
                         : `bg-white ${pp.pill} border`
                     }`}
                   >
-                    <span className={`text-xs font-black flex-shrink-0 ${isActive ? "text-white/70" : "text-gray-400"}`}>
+                    <span className={`text-xs font-black flex-shrink-0 ${isActive ? "text-white/70" : "text-slate-400"}`}>
                       {step.number}
                     </span>
                     <StepIcon className={`w-4 h-4 flex-shrink-0 ${isActive ? "text-white" : pp.icon}`} />
                     <span className={`text-xs font-semibold leading-tight ${isActive ? "text-white" : ""}`}>
                       {step.title}
                     </span>
-                    {isActive && <ChevronRight className="w-3.5 h-3.5 ml-auto text-white/70 hidden lg:block" />}
+                    {isActive && <ChevronRight className="w-4 h-4 ml-auto text-white/80" />}
                   </button>
                 </li>
               );
@@ -185,64 +248,58 @@ export function HowItWorks({
           </ol>
 
           {/* Right — active detail panel */}
-          <div className="lg:col-span-3">
-            {/* Visual interactive panel */}
+          <div className="col-span-3">
             <div id={`step-detail-${active}`}
-              className={`rounded-2xl border-2 p-6 h-full transition-all duration-300 ${animating ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"} border-${s.color === "orange" ? "orange" : s.color}-200 bg-${s.color === "orange" ? "orange" : s.color}-50`}
-              style={{ borderColor: "", background: "" }}
+              className={`rounded-2xl border-2 p-6 h-full transition-all duration-300 ${animating ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"}`}
+              style={{
+                borderColor: s.color === "blue" ? "#bfdbfe" : s.color === "indigo" ? "#c7d2fe" : s.color === "purple" ? "#e9d5ff" : s.color === "green" ? "#bbf7d0" : "#fed7aa",
+                background: s.color === "blue" ? "#eff6ff" : s.color === "indigo" ? "#eef2ff" : s.color === "purple" ? "#faf5ff" : s.color === "green" ? "#f0fdf4" : "#fff7ed",
+              }}
             >
-              {/* Use inline styles to avoid Tailwind purge issues with dynamic colors */}
-              <div className="rounded-2xl border-2 p-6 h-full transition-all duration-300"
-                style={{
-                  borderColor: s.color === "blue" ? "#bfdbfe" : s.color === "indigo" ? "#c7d2fe" : s.color === "purple" ? "#e9d5ff" : s.color === "green" ? "#bbf7d0" : "#fed7aa",
-                  background: s.color === "blue" ? "#eff6ff" : s.color === "indigo" ? "#eef2ff" : s.color === "purple" ? "#faf5ff" : s.color === "green" ? "#f0fdf4" : "#fff7ed",
-                }}>
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-lg flex-shrink-0 ${p.num}`}>
-                    {s.number}
+              <div className="flex items-start gap-4 mb-4">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-lg flex-shrink-0 ${p.num}`}>
+                  {s.number}
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h3 className="text-lg font-bold text-slate-900">{s.title}</h3>
+                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${p.tag}`}>{s.tag}</span>
                   </div>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <h3 className="text-lg font-bold text-gray-900">{s.title}</h3>
-                      <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${p.tag}`}>{s.tag}</span>
-                    </div>
-                    <p className={`text-xs font-medium ${p.icon}`}>
-                      Step {active + 1} of {steps.length}
-                    </p>
-                  </div>
+                  <p className={`text-xs font-medium ${p.icon}`}>
+                    Step {active + 1} of {steps.length}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-slate-700 text-sm leading-relaxed mb-4 font-medium">{s.desc}</p>
+              <p className="text-xs text-slate-500 italic border-l-2 border-slate-300 pl-3 mb-5">{s.cibil}</p>
+
+              {/* Nav controls */}
+              <div className="flex items-center justify-between">
+                <button onClick={() => goTo(Math.max(0, active - 1))}
+                  disabled={active === 0}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed px-3 py-1.5 rounded-lg hover:bg-white/60 transition-all">
+                  ← Prev
+                </button>
+
+                <div className="flex gap-1.5 items-center">
+                  {steps.map((_, i) => (
+                    <button key={i} onClick={() => goTo(i)} aria-label={`Go to step ${i + 1}`}
+                      className={`rounded-full transition-all duration-300 ${i === active ? `w-5 h-2 ${p.bar}` : "w-2 h-2 bg-slate-300 hover:bg-slate-400"}`}
+                    />
+                  ))}
                 </div>
 
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">{s.desc}</p>
-
-                <p className="text-xs text-gray-400 italic border-l-2 border-gray-200 pl-3 mb-5">{s.cibil}</p>
-
-                {/* Nav controls */}
-                <div className="flex items-center justify-between">
-                  <button onClick={() => goTo(Math.max(0, active - 1))}
-                    disabled={active === 0}
-                    className="text-xs font-semibold text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed px-3 py-1.5 rounded-lg hover:bg-white/60 transition-all">
-                    ← Prev
-                  </button>
-
-                  <div className="flex gap-1.5 items-center">
-                    {steps.map((_, i) => (
-                      <button key={i} onClick={() => goTo(i)} aria-label={`Go to step ${i + 1}`}
-                        className={`rounded-full transition-all duration-300 ${i === active ? `w-5 h-2 ${p.bar}` : "w-2 h-2 bg-gray-300 hover:bg-gray-400"}`}
-                      />
-                    ))}
-                  </div>
-
-                  <button onClick={() => goTo(Math.min(steps.length - 1, active + 1))}
-                    disabled={active === steps.length - 1}
-                    className="text-xs font-semibold text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed px-3 py-1.5 rounded-lg hover:bg-white/60 transition-all">
-                    Next →
-                  </button>
-                </div>
+                <button onClick={() => goTo(Math.min(steps.length - 1, active + 1))}
+                  disabled={active === steps.length - 1}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 disabled:opacity-30 disabled:cursor-not-allowed px-3 py-1.5 rounded-lg hover:bg-white/60 transition-all">
+                  Next →
+                </button>
               </div>
             </div>
 
             {/* Progress bar */}
-            <div className="mt-2.5 h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div className="mt-2.5 h-1 bg-slate-100 rounded-full overflow-hidden">
               <div className={`h-full rounded-full transition-all duration-500 ${p.bar}`}
                 style={{ width: `${((active + 1) / steps.length) * 100}%` }} />
             </div>

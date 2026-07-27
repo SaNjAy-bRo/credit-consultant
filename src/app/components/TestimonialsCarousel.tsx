@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote, CheckCircle } from "lucide-react";
 
 const testimonials = [
   {
     name: "Rajesh Kumar",
     role: "Business Owner, Bengaluru",
     score: { before: 541, after: 762 },
-    text: "Credit Consultant helped me remove a settled loan entry and two wrong missed-payment records. My score jumped from 541 to 762 in just 5 months. I got my business loan approved at 10.5% — the best rate I could have hoped for.",
+    text: "Credit Consultant helped me remove a settled loan entry and two wrong missed-payment records. My score jumped from 541 to 762 in just 5 months. I got my business loan approved at 10.5%.",
     avatar: "RK",
-    color: "bg-teal-600",
+    color: "bg-blue-600",
   },
   {
     name: "Priya Sharma",
@@ -22,7 +22,7 @@ const testimonials = [
     name: "Amit Patel",
     role: "Entrepreneur, Delhi NCR",
     score: { before: 623, after: 798 },
-    text: "I had applied to 6 lenders in one go — completely destroying my score with hard enquiries. Credit Consultant cleaned up the enquiry damage and helped me build my score from 623 to 798 in 4 months. Outstanding service.",
+    text: "I had applied to 6 lenders in one go — destroying my score with hard enquiries. Credit Consultant cleaned up the enquiry damage and helped me build my score from 623 to 798 in 4 months. Outstanding service.",
     avatar: "AP",
     color: "bg-purple-600",
   },
@@ -30,7 +30,7 @@ const testimonials = [
     name: "Sunita Reddy",
     role: "Government Employee, Hyderabad",
     score: { before: 560, after: 741 },
-    text: "There were two loan accounts in my CIBIL report that I had never taken — someone else's accounts had mixed with mine. The team resolved the dispute in 45 days and my score shot up. Professional and prompt throughout.",
+    text: "There were two loan accounts in my CIBIL report that I had never taken — someone else's accounts had mixed with mine. The team resolved the dispute in 45 days and my score shot up. Professional and prompt.",
     avatar: "SR",
     color: "bg-cyan-600",
   },
@@ -40,107 +40,165 @@ const testimonials = [
     score: { before: 672, after: 801 },
     text: "As a CA, I knew what needed to be done but didn't have the time to chase the bureaus. Credit Consultant handled everything — dispute filing, lender follow-ups, score monitoring. Went from 672 to 801 in 6 months.",
     avatar: "VM",
-    color: "bg-green-600",
+    color: "bg-emerald-600",
+  },
+  {
+    name: "Ananya Deshmukh",
+    role: "Doctor, Ahmedabad",
+    score: { before: 580, after: 775 },
+    text: "My credit card bill payment was incorrectly reported as delayed by 60 days. Credit Consultant verified my bank records, sent formal legal notices and corrected my CIBIL score in less than 60 days!",
+    avatar: "AD",
+    color: "bg-rose-600",
   },
 ];
 
 export function TestimonialsCarousel() {
-  const [current, setCurrent] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const total = testimonials.length;
+
   const start = () => {
-    timerRef.current = setInterval(() => setCurrent((c) => (c + 1) % testimonials.length), 5000);
+    timerRef.current = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % total);
+    }, 4500);
   };
-  const stop = () => { if (timerRef.current) clearInterval(timerRef.current); };
 
-  useEffect(() => { start(); return stop; }, []);
+  const stop = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
 
-  const prev = () => { stop(); setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length); start(); };
-  const next = () => { stop(); setCurrent((c) => (c + 1) % testimonials.length); start(); };
+  useEffect(() => {
+    start();
+    return stop;
+  }, []);
 
-  const t = testimonials[current];
+  const prev = () => {
+    stop();
+    setStartIndex((prev) => (prev - 1 + total) % total);
+    start();
+  };
+
+  const next = () => {
+    stop();
+    setStartIndex((prev) => (prev + 1) % total);
+    start();
+  };
+
+  // Get 3 visible items wrapped around
+  const visibleTestimonials = [
+    testimonials[startIndex],
+    testimonials[(startIndex + 1) % total],
+    testimonials[(startIndex + 2) % total],
+  ];
 
   return (
     <section
-      className="py-16 bg-gray-50"
+      className="py-16 bg-slate-50 border-t border-slate-200/80"
       onMouseEnter={() => { stop(); setPaused(true); }}
       onMouseLeave={() => { start(); setPaused(false); }}
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Testimonials</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">What Our Clients Say</h2>
-          <div className="flex justify-center gap-0.5 mt-3">
-            {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
-            <span className="text-sm text-gray-500 ml-2">4.9 · 500+ Reviews</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-1 rounded-full inline-block mb-3">
+            VERIFIED CLIENT REVIEWS
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">What Our Clients Say</h2>
+          <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto font-normal">
+            Real stories and CIBIL score improvements from clients across India
+          </p>
+          <div className="flex items-center justify-center gap-1.5 mt-3">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <Star key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+            ))}
+            <span className="text-sm font-bold text-slate-800 ml-1">4.9 / 5.0</span>
+            <span className="text-xs text-slate-500">· 500+ Verified Reviews</span>
           </div>
         </div>
 
-        {/* Card */}
-        <div className="relative bg-white rounded-3xl shadow-xl border border-gray-100 p-8 lg:p-10">
-          <Quote className="w-10 h-10 text-teal-100 mb-4" />
+        {/* 3 Cards Container */}
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visibleTestimonials.map((t, idx) => (
+              <div
+                key={`${t.name}-${idx}`}
+                className="bg-white rounded-2xl border border-slate-200/90 shadow-md p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <Quote className="w-8 h-8 text-blue-200 opacity-60" />
+                    <span className="inline-flex items-center gap-1 bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                      <CheckCircle className="w-3 h-3 text-emerald-600" /> Verified Client
+                    </span>
+                  </div>
 
-          <p className="text-gray-700 text-lg leading-relaxed mb-8 italic">"{t.text}"</p>
+                  <p className="text-slate-700 text-sm leading-relaxed mb-6 font-medium italic">"{t.text}"</p>
+                </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            {/* Author */}
-            <div className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm flex-shrink-0`}>
-                {t.avatar}
-              </div>
-              <div>
-                <p className="font-bold text-gray-900">{t.name}</p>
-                <p className="text-xs text-gray-400">{t.role}</p>
-              </div>
-            </div>
+                <div>
+                  {/* Score badge */}
+                  <div className="flex items-center justify-between bg-blue-50/70 border border-blue-100 rounded-xl px-3.5 py-2 mb-4">
+                    <span className="text-xs font-semibold text-slate-600">CIBIL Score:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-red-500 line-through opacity-80">{t.score.before}</span>
+                      <span className="text-xs text-slate-400">→</span>
+                      <span className="text-sm font-black text-emerald-600">{t.score.after}</span>
+                      <span className="bg-emerald-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
+                        +{t.score.after - t.score.before}
+                      </span>
+                    </div>
+                  </div>
 
-            {/* Score badge */}
-            <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-2xl px-5 py-3">
-              <div className="text-center">
-                <p className="text-xl font-black text-red-500">{t.score.before}</p>
-                <p className="text-[10px] text-gray-400">Before</p>
+                  {/* Author info */}
+                  <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+                    <div className={`w-10 h-10 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0`}>
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm leading-snug">{t.name}</p>
+                      <p className="text-xs text-slate-500 font-medium">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="text-green-500 font-bold text-xl">→</div>
-              <div className="text-center">
-                <p className="text-xl font-black text-green-600">{t.score.after}</p>
-                <p className="text-[10px] text-gray-400">After</p>
-              </div>
-              <div className="ml-1">
-                <span className="bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                  +{t.score.after - t.score.before}
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Nav arrows */}
-          <button onClick={prev} aria-label="Previous testimonial"
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-gray-100 hover:bg-teal-600 hover:text-white rounded-full flex items-center justify-center transition-all">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prev}
+            aria-label="Previous testimonials"
+            className="absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-slate-200 text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+          >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <button onClick={next} aria-label="Next testimonial"
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-gray-100 hover:bg-teal-600 hover:text-white rounded-full flex items-center justify-center transition-all">
+          <button
+            onClick={next}
+            aria-label="Next testimonials"
+            className="absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-slate-200 text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+          >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-5">
+        {/* Carousel Pagination Dots */}
+        <div className="flex justify-center gap-2 mt-8">
           {testimonials.map((_, i) => (
-            <button key={i} onClick={() => { stop(); setCurrent(i); start(); }}
-              aria-label={`Go to testimonial ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2 bg-teal-600" : "w-2 h-2 bg-gray-300 hover:bg-gray-400"}`}
+            <button
+              key={i}
+              onClick={() => {
+                stop();
+                setStartIndex(i);
+                start();
+              }}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === startIndex ? "w-7 h-2.5 bg-blue-600" : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
+              }`}
             />
           ))}
         </div>
-
-        {/* Auto-play indicator */}
-        {!paused && (
-          <div className="mt-3 h-0.5 bg-gray-100 rounded-full max-w-xs mx-auto overflow-hidden">
-            <div key={current} className="h-full bg-blue-400 rounded-full" style={{ animation: "progress 5s linear forwards" }} />
-          </div>
-        )}
       </div>
     </section>
   );
