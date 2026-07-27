@@ -701,30 +701,31 @@ export function Home() {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col">
-                    {/* Vector Illustration */}
-                    <div className="relative h-44 overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-emerald-50/30 flex items-center justify-center p-4">
-                      <img
-                        src={item.img}
-                        alt={item.label}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
-                      />
-                      {/* Tag Badge */}
-                      <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-2.5 py-1 rounded-full shadow-md`}>
-                        {item.tag}
-                      </span>
-                    </div>
+                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-80">
+                    {/* Full-bleed vector image */}
+                    <img
+                      src={item.img}
+                      alt={item.label}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Light gradient overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
 
-                    {/* Card Content */}
-                    <div className="p-5 flex flex-col flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-xl border flex items-center justify-center flex-shrink-0 ${item.accent}`}>
-                          <Icon className="w-5 h-5" />
+                    {/* Tag Badge */}
+                    <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-2.5 py-1 rounded-full shadow-md z-10`}>
+                      {item.tag}
+                    </span>
+
+                    {/* Overlay Content */}
+                    <div className="absolute inset-x-0 bottom-0 p-5 z-10">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-extrabold text-slate-900">{item.label}</h3>
+                        <h3 className="text-xl font-extrabold text-white">{item.label}</h3>
                       </div>
-                      <p className="text-slate-600 text-sm font-normal leading-relaxed mb-4 flex-1">{item.desc}</p>
-                      <div className="flex items-center gap-1.5 text-blue-600 font-bold text-xs group-hover:gap-2.5 transition-all">
+                      <p className="text-white/80 text-sm font-normal leading-relaxed mb-3 line-clamp-2">{item.desc}</p>
+                      <div className="flex items-center gap-1.5 text-white font-bold text-xs group-hover:gap-2.5 transition-all">
                         <span>Explore Rates &amp; Eligibility</span>
                         <ArrowRight className="w-4 h-4" />
                       </div>

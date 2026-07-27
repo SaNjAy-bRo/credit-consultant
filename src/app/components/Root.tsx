@@ -1,8 +1,10 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { Outlet, useLocation } from "react-router";
+import { TrendingUp } from "lucide-react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { ORG_SCHEMA } from "./SEOHead";
+import { CheckScoreModal } from "./CheckScoreModal";
 
 /**
  * ScrollToTop helper component: ensures every route change instantly scrolls
@@ -82,10 +84,12 @@ function injectBaseHeadTags() {
 }
 
 export function Root() {
+  const [scoreModalOpen, setScoreModalOpen] = useState(false);
+
   useEffect(() => { injectBaseHeadTags(); }, []);
 
   return (
-    <div className="min-h-screen flex flex-col w-full overflow-x-hidden">
+    <div className="min-h-screen flex flex-col w-full overflow-x-hidden pb-16 sm:pb-0">
       <ScrollToTop />
       <Navigation />
       <main className="flex-1 w-full overflow-x-hidden">
@@ -93,25 +97,34 @@ export function Root() {
       </main>
       <Footer />
 
-      {/* Sticky WhatsApp Floating Button — anchored strictly to bottom-right */}
-      <a
-        href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat with Credit Consultant on WhatsApp"
-        className="fixed bottom-5 right-5 z-[9999] group flex items-center gap-2"
-        style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 9999 }}
+      {/* Floating Bottom Sticky Bar Card */}
+      <div
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 shadow-2xl rounded-full p-2 px-3 sm:px-4 flex items-center gap-2 sm:gap-3 max-w-[95vw] sm:max-w-max transition-all duration-300"
+        style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
       >
-        <span className="hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-300 bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-xl border border-slate-700">
-          Chat with Expert
-        </span>
-        <div className="w-14 h-14 rounded-full shadow-2xl shadow-emerald-500/40 flex items-center justify-center animate-pulse-slow hover:scale-105 transition-transform"
-          style={{ background: "linear-gradient(135deg,#25D366,#10b981)" }}>
-          <svg viewBox="0 0 32 32" className="w-7 h-7 fill-white">
+        <button
+          onClick={() => setScoreModalOpen(true)}
+          className="bg-[#00BC7D] hover:bg-[#00a36c] text-white font-bold px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-[#00BC7D]/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
+        >
+          <TrendingUp className="w-4.5 h-4.5" />
+          <span>Boost your Score</span>
+        </button>
+
+        <a
+          href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-[#25D366]/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
+        >
+          <svg viewBox="0 0 32 32" className="w-4.5 h-4.5 fill-white flex-shrink-0">
             <path d="M16 2C8.27 2 2 8.27 2 16c0 2.44.64 4.73 1.76 6.72L2 30l7.5-1.73C11.38 29.38 13.64 30 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm7.18 19.54c-.3.84-1.77 1.6-2.44 1.7-.62.1-1.4.14-2.26-.14-.52-.17-1.19-.4-2.05-.78-3.6-1.56-5.94-5.18-6.12-5.42-.18-.24-1.46-1.94-1.46-3.7 0-1.76.92-2.62 1.25-2.98.3-.33.66-.41.88-.41.22 0 .44.002.63.01.2.01.48-.08.75.57.3.69 1.01 2.46 1.1 2.64.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.37.38-.16.74.21.36.95 1.57 2.05 2.54 1.41 1.26 2.6 1.65 2.97 1.84.37.18.58.15.8-.09.21-.24.92-1.07 1.16-1.44.24-.37.48-.3.8-.18.32.12 2.05.97 2.4 1.14.35.18.58.27.67.42.09.15.09.87-.21 1.71z"/>
           </svg>
-        </div>
-      </a>
+          <span>Chat with WhatsApp</span>
+        </a>
+      </div>
+
+      <CheckScoreModal open={scoreModalOpen} onClose={() => setScoreModalOpen(false)} />
     </div>
   );
 }
