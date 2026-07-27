@@ -659,7 +659,7 @@ export function Home() {
               Financing solutions tailored to every need — home, business, personal, or vehicle loans at pre-approved interest rates.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {[
               {
                 icon: HomeIcon,
@@ -667,8 +667,12 @@ export function Home() {
                 desc: "Rates from 8.35% p.a., up to ₹5 Cr, 30-year tenure.",
                 img: "/home-loan-user-given.jpg",
                 tag: "Rates from 8.35%",
-                accent: "bg-blue-50 border-blue-200 text-blue-600",
-                tagColor: "bg-blue-600",
+                btnBg: "bg-blue-600 hover:bg-blue-700 text-white",
+                btnText: "Explore Rates & Eligibility",
+                tagBg: "bg-blue-600 text-white",
+                iconColor: "text-blue-600",
+                underlineColor: "bg-blue-600",
+                cardBg: "from-[#f0f6ff] via-[#eef4ff] to-[#e4effe]",
               },
               {
                 icon: Briefcase,
@@ -676,8 +680,12 @@ export function Home() {
                 desc: "Collateral-free SME loans up to ₹50 L with 48-hr disbursal.",
                 img: "/business-loan-vector-v2.png",
                 tag: "Up to ₹50 Lakhs",
-                accent: "bg-emerald-50 border-emerald-200 text-emerald-600",
-                tagColor: "bg-emerald-600",
+                btnBg: "bg-emerald-600 hover:bg-emerald-700 text-white",
+                btnText: "Check Eligibility",
+                tagBg: "bg-emerald-600 text-white",
+                iconColor: "text-emerald-600",
+                underlineColor: "bg-emerald-600",
+                cardBg: "from-[#ecfdf5] via-[#f0fdf4] to-[#d1fae5]",
               },
               {
                 icon: User,
@@ -685,8 +693,12 @@ export function Home() {
                 desc: "Instant approval, no collateral, flexible repayment up to ₹40 L.",
                 img: "/personal-loan-vector-v2.png",
                 tag: "Instant Approval",
-                accent: "bg-purple-50 border-purple-200 text-purple-600",
-                tagColor: "bg-purple-600",
+                btnBg: "bg-purple-600 hover:bg-purple-700 text-white",
+                btnText: "Apply Now",
+                tagBg: "bg-purple-600 text-white",
+                iconColor: "text-purple-600",
+                underlineColor: "bg-purple-600",
+                cardBg: "from-[#faf5ff] via-[#f3e8ff] to-[#e9d5ff]",
               },
               {
                 icon: Car,
@@ -694,45 +706,62 @@ export function Home() {
                 desc: "100% on-road price financing with minimal documentation.",
                 img: "/car-loan-vector-v2.png",
                 tag: "100% On-Road",
-                accent: "bg-amber-50 border-amber-200 text-amber-600",
-                tagColor: "bg-amber-600",
+                btnBg: "bg-amber-600 hover:bg-amber-700 text-white",
+                btnText: "Get Instant Quote",
+                tagBg: "bg-amber-600 text-white",
+                iconColor: "text-amber-600",
+                underlineColor: "bg-amber-600",
+                cardBg: "from-[#fffbe6] via-[#fef9c3] to-[#fef08a]",
               },
             ].map((item) => {
               const Icon = item.icon;
               return (
-                <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full flex flex-col">
-                    {/* Top Clean Illustration Container (100% clear artwork, no dark overlays) */}
-                    <div className="relative h-48 overflow-hidden bg-gradient-to-b from-sky-50/60 to-blue-50/30 border-b border-slate-100 flex items-center justify-center p-2">
+                <Link to="/loans" key={item.label} className="block group">
+                  <div className={`relative rounded-[28px] overflow-hidden border border-slate-200/80 bg-gradient-to-br ${item.cardBg} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 sm:p-8 flex flex-col sm:flex-row items-stretch justify-between gap-6 min-h-[260px]`}>
+                    
+                    {/* Top Right Floating Badge */}
+                    <span className={`absolute top-5 right-5 z-20 font-bold text-xs ${item.tagBg} px-4 py-1.5 rounded-full shadow-sm tracking-wide`}>
+                      {item.tag}
+                    </span>
+
+                    {/* Left Text & Controls */}
+                    <div className="flex-1 flex flex-col justify-between relative z-10">
+                      <div>
+                        {/* Circular White Icon Badge */}
+                        <div className="w-14 h-14 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center mb-4">
+                          <Icon className={`w-7 h-7 ${item.iconColor}`} />
+                        </div>
+
+                        {/* Title with Underline */}
+                        <h3 className="text-3xl font-black text-slate-900 tracking-tight">
+                          {item.label}
+                        </h3>
+                        <div className={`w-12 h-1 ${item.underlineColor} rounded-full mt-2 mb-3`} />
+
+                        {/* Description */}
+                        <p className="text-slate-600 text-sm font-medium leading-relaxed mb-6 max-w-xs">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      {/* Action Pill Button */}
+                      <div>
+                        <span className={`inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-2xl shadow-md transition-all active:scale-95 ${item.btnBg}`}>
+                          <span>{item.btnText}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right Side Illustration */}
+                    <div className="w-full sm:w-1/2 h-44 sm:h-auto flex items-end justify-center sm:justify-end relative z-0 mt-4 sm:mt-0">
                       <img
                         src={item.img}
                         alt={item.label}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-2xl"
+                        className="max-h-52 sm:max-h-56 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500 rounded-2xl"
                       />
-                      {/* Tag Badge floating at top right */}
-                      <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-3 py-1 rounded-full shadow-md z-10`}>
-                        {item.tag}
-                      </span>
                     </div>
 
-                    {/* Bottom Clean Text Content Area */}
-                    <div className="p-5 sm:p-6 flex flex-col flex-1 bg-white">
-                      <div className="flex items-center gap-3 mb-2.5">
-                        <div className={`w-10 h-10 rounded-2xl border flex items-center justify-center flex-shrink-0 ${item.accent}`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors">
-                          {item.label}
-                        </h3>
-                      </div>
-                      <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed mb-4 flex-1 line-clamp-2">
-                        {item.desc}
-                      </p>
-                      <div className="flex items-center gap-2 text-blue-600 font-extrabold text-xs sm:text-sm group-hover:gap-3 transition-all">
-                        <span>Explore Rates &amp; Eligibility</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </div>
                   </div>
                 </Link>
               );
