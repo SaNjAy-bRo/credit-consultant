@@ -929,23 +929,33 @@ export function Home() {
             </Link>
           </div>
 
-          {/* Region quick links */}
-          <div className="mt-8 pt-6 border-t border-gray-100">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">Browse by Region</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          {/* Region quick links — Enhanced Bolder & Clearer Section */}
+          <div className="mt-12 pt-8 border-t border-slate-200/80">
+            <div className="text-center mb-6">
+              <span className="text-xs sm:text-sm font-extrabold text-slate-700 uppercase tracking-widest bg-slate-100 border border-slate-200 px-4 py-1.5 rounded-full inline-block shadow-xs">
+                BROWSE BY REGION
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {[
-                { region: "north", label: "North India", cities: "Delhi, Gurgaon, Noida, Chandigarh, Jaipur…", color: "bg-blue-50 border-blue-200 text-blue-800" },
-                { region: "south", label: "South India", cities: "Bengaluru, Chennai, Hyderabad, Kochi…", color: "bg-indigo-50 border-indigo-200 text-indigo-800" },
-                { region: "east",  label: "East India",  cities: "Kolkata, Patna, Bhubaneswar, Guwahati…", color: "bg-purple-50 border-purple-200 text-purple-800" },
-                { region: "west",  label: "West India",  cities: "Mumbai, Pune, Ahmedabad, Surat…", color: "bg-green-50 border-green-200 text-green-800" },
+                { region: "north", label: "North India", cities: "Delhi, Gurgaon, Noida, Chandigarh, Jaipur…", color: "bg-blue-50/90 border-blue-200/90 text-blue-950", accentBtn: "border-blue-200 text-blue-700 hover:text-blue-900" },
+                { region: "south", label: "South India", cities: "Bengaluru, Chennai, Hyderabad, Kochi…", color: "bg-indigo-50/90 border-indigo-200/90 text-indigo-950", accentBtn: "border-indigo-200 text-indigo-700 hover:text-indigo-900" },
+                { region: "east",  label: "East India",  cities: "Kolkata, Patna, Bhubaneswar, Guwahati…", color: "bg-purple-50/90 border-purple-200/90 text-purple-950", accentBtn: "border-purple-200 text-purple-700 hover:text-purple-900" },
+                { region: "west",  label: "West India",  cities: "Mumbai, Pune, Ahmedabad, Surat…", color: "bg-emerald-50/90 border-emerald-200/90 text-emerald-950", accentBtn: "border-emerald-200 text-emerald-700 hover:text-emerald-900" },
               ].map((r) => (
-                <div key={r.region} className={`rounded-xl border p-3 ${r.color}`}>
-                  <p className="font-bold text-sm mb-1">{r.label}</p>
-                  <p className="text-xs opacity-70 mb-2">{r.cities}</p>
-                  <div className="flex gap-2">
-                    <Link to={`/individual/${r.region}`} className="text-xs font-semibold underline hover:no-underline">Individual</Link>
-                    <span className="text-xs opacity-40">·</span>
-                    <Link to={`/commercial/${r.region}`} className="text-xs font-semibold underline hover:no-underline">Commercial</Link>
+                <div key={r.region} className={`rounded-2xl border p-5 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between ${r.color}`}>
+                  <div>
+                    <h4 className="font-black text-lg sm:text-xl text-slate-900 mb-1.5 tracking-tight">{r.label}</h4>
+                    <p className="text-xs sm:text-sm font-medium text-slate-600 mb-4 leading-relaxed">{r.cities}</p>
+                  </div>
+                  <div className="flex items-center gap-2 pt-2 border-t border-slate-200/50">
+                    <Link to={`/individual/${r.region}`} className={`text-xs sm:text-sm font-extrabold px-3 py-1.5 rounded-xl bg-white shadow-xs border transition-all ${r.accentBtn}`}>
+                      Individual
+                    </Link>
+                    <span className="text-xs text-slate-400 font-bold">·</span>
+                    <Link to={`/commercial/${r.region}`} className={`text-xs sm:text-sm font-extrabold px-3 py-1.5 rounded-xl bg-white shadow-xs border transition-all ${r.accentBtn}`}>
+                      Commercial
+                    </Link>
                   </div>
                 </div>
               ))}

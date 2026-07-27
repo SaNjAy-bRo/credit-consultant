@@ -104,9 +104,9 @@ export function Root() {
       >
         <button
           onClick={() => setScoreModalOpen(true)}
-          className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-slate-950 font-black px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-orange-500/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95 border border-amber-300/40"
+          className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-slate-950 font-black px-4.5 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-orange-500/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95 border border-amber-300/40"
         >
-          <TrendingUp className="w-4.5 h-4.5 text-slate-950" />
+          <TrendingUp className="w-4.5 h-4.5 text-slate-950 stroke-[2.5] flex-shrink-0" />
           <span>Boost your Score</span>
         </button>
 
@@ -115,10 +115,10 @@ export function Root() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Us on WhatsApp"
-          className="bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-black px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-[#25D366]/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
+          className="bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-black px-4.5 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm shadow-lg shadow-[#25D366]/30 transition-all flex items-center gap-2 whitespace-nowrap active:scale-95"
         >
-          <svg viewBox="0 0 32 32" className="w-4.5 h-4.5 fill-slate-950 flex-shrink-0">
-            <path d="M16 2C8.27 2 2 8.27 2 16c0 2.44.64 4.73 1.76 6.72L2 30l7.5-1.73C11.38 29.38 13.64 30 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm7.18 19.54c-.3.84-1.77 1.6-2.44 1.7-.62.1-1.4.14-2.26-.14-.52-.17-1.19-.4-2.05-.78-3.6-1.56-5.94-5.18-6.12-6.12-5.42-.18-.24-1.46-1.94-1.46-3.7 0-1.76.92-2.62 1.25-2.98.3-.33.66-.41.88-.41.22 0 .44.002.63.01.2.01.48-.08.75.57.3.69 1.01 2.46 1.1 2.64.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.37.38-.16.74.21.36.95 1.57 2.05 2.54 1.41 1.26 2.6 1.65 2.97 1.84.37.18.58.15.8-.09.21-.24.92-1.07 1.16-1.44.24-.37.48-.3.8-.18.32.12 2.05.97 2.4 1.14.35.18.58.27.67.42.09.15.09.87-.21 1.71z"/>
+          <svg viewBox="0 0 24 24" className="w-4.5 h-4.5 fill-slate-950 text-slate-950 flex-shrink-0">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.05 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
           </svg>
           <span>Chat with Us</span>
         </a>
