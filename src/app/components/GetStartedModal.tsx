@@ -214,9 +214,11 @@ startxref 0
 
   /* ── shared header ── */
   const Header = ({ subtitle }: { subtitle: string }) => (
-    <div className="bg-gradient-to-r from-teal-600 to-teal-900 px-6 py-5 flex items-center justify-between">
+    <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 px-6 py-5 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <img src={cibilLogo} alt="Credit Consultant" className="h-8 w-auto object-contain brightness-0 invert" />
+        <div className="bg-white p-1.5 rounded-lg shadow-sm">
+          <img src={cibilLogo} alt="Credit Consultant" className="h-7 w-auto object-contain" />
+        </div>
         <div className="border-l border-white/30 pl-3">
           <p className="text-white font-bold text-base leading-none">Get Started</p>
           <p className="text-teal-200 text-xs mt-0.5">{subtitle}</p>

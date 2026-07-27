@@ -9,11 +9,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="mb-4">
+            <div className="mb-4 inline-block bg-white p-2.5 rounded-xl border border-slate-700/60 shadow-sm">
               <img
                 src={cibilLogo}
                 alt="Credit Consultant — Live life debt free"
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain"
               />
             </div>
             <p className="text-sm mb-4">
