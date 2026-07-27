@@ -19,6 +19,9 @@ import {
   Star,
   Zap,
   Calculator,
+  ShieldCheck,
+  Lock,
+  Building2,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { CheckScoreButton } from "./CheckScoreModal";
@@ -192,7 +195,7 @@ export function Home() {
     { value: "98%", label: "Success Rate" },
     { value: "₹500Cr+", label: "Loans Facilitated" },
     { value: "+150 pts", label: "Avg Score Gain" },
-    { value: "4.9 ⭐", label: "Google Rating" },
+    { value: "4.9", label: "Google Rating", isStar: true },
   ];
 
   const testimonials = [
@@ -236,25 +239,25 @@ export function Home() {
       {/* ── Hero Section — Light Blue & Dominant White ───────────────────── */}
       <section
         className="relative overflow-hidden w-full max-w-full text-slate-900"
-        style={{ minHeight: "92vh", background: "linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #dbeafe 100%)" }}
+        style={{ minHeight: "92vh", background: "linear-gradient(180deg, #ffffff 0%, #fafcff 60%, #f0f7ff 100%)" }}
         aria-label="Credit Consultant — India's trusted credit repair and loan advisory service"
       >
         {/* Strictly clipped background container for decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none w-full max-w-full">
-          {/* Animated mesh blobs — soft royal blue & sky blue */}
-          <div className="absolute -top-40 -left-40 w-96 sm:w-[600px] h-96 sm:h-[600px] rounded-full opacity-20 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #60a5fa 0%, #2563eb 100%)" }} />
-          <div className="absolute -bottom-40 -right-40 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full opacity-20 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #38bdf8 0%, #0284c7 100%)", animationDelay: "3s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-[400px] h-72 sm:h-[400px] rounded-full opacity-15 blur-3xl animate-blob"
-            style={{ background: "radial-gradient(circle, #818cf8 0%, #4f46e5 100%)", animationDelay: "6s" }} />
+          {/* Animated mesh blobs — ultra-soft royal blue & sky blue */}
+          <div className="absolute -top-40 -left-40 w-96 sm:w-[600px] h-96 sm:h-[600px] rounded-full opacity-10 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #bfdbfe 0%, #3b82f6 100%)" }} />
+          <div className="absolute -bottom-40 -right-40 w-80 sm:w-[500px] h-80 sm:h-[500px] rounded-full opacity-10 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #bae6fd 0%, #0284c7 100%)", animationDelay: "3s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-[400px] h-72 sm:h-[400px] rounded-full opacity-5 blur-3xl animate-blob"
+            style={{ background: "radial-gradient(circle, #c7d2fe 0%, #6366f1 100%)", animationDelay: "6s" }} />
 
           {/* Particle field */}
           <Particles />
 
           {/* Grid overlay */}
-          <div className="absolute inset-0 opacity-[0.06]"
-            style={{ backgroundImage: "linear-gradient(rgba(37,99,235,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.08) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute inset-0 opacity-[0.03]"
+            style={{ backgroundImage: "linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
 
         {/* Main content */}
@@ -263,16 +266,16 @@ export function Home() {
           {/* LEFT — copy */}
           <div className="flex-1 text-center lg:text-left w-full max-w-2xl lg:max-w-none mx-auto">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-5 sm:mb-6 text-slate-800 tracking-tight">
-              <span className="font-normal text-slate-700">Transform Your</span>{" "}
-              <span className="relative inline-block">
+              <span className="block sm:inline font-normal text-slate-700">Transform Your</span>{" "}
+              <span className="relative inline-block my-1 sm:my-0">
                 <span className="font-black text-transparent bg-clip-text"
                   style={{ backgroundImage: "linear-gradient(90deg,#1d4ed8 0%,#2563eb 50%,#31b0d0 100%)" }}>
-                  Credit Score
+                  Credit Score &amp;
                 </span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full"
                   style={{ background: "linear-gradient(90deg,#2563eb,#31b0d0)" }} />
               </span>{" "}
-              <span className="font-normal text-slate-700">&amp; Financial Future</span>
+              <span className="block sm:inline font-normal text-slate-700 mt-1 sm:mt-0">Financial Future</span>
             </h1>
 
             <p className="text-lg sm:text-xl lg:text-[22px] mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
@@ -294,21 +297,23 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-[#0284c7] to-[#31b0d0] text-white shadow-lg shadow-[#31b0d0]/20" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-[#10b981] hover:from-emerald-700 hover:to-[#059669] text-white shadow-lg shadow-emerald-500/20" />
             </div>
 
-            {/* Trust badges */}
-            <div className="mt-8 flex flex-wrap gap-2.5 sm:gap-3 justify-center lg:justify-start">
-              {[
-                { emoji: "⭐", label: "4.9 Google Rating" },
-                { emoji: "🏦", label: "Trusted by Banks & NBFCs" },
-                { emoji: "✅", label: "RBI Compliant" },
-                { emoji: "🔒", label: "No Hidden Fees" },
-              ].map(({ emoji, label }) => (
-                <span key={label} className="inline-flex items-center gap-1.5 bg-white/90 border border-slate-200/90 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm">
-                  <span>{emoji}</span> {label}
-                </span>
-              ))}
+            {/* Trust badges — ultra-clean inline feature list */}
+            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-600">
+              <span className="inline-flex items-center gap-1.5 bg-blue-50/80 border border-blue-100 px-3 py-1.5 rounded-lg text-slate-700 shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span>No Hidden Fees</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-amber-50/80 border border-amber-100 px-3 py-1.5 rounded-lg text-slate-700 shadow-sm">
+                <Lock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                <span>RBI Compliant</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-emerald-50/80 border border-emerald-100 px-3 py-1.5 rounded-lg text-slate-700 shadow-sm">
+                <Building2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                <span>Trusted by Banks &amp; NBFCs</span>
+              </span>
             </div>
 
             {/* Google rating row */}
@@ -415,10 +420,11 @@ export function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-2xl lg:text-3xl font-black text-blue-600 mb-1">
-                  {stat.value}
+                <div className="text-2xl lg:text-3xl font-black text-blue-600 mb-1 flex items-center justify-center gap-1">
+                  <span>{stat.value}</span>
+                  {stat.isStar && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />}
                 </div>
-                <div className="text-gray-500 text-xs">{stat.label}</div>
+                <div className="text-slate-500 text-xs font-semibold">{stat.label}</div>
               </div>
             ))}
           </div>

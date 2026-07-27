@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
-import { Menu, X, LayoutDashboard, Calculator } from "lucide-react";
+import { Menu, X, LayoutDashboard, Calculator, Star, Building2, ShieldCheck, PhoneCall } from "lucide-react";
 import { Button } from "./ui/button";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 import { GetStartedModal } from "./GetStartedModal";
@@ -10,22 +10,22 @@ function TopBar() {
     <div className="bg-gradient-to-r from-[#e0f2fe] via-[#dbeafe] to-[#e0f2fe] border-b border-sky-200/80 text-slate-800 text-xs py-1.5 overflow-hidden relative font-medium">
       <div className="animate-marquee flex items-center">
         <div className="flex items-center gap-8 px-4">
-          <span className="inline-flex items-center gap-1.5"><span className="text-yellow-500">⭐</span> <strong className="text-blue-900 font-semibold">India's #1 Credit Repair &amp; Loan Advisory</strong></span>
+          <span className="inline-flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" /> <strong className="text-blue-900 font-semibold">India's #1 Credit Repair &amp; Loan Advisory</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">🏦 <strong className="text-slate-800">10,000+ Happy Clients Across India</strong></span>
+          <span className="inline-flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-600" /> <strong className="text-slate-800">10,000+ Happy Clients Across India</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">🔒 <strong className="text-slate-800">100% RBI Compliant &amp; Confidential</strong></span>
+          <span className="inline-flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> <strong className="text-slate-800">100% RBI Compliant &amp; Confidential</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">📞 <strong className="text-blue-700 font-semibold">Free Expert Advisory: +91 98765 43210</strong></span>
+          <span className="inline-flex items-center gap-1.5"><PhoneCall className="w-3.5 h-3.5 text-blue-700" /> <strong className="text-blue-700 font-semibold">Free Expert Advisory: +91 98765 43210</strong></span>
         </div>
         <div className="flex items-center gap-8 px-4" aria-hidden="true">
-          <span className="inline-flex items-center gap-1.5"><span className="text-yellow-500">⭐</span> <strong className="text-blue-900 font-semibold">India's #1 Credit Repair &amp; Loan Advisory</strong></span>
+          <span className="inline-flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" /> <strong className="text-blue-900 font-semibold">India's #1 Credit Repair &amp; Loan Advisory</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">🏦 <strong className="text-slate-800">10,000+ Happy Clients Across India</strong></span>
+          <span className="inline-flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-600" /> <strong className="text-slate-800">10,000+ Happy Clients Across India</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">🔒 <strong className="text-slate-800">100% RBI Compliant &amp; Confidential</strong></span>
+          <span className="inline-flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> <strong className="text-slate-800">100% RBI Compliant &amp; Confidential</strong></span>
           <span className="text-sky-300">•</span>
-          <span className="inline-flex items-center gap-1.5">📞 <strong className="text-blue-700 font-semibold">Free Expert Advisory: +91 98765 43210</strong></span>
+          <span className="inline-flex items-center gap-1.5"><PhoneCall className="w-3.5 h-3.5 text-blue-700" /> <strong className="text-blue-700 font-semibold">Free Expert Advisory: +91 98765 43210</strong></span>
         </div>
       </div>
     </div>
