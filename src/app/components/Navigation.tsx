@@ -83,11 +83,6 @@ export function Navigation() {
                   {link.label}
                 </Link>
               ))}
-              <Link to="/calculator" title="EMI Calculator">
-                <Button variant="outline" size="sm" className="gap-1.5 border-blue-200 text-blue-700 bg-blue-50/50 hover:bg-blue-100 hover:border-blue-300">
-                  <Calculator className="w-4 h-4 text-blue-600" /> EMI Calculator
-                </Button>
-              </Link>
               <Link to="/dashboard" title="My Dashboard">
                 <Button variant="outline" size="sm" className="gap-1.5 border-gray-300 text-gray-600 hover:text-blue-600 hover:border-blue-400">
                   <LayoutDashboard className="w-4 h-4" /> My Dashboard
