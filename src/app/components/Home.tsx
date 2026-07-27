@@ -717,48 +717,48 @@ export function Home() {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block group">
-                  <div className={`relative rounded-[28px] overflow-hidden border border-slate-200/80 bg-gradient-to-br ${item.cardBg} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 sm:p-8 flex flex-col sm:flex-row items-stretch justify-between gap-6 min-h-[260px]`}>
+                  <div className={`relative rounded-3xl overflow-hidden border border-slate-200/80 bg-gradient-to-br ${item.cardBg} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6 flex flex-col sm:flex-row items-stretch justify-between gap-5 min-h-[220px]`}>
                     
                     {/* Top Right Floating Badge */}
-                    <span className={`absolute top-5 right-5 z-20 font-bold text-xs ${item.tagBg} px-4 py-1.5 rounded-full shadow-sm tracking-wide`}>
+                    <span className={`absolute top-4 right-4 z-20 font-bold text-xs ${item.tagBg} px-3.5 py-1 rounded-full shadow-sm tracking-wide`}>
                       {item.tag}
                     </span>
 
                     {/* Left Text & Controls */}
-                    <div className="flex-1 flex flex-col justify-between relative z-10">
+                    <div className="flex-1 flex flex-col justify-between relative z-10 sm:pr-2">
                       <div>
                         {/* Circular White Icon Badge */}
-                        <div className="w-14 h-14 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center mb-4">
-                          <Icon className={`w-7 h-7 ${item.iconColor}`} />
+                        <div className="w-11 h-11 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center mb-3">
+                          <Icon className={`w-5.5 h-5.5 ${item.iconColor}`} />
                         </div>
 
                         {/* Title with Underline */}
-                        <h3 className="text-3xl font-black text-slate-900 tracking-tight">
+                        <h3 className="text-2xl sm:text-[26px] font-black text-slate-900 tracking-tight">
                           {item.label}
                         </h3>
-                        <div className={`w-12 h-1 ${item.underlineColor} rounded-full mt-2 mb-3`} />
+                        <div className={`w-10 h-1 ${item.underlineColor} rounded-full mt-1.5 mb-2.5`} />
 
                         {/* Description */}
-                        <p className="text-slate-600 text-sm font-medium leading-relaxed mb-6 max-w-xs">
+                        <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed mb-4 max-w-xs">
                           {item.desc}
                         </p>
                       </div>
 
                       {/* Action Pill Button */}
                       <div>
-                        <span className={`inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-2xl shadow-md transition-all active:scale-95 ${item.btnBg}`}>
+                        <span className={`inline-flex items-center gap-2 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-md transition-all active:scale-95 ${item.btnBg}`}>
                           <span>{item.btnText}</span>
                           <ArrowRight className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
 
-                    {/* Right Side Illustration */}
-                    <div className="w-full sm:w-1/2 h-44 sm:h-auto flex items-end justify-center sm:justify-end relative z-0 mt-4 sm:mt-0">
+                    {/* Right Side Illustration — Height matching card height seamlessly */}
+                    <div className="w-full sm:w-[48%] h-44 sm:h-auto min-h-[180px] rounded-2xl overflow-hidden relative z-0 flex items-center justify-center bg-white/40 shadow-inner border border-white/60">
                       <img
                         src={item.img}
                         alt={item.label}
-                        className="max-h-52 sm:max-h-56 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500 rounded-2xl"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
 
