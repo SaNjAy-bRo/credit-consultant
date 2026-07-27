@@ -199,16 +199,56 @@ export function Home() {
   ];
 
   const bankLogos = [
-    { name: "SBI", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/State_Bank_of_India_logo.svg" },
-    { name: "HDFC Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/2/28/HDFC_Bank_Logo.svg" },
-    { name: "ICICI Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" },
-    { name: "Axis Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Axis_Bank_logo.svg" },
-    { name: "Kotak Mahindra Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Kotak_Mahindra_Bank_logo.svg" },
-    { name: "Bajaj Finserv", logo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Bajaj_Finserv_Logo.svg" },
-    { name: "IDFC FIRST Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/IDFC_FIRST_Bank_logo.svg" },
-    { name: "YES BANK", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Yes_Bank_Logo.svg" },
-    { name: "PNB", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Punjab_National_Bank_Logo.svg" },
-    { name: "Bank of Baroda", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Bank_of_Baroda_Logo.svg" },
+    {
+      name: "SBI",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/State_Bank_of_India_logo.svg/512px-State_Bank_of_India_logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48"><rect width="160" height="48" rx="8" fill="%23FFFFFF"/><circle cx="24" cy="24" r="14" fill="%230084ca"/><circle cx="24" cy="19" r="4.5" fill="%23FFFFFF"/><rect x="22.5" y="19" width="3" height="11" fill="%23FFFFFF"/><text x="48" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="%230084ca">SBI</text></svg>`,
+    },
+    {
+      name: "HDFC Bank",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/HDFC_Bank_Logo.svg/512px-HDFC_Bank_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 48"><rect width="190" height="48" rx="8" fill="%23FFFFFF"/><rect x="8" y="9" width="30" height="30" fill="%23004C8F"/><rect x="16" y="17" width="14" height="14" fill="%23ED232A"/><rect x="20" y="9" width="6" height="30" fill="%23FFFFFF"/><rect x="8" y="21" width="30" height="6" fill="%23FFFFFF"/><text x="46" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23004C8F">HDFC BANK</text></svg>`,
+    },
+    {
+      name: "ICICI Bank",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/ICICI_Bank_Logo.svg/512px-ICICI_Bank_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 48"><rect width="190" height="48" rx="8" fill="%23FFFFFF"/><circle cx="24" cy="24" r="14" fill="%23F37021"/><text x="24" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23052F5F" text-anchor="middle">i</text><text x="46" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23052F5F">ICICI Bank</text></svg>`,
+    },
+    {
+      name: "Axis Bank",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Axis_Bank_logo.svg/512px-Axis_Bank_logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48"><rect width="180" height="48" rx="8" fill="%23FFFFFF"/><polygon points="10,38 24,10 38,38" fill="%2397144D"/><text x="46" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%2397144D">AXIS BANK</text></svg>`,
+    },
+    {
+      name: "Kotak Mahindra Bank",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Kotak_Mahindra_Bank_logo.svg/512px-Kotak_Mahindra_Bank_logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48"><rect width="210" height="48" rx="8" fill="%23FFFFFF"/><rect x="8" y="9" width="30" height="30" rx="6" fill="%23ED1C24"/><text x="23" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="%23FFFFFF" text-anchor="middle">k</text><text x="46" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="%23ED1C24">kotak</text></svg>`,
+    },
+    {
+      name: "Bajaj Finserv",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Bajaj_Finserv_Logo.svg/512px-Bajaj_Finserv_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48"><rect width="210" height="48" rx="8" fill="%23FFFFFF"/><rect x="8" y="9" width="30" height="30" rx="6" fill="%2300529B"/><text x="23" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="%23FFFFFF" text-anchor="middle">B</text><text x="46" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="16" fill="%2300529B">BAJAJ FINSERV</text></svg>`,
+    },
+    {
+      name: "IDFC FIRST Bank",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/IDFC_FIRST_Bank_logo.svg/512px-IDFC_FIRST_Bank_logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48"><rect width="210" height="48" rx="8" fill="%23FFFFFF"/><rect x="8" y="9" width="30" height="30" rx="6" fill="%23991B1E"/><text x="23" y="29" font-family="system-ui,sans-serif" font-weight="900" font-size="13" fill="%23FFFFFF" text-anchor="middle">IDFC</text><text x="46" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="16" fill="%23991B1E">IDFC FIRST</text></svg>`,
+    },
+    {
+      name: "YES BANK",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Yes_Bank_Logo.svg/512px-Yes_Bank_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48"><rect width="180" height="48" rx="8" fill="%23FFFFFF"/><rect x="8" y="9" width="30" height="30" rx="6" fill="%23004B87"/><text x="23" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23ED1C24" text-anchor="middle">Y</text><text x="46" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23004B87">YES BANK</text></svg>`,
+    },
+    {
+      name: "PNB",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Punjab_National_Bank_Logo.svg/512px-Punjab_National_Bank_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48"><rect width="160" height="48" rx="8" fill="%23FFFFFF"/><circle cx="24" cy="24" r="14" fill="%23A02020"/><text x="24" y="30" font-family="system-ui,sans-serif" font-weight="900" font-size="14" fill="%23F5B800" text-anchor="middle">pnb</text><text x="46" y="32" font-family="system-ui,sans-serif" font-weight="900" font-size="20" fill="%23A02020">PNB</text></svg>`,
+    },
+    {
+      name: "Bank of Baroda",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Bank_of_Baroda_Logo.svg/512px-Bank_of_Baroda_Logo.svg.png",
+      fallbackSvg: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48"><rect width="210" height="48" rx="8" fill="%23FFFFFF"/><circle cx="24" cy="24" r="14" fill="%23F26522"/><text x="24" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="%23FFFFFF" text-anchor="middle">B</text><text x="46" y="31" font-family="system-ui,sans-serif" font-weight="900" font-size="16" fill="%23F26522">Bank of Baroda</text></svg>`,
+    },
   ];
 
   const testimonials = [
@@ -457,30 +497,28 @@ export function Home() {
           </div>
         </div>
 
-        {/* Slow continuous carousel */}
-        <div className="relative w-full overflow-hidden py-3 bg-slate-50/50 border-y border-slate-100">
-          <div className="animate-marquee flex items-center gap-12 sm:gap-16">
-            <div className="flex items-center gap-12 sm:gap-16 px-4">
+        {/* Slow continuous carousel with Full Color Authentic Bank Logos */}
+        <div className="relative w-full overflow-hidden py-4 bg-slate-50/60 border-y border-slate-200/80">
+          <div className="animate-marquee flex items-center gap-8 sm:gap-12">
+            <div className="flex items-center gap-8 sm:gap-12 px-4">
               {bankLogos.map((bank) => (
-                <div key={bank.name} className="flex items-center gap-2 h-10 px-3 py-1 bg-white rounded-lg border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div key={bank.name} className="flex items-center justify-center h-12 sm:h-14 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
                   <ImageWithFallback
                     src={bank.logo}
                     alt={bank.name}
-                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px] filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="h-7 sm:h-9 w-auto object-contain max-w-[140px] sm:max-w-[160px]"
                   />
-                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap hidden sm:inline">{bank.name}</span>
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-12 sm:gap-16 px-4" aria-hidden="true">
+            <div className="flex items-center gap-8 sm:gap-12 px-4" aria-hidden="true">
               {bankLogos.map((bank) => (
-                <div key={`${bank.name}-dup`} className="flex items-center gap-2 h-10 px-3 py-1 bg-white rounded-lg border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div key={`${bank.name}-dup`} className="flex items-center justify-center h-12 sm:h-14 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
                   <ImageWithFallback
                     src={bank.logo}
                     alt={bank.name}
-                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px] filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    className="h-7 sm:h-9 w-auto object-contain max-w-[140px] sm:max-w-[160px]"
                   />
-                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap hidden sm:inline">{bank.name}</span>
                 </div>
               ))}
             </div>
