@@ -262,26 +262,20 @@ export function Home() {
 
           {/* LEFT — copy */}
           <div className="flex-1 text-center lg:text-left w-full max-w-2xl lg:max-w-none mx-auto">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-600/10 border border-blue-500/20 rounded-full px-3.5 py-1.5 text-xs sm:text-sm text-blue-700 font-bold mb-5 sm:mb-6 shadow-sm backdrop-blur-sm">
-              <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />
-              <span>India's #1 Credit Repair & Loan Advisory</span>
-              <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 flex-shrink-0" />
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-4 sm:mb-6 text-slate-900">
-              Transform Your{" "}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-5 sm:mb-6 text-slate-800 tracking-tight">
+              <span className="font-normal text-slate-700">Transform Your</span>{" "}
               <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text"
-                  style={{ backgroundImage: "linear-gradient(90deg,#2563eb,#0284c7)" }}>
+                <span className="font-black text-transparent bg-clip-text"
+                  style={{ backgroundImage: "linear-gradient(90deg,#1d4ed8 0%,#2563eb 50%,#31b0d0 100%)" }}>
                   Credit Score
                 </span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full"
-                  style={{ background: "linear-gradient(90deg,#2563eb,#38bdf8)" }} />
+                  style={{ background: "linear-gradient(90deg,#2563eb,#31b0d0)" }} />
               </span>{" "}
-              &amp; Financial Future
+              <span className="font-normal text-slate-700">&amp; Financial Future</span>
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            <p className="text-lg sm:text-xl lg:text-[22px] mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Expert credit repair, CIBIL score improvement, and home &amp; business loan advisory services.
               Over 10,000 happy clients across India — get your free consultation today.
             </p>
@@ -289,18 +283,18 @@ export function Home() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
               <Link to="/contact" className="w-full sm:w-auto">
                 <Button size="lg"
-                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center justify-center gap-2">
+                  className="w-full sm:w-auto h-12 sm:h-11 rounded-xl text-base sm:text-sm font-bold bg-gradient-to-r from-[#1d4ed8] via-[#2563eb] to-[#31b0d0] hover:from-[#1e40af] hover:to-[#229ab8] text-white shadow-xl shadow-[#31b0d0]/30 border border-white/20 flex items-center justify-center gap-2">
                   <span>Get Free Consultation</span>
                   <ArrowRight className="w-5 h-5 flex-shrink-0" />
                 </Button>
               </Link>
-              <Link to="/calculator" className="w-full sm:w-auto">
+              <Link to="/calculator" className="hidden sm:inline-flex w-full sm:w-auto">
                 <button className="w-full sm:w-auto h-12 sm:h-11 px-6 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300/80 transition-all flex items-center justify-center gap-2 shadow-md hover:border-slate-400 active:scale-95 text-base sm:text-sm">
-                  <Calculator className="w-4.5 h-4.5 text-blue-600 flex-shrink-0" />
+                  <Calculator className="w-4.5 h-4.5 text-[#31b0d0] flex-shrink-0" />
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold shadow-lg shadow-blue-500/20" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-[#0284c7] to-[#31b0d0] text-white shadow-lg shadow-[#31b0d0]/20" />
             </div>
 
             {/* Trust badges */}
