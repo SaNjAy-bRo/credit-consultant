@@ -198,6 +198,19 @@ export function Home() {
     { value: "4.9", label: "Google Rating", isStar: true },
   ];
 
+  const bankLogos = [
+    { name: "SBI", logo: "https://upload.wikimedia.org/wikipedia/commons/c/cc/State_Bank_of_India_logo.svg" },
+    { name: "HDFC Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/2/28/HDFC_Bank_Logo.svg" },
+    { name: "ICICI Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" },
+    { name: "Axis Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Axis_Bank_logo.svg" },
+    { name: "Kotak Mahindra Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Kotak_Mahindra_Bank_logo.svg" },
+    { name: "Bajaj Finserv", logo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Bajaj_Finserv_Logo.svg" },
+    { name: "IDFC FIRST Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/IDFC_FIRST_Bank_logo.svg" },
+    { name: "YES BANK", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Yes_Bank_Logo.svg" },
+    { name: "PNB", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Punjab_National_Bank_Logo.svg" },
+    { name: "Bank of Baroda", logo: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Bank_of_Baroda_Logo.svg" },
+  ];
+
   const testimonials = [
     {
       name: "Rajesh Kumar",
@@ -431,10 +444,10 @@ export function Home() {
         </div>
       </section>
 
-      {/* Partner Banks & NBFCs */}
-      <section className="py-10 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6">
+      {/* Partner Banks & NBFCs — Authentic Logo Carousel */}
+      <section className="py-10 bg-white border-b border-gray-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+          <div className="text-center">
             <p className="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest leading-snug">
               TRUSTED BY CLIENTS AT
             </p>
@@ -442,10 +455,35 @@ export function Home() {
               INDIA'S LEADING BANKS &amp; NBFCs
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10 opacity-75">
-            {["SBI", "HDFC Bank", "ICICI Bank", "Axis Bank", "Kotak Mahindra", "Bajaj Finserv", "IDFC First", "Yes Bank", "PNB", "Bank of Baroda"].map((bank) => (
-              <span key={bank} className="text-sm sm:text-base font-bold text-slate-700 whitespace-nowrap hover:text-blue-600 transition-colors">{bank}</span>
-            ))}
+        </div>
+
+        {/* Slow continuous carousel */}
+        <div className="relative w-full overflow-hidden py-3 bg-slate-50/50 border-y border-slate-100">
+          <div className="animate-marquee flex items-center gap-12 sm:gap-16">
+            <div className="flex items-center gap-12 sm:gap-16 px-4">
+              {bankLogos.map((bank) => (
+                <div key={bank.name} className="flex items-center gap-2 h-10 px-3 py-1 bg-white rounded-lg border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group">
+                  <ImageWithFallback
+                    src={bank.logo}
+                    alt={bank.name}
+                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px] filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap hidden sm:inline">{bank.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-12 sm:gap-16 px-4" aria-hidden="true">
+              {bankLogos.map((bank) => (
+                <div key={`${bank.name}-dup`} className="flex items-center gap-2 h-10 px-3 py-1 bg-white rounded-lg border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group">
+                  <ImageWithFallback
+                    src={bank.logo}
+                    alt={bank.name}
+                    className="h-6 sm:h-7 w-auto object-contain max-w-[130px] filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap hidden sm:inline">{bank.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
