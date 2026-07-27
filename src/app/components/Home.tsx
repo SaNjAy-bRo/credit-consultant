@@ -526,11 +526,11 @@ export function Home() {
         </div>
       </section>
 
+      {/* Testimonials Carousel — Moved above How It Works as requested */}
+      <TestimonialsCarousel />
+
       {/* How It Works */}
       <HowItWorks bg="white" showCTA={true} />
-
-      {/* Testimonials Carousel — Placed right after How It Works */}
-      <TestimonialsCarousel />
 
       {/* Why Choose Us Section — Informative & Premium Redesign */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
@@ -647,7 +647,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Loan Products Teaser — Enhanced & Prominent */}
+      {/* Loan Products Teaser — Rich Visual Cards with Overlay Text */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -661,25 +661,57 @@ export function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: HomeIcon, label: "Home Loan", desc: "Competitive interest rates starting at 8.35% p.a., loan amount up to ₹5 Cr, 30-year tenure.", iconBg: "bg-blue-50 border-blue-200 text-blue-600" },
-              { icon: Briefcase, label: "Business Loan", desc: "Collateral-free SME loans up to ₹50 L with fast 48-hour disbursal for business expansion.", iconBg: "bg-indigo-50 border-indigo-200 text-indigo-600" },
-              { icon: User, label: "Personal Loan", desc: "Instant approval, no collateral needed, flexible repayment up to 5 years, up to ₹40 L.", iconBg: "bg-purple-50 border-purple-200 text-purple-600" },
-              { icon: Car, label: "Car Loan", desc: "Up to 100% on-road price financing for new & pre-owned vehicles with minimal documentation.", iconBg: "bg-emerald-50 border-emerald-200 text-emerald-600" },
+              {
+                icon: HomeIcon,
+                label: "Home Loan",
+                desc: "Rates from 8.35% p.a., up to ₹5 Cr, 30-year tenure.",
+                img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                tag: "Rates from 8.35%",
+              },
+              {
+                icon: Briefcase,
+                label: "Business Loan",
+                desc: "Collateral-free SME loans up to ₹50 L with 48-hr disbursal.",
+                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                tag: "Up to ₹50 Lakhs",
+              },
+              {
+                icon: User,
+                label: "Personal Loan",
+                desc: "Instant approval, no collateral, flexible repayment up to ₹40 L.",
+                img: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                tag: "Instant Approval",
+              },
+              {
+                icon: Car,
+                label: "Car Loan",
+                desc: "100% on-road price financing with minimal documentation.",
+                img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+                tag: "100% On-Road",
+              },
             ].map((item) => {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between">
-                    <div>
-                      <div className={`w-14 h-14 ${item.iconBg} border rounded-2xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform`}>
-                        <Icon className="w-7 h-7" />
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 h-80 flex flex-col justify-end p-6 border border-slate-200">
+                    <ImageWithFallback src={item.img} alt={item.label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/20" />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-white" />
+                        </div>
+                        <span className="text-[11px] font-bold bg-[#31b0d0] text-white px-2.5 py-1 rounded-full shadow-sm">
+                          {item.tag}
+                        </span>
                       </div>
-                      <h3 className="text-xl font-extrabold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.label}</h3>
-                      <p className="text-slate-600 text-xs sm:text-sm font-normal leading-relaxed mb-6">{item.desc}</p>
-                    </div>
-                    <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-blue-600 font-bold text-sm group-hover:gap-2.5 transition-all">
-                      <span>Learn More</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <h3 className="text-2xl font-black text-white mb-1.5">{item.label}</h3>
+                      <p className="text-slate-200 text-xs font-normal leading-relaxed mb-4 line-clamp-2">{item.desc}</p>
+                      <div className="flex items-center gap-1.5 text-white font-bold text-xs group-hover:gap-2.5 transition-all">
+                        <span>Explore Rates &amp; Eligibility</span>
+                        <ArrowRight className="w-4 h-4 text-[#31b0d0]" />
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -942,9 +974,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Testimonials Carousel */}
-      <TestimonialsCarousel />
-
       {/* Newsletter Section — Clean Royal Blue & Glass Card */}
       <section className="py-14 bg-gradient-to-b from-slate-50 to-blue-50/50 border-t border-slate-200/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -974,19 +1003,19 @@ export function Home() {
         </div>
       </section>
 
-      {/* CTA Banner Section — Executive Dark Royal Blue Theme */}
-      <section className="py-20 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white relative overflow-hidden border-t border-slate-800">
+      {/* CTA Banner Section — Light Blue Gradient Theme */}
+      <section className="py-20 bg-gradient-to-r from-[#1d4ed8] via-[#2563eb] to-[#31b0d0] text-white relative overflow-hidden shadow-2xl">
         {/* Background ambient lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" aria-hidden="true" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl" aria-hidden="true" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <span className="inline-block bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold px-3.5 py-1 rounded-full mb-4 uppercase tracking-widest">
+          <span className="inline-block bg-white/20 border border-white/30 text-white text-xs font-bold px-3.5 py-1 rounded-full mb-4 uppercase tracking-widest backdrop-blur-sm">
             START YOUR CREDIT RECOVERY TODAY
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight text-white">
             Ready to Improve Your Credit Score?
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed font-medium">
             Get started today with a 100% free consultation. Our certified CIBIL experts analyze your credit report and map out a step-by-step resolution strategy.
           </p>
 
