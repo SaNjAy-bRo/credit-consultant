@@ -701,33 +701,40 @@ export function Home() {
               const Icon = item.icon;
               return (
                 <Link to="/loans" key={item.label} className="block h-full group">
-                  <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-80">
-                    {/* Full-bleed vector image */}
+                  <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 h-96 sm:h-[390px] flex flex-col justify-between bg-slate-50">
+                    {/* Full-bleed clean vector illustration (No dark dim overlay) */}
                     <img
                       src={item.img}
                       alt={item.label}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Light gradient overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
+
+                    {/* Soft light gradient at bottom for text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
 
                     {/* Tag Badge */}
-                    <span className={`absolute top-3 right-3 text-[11px] font-bold ${item.tagColor} text-white px-2.5 py-1 rounded-full shadow-md z-10`}>
+                    <span className={`absolute top-3.5 right-3.5 text-[11px] font-bold ${item.tagColor} text-white px-3 py-1 rounded-full shadow-md z-10`}>
                       {item.tag}
                     </span>
 
-                    {/* Overlay Content */}
-                    <div className="absolute inset-x-0 bottom-0 p-5 z-10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        <h3 className="text-xl font-extrabold text-white">{item.label}</h3>
+                    {/* Top Icon Badge */}
+                    <div className="relative z-10 p-4">
+                      <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shadow-sm bg-white/90 backdrop-blur-md ${item.accent}`}>
+                        <Icon className="w-5.5 h-5.5" />
                       </div>
-                      <p className="text-white/80 text-sm font-normal leading-relaxed mb-3 line-clamp-2">{item.desc}</p>
-                      <div className="flex items-center gap-1.5 text-white font-bold text-xs group-hover:gap-2.5 transition-all">
+                    </div>
+
+                    {/* Bottom Dark Text Content */}
+                    <div className="relative z-10 p-5 sm:p-6 pt-0">
+                      <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2 group-hover:text-blue-600 transition-colors">
+                        {item.label}
+                      </h3>
+                      <p className="text-slate-800 text-xs sm:text-sm font-semibold leading-relaxed mb-4 line-clamp-2">
+                        {item.desc}
+                      </p>
+                      <div className="flex items-center gap-2 text-blue-700 font-extrabold text-xs sm:text-sm group-hover:gap-3 transition-all">
                         <span>Explore Rates &amp; Eligibility</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4 text-blue-600" />
                       </div>
                     </div>
                   </div>
