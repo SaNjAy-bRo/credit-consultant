@@ -266,16 +266,16 @@ export function Home() {
           {/* LEFT — copy */}
           <div className="flex-1 text-center lg:text-left w-full max-w-2xl lg:max-w-none mx-auto">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-5 sm:mb-6 text-slate-800 tracking-tight">
-              <span className="block sm:inline font-normal text-slate-700">Transform Your</span>{" "}
-              <span className="relative inline-block my-1 sm:my-0">
+              <span className="font-normal text-slate-700">Transform Your</span>{" "}
+              <span className="relative inline-block">
                 <span className="font-black text-transparent bg-clip-text"
                   style={{ backgroundImage: "linear-gradient(90deg,#1d4ed8 0%,#2563eb 50%,#31b0d0 100%)" }}>
-                  Credit Score &amp;
+                  Credit Score
                 </span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 rounded-full"
                   style={{ background: "linear-gradient(90deg,#2563eb,#31b0d0)" }} />
-              </span>{" "}
-              <span className="block sm:inline font-normal text-slate-700 mt-1 sm:mt-0">Financial Future</span>
+              </span>
+              <span className="block sm:inline font-normal text-slate-700 mt-1 sm:mt-0">&amp; Financial Future</span>
             </h1>
 
             <p className="text-lg sm:text-xl lg:text-[22px] mb-6 sm:mb-8 text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
@@ -297,7 +297,7 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-[#10b981] hover:from-emerald-700 hover:to-[#059669] text-white shadow-lg shadow-emerald-500/20" />
+              <CheckScoreButton variant="primary" className="w-full sm:w-auto h-12 sm:h-11 text-base sm:text-sm px-6 justify-center rounded-xl font-bold bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-400/25" />
             </div>
 
             {/* Trust badges — ultra-clean inline feature list */}
