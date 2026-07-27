@@ -407,12 +407,6 @@ export function Home() {
           </div>
         </div>
 
-        {/* Bottom wave divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
-            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 20C540 40 240 0 0 20L0 60Z" className="fill-gray-50" />
-          </svg>
-        </div>
       </section>
 
       {/* Stats Section */}
@@ -434,12 +428,17 @@ export function Home() {
       {/* Partner Banks & NBFCs */}
       <section className="py-10 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">
-            Trusted by clients at India's leading banks & NBFCs
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10 opacity-60">
+          <div className="text-center mb-6">
+            <p className="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest leading-snug">
+              TRUSTED BY CLIENTS AT
+            </p>
+            <p className="text-sm sm:text-base font-black text-slate-900 uppercase tracking-widest leading-snug mt-1">
+              INDIA'S LEADING BANKS &amp; NBFCs
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10 opacity-75">
             {["SBI", "HDFC Bank", "ICICI Bank", "Axis Bank", "Kotak Mahindra", "Bajaj Finserv", "IDFC First", "Yes Bank", "PNB", "Bank of Baroda"].map((bank) => (
-              <span key={bank} className="text-sm font-bold text-gray-500 whitespace-nowrap">{bank}</span>
+              <span key={bank} className="text-sm sm:text-base font-bold text-slate-700 whitespace-nowrap hover:text-blue-600 transition-colors">{bank}</span>
             ))}
           </div>
         </div>
