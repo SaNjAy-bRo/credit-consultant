@@ -1,0 +1,847 @@
+import { useEffect, useState } from "react";
+import { SEOHead, ORG_SCHEMA } from "./SEOHead";
+import { Link } from "react-router";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  TrendingUp,
+  Shield,
+  UserCheck,
+  Award,
+  CheckCircle,
+  ArrowRight,
+  BarChart,
+  FileText,
+  Home as HomeIcon,
+  Briefcase,
+  User,
+  Car,
+  Star,
+  Zap,
+} from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { CheckScoreButton } from "./CheckScoreModal";
+import { HowItWorks } from "./HowItWorks";
+import { TestimonialsCarousel } from "./TestimonialsCarousel";
+
+/* ── Animated score counter ─────────────────────────────────── */
+function ScoreRing({ target = 780 }: { target?: number }) {
+  const [count, setCount] = useState(300);
+  useEffect(() => {
+    let start = 300;
+    const step = () => {
+      start += 4;
+      if (start >= target) { setCount(target); return; }
+      setCount(start);
+      requestAnimationFrame(step);
+    };
+    const id = setTimeout(() => requestAnimationFrame(step), 600);
+    return () => clearTimeout(id);
+  }, [target]);
+
+  const radius = 54;
+  const circ = 2 * Math.PI * radius;
+  const pct = (count - 300) / (850 - 300);
+  const dash = circ * pct;
+  const color = count < 580 ? "#f97316" : count < 700 ? "#eab308" : "#22c55e";
+
+  return (
+    <div className="relative w-36 h-36 flex items-center justify-center">
+      <svg className="absolute inset-0 -rotate-90" width="144" height="144" viewBox="0 0 144 144">
+        <circle cx="72" cy="72" r={radius} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
+        <circle
+          cx="72" cy="72" r={radius} fill="none"
+          stroke={color} strokeWidth="10"
+          strokeDasharray={`${dash} ${circ}`}
+          strokeLinecap="round"
+          style={{ transition: "stroke-dasharray 0.05s linear, stroke 0.5s" }}
+        />
+      </svg>
+      <div className="text-center z-10">
+        <div className="text-3xl font-black text-white tabular-nums">{count}</div>
+        <div className="text-[10px] text-teal-200 uppercase tracking-widest">CIBIL Score</div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Floating 3-D card ───────────────────────────────────────── */
+function FloatCard({
+  children, delay = "0s", className = "",
+}: { children: React.ReactNode; delay?: string; className?: string }) {
+  return (
+    <div
+      className={`animate-float backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-2xl ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ── Rising bar chart (pure CSS) ─────────────────────────────── */
+function BarChart3D() {
+  const bars = [
+    { h: "30%", color: "#60a5fa", label: "Q1" },
+    { h: "50%", color: "#818cf8", label: "Q2" },
+    { h: "45%", color: "#60a5fa", label: "Q3" },
+    { h: "70%", color: "#34d399", label: "Q4" },
+    { h: "85%", color: "#34d399", label: "Q5" },
+    { h: "95%", color: "#facc15", label: "Q6" },
+  ];
+  return (
+    <div className="flex items-end gap-2 h-28 px-1">
+      {bars.map((b, i) => (
+        <div key={i} className="flex flex-col items-center gap-1 flex-1">
+          <div
+            className="w-full rounded-t-md animate-rise"
+            style={{
+              height: b.h,
+              background: `linear-gradient(180deg, ${b.color}, ${b.color}88)`,
+              animationDelay: `${i * 0.12 + 0.3}s`,
+              transformOrigin: "bottom",
+              transform: "scaleY(0)",
+            }}
+          />
+          <span className="text-[9px] text-teal-200">{b.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Particle dots ───────────────────────────────────────────── */
+function Particles() {
+  const dots = Array.from({ length: 22 }, (_, i) => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    dur: Math.random() * 8 + 6,
+    delay: Math.random() * 5,
+  }));
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {dots.map((d, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-white/20 animate-particle"
+          style={{
+            left: `${d.x}%`,
+            top: `${d.y}%`,
+            width: d.size,
+            height: d.size,
+            animationDuration: `${d.dur}s`,
+            animationDelay: `${d.delay}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function Home() {
+  const services = [
+    {
+      icon: TrendingUp,
+      title: "Credit Repair",
+      description: "Remove negative items and improve your credit score with our proven strategies.",
+    },
+    {
+      icon: BarChart,
+      title: "Credit Analysis",
+      description: "Comprehensive analysis of your credit report with actionable insights.",
+    },
+    {
+      icon: FileText,
+      title: "Debt Management",
+      description: "Strategic debt consolidation and management plans tailored to your needs.",
+    },
+    {
+      icon: Shield,
+      title: "Identity Protection",
+      description: "Monitor and protect your credit from fraud and identity theft.",
+    },
+    {
+      icon: UserCheck,
+      title: "Credit Education",
+      description: "Learn the best practices to maintain and improve your credit score.",
+    },
+    {
+      icon: Award,
+      title: "Financial Planning",
+      description: "Expert guidance on building a strong financial future.",
+    },
+  ];
+
+  const stats = [
+    { value: "15+", label: "Years Experience" },
+    { value: "10,000+", label: "Happy Clients" },
+    { value: "98%", label: "Success Rate" },
+    { value: "₹500Cr+", label: "Loans Facilitated" },
+    { value: "+150 pts", label: "Avg Score Gain" },
+    { value: "4.9 ⭐", label: "Google Rating" },
+  ];
+
+  const testimonials = [
+    {
+      name: "Rajesh Kumar",
+      role: "Business Owner",
+      content: "Credit Consultant helped me improve my credit score by 150 points in just 6 months. Highly recommended!",
+      image: "https://images.unsplash.com/photo-1666113604293-d34734339acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGJ1c2luZXNzJTIwY29uc3VsdGFudHxlbnwxfHx8fDE3NzQ4Nzg4OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      name: "Priya Sharma",
+      role: "Software Engineer",
+      content: "Professional service and excellent results. They made the credit repair process so easy and stress-free.",
+      image: "https://images.unsplash.com/photo-1739298061766-e2751d92e9db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZlcnNlJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NzQ4MzkxMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+    {
+      name: "Amit Patel",
+      role: "Entrepreneur",
+      content: "Their expertise in credit management is unmatched. Thanks to them, I secured a business loan with great terms.",
+      image: "https://images.unsplash.com/photo-1758518730384-be3d205838e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhhbmRzaGFrZSUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzQ4NjQ1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    },
+  ];
+
+  const benefits = [
+    "Free credit consultation",
+    "Personalized credit repair plan",
+    "Expert credit counseling",
+    "No upfront fees",
+    "Money-back guarantee",
+    "24/7 customer support",
+  ];
+
+  return (
+    <div className="w-full">
+      <SEOHead
+        title="Credit Consultant India — CIBIL Score Repair & Loan Advisory"
+        description="India's #1 credit repair and loan advisory service. Improve your CIBIL score by 100–200 points. Get the best home, business and personal loan deals. Free consultation. 10,000+ happy clients across India."
+        keywords="credit repair India, CIBIL score improvement, credit consultant, home loan advisory, personal loan, business loan, debt management"
+        schema={ORG_SCHEMA}
+      />
+      {/* ── Hero Section — animated 3-D scene ───────────────────── */}
+      <section
+        className="relative overflow-hidden text-white"
+        style={{ minHeight: "92vh", background: "linear-gradient(135deg,#003d4a 0%,#006878 45%,#0097b2 100%)" }}
+        aria-label="Credit Consultant — India's trusted credit repair and loan advisory service"
+      >
+        {/* Animated mesh blobs — teal (primary) + orange (logo accent arc) */}
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-25 blur-3xl animate-blob"
+          style={{ background: "radial-gradient(circle, #0097b2, #005f73)" }} />
+        <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl animate-blob"
+          style={{ background: "radial-gradient(circle, #00b4cc, #007090)", animationDelay: "3s" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl animate-blob"
+          style={{ background: "radial-gradient(circle, #f97316, #ea4519)", animationDelay: "6s" }} />
+
+        {/* Particle field */}
+        <Particles />
+
+        {/* Grid overlay */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+
+        {/* Main content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 py-20 lg:py-0 lg:min-h-[92vh]">
+
+          {/* LEFT — copy */}
+          <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-teal-200 mb-6 backdrop-blur-sm">
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              India's #1 Credit Repair & Loan Advisory
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+            </div>
+
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-6">
+              Transform Your{" "}
+              <span className="relative inline-block">
+                <span className="text-transparent bg-clip-text"
+                  style={{ backgroundImage: "linear-gradient(90deg,#facc15,#fb923c)" }}>
+                  Credit Score
+                </span>
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
+                  style={{ background: "linear-gradient(90deg,#facc15,#fb923c)" }} />
+              </span>{" "}
+              &amp; Financial Future
+            </h1>
+
+            <p className="text-lg lg:text-xl mb-8 text-teal-100 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Expert credit repair, CIBIL score improvement, and home &amp; business loan advisory services.
+              Over 10,000 happy clients across India — get your free consultation today.
+            </p>
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
+              <Link to="/contact">
+                <Button size="lg"
+                  className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 font-bold hover:from-yellow-300 hover:to-orange-300 shadow-lg shadow-orange-500/30">
+                  Get Free Consultation
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/calculator">
+                <Button size="lg" variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm">
+                  EMI Calculator
+                </Button>
+              </Link>
+              <CheckScoreButton variant="white" className="h-11 text-sm px-6" />
+            </div>
+
+            {/* Trust badges */}
+            <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
+              {[
+                { emoji: "⭐", label: "4.9 Google Rating" },
+                { emoji: "🏦", label: "Trusted by Banks & NBFCs" },
+                { emoji: "✅", label: "RBI Compliant" },
+                { emoji: "🔒", label: "No Hidden Fees" },
+              ].map(({ emoji, label }) => (
+                <span key={label} className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                  <span>{emoji}</span> {label}
+                </span>
+              ))}
+            </div>
+
+            {/* Google rating row */}
+            <div className="mt-4 flex items-center gap-2 justify-center lg:justify-start">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(s => (
+                  <svg key={s} className="w-4 h-4 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <span className="text-white text-sm font-semibold">4.9</span>
+              <span className="text-teal-200 text-xs">· 500+ Google Reviews</span>
+            </div>
+          </div>
+
+          {/* RIGHT — 3-D animated visual stage */}
+          <div className="flex-1 relative h-[480px] hidden lg:block" aria-hidden="true">
+
+            {/* Perspective container */}
+            <div className="absolute inset-0" style={{ perspective: "1200px" }}>
+
+              {/* Central glowing orb */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full animate-pulse-slow"
+                style={{ background: "radial-gradient(circle at 40% 40%, #3b82f6 0%, #1e40af 50%, #0f172a 100%)", boxShadow: "0 0 80px 20px rgba(59,130,246,0.4)" }} />
+
+              {/* Score ring — centre */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                <ScoreRing target={780} />
+              </div>
+
+              {/* Floating card — top left: Growth chart */}
+              <FloatCard delay="0s" className="absolute top-4 left-2 w-52 p-4">
+                <p className="text-[10px] text-teal-200 uppercase tracking-widest mb-2">Credit Growth</p>
+                <BarChart3D />
+              </FloatCard>
+
+              {/* Floating card — top right: Approval */}
+              <FloatCard delay="1s" className="absolute top-6 right-0 w-44 p-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <CheckCircle className="w-5 h-5 text-green-400" />
+                  <span className="text-xs font-semibold text-green-300">Loan Approved!</span>
+                </div>
+                <p className="text-2xl font-black text-white">₹25 L</p>
+                <p className="text-[10px] text-blue-300">Home Loan · 8.4% p.a.</p>
+                <div className="mt-2 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-green-400 rounded-full animate-progress" style={{ width: "72%" }} />
+                </div>
+              </FloatCard>
+
+              {/* Floating card — bottom left: Stats */}
+              <FloatCard delay="0.5s" className="absolute bottom-8 left-0 w-44 p-4">
+                <p className="text-[10px] text-teal-200 uppercase tracking-widest mb-2">Clients Helped</p>
+                <p className="text-3xl font-black text-white">10K+</p>
+                <div className="flex gap-0.5 mt-2">
+                  {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 text-yellow-400 fill-yellow-400" />)}
+                </div>
+                <p className="text-[10px] text-blue-300 mt-1">98% success rate</p>
+              </FloatCard>
+
+              {/* Floating card — bottom right: EMI */}
+              <FloatCard delay="1.5s" className="absolute bottom-4 right-2 w-48 p-4">
+                <p className="text-[10px] text-teal-200 uppercase tracking-widest mb-1">Monthly EMI</p>
+                <p className="text-2xl font-black text-yellow-300">₹18,240</p>
+                <p className="text-[10px] text-blue-300">Personal Loan · 5 yrs</p>
+                <div className="mt-2 flex gap-1">
+                  {[40,60,80,55,90,70].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-sm animate-rise"
+                      style={{ height: h * 0.3, background: "rgba(250,204,21,0.6)", animationDelay: `${i * 0.1 + 1}s`, transformOrigin: "bottom", transform: "scaleY(0)" }} />
+                  ))}
+                </div>
+              </FloatCard>
+
+              {/* Orbit ring */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-white/10 animate-spin-slow" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-white/5 animate-spin-reverse" />
+
+              {/* Orbiting dot */}
+              <div className="absolute top-1/2 left-1/2 animate-orbit">
+                <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-lg shadow-yellow-400/60" style={{ marginTop: "-144px" }} />
+              </div>
+              <div className="absolute top-1/2 left-1/2 animate-orbit" style={{ animationDelay: "-4s" }}>
+                <div className="w-2 h-2 rounded-full bg-blue-300 shadow-lg shadow-blue-300/60" style={{ marginTop: "-160px" }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
+            <path d="M0 60L1440 60L1440 20C1200 60 900 0 720 20C540 40 240 0 0 20L0 60Z" fill="white" />
+          </svg>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-2xl lg:text-3xl font-black text-blue-600 mb-1">
+                  {stat.value}
+                </div>
+                <div className="text-gray-500 text-xs">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Banks & NBFCs */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">
+            Trusted by clients at India's leading banks & NBFCs
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10 opacity-60">
+            {["SBI", "HDFC Bank", "ICICI Bank", "Axis Bank", "Kotak Mahindra", "Bajaj Finserv", "IDFC First", "Yes Bank", "PNB", "Bank of Baroda"].map((bank) => (
+              <span key={bank} className="text-sm font-bold text-gray-500 whitespace-nowrap">{bank}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <HowItWorks bg="white" showCTA={true} />
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Professional Team"
+                className="rounded-lg shadow-xl w-full h-[400px] object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                Why Choose Credit Consultant?
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                We are committed to providing the best credit repair and financial consulting services in India. Here's what sets us apart:
+              </p>
+              <div className="space-y-4">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-700">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Link to="/about">
+                  <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+                    Learn More About Us
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Don't just take our word for it - hear from our satisfied clients
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index}>
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    <ImageWithFallback
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div>
+                      <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                      <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700 italic">"{testimonial.content}"</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Loan Products Teaser */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Loan Products</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Financing solutions tailored to every need — home, business, personal, or vehicle.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: HomeIcon, label: "Home Loan", desc: "Competitive rates, up to ₹5 Cr, 30-year tenure.", color: "blue" },
+              { icon: Briefcase, label: "Business Loan", desc: "Collateral-free up to ₹50 L for SMEs & startups.", color: "indigo" },
+              { icon: User, label: "Personal Loan", desc: "Quick disbursal, no collateral, up to ₹40 L.", color: "purple" },
+              { icon: Car, label: "Car Loan", desc: "100% on-road financing for new & used vehicles.", color: "cyan" },
+            ].map((item) => {
+              const Icon = item.icon;
+              const bgMap: Record<string, string> = { blue: "bg-teal-100", indigo: "bg-indigo-100", purple: "bg-purple-100", cyan: "bg-cyan-100" };
+              const textMap: Record<string, string> = { blue: "text-teal-600", indigo: "text-indigo-600", purple: "text-purple-600", cyan: "text-cyan-600" };
+              return (
+                <Link to="/loans" key={item.label}>
+                  <Card className="hover:shadow-lg transition-shadow h-full cursor-pointer group">
+                    <CardHeader>
+                      <div className={`w-12 h-12 ${bgMap[item.color]} rounded-lg flex items-center justify-center mb-3`}>
+                        <Icon className={`w-6 h-6 ${textMap[item.color]}`} />
+                      </div>
+                      <CardTitle className="text-base">{item.label}</CardTitle>
+                      <CardDescription>{item.desc}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <span className={`text-sm font-medium ${textMap[item.color]} flex items-center gap-1 group-hover:gap-2 transition-all`}>
+                        Learn more <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="text-center mt-10">
+            <Link to="/loans">
+              <Button size="lg" className="bg-teal-600 hover:bg-teal-700">
+                Explore All Loan Products <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Hub Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Our Services</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+              Individual & Commercial Credit Services
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm">
+              We keep individual and commercial credit services completely separate — choose the one that fits your need.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* Individual Hub Card */}
+            <Link to="/individual" className="group block rounded-3xl border-2 border-teal-100 bg-gradient-to-br from-teal-50 to-teal-100 p-8 hover:shadow-xl hover:border-teal-300 transition-all">
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-12 h-12 bg-teal-600 rounded-2xl flex items-center justify-center">
+                  <User className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-xs font-bold bg-teal-600 text-white px-3 py-1 rounded-full">For Individuals</span>
+              </div>
+              <h3 className="text-2xl font-black text-blue-900 mb-2">Individual Credit Report Services</h3>
+              <p className="text-blue-700 text-sm mb-4 leading-relaxed">
+                Personal CIBIL score repair, home loan advisory and credit dispute resolution for salaried professionals, self-employed individuals and NRIs — available across North, South, East and West India.
+              </p>
+
+              {/* Dummy PAN Card Illustration */}
+              <div className="relative mb-5">
+                <div className="absolute -top-1.5 -right-1 z-10">
+                  <span className="text-[9px] font-bold bg-orange-500 text-white px-2 py-0.5 rounded-full tracking-wide shadow">SAMPLE</span>
+                </div>
+                <svg
+                  viewBox="0 0 380 220"
+                  className="w-full max-w-sm mx-auto rounded-xl shadow-lg border border-blue-200"
+                  style={{ filter: "drop-shadow(0 4px 16px rgba(0,97,178,0.18))" }}
+                  aria-label="Sample PAN Card — for illustration only"
+                >
+                  {/* Card background */}
+                  <defs>
+                    <linearGradient id="panBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f0f7ff" />
+                      <stop offset="100%" stopColor="#dbeafe" />
+                    </linearGradient>
+                    <linearGradient id="panHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#1a3a6b" />
+                      <stop offset="100%" stopColor="#0e4f9e" />
+                    </linearGradient>
+                    <pattern id="ashoka" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                      <circle cx="15" cy="15" r="10" fill="none" stroke="#1e40af" strokeWidth="0.3" strokeDasharray="2,2" opacity="0.15" />
+                    </pattern>
+                  </defs>
+
+                  {/* Card body */}
+                  <rect width="380" height="220" rx="12" ry="12" fill="url(#panBg)" />
+                  <rect width="380" height="220" rx="12" ry="12" fill="url(#ashoka)" />
+
+                  {/* Header bar */}
+                  <rect width="380" height="42" rx="0" ry="0" fill="url(#panHeader)" />
+                  <rect width="380" height="42" rx="12" ry="12" fill="url(#panHeader)" />
+                  <rect y="20" width="380" height="22" fill="url(#panHeader)" />
+
+                  {/* Ashoka Pillar icon (simplified) */}
+                  <g transform="translate(18, 6)">
+                    <rect x="10" y="8" width="4" height="18" rx="1" fill="#f59e0b" />
+                    <ellipse cx="12" cy="8" rx="7" ry="4" fill="#f59e0b" />
+                    <ellipse cx="12" cy="4" rx="4" ry="2.5" fill="#fbbf24" />
+                  </g>
+
+                  {/* Header text */}
+                  <text x="50" y="16" fontFamily="serif" fontSize="8" fontWeight="bold" fill="#fde68a" letterSpacing="1.5">INCOME TAX DEPARTMENT</text>
+                  <text x="50" y="28" fontFamily="serif" fontSize="7" fill="#bfdbfe" letterSpacing="0.8">GOVT. OF INDIA</text>
+
+                  {/* Permanent Account Number label */}
+                  <text x="18" y="62" fontFamily="serif" fontSize="7.5" fill="#1e3a5f" letterSpacing="0.5">Permanent Account Number</text>
+                  {/* PAN number */}
+                  <text x="18" y="80" fontFamily="monospace" fontSize="14" fontWeight="bold" fill="#1a3a6b" letterSpacing="3">ABCDE1234F</text>
+
+                  {/* Photo placeholder */}
+                  <rect x="295" y="50" width="68" height="82" rx="4" fill="#dbeafe" stroke="#93c5fd" strokeWidth="1.2" />
+                  <text x="329" y="88" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fill="#60a5fa">Photo</text>
+                  <circle cx="329" cy="78" r="14" fill="#bfdbfe" />
+                  <ellipse cx="329" cy="105" rx="18" ry="10" fill="#bfdbfe" />
+
+                  {/* Fields */}
+                  <text x="18" y="105" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">Name</text>
+                  <text x="18" y="117" fontFamily="serif" fontSize="10" fontWeight="bold" fill="#1e293b">RAHUL KUMAR SHARMA</text>
+
+                  <text x="18" y="133" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">{"Father's Name"}</text>
+                  <text x="18" y="145" fontFamily="serif" fontSize="9.5" fontWeight="bold" fill="#1e293b">SURESH KUMAR SHARMA</text>
+
+                  <text x="18" y="161" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">Date of Birth</text>
+                  <text x="18" y="173" fontFamily="serif" fontSize="9.5" fontWeight="bold" fill="#1e293b">01/01/1990</text>
+
+                  {/* Signature line */}
+                  <line x1="18" y1="198" x2="150" y2="198" stroke="#94a3b8" strokeWidth="0.8" />
+                  <text x="18" y="210" fontFamily="sans-serif" fontSize="6.5" fill="#94a3b8">Signature</text>
+
+                  {/* Hologram */}
+                  <circle cx="262" cy="185" r="22" fill="none" stroke="#7c3aed" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.5" />
+                  <circle cx="262" cy="185" r="14" fill="none" stroke="#0891b2" strokeWidth="0.7" opacity="0.5" />
+                  <text x="262" y="189" textAnchor="middle" fontFamily="sans-serif" fontSize="6" fill="#7c3aed" opacity="0.7">◈ ITD</text>
+
+                  {/* Watermark */}
+                  <text x="190" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="28" fontWeight="bold" fill="#1e40af" opacity="0.04" transform="rotate(-22, 190, 130)">SAMPLE</text>
+                </svg>
+                <p className="text-center text-[10px] text-blue-400 mt-1.5 italic">Sample PAN card — for illustration only</p>
+              </div>
+
+              <ul className="space-y-2 mb-6">
+                {["Personal CIBIL Score Repair", "Credit Report Dispute", "Home & Personal Loan Advisory", "Identity Protection"].map((s) => (
+                  <li key={s} className="flex items-center gap-2 text-sm text-blue-800">
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" /> {s}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center gap-2 text-blue-700 font-bold text-sm group-hover:gap-3 transition-all">
+                Explore Individual Credit Services <ArrowRight className="w-4 h-4" />
+              </div>
+              <p className="text-xs text-blue-500 mt-3">Available in 66 cities across all 4 regions</p>
+            </Link>
+
+            {/* Commercial Hub Card */}
+            <Link to="/commercial" className="group block rounded-3xl border-2 border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 p-8 hover:shadow-xl hover:border-slate-400 transition-all">
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-12 h-12 bg-slate-700 rounded-2xl flex items-center justify-center">
+                  <Briefcase className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-xs font-bold bg-slate-700 text-white px-3 py-1 rounded-full">For Businesses</span>
+              </div>
+              <h3 className="text-2xl font-black text-slate-900 mb-2">Commercial Credit Information Report Services</h3>
+              <p className="text-slate-600 text-sm mb-5 leading-relaxed">
+                Business CIBIL CMR repair, commercial credit building, MSME loan advisory and B2B debt management for proprietorships, partnerships, LLPs and private limited companies across India.
+              </p>
+              <ul className="space-y-2 mb-6">
+                {["Business CIBIL CMR Rank Repair", "Commercial Loan Advisory", "MSME / Mudra Loan Facilitation", "B2B Debt Management"].map((s) => (
+                  <li key={s} className="flex items-center gap-2 text-sm text-slate-700">
+                    <CheckCircle className="w-4 h-4 text-slate-600 flex-shrink-0" /> {s}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center gap-2 text-slate-700 font-bold text-sm group-hover:gap-3 transition-all">
+                Explore Commercial Credit Services <ArrowRight className="w-4 h-4" />
+              </div>
+              <p className="text-xs text-slate-400 mt-3">Available in 66 cities across all 4 regions</p>
+            </Link>
+          </div>
+
+          {/* Region quick links */}
+          <div className="mt-8 pt-6 border-t border-gray-100">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4 text-center">Browse by Region</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              {[
+                { region: "north", label: "North India", cities: "Delhi, Gurgaon, Noida, Chandigarh, Jaipur…", color: "bg-blue-50 border-blue-200 text-blue-800" },
+                { region: "south", label: "South India", cities: "Bengaluru, Chennai, Hyderabad, Kochi…", color: "bg-indigo-50 border-indigo-200 text-indigo-800" },
+                { region: "east",  label: "East India",  cities: "Kolkata, Patna, Bhubaneswar, Guwahati…", color: "bg-purple-50 border-purple-200 text-purple-800" },
+                { region: "west",  label: "West India",  cities: "Mumbai, Pune, Ahmedabad, Surat…", color: "bg-green-50 border-green-200 text-green-800" },
+              ].map((r) => (
+                <div key={r.region} className={`rounded-xl border p-3 ${r.color}`}>
+                  <p className="font-bold text-sm mb-1">{r.label}</p>
+                  <p className="text-xs opacity-70 mb-2">{r.cities}</p>
+                  <div className="flex gap-2">
+                    <Link to={`/individual/${r.region}`} className="text-xs font-semibold underline hover:no-underline">Individual</Link>
+                    <span className="text-xs opacity-40">·</span>
+                    <Link to={`/commercial/${r.region}`} className="text-xs font-semibold underline hover:no-underline">Commercial</Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Awards & Recognition */}
+      <section className="py-14 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Awards & Recognition</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Recognised for Excellence</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { year: "2024", award: "Best Credit Advisory Firm", body: "FinTech Leaders Council India", icon: "🏆" },
+              { year: "2023", award: "Excellence in Credit Repair", body: "Indian Financial Empowerment Forum", icon: "🥇" },
+              { year: "2022", award: "Innovation in Debt Resolution", body: "Debt Recovery Outlook Summit", icon: "🎖️" },
+            ].map((a) => (
+              <div key={a.award} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex items-start gap-4 hover:shadow-md transition-shadow">
+                <div className="text-3xl flex-shrink-0">{a.icon}</div>
+                <div>
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{a.year}</span>
+                  <p className="font-bold text-gray-900 mt-1.5 text-sm">{a.award}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{a.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="py-14 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Real Results</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Client Success Stories</h2>
+            <p className="text-gray-500 text-sm mt-2 max-w-lg mx-auto">Before and after CIBIL scores from real Credit Consultant clients across India</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { name: "Rajesh K.", city: "Bengaluru", issue: "Settled loan + missed EMIs", before: 541, after: 762, months: 5 },
+              { name: "Priya S.", city: "Mumbai", issue: "Write-off entry on report", before: 488, after: 714, months: 7 },
+              { name: "Amit P.", city: "Delhi NCR", issue: "Multiple hard enquiries", before: 623, after: 798, months: 4 },
+            ].map((c) => {
+              const gain = c.after - c.before;
+              const pct = Math.round(((c.after - 300) / 600) * 100);
+              return (
+                <div key={c.name} className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl border border-blue-100 p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="font-bold text-gray-900">{c.name}</p>
+                      <p className="text-xs text-gray-400">{c.city} · {c.issue}</p>
+                    </div>
+                    <span className="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">+{gain} pts</span>
+                  </div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-center">
+                      <p className="text-2xl font-black text-red-500">{c.before}</p>
+                      <p className="text-[10px] text-gray-400">Before</p>
+                    </div>
+                    <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-red-400 to-green-500 rounded-full" style={{ width: `${pct}%` }} />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-black text-green-600">{c.after}</p>
+                      <p className="text-[10px] text-gray-400">After</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 text-center">Achieved in <strong>{c.months} months</strong></p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Carousel */}
+      <TestimonialsCarousel />
+
+      {/* Newsletter */}
+      <section className="py-12 bg-teal-600">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold text-white mb-2">Stay Financially Informed</h2>
+          <p className="text-teal-100 text-sm mb-6">Get weekly CIBIL tips, loan rate alerts and financial guides. No spam, unsubscribe anytime.</p>
+          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              className="flex-1 px-4 py-3 rounded-xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+            />
+            <button type="submit" className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
+              Subscribe Free
+            </button>
+          </form>
+          <p className="text-teal-200 text-xs mt-3">Join 5,000+ subscribers · No spam ever</p>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-teal-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            Ready to Improve Your Credit Score?
+          </h2>
+          <p className="text-lg lg:text-xl mb-8 text-teal-100 max-w-2xl mx-auto">
+            Get started today with a free consultation. Our experts are ready to help you achieve your financial goals.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link to="/contact">
+              <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50">
+                Get Your Free Consultation
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+            <a href="https://wa.me/919538049888?text=Hi%2C%20I%20need%20help%20with%20my%20CIBIL%20score" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-green-500 hover:bg-green-400 text-white border-0">
+                💬 WhatsApp Us
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
