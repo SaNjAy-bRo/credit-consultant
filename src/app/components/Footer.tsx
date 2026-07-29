@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 
@@ -11,7 +13,7 @@ export function Footer() {
           <div>
             <div className="mb-4 inline-block bg-white p-2.5 rounded-xl border border-slate-700/60 shadow-sm">
               <img
-                src={cibilLogo}
+                src={cibilLogo.src ?? (cibilLogo as any)}
                 alt="Credit Consultant — Live life debt free"
                 className="h-9 w-auto object-contain"
               />

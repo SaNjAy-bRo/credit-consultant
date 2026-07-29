@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X, Phone, ShieldCheck, ChevronDown, Loader2, FileDown } from "lucide-react";
@@ -219,7 +221,7 @@ startxref 0
     <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 px-6 py-5 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="bg-white p-1.5 rounded-lg shadow-sm">
-          <img src={cibilLogo} alt="Credit Consultant" className="h-7 w-auto object-contain" />
+          <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-7 w-auto object-contain" />
         </div>
         <div className="border-l border-white/30 pl-3">
           <p className="text-white font-bold text-base leading-none">Get Started</p>

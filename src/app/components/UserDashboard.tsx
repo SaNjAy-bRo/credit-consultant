@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import {
   TrendingUp, FileText, Phone, Download, CheckCircle,
@@ -6,7 +8,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { Link } from "react-router";
+import { Link } from "./routerShim";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 import { fetchAllReports, downloadEquifaxPdf, type CreditReport } from "../api/creditApi";
 
@@ -139,7 +141,7 @@ export function UserDashboard() {
       {/* ── Sidebar ── */}
       <aside className="w-60 bg-white border-r border-gray-200 flex flex-col fixed top-0 left-0 h-full z-30">
         <div className="p-5 border-b border-gray-100">
-          <img src={cibilLogo} alt="Credit Consultant" className="h-8 w-auto" />
+          <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-8 w-auto" />
           <p className="text-gray-400 text-xs mt-2">My Dashboard</p>
         </div>
 

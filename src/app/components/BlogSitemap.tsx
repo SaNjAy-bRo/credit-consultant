@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import { BookOpen, Clock, Calendar, Tag, ChevronRight, FileText, Globe, TrendingUp, RefreshCw } from "lucide-react";
 import { BLOG_POSTS } from "./BlogPost";
 

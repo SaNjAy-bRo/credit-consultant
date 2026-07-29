@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import {
   MapPin, FileText, House, BarChart2, BookOpen, Phone,
   Calculator, Info, Building2, User, ChevronRight, Globe, Tag,

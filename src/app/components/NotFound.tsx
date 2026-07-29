@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import { Button } from "./ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 

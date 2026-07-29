@@ -3,7 +3,9 @@
  * Each hub covers a broad topic and links to all its spoke pages.
  * Each spoke links back to the hub and to sibling spokes.
  */
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import { ArrowRight, CheckCircle, ChevronRight, ExternalLink } from "lucide-react";
 import { SEOHead, faqSchema, breadcrumbSchema } from "./SEOHead";
 import { CheckScoreButton } from "./CheckScoreModal";

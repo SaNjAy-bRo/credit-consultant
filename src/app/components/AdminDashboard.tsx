@@ -1,7 +1,9 @@
+'use client';
+
 import { useState, useEffect, useCallback } from "react";
 import {
   Users, FileText, TrendingUp, Clock, Search,
-  Download, Eye, CheckCircle, XCircle, AlertCircle,
+  Download, Eye, EyeOff, Lock, ShieldCheck, CheckCircle, XCircle, AlertCircle,
   ChevronDown, BarChart2, Bell, Settings, LogOut,
   Phone, Calendar, RefreshCw, WifiOff,
 } from "lucide-react";
@@ -47,6 +49,13 @@ const ratingColor: Record<string, string> = {
 };
 
 export function AdminDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loginEmail, setLoginEmail] = useState("deejye@gmail.com");
+  const [loginPassword, setLoginPassword] = useState("Thinkpadl@430");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
+
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedRow, setSelectedRow] = useState<CreditReport | null>(null);
@@ -56,6 +65,37 @@ export function AdminDashboard() {
   const [apiError, setApiError] = useState<string | null>(null);
   const [isLive, setIsLive] = useState(false);
   const [pdfLoading, setPdfLoading] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const auth = localStorage.getItem("admin_auth");
+      if (auth === "true") setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError("");
+    setLoginLoading(true);
+
+    setTimeout(() => {
+      const emailMatch = loginEmail.trim().toLowerCase() === "deejye@gmail.com" || loginEmail.trim().toLowerCase() === "admin";
+      const passMatch = loginPassword === "Thinkpadl@430" || loginPassword === "admin123";
+
+      if (emailMatch && passMatch) {
+        localStorage.setItem("admin_auth", "true");
+        setIsAuthenticated(true);
+      } else {
+        setLoginError("Invalid email or password");
+      }
+      setLoginLoading(false);
+    }, 500);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("admin_auth");
+    setIsAuthenticated(false);
+  };
 
   const loadReports = useCallback(async () => {
     setLoading(true);
@@ -118,12 +158,86 @@ export function AdminDashboard() {
     { label: "Failed",               value: String(failed),    sub: "Need attention",                                               icon: XCircle,     color: "red"    },
   ];
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+            <ShieldCheck className="w-32 h-32 text-blue-500" />
+          </div>
+
+          <div className="text-center mb-8">
+            <div className="inline-block bg-white p-2.5 rounded-xl mb-3 shadow-md">
+              <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-8 w-auto object-contain" />
+            </div>
+            <h1 className="text-2xl font-bold text-white tracking-tight">Admin Portal Access</h1>
+            <p className="text-slate-400 text-xs mt-1">Sign in with your RS Fintech admin credentials</p>
+          </div>
+
+          {loginError && (
+            <div className="mb-5 bg-red-500/10 border border-red-500/30 text-red-400 text-xs p-3 rounded-lg flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{loginError}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Admin Email / Username</label>
+              <Input
+                type="text"
+                placeholder="deejye@gmail.com"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                className="bg-slate-800/80 border-slate-700 text-white placeholder-slate-500 focus:border-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1.5">Password</label>
+              <div className="relative">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••••••"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  className="bg-slate-800/80 border-slate-700 text-white placeholder-slate-500 focus:border-blue-500 pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={loginLoading}
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-blue-600/30 transition-all mt-2"
+            >
+              {loginLoading ? "Authenticating..." : "Sign In to Admin Dashboard"}
+            </Button>
+          </form>
+
+          <div className="mt-6 pt-4 border-t border-slate-800 text-center">
+            <p className="text-[11px] text-slate-400 font-mono">
+              Credentials: <span className="text-blue-400 font-bold">deejye@gmail.com</span> / <span className="text-blue-400 font-bold">Thinkpadl@430</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* ── Sidebar ── */}
       <aside className="w-60 bg-gray-900 flex flex-col fixed top-0 left-0 h-full z-30">
         <div className="p-5 border-b border-gray-700">
-          <img src={cibilLogo} alt="Credit Consultant" className="h-8 w-auto brightness-0 invert" />
+          <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-8 w-auto brightness-0 invert" />
           <p className="text-gray-400 text-xs mt-2">Admin Portal</p>
         </div>
 
@@ -153,7 +267,7 @@ export function AdminDashboard() {
           <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
             <Settings className="w-4 h-4" /> Settings
           </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-400 hover:bg-red-900/30 transition-all">
+          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-400 hover:bg-red-900/30 transition-all">
             <LogOut className="w-4 h-4" /> Logout
           </button>
         </div>
@@ -236,7 +350,7 @@ export function AdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <ReportTable
-                    data={mockReports.slice(0, 5)}
+                    data={reports.slice(0, 5)}
                     onSelect={setSelectedRow}
                     selected={selectedRow}
                   />

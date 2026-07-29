@@ -5,7 +5,9 @@
  * /individual/:region           → Regional Hub (north | south | east | west)
  * /individual/:region/:city     → City landing page
  */
-import { useParams, Link, Navigate } from "react-router";
+'use client';
+
+import { useParams, Link, Navigate } from "./routerShim";
 import { CheckCircle, MapPin, ArrowRight, Users, TrendingUp, FileText, Shield, ChevronRight, Phone } from "lucide-react";
 import { SEOHead, faqSchema, breadcrumbSchema } from "./SEOHead";
 import { CheckScoreButton } from "./CheckScoreModal";

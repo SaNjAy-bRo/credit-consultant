@@ -1,4 +1,6 @@
-import { useParams, Link, Navigate } from "react-router";
+'use client';
+
+import { useParams, Link, Navigate } from "./routerShim";
 import { CITY_REDIRECTS } from "../data/cityRedirects";
 import { ArrowRight, CheckCircle, Star, Phone, Mail, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";

@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router";
+
+import { Link } from "./routerShim";
 import { ClipboardList, Send, ShieldCheck, TrendingUp, ThumbsUp, ArrowRight, ChevronRight } from "lucide-react";
 
 /* ── Steps data ─────────────────────────────────────────────── */

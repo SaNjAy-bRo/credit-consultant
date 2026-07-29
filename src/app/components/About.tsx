@@ -1,7 +1,9 @@
+'use client';
+
 import { SEOHead, ORG_SCHEMA } from "./SEOHead";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Link } from "react-router";
+import { Link } from "./routerShim";
 import {
   Target,
   Eye,

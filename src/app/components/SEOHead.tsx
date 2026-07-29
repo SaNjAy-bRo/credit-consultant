@@ -1,5 +1,8 @@
+'use client';
+
 import { useEffect } from "react";
-import { useLocation } from "react-router";
+
+import { useLocation } from "./routerShim";
 
 const BASE_URL = "https://creditconsultant.in";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`;

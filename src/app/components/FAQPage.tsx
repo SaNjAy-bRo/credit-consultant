@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "./routerShim";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { SEOHead, faqSchema, breadcrumbSchema, ORG_SCHEMA } from "./SEOHead";
 import { CheckScoreButton } from "./CheckScoreModal";

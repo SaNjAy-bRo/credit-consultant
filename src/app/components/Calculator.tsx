@@ -1,6 +1,8 @@
+'use client';
+
 import { SEOHead, ORG_SCHEMA } from "./SEOHead";
 import { useState, useMemo } from "react";
-import { Link } from "react-router";
+import { Link } from "./routerShim";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ArrowRight, Home, Briefcase, User, Car, IndianRupee, Percent, Clock } from "lucide-react";

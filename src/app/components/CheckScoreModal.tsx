@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -75,6 +77,62 @@ function ScoreRing({ score }: { score: number }) {
       </div>
     </div>
   );
+}
+
+/* ── Helper to deeply extract credit score from any API response structure ── */
+function extractScore(data: any): number {
+  if (!data) return 0;
+  if (typeof data === "number" && data >= 300 && data <= 900) return data;
+  if (typeof data === "string") {
+    const trimmed = data.trim();
+    const num = Number(trimmed);
+    if (!isNaN(num) && num >= 300 && num <= 900) return num;
+  }
+  if (Array.isArray(data)) {
+    for (const item of data) {
+      const s = extractScore(item);
+      if (s > 0) return s;
+    }
+    return 0;
+  }
+  if (typeof data === "object") {
+    // 1. Match score/cibil/equifax/crif keys case-insensitively
+    for (const key of Object.keys(data)) {
+      const lower = key.toLowerCase().replace(/[^a-z0-9]/g, "");
+      if (
+        lower.includes("score") ||
+        lower.includes("cibil") ||
+        lower.includes("cibilscore") ||
+        lower.includes("equifax") ||
+        lower.includes("crif")
+      ) {
+        const val = data[key];
+        if (typeof val === "number" && val >= 300 && val <= 900) return val;
+        if (typeof val === "string" && !isNaN(Number(val.trim()))) {
+          const n = Number(val.trim());
+          if (n >= 300 && n <= 900) return n;
+        }
+      }
+    }
+    // 2. Recursive traversal over object values
+    for (const value of Object.values(data)) {
+      if (value && (typeof value === "object" || Array.isArray(value))) {
+        const s = extractScore(value);
+        if (s > 0) return s;
+      }
+    }
+  }
+  return 0;
+}
+
+function extractRating(data: any, score: number): string {
+  if (data?.rating && typeof data.rating === "string") return data.rating;
+  if (data?.data?.rating && typeof data.data.rating === "string") return data.data.rating;
+  if (score >= 750) return "Excellent";
+  if (score >= 700) return "Good";
+  if (score >= 650) return "Fair";
+  if (score >= 300) return "Needs Improvement";
+  return "No Bureau History";
 }
 
 /* ── Modal ──────────────────────────────────────────────────── */
@@ -181,19 +239,25 @@ export function CheckScoreModal({ open, onClose }: Props) {
       await new Promise(r => setTimeout(r, 800));
 
       setFetchStatus("Verifying PAN with CIBIL…");
-      const raw = await fetchCibilReport({
-        name: form.name, mobile, pan, aadhaar,
-        dob: form.dob, gender: form.gender as "M"|"F",
-        consent: "Y",
-      });
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Request timeout")), 5000)
+      );
+      const raw: any = await Promise.race([
+        fetchCibilReport({
+          name: form.name, mobile, pan, aadhaar,
+          dob: form.dob, gender: form.gender as "M"|"F",
+          consent: "Y",
+        }),
+        timeoutPromise,
+      ]);
 
       setFetchStatus("Generating report…");
       await new Promise(r => setTimeout(r, 600));
 
-      // Parse score from API response
-      const score  = raw?.score ?? raw?.cibil_score ?? raw?.CIBILScore ?? 0;
-      const rating = score >= 750 ? "Excellent" : score >= 700 ? "Good" : score >= 650 ? "Fair" : score > 0 ? "Needs Improvement" : "—";
-      const bureau = raw?.bureau ?? "CIBIL";
+      // Parse score from API response using deep extractor
+      const score  = extractScore(raw);
+      const rating = extractRating(raw, score);
+      const bureau = raw?.bureau ?? raw?.data?.bureau ?? "CIBIL";
 
       const updatedContact: ContactRecord = {
         ...baseContact,
@@ -251,7 +315,7 @@ export function CheckScoreModal({ open, onClose }: Props) {
         <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 px-6 py-5 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <div className="bg-white p-1.5 rounded-lg shadow-sm">
-              <img src={cibilLogo} alt="Credit Consultant" className="h-7 w-auto object-contain" />
+              <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-7 w-auto object-contain" />
             </div>
             <div className="border-l border-white/30 pl-3">
               <p className="text-white font-bold text-base leading-none">Check Credit Score</p>
@@ -439,14 +503,24 @@ export function CheckScoreModal({ open, onClose }: Props) {
         {/* ── RESULT ── */}
         {step === "result" && contact && (
           <div className="px-6 pb-7 pt-3 space-y-5">
-            {result?.error ? (
-              /* No record found */
+            {(!contact.score || contact.score === 0 || result?.error) ? (
+              /* No record / DOB mismatch card */
               <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mx-auto">
-                  <AlertCircle className="w-8 h-8 text-yellow-500" />
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto shadow-sm">
+                  <AlertCircle className="w-8 h-8 text-amber-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">No Bureau Record Found</h3>
-                <p className="text-sm text-gray-500">{result.error}. Your details have been saved — our advisor will contact you within 24 hours.</p>
+                <h3 className="text-lg font-bold text-gray-900">No Matching Bureau Record</h3>
+                <p className="text-sm text-gray-600 leading-relaxed px-2">
+                  The PAN or Date of Birth entered didn't match an active CIBIL credit file, or no credit history exists yet.
+                </p>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 text-left space-y-1">
+                  <p className="font-semibold text-amber-900">💡 Possible Reasons:</p>
+                  <ul className="list-disc list-inside space-y-0.5 text-amber-800/90">
+                    <li>Date of Birth differs from official PAN card records</li>
+                    <li>First-time credit applicant with no active loans or credit cards</li>
+                    <li>Bureau record is registered under another credit bureau (Equifax / CRIF)</li>
+                  </ul>
+                </div>
               </div>
             ) : (
               /* Score found */

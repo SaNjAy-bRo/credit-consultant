@@ -31,6 +31,18 @@ export default defineConfig({
     },
   },
 
+  // Proxy /api-proxy requests to backend API during development to avoid CORS issues
+  server: {
+    proxy: {
+      '/api-proxy': {
+        target: 'https://api.avmanagement.in/v1',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api-proxy/, ''),
+      },
+    },
+  },
+
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
 })

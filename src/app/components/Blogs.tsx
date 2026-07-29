@@ -1,6 +1,9 @@
+'use client';
+
 import { SEOHead, ORG_SCHEMA } from "./SEOHead";
+
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "./routerShim";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ArrowRight, Clock, Tag, ChevronRight, BookOpen } from "lucide-react";
 import { CheckScoreButton } from "./CheckScoreModal";

@@ -1,4 +1,6 @@
-import { useParams, Link, Navigate } from "react-router";
+'use client';
+
+import { useParams, Link, Navigate } from "./routerShim";
 import { Clock, Calendar, User, ArrowLeft, ArrowRight, CheckCircle, Tag, AlertTriangle } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { SEOHead, faqSchema, breadcrumbSchema } from "./SEOHead";
@@ -20,7 +22,7 @@ export interface BlogPostData {
   readTime: string;
   wordCount: number;
   keywords: string;
-  excerpt: string;
+  excerpt?: string;
   content: React.ReactNode;
   faqs?: { q: string; a: string }[];
   relatedSlugs?: string[];

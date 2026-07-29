@@ -1,4 +1,6 @@
-import { useParams, Navigate } from "react-router";
+'use client';
+
+import { useParams, Navigate } from "./routerShim";
 import { HubPage } from "./HubPage";
 import { SpokePage } from "./SpokePage";
 

@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect, useLayoutEffect } from "react";
-import { Outlet, useLocation } from "react-router";
+import { useLocation } from "./routerShim";
 import { TrendingUp } from "lucide-react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
@@ -83,7 +85,7 @@ function injectBaseHeadTags() {
   }
 }
 
-export function Root() {
+export function Root({ children }: { children?: React.ReactNode }) {
   const [scoreModalOpen, setScoreModalOpen] = useState(false);
 
   useEffect(() => { injectBaseHeadTags(); }, []);
@@ -93,7 +95,7 @@ export function Root() {
       <ScrollToTop />
       <Navigation />
       <main className="flex-1 w-full overflow-x-hidden">
-        <Outlet />
+        {children}
       </main>
       <Footer />
 

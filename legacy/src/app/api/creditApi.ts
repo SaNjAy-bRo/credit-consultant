@@ -4,17 +4,22 @@
  */
 
 const BASE_URL = import.meta.env.VITE_CREDIT_API_URL ?? "https://api.rsfintech.in/v1";
-const API_TOKEN = import.meta.env.VITE_CREDIT_API_TOKEN ?? "rsf_81f8550480e63c146ea9b55fada8b717deeb342d";
+const API_TOKEN = import.meta.env.VITE_CREDIT_API_TOKEN ?? "";
 
-const authHeaders = {
-  "Content-Type": "application/json",
-  Authorization: `Bearer ${API_TOKEN}`,
-};
+function getAuthHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  if (API_TOKEN) {
+    headers["Authorization"] = `Bearer ${API_TOKEN}`;
+  }
+  return headers;
+}
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
     ...options,
-    headers: { ...authHeaders, ...options?.headers },
+    headers: { ...getAuthHeaders(), ...options?.headers },
   });
   const text = await res.text();
   let data: any;
@@ -200,7 +205,7 @@ export function downloadPdf(blob: Blob, name: string, reportId: string) {
 export async function downloadEquifaxPdf(report_id: string, name: string) {
   // If API has a PDF endpoint, use it; otherwise fall back to generated PDF
   try {
-    const res = await fetch(`${BASE_URL}/equifax/${report_id}/pdf`, { headers: authHeaders });
+    const res = await fetch(`${BASE_URL}/equifax/${report_id}/pdf`, { headers: getAuthHeaders() });
     if (res.ok) {
       const blob = await res.blob();
       downloadPdf(blob, name, report_id);

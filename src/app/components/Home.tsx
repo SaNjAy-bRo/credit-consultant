@@ -1,6 +1,9 @@
+'use client';
+
 import { useEffect, useState } from "react";
 import { SEOHead, ORG_SCHEMA } from "./SEOHead";
-import { Link } from "react-router";
+
+import { Link } from "./routerShim";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import {
@@ -128,13 +131,22 @@ function BarChart3D() {
 
 /* ── Particle dots ───────────────────────────────────────────── */
 function Particles() {
-  const dots = Array.from({ length: 22 }, (_, i) => ({
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 3 + 1,
-    dur: Math.random() * 8 + 6,
-    delay: Math.random() * 5,
-  }));
+  const [dots, setDots] = useState<{ x: number; y: number; size: number; dur: number; delay: number }[]>([]);
+
+  useEffect(() => {
+    setDots(
+      Array.from({ length: 22 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        dur: Math.random() * 8 + 6,
+        delay: Math.random() * 5,
+      }))
+    );
+  }, []);
+
+  if (dots.length === 0) return null;
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {dots.map((d, i) => (

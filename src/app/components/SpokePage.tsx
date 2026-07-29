@@ -2,7 +2,9 @@
  * Hub-and-Spoke Architecture — Spoke Page Template
  * Each spoke covers one specific subtopic and links back to its hub + sibling spokes.
  */
-import { Link } from "react-router";
+'use client';
+
+import { Link } from "./routerShim";
 import { ArrowRight, ArrowLeft, CheckCircle, ChevronRight, Clock, User } from "lucide-react";
 import { SEOHead, faqSchema, breadcrumbSchema } from "./SEOHead";
 import { CheckScoreButton } from "./CheckScoreModal";
