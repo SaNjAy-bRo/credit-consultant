@@ -158,28 +158,22 @@ export function Services() {
         schema={ORG_SCHEMA}
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[460px] flex items-center bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950">
-        {/* Background image */}
-        <img
-          src="https://images.unsplash.com/photo-1772413438631-a4bc7ccf0f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920"
-          alt="Gold coins with upward growth arrow"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-30 mix-blend-overlay"
-        />
-        {/* Decorative glowing gradient orbs */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/80 to-transparent" />
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
+        {/* Faded checks / grid design pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-teal-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               What We Offer
             </span>
-            <h1 className="text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">Services</span>
+            <h1 className="text-4xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
+              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Services</span>
             </h1>
-            <p className="text-lg lg:text-xl text-teal-100/90 leading-relaxed font-normal">
+            <p className="text-lg lg:text-xl text-slate-600 leading-relaxed font-normal">
               Comprehensive credit and financial services designed to help you achieve your goals and build lasting financial strength.
             </p>
           </div>

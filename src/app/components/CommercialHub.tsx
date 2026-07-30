@@ -65,25 +65,25 @@ export function CommercialMainHub() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-22 bg-gradient-to-br from-[#0B192C] via-[#1E3E62] to-[#0B192C] border-b border-blue-900/60 text-white">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
         {/* Faded checks / grid design pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-500/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-sky-200/80 text-xs font-semibold mb-6">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-6">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold">Commercial Services</span>
+            <span className="text-slate-900 font-bold">Commercial Services</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Commercial Credit Services
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-white">Business Credit Repair & Commercial Loan Advisory Across India</h1>
-            <p className="text-base lg:text-xl text-sky-100/90 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
+            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">Business Credit Repair &amp; Commercial Loan Advisory Across India</h1>
+            <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
             <div className="flex flex-wrap gap-3.5 items-center">
               <Link to="/contact">
                 <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">

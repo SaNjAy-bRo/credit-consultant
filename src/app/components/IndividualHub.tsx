@@ -61,27 +61,27 @@ export function IndividualMainHub() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-22 bg-gradient-to-br from-[#0B192C] via-[#1E3E62] to-[#0B192C] border-b border-blue-900/60 text-white">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
         {/* Faded checks / grid design pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-500/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-sky-200/80 text-xs font-semibold mb-6">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-6">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold">Individual Services</span>
+            <span className="text-slate-900 font-bold">Individual Services</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Individual Credit Services
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-white">
-              Personal CIBIL Score Repair & Advisory Across India
+            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">
+              Personal CIBIL Score Repair &amp; Advisory Across India
             </h1>
-            <p className="text-base lg:text-xl text-sky-100/90 mb-8 leading-relaxed font-normal">
+            <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">
               Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.
             </p>
             <div className="flex flex-wrap gap-3.5 items-center">
@@ -256,24 +256,24 @@ export function IndividualRegionHub() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-22 bg-gradient-to-br from-[#0B192C] via-[#1E3E62] to-[#0B192C] border-b border-blue-900/60 text-white">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
         {/* Faded checks / grid design pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-500/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-sky-200/80 text-xs font-semibold mb-6 flex-wrap">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white transition-colors">Individual Services</Link><ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold">{r.name}</span>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-6 flex-wrap">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}`} className="hover:text-slate-900 transition-colors">Individual Services</Link><ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-slate-900 font-bold">{r.name}</span>
           </nav>
-          <span className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {r.shortName} India Hub · {cities.length} Cities Covered
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-white">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-teal-200 to-emerald-300">{r.name}</span></h1>
-          <p className="text-base lg:text-xl text-sky-100/90 mb-8 max-w-2xl font-normal leading-relaxed">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
+          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{r.name}</span></h1>
+          <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
           <div className="flex flex-wrap gap-3.5 items-center">
             <Link to="/contact">
               <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
@@ -320,20 +320,32 @@ export function IndividualRegionHub() {
           <div>
             <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Primary Metros</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metro Cities — {r.shortName}</h2>
-            <p className="text-slate-500 text-xs mb-6 font-medium">Individual credit services in major metros</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <p className="text-slate-500 text-xs mb-6 font-medium">Tap any city below to access individual credit services</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {metros.map((city) => (
-                <Link key={city.slug} to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
+                <Link
+                  key={city.slug}
+                  to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Credit Report Repair Agency in ${city.name}`}
-                  className="group flex items-center gap-3 p-4.5 rounded-2xl border border-slate-200/80 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20 group-hover:scale-105 transition-transform">
-                    <MapPin className="w-4.5 h-4.5" />
+                  className="group flex items-center justify-between gap-3 p-4 rounded-2xl border border-slate-200/90 bg-white hover:border-teal-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20 group-hover:scale-105 transition-transform">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-extrabold text-slate-900 group-hover:text-teal-700 text-xs transition-colors truncate">
+                        Credit Repair Agency in {city.name}
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-semibold flex items-center gap-1 mt-0.5">
+                        <span>{city.state}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-300" />
+                        <span className="text-teal-700 font-bold">Open Page →</span>
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold text-slate-900 group-hover:text-teal-700 text-xs transition-colors">
-                      Credit Repair Agency in {city.name}
-                    </p>
-                    <p className="text-[10px] text-slate-400 font-semibold">{city.state} · Metro</p>
+                  <div className="w-7 h-7 rounded-full bg-teal-50 border border-teal-100 text-teal-700 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 flex items-center justify-center flex-shrink-0 transition-all shadow-xs">
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </Link>
               ))}
@@ -347,18 +359,29 @@ export function IndividualRegionHub() {
             <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Extended Cities</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metropolitan Cities — {r.shortName}</h2>
             <p className="text-slate-500 text-xs mb-6 font-medium">Individual credit services across all major cities</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
               {metros2.map((city) => (
-                <Link key={city.slug} to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
+                <Link
+                  key={city.slug}
+                  to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Credit Report Repair Agency in ${city.name}, ${city.state}`}
-                  className="group flex items-center gap-2.5 p-3.5 rounded-2xl border border-slate-200/70 hover:border-teal-300 hover:shadow-lg bg-white transition-all duration-300 shadow-sm">
-                  <MapPin className="w-4 h-4 text-slate-400 group-hover:text-teal-600 flex-shrink-0" />
-                  <div>
-                    <p className="font-bold text-slate-800 group-hover:text-teal-700 text-xs">
-                      Credit Repair Agency in {city.name}
-                    </p>
-                    <p className="text-[10px] text-slate-400 font-medium">{city.state}</p>
+                  className="group flex items-center justify-between gap-2.5 p-3.5 rounded-2xl border border-slate-200/90 hover:border-teal-400 hover:shadow-lg bg-white transition-all duration-300 shadow-sm active:scale-95 cursor-pointer"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-extrabold text-slate-800 group-hover:text-teal-700 text-xs truncate">
+                        Credit Repair Agency in {city.name}
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-semibold flex items-center gap-1">
+                        <span>{city.state}</span>
+                        <span className="text-teal-700 font-bold">· Tap to View →</span>
+                      </p>
+                    </div>
                   </div>
+                  <ChevronRight className="w-4 h-4 text-teal-600 flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               ))}
             </div>
@@ -438,25 +461,25 @@ export function IndividualCityPage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-22 bg-gradient-to-br from-[#0B192C] via-[#1E3E62] to-[#0B192C] border-b border-blue-900/60 text-white">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
         {/* Faded checks / grid design pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-500/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-sky-200/80 text-xs font-semibold mb-6 flex-wrap">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white transition-colors">Individual</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}/${rk}`} className="hover:text-white transition-colors">{r.shortName}</Link><ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold">{cityData.name}</span>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-6 flex-wrap">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}`} className="hover:text-slate-900 transition-colors">Individual</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}/${rk}`} className="hover:text-slate-900 transition-colors">{r.shortName}</Link><ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-slate-900 font-bold">{cityData.name}</span>
           </nav>
-          <span className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {cityData.tier === "metro" ? "Metro City" : "Metropolitan"} · {r.shortName} India
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-white">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-400">{cityData.name}</span></h1>
-          <p className="text-base lg:text-xl text-sky-100/90 mb-8 max-w-2xl font-normal leading-relaxed">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
+          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{cityData.name}</span></h1>
+          <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
           <div className="flex flex-wrap gap-3.5 items-center">
             <Link to="/contact">
               <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">

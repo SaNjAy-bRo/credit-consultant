@@ -94,30 +94,34 @@ export function HubPage({
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
+        {/* Faded checks / grid design pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-6" aria-label="Breadcrumb">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold">{title}</span>
+            <span className="text-slate-900 font-bold">{title}</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Complete Guide
             </span>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight">{headline}</h1>
-            <p className="text-base lg:text-xl text-teal-100/90 mb-8 leading-relaxed font-normal">{subheadline}</p>
+            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">{headline}</h1>
+            <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">{subheadline}</p>
             <div className="flex flex-wrap gap-3.5 items-center">
               <Link to="/contact">
-                <button className="bg-white text-teal-900 font-bold text-sm px-7 py-3 rounded-xl hover:bg-teal-50 transition-all flex items-center gap-2 shadow-xl shadow-teal-950/50">
-                  Free Consultation <ArrowRight className="w-4 h-4 text-teal-700" />
+                <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
+                  <span>Free Consultation</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </button>
               </Link>
-              <CheckScoreButton variant="white" className="text-sm px-7 py-3 rounded-xl" />
+              <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
             </div>
           </div>
         </div>
@@ -169,16 +173,18 @@ export function HubPage({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {spokes.map((s, i) => (
                   <Link key={s.slug} to={`/${hubSlug}/${s.slug}`}
-                    className="group block p-6 rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    className="group relative block p-6 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-1.5 transition-all duration-300 active:scale-95 cursor-pointer overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-emerald-500 group-hover:h-1.5 transition-all" />
                     <div className="flex items-start justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">Guide {String(i + 1).padStart(2, "0")}</span>
+                      <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">Guide {String(i + 1).padStart(2, "0")}</span>
                       {s.tag && <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">{s.tag}</span>}
                     </div>
-                    <h3 className="font-extrabold text-slate-900 group-hover:text-teal-700 transition-colors mb-2 text-base">{s.title}</h3>
-                    <p className="text-slate-500 text-xs leading-relaxed mb-4">{s.desc}</p>
-                    <span className="text-teal-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Read full guide <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
+                    <h3 className="font-black text-slate-900 group-hover:text-teal-700 transition-colors mb-2 text-base">{s.title}</h3>
+                    <p className="text-slate-600 text-xs leading-relaxed mb-4 font-normal">{s.desc}</p>
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <span className="text-xs font-extrabold text-teal-700 group-hover:text-teal-800 transition-colors">Read Full Guide →</span>
+                      <span className="text-xs font-extrabold text-white bg-slate-900 group-hover:bg-teal-600 px-3 py-1 rounded-xl transition-all shadow-xs flex items-center gap-1">Open <ArrowRight className="w-3 h-3" /></span>
+                    </div>
                   </Link>
                 ))}
               </div>
