@@ -82,25 +82,28 @@ export function SpokePage({
       />
 
       {/* Slim hero */}
-      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+      <section className="relative overflow-hidden py-18 bg-gradient-to-b from-white via-sky-50/60 to-blue-50/80 border-b border-sky-100/90 text-slate-900">
+        {/* Faded checks / grid design pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-200/40 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-sky-200/40 rounded-full filter blur-[90px] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-4" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-slate-500 text-xs font-semibold mb-4" aria-label="Breadcrumb">
+            <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${hubSlug}`} className="hover:text-white transition-colors">{hubTitle}</Link>
+            <Link to={`/${hubSlug}`} className="hover:text-slate-900 transition-colors">{hubTitle}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-bold truncate max-w-xs">{title}</span>
+            <span className="text-slate-900 font-bold truncate max-w-xs">{title}</span>
           </nav>
-          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-widest shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-widest shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {category}
           </span>
-          <h1 className="text-3xl lg:text-5xl font-extrabold leading-tight max-w-3xl tracking-tight">{headline}</h1>
-          <div className="flex flex-wrap items-center gap-4 mt-5 text-xs font-semibold text-teal-200/90">
-            <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-teal-400" /> Credit Consultant Advisors</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-teal-400" /> {readTime}</span>
+          <h1 className="text-3xl lg:text-5xl font-black leading-tight max-w-3xl tracking-tight text-slate-900">{headline}</h1>
+          <div className="flex flex-wrap items-center gap-4 mt-5 text-xs font-semibold text-slate-600">
+            <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-blue-600" /> Credit Consultant Advisors</span>
+            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-blue-600" /> {readTime}</span>
             <span>Updated {new Date(updatedDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
           </div>
         </div>
