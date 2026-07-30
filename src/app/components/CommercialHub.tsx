@@ -65,25 +65,33 @@ export function CommercialMainHub() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+      <section className="relative overflow-hidden py-22 bg-gradient-to-br from-[#0B192C] via-[#1E3E62] to-[#0B192C] border-b border-blue-900/60 text-white">
+        {/* Faded checks / grid design pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#38bdf8_1px,transparent_1px),linear-gradient(to_bottom,#38bdf8_1px,transparent_1px)] bg-[size:36px_36px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-teal-500/20 rounded-full filter blur-[90px] pointer-events-none" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6">
+          <nav className="flex items-center gap-2 text-sky-200/80 text-xs font-semibold mb-6">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-white font-bold">Commercial Services</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Commercial Credit Services
             </span>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight">Business Credit Repair & Commercial Loan Advisory Across India</h1>
-            <p className="text-base lg:text-xl text-teal-100/90 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
+            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-white">Business Credit Repair & Commercial Loan Advisory Across India</h1>
+            <p className="text-base lg:text-xl text-sky-100/90 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
             <div className="flex flex-wrap gap-3.5 items-center">
-              <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-7 py-3 rounded-xl hover:bg-teal-50 transition-all flex items-center gap-2 shadow-xl shadow-teal-950/50">Free Business Consultation <ArrowRight className="w-4 h-4 text-teal-700" /></button></Link>
-              <CheckScoreButton variant="white" className="text-sm px-7 py-3 rounded-xl" />
+              <Link to="/contact">
+                <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
+                  <span>Free Business Consultation</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </button>
+              </Link>
+              <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
             </div>
           </div>
         </div>
@@ -132,21 +140,57 @@ export function CommercialMainHub() {
               const cities = REGION_CITIES[rk];
               const metros = cities.filter((c) => c.tier === "metro");
               return (
-                <Link key={rk} to={`/${SERVICE_SLUG}/${rk}`}
-                  className="group block p-7 rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors">{r.shortName}</h3>
-                    <div className="w-9 h-9 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all">
-                      <ArrowRight className="w-4 h-4" />
+                <Link
+                  key={rk}
+                  to={`/${SERVICE_SLUG}/${rk}`}
+                  className="group relative block p-6 sm:p-7 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+                >
+                  {/* Top Accent Gradient Bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 group-hover:h-2 transition-all" />
+
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">
+                        Commercial Hub
+                      </span>
+                      <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors mt-1">
+                        {r.shortName}
+                      </h3>
+                    </div>
+                    <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-teal-600 group-hover:to-emerald-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md group-hover:scale-110">
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
+
                   <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
-                  <p className="text-slate-500 text-xs font-semibold mb-4">{cities.length} cities · {metros.length} metro</p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <p className="text-slate-500 text-xs font-semibold mb-4">
+                    {cities.length} cities · {metros.length} metro hubs
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mb-5">
                     {metros.slice(0, 3).map((city) => (
-                      <span key={city.slug} className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">{city.name}</span>
+                      <span
+                        key={city.slug}
+                        className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/80 group-hover:bg-teal-50/70 group-hover:text-teal-800 group-hover:border-teal-200 transition-colors"
+                      >
+                        {city.name}
+                      </span>
                     ))}
-                    {cities.length > 3 && <span className="text-[10px] text-slate-400 font-bold self-center">+{cities.length - 3}</span>}
+                    {cities.length > 3 && (
+                      <span className="text-[10px] text-slate-500 font-bold self-center">
+                        +{cities.length - 3} more
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Explicit Action CTA Button Bar */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-xs font-extrabold text-teal-700 group-hover:text-teal-800 transition-colors">
+                      View Commercial Hub →
+                    </span>
+                    <span className="text-xs font-extrabold text-white bg-slate-900 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1">
+                      Explore <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
                 </Link>
               );
