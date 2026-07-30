@@ -136,10 +136,9 @@ export function HowItWorks({
             <p className="text-sm text-gray-500 mt-1 max-w-lg">{subtitle}</p>
           </div>
           {showCTA && (
-            <Link to="/contact" className="flex-shrink-0">
-              <button className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors flex items-center gap-2 whitespace-nowrap">
-                Free Consultation <ArrowRight className="w-4 h-4" />
-              </button>
+            <Link to="/contact" className="flex-shrink-0 inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-sm hover:no-underline transition-all">
+              <span>Free Consultation</span>
+              <ArrowRight className="w-4 h-4 text-blue-600" />
             </Link>
           )}
         </div>

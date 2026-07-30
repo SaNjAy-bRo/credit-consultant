@@ -411,11 +411,9 @@ export function Services() {
             Schedule your free consultation today and take the first step towards better credit
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold rounded-xl shadow-xl shadow-teal-950/50">
-                Get Your Free Consultation
-                <ArrowRight className="ml-2 w-5 h-5 text-teal-700" />
-              </Button>
+            <Link to="/contact" className="inline-flex items-center gap-2 text-sky-300 hover:text-white underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2 px-1">
+              <span>Get Your Free Consultation</span>
+              <ArrowRight className="w-5 h-5 text-sky-300" />
             </Link>
             <CheckScoreButton variant="white" className="h-11 text-sm px-6 rounded-xl" />
           </div>

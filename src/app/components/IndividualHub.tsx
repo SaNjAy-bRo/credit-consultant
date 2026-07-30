@@ -84,12 +84,10 @@ export function IndividualMainHub() {
             <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">
               Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.
             </p>
-            <div className="flex flex-wrap gap-3.5 items-center">
-              <Link to="/contact">
-                <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
-                  <span>Free Consultation</span>
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </button>
+            <div className="flex flex-wrap gap-4 items-center">
+              <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+                <span>Free Consultation</span>
+                <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
               </Link>
               <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
             </div>
@@ -274,12 +272,10 @@ export function IndividualRegionHub() {
           </span>
           <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{r.name}</span></h1>
           <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
-          <div className="flex flex-wrap gap-3.5 items-center">
-            <Link to="/contact">
-              <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
-                <span>Free Consultation</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+          <div className="flex flex-wrap gap-4 items-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+              <span>Free Consultation</span>
+              <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
             </Link>
             <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
           </div>
@@ -480,12 +476,10 @@ export function IndividualCityPage() {
           </span>
           <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{cityData.name}</span></h1>
           <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
-          <div className="flex flex-wrap gap-3.5 items-center">
-            <Link to="/contact">
-              <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
-                <span>Free Consultation</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
+          <div className="flex flex-wrap gap-4 items-center">
+            <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+              <span>Free Consultation</span>
+              <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
             </Link>
             <a href="tel:+919538049888">
               <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-[#00BC7D] hover:bg-[#00a36c] shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">

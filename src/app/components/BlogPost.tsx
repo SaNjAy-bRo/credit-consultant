@@ -1148,8 +1148,8 @@ export function BlogPost() {
           <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
           <h3 className="text-2xl font-extrabold mb-3 text-white">Need Personalised Credit Advice?</h3>
           <p className="text-teal-100/90 text-sm mb-6 max-w-md mx-auto leading-relaxed">Our certified credit advisors offer free consultations to help you improve your CIBIL score and get the best loan deals.</p>
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-6 py-3 rounded-xl hover:bg-teal-50 transition-all shadow-lg">Free Consultation</button></Link>
+          <div className="flex flex-wrap gap-4 justify-center items-center">
+            <Link to="/contact" className="inline-flex items-center gap-1.5 text-sky-300 hover:text-white underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all"><span>Free Consultation</span> <ArrowRight className="w-4 h-4 text-sky-300" /></Link>
             <CheckScoreButton variant="white" className="text-sm px-6 py-3 rounded-xl" />
           </div>
         </div>

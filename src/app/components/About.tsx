@@ -284,11 +284,9 @@ export function About() {
           <p className="text-base lg:text-xl mb-8 text-teal-100/90 max-w-2xl mx-auto font-normal">
             Join thousands of satisfied clients who have transformed their financial lives with our help
           </p>
-          <Link to="/contact">
-            <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold rounded-xl shadow-xl shadow-teal-950/50">
-              Get Your Free Consultation
-              <ArrowRight className="ml-2 w-5 h-5 text-teal-700" />
-            </Button>
+          <Link to="/contact" className="inline-flex items-center gap-2 text-sky-300 hover:text-white underline underline-offset-4 font-extrabold text-lg hover:no-underline transition-all py-2 px-1">
+            <span>Get Your Free Consultation</span>
+            <ArrowRight className="w-5 h-5 text-sky-300" />
           </Link>
         </div>
       </section>

@@ -114,12 +114,10 @@ export function HubPage({
             </span>
             <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">{headline}</h1>
             <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">{subheadline}</p>
-            <div className="flex flex-wrap gap-3.5 items-center">
-              <Link to="/contact">
-                <button className="h-12 px-7 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-xl shadow-orange-500/30 border border-white/20 transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:scale-95">
-                  <span>Free Consultation</span>
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </button>
+            <div className="flex flex-wrap gap-4 items-center">
+              <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+                <span>Free Consultation</span>
+                <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
               </Link>
               <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
             </div>

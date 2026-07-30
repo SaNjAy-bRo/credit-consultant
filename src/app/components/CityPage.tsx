@@ -924,10 +924,9 @@ export function CityPage() {
               {data.description}
             </p>
             <div className="flex flex-wrap gap-4 items-center">
-              <Link to="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-xl shadow-amber-500/20 transition-all">
-                  Free Consultation <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+              <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2 px-1">
+                <span>Free Consultation</span>
+                <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
               </Link>
               <CheckScoreButton variant="white" className="h-12 px-7 text-sm font-bold rounded-xl" />
             </div>
