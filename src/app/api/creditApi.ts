@@ -141,6 +141,13 @@ export function saveContact(record: ContactRecord) {
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
     setActiveSession(record);
+
+    // Sync user lead data to HubSpot CRM
+    fetch("/api/hubspot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(record),
+    }).catch((err) => console.log("[HubSpot Sync Background]:", err));
   } catch {
     /* ignore */
   }
