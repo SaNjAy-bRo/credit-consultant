@@ -100,7 +100,7 @@ export function SpokePage({
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {category}
           </span>
-          <h1 className="text-3xl lg:text-5xl font-black leading-tight max-w-3xl tracking-tight text-slate-900">{headline}</h1>
+          <h1 className="text-3xl lg:text-5xl font-extrabold leading-tight max-w-3xl tracking-tight text-slate-900">{headline}</h1>
           <div className="flex flex-wrap items-center gap-4 mt-5 text-xs font-semibold text-slate-600">
             <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-blue-600" /> Credit Consultant Advisors</span>
             <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-blue-600" /> {readTime}</span>

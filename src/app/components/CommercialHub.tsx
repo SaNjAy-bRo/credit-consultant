@@ -82,7 +82,7 @@ export function CommercialMainHub() {
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Commercial Credit Services
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">Business Credit Repair &amp; Commercial Loan Advisory Across India</h1>
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">Business Credit Repair &amp; Commercial Loan Advisory Across India</h1>
             <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
             <div className="flex flex-wrap gap-4 items-center">
               <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">

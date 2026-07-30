@@ -112,7 +112,7 @@ export function HubPage({
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Complete Guide
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">{headline}</h1>
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">{headline}</h1>
             <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">{subheadline}</p>
             <div className="flex flex-wrap gap-4 items-center">
               <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">

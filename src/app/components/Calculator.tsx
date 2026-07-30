@@ -76,7 +76,7 @@ export function Calculator() {
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             Financial Planning
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">
             EMI <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Calculator</span>
           </h1>
           <p className="text-base lg:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">

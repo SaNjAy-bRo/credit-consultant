@@ -170,7 +170,7 @@ export function Services() {
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               What We Offer
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
+            <h1 className="text-4xl lg:text-6xl font-extrabold text-slate-900 mb-6 leading-tight tracking-tight">
               Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Services</span>
             </h1>
             <p className="text-lg lg:text-xl text-slate-600 leading-relaxed font-normal">

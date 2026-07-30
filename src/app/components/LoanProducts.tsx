@@ -239,7 +239,7 @@ export function LoanProducts() {
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             Tailored Financing
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Loan <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Products</span></h1>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">Loan <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Products</span></h1>
           <p className="text-base lg:text-xl text-slate-600 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
             Tailored financing solutions for every milestone — home, business, personal needs, and beyond.
           </p>

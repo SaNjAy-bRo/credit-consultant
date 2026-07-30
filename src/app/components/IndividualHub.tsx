@@ -78,7 +78,7 @@ export function IndividualMainHub() {
               <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               Individual Credit Services
             </span>
-            <h1 className="text-4xl lg:text-6xl font-black mb-4 leading-tight tracking-tight text-slate-900">
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">
               Personal CIBIL Score Repair &amp; Advisory Across India
             </h1>
             <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">
@@ -270,7 +270,7 @@ export function IndividualRegionHub() {
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {r.shortName} India Hub · {cities.length} Cities Covered
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{r.name}</span></h1>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{r.name}</span></h1>
           <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
           <div className="flex flex-wrap gap-4 items-center">
             <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
@@ -474,7 +474,7 @@ export function IndividualCityPage() {
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             {cityData.tier === "metro" ? "Metro City" : "Metropolitan"} · {r.shortName} India
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{cityData.name}</span></h1>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">{cityData.name}</span></h1>
           <p className="text-base lg:text-xl text-slate-600 mb-8 max-w-2xl font-normal leading-relaxed">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
           <div className="flex flex-wrap gap-4 items-center">
             <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">

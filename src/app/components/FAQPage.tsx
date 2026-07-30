@@ -115,7 +115,7 @@ export function FAQPage() {
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             Knowledge Base
           </span>
-          <h1 className="text-4xl lg:text-6xl font-black mb-4 tracking-tight text-slate-900">Frequently Asked <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Questions</span></h1>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">Frequently Asked <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-600">Questions</span></h1>
           <p className="text-base lg:text-lg text-slate-600 mb-8 max-w-xl mx-auto font-normal">
             Expert-verified answers to India's most common credit and loan questions
           </p>
