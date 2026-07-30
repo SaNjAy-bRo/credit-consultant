@@ -14,6 +14,7 @@ import {
   sendOtp, verifyOtp, fetchCibilReport, saveContact,
   generateReportPdf, downloadPdf, type ContactRecord,
 } from "../api/creditApi";
+import { openRazorpayCheckout } from "../api/razorpay";
 
 type Step = "details" | "fetching" | "result";
 
@@ -141,92 +142,90 @@ export function CheckScoreModal({ open, onClose }: Props) {
     if (Object.keys(errs).length) return;
 
     setStep("fetching"); setApiLoading(true);
+    setFetchStatus("Opening Razorpay Payment Checkout (₹299)…");
 
-    const contactId = `CS-${Date.now()}`;
-    const pan = form.idType === "PAN" ? form.idNumber.toUpperCase() : undefined;
-    const aadhaar = form.idType === "Aadhaar" ? form.idNumber : undefined;
-
-    // Save contact immediately (before API call)
-    const baseContact: ContactRecord = {
-      id: contactId,
+    openRazorpayCheckout({
       name: form.name,
       mobile,
-      pan,
-      dob: form.dob,
-      gender: form.gender,
-      created_at: new Date().toISOString(),
-      source: "Check Credit Score",
-      report_id: contactId,
-    };
-    saveContact(baseContact);
+      amountInRupees: 299,
+      onSuccess: async (payment) => {
+        setFetchStatus(`Payment Verified (${payment.razorpay_payment_id}). Connecting to CIBIL…`);
+        const contactId = `CS-${Date.now()}`;
+        const pan = form.idType === "PAN" ? form.idNumber.toUpperCase() : undefined;
+        const aadhaar = form.idType === "Aadhaar" ? form.idNumber : undefined;
 
-    try {
-      setFetchStatus("Connecting to credit bureau…");
-      await new Promise(r => setTimeout(r, 800));
+        const baseContact: ContactRecord = {
+          id: contactId,
+          name: form.name,
+          mobile,
+          pan,
+          dob: form.dob,
+          gender: form.gender,
+          created_at: new Date().toISOString(),
+          source: "Check Credit Score",
+          report_id: contactId,
+        };
+        saveContact(baseContact);
 
-      setFetchStatus("Verifying identity with CIBIL…");
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Request timeout")), 5000)
-      );
-      const raw: any = await Promise.race([
-        fetchCibilReport({
-          name: form.name, mobile, pan, aadhaar,
-          dob: form.dob, gender: form.gender as "M"|"F",
-          consent: "Y",
-        }),
-        timeoutPromise,
-      ]);
-
-      setFetchStatus("Generating CIBIL report…");
-      await new Promise(r => setTimeout(r, 600));
-
-      // Parse score from API response using deep extractor
-      const score  = extractScore(raw);
-      const rating = extractRating(raw, score);
-      const bureau = raw?.bureau ?? raw?.data?.bureau ?? "CIBIL";
-
-      const updatedContact: ContactRecord = {
-        ...baseContact,
-        score: Number(score),
-        rating,
-        bureau,
-        report_id: raw?.report_id ?? contactId,
-      };
-
-      // Generate & store PDF (Use live PDF from AV Management if present)
-      setFetchStatus("Preparing PDF…");
-      let blob: Blob;
-      if (raw?.pdf_base64) {
         try {
-          const binary = atob(raw.pdf_base64);
-          const bytes = new Uint8Array(binary.length);
-          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-          blob = new Blob([bytes], { type: "application/pdf" });
-        } catch {
-          blob = generateReportPdf(updatedContact, raw);
+          setFetchStatus("Verifying identity & fetching report…");
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Request timeout")), 5000)
+          );
+          const raw: any = await Promise.race([
+            fetchCibilReport({
+              name: form.name, mobile, pan, aadhaar,
+              dob: form.dob, gender: form.gender as "M"|"F",
+              consent: "Y",
+            }),
+            timeoutPromise,
+          ]);
+
+          setFetchStatus("Generating CIBIL report…");
+          await new Promise(r => setTimeout(r, 600));
+
+          const score  = extractScore(raw);
+          const rating = extractRating(raw, score);
+          const bureau = raw?.bureau ?? raw?.data?.bureau ?? "CIBIL";
+
+          const updatedContact: ContactRecord = {
+            ...baseContact,
+            score: Number(score),
+            rating,
+            bureau,
+            report_id: raw?.report_id ?? contactId,
+          };
+
+          setFetchStatus("Preparing PDF…");
+          let blob: Blob;
+          if (raw?.pdf_base64) {
+            try {
+              const binary = atob(raw.pdf_base64);
+              const bytes = new Uint8Array(binary.length);
+              for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+              blob = new Blob([bytes], { type: "application/pdf" });
+            } catch {
+              blob = generateReportPdf(updatedContact, raw);
+            }
+          } else {
+            blob = generateReportPdf(updatedContact, raw);
+          }
+          saveContact(updatedContact);
+
+          setContact(updatedContact);
+          setPdfBlob(blob);
+          setResult(raw);
+          setStep("result");
+        } catch (err: any) {
+          const updatedContact: ContactRecord = { ...baseContact, score: 0, rating: "—", bureau: "CIBIL" };
+          saveContact(updatedContact);
+          setContact(updatedContact);
+          setStep("result");
+        } finally {
+          setApiLoading(false);
         }
-      } else {
-        blob = generateReportPdf(updatedContact, raw);
-      }
-      saveContact(updatedContact);
-
-      setContact(updatedContact);
-      setPdfBlob(blob);
-      setResult(raw);
-      setStep("result");
-
-    } catch (err: any) {
-      // API returned "No Record Found" or error — still save contact, show message
-      const updatedContact: ContactRecord = { ...baseContact, score: 0, rating: "—", bureau: "CIBIL" };
-      saveContact(updatedContact);
-      setContact(updatedContact);
-      const blob = generateReportPdf(updatedContact, {});
-      setPdfBlob(blob);
-      setResult({ error: err.message ?? "No record found" });
-      setStep("result");
-    } finally {
-      setApiLoading(false);
-    }
+      },
+    });
   };
 
   const handleDownloadPdf = () => {

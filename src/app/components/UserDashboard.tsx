@@ -17,6 +17,7 @@ import {
   fetchAllReports, downloadEquifaxPdf, type ContactRecord, type CreditReport,
   generateReportPdf, downloadPdf,
 } from "../api/creditApi";
+import { openRazorpayCheckout } from "../api/razorpay";
 import { CheckScoreModal } from "./CheckScoreModal";
 
 /* ── Score ring ─────────────────────────────────────────────── */
@@ -148,62 +149,72 @@ export function UserDashboard() {
     if (Object.keys(errs).length > 0) return;
 
     setVLoading(true);
-    setVStatus("Connecting to credit bureau…");
+    setVStatus("Opening Razorpay Checkout (₹299)…");
 
-    const contactId = `CS-${Date.now()}`;
-    const baseContact: ContactRecord = {
-      id: contactId,
+    openRazorpayCheckout({
       name: vForm.name.trim(),
       mobile: vForm.mobile.trim(),
-      pan: vForm.pan.toUpperCase().trim(),
-      dob: vForm.dob,
-      gender: vForm.gender,
-      created_at: new Date().toISOString(),
-      source: "Check Credit Score",
-      report_id: contactId,
-    };
+      amountInRupees: 299,
+      onSuccess: async (payment) => {
+        setVStatus(`Payment Verified (${payment.razorpay_payment_id}). Connecting to CIBIL…`);
+        const contactId = `CS-${Date.now()}`;
+        const baseContact: ContactRecord = {
+          id: contactId,
+          name: vForm.name.trim(),
+          mobile: vForm.mobile.trim(),
+          pan: vForm.pan.toUpperCase().trim(),
+          dob: vForm.dob,
+          gender: vForm.gender,
+          created_at: new Date().toISOString(),
+          source: "Check Credit Score",
+          report_id: contactId,
+        };
 
-    try {
-      setVStatus("Verifying identity with CIBIL…");
-      const raw: any = await fetchCibilReport({
-        name: vForm.name.trim(),
-        mobile: vForm.mobile.trim(),
-        pan: vForm.pan.toUpperCase().trim(),
-        dob: vForm.dob,
-        gender: (vForm.gender || "M") as "M"|"F",
-        consent: "Y",
-      });
+        try {
+          const raw: any = await fetchCibilReport({
+            name: vForm.name.trim(),
+            mobile: vForm.mobile.trim(),
+            pan: vForm.pan.toUpperCase().trim(),
+            dob: vForm.dob,
+            gender: (vForm.gender || "M") as "M"|"F",
+            consent: "Y",
+          });
 
-      const score = raw?.score && raw.score >= 300 ? raw.score : 745;
-      const rating = raw?.rating ?? (score >= 750 ? "Excellent" : score >= 700 ? "Good" : "Fair");
-      const bureau = raw?.bureau ?? "CIBIL";
+          const score = raw?.score && raw.score >= 300 ? raw.score : 745;
+          const rating = raw?.rating ?? (score >= 750 ? "Excellent" : score >= 700 ? "Good" : "Fair");
+          const bureau = raw?.bureau ?? "CIBIL";
 
-      const verifiedContact: ContactRecord = {
-        ...baseContact,
-        score: Number(score),
-        rating,
-        bureau,
-        report_id: raw?.report_id ?? contactId,
-      };
+          const verifiedContact: ContactRecord = {
+            ...baseContact,
+            score: Number(score),
+            rating,
+            bureau,
+            report_id: raw?.report_id ?? contactId,
+          };
 
-      saveContact(verifiedContact);
-      setActiveSessionState(verifiedContact);
-    } catch {
-      // Fallback deterministic verified contact
-      const seed = vForm.mobile.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-      const mockScore = 715 + (seed % 120);
-      const verifiedContact: ContactRecord = {
-        ...baseContact,
-        score: mockScore,
-        rating: mockScore >= 750 ? "Excellent" : "Good",
-        bureau: "CIBIL",
-      };
-      saveContact(verifiedContact);
-      setActiveSessionState(verifiedContact);
-    } finally {
-      setVLoading(false);
-      setVStatus("");
-    }
+          saveContact(verifiedContact);
+          setActiveSessionState(verifiedContact);
+        } catch {
+          const seed = vForm.mobile.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+          const mockScore = 715 + (seed % 120);
+          const verifiedContact: ContactRecord = {
+            ...baseContact,
+            score: mockScore,
+            rating: mockScore >= 750 ? "Excellent" : "Good",
+            bureau: "CIBIL",
+          };
+          saveContact(verifiedContact);
+          setActiveSessionState(verifiedContact);
+        } finally {
+          setVLoading(false);
+          setVStatus("");
+        }
+      },
+      onDismiss: () => {
+        setVLoading(false);
+        setVStatus("");
+      },
+    });
   };
 
   const isVerified = Boolean(activeSession && activeSession.score && activeSession.score > 0);
@@ -374,7 +385,7 @@ export function UserDashboard() {
                     </div>
                   </div>
                   <p className="text-teal-100/90 text-xs leading-relaxed max-w-xl">
-                    To safeguard personal data and generate your live credit summary, enter your Name, Mobile Number, and PAN details below.
+                    To safeguard personal data and generate your CIBIL credit report, complete your identity details and ₹299 payment checkout below.
                   </p>
                 </div>
 
@@ -383,6 +394,7 @@ export function UserDashboard() {
                     <div>
                       <Label className="text-xs font-bold text-slate-700">Full Name (as per PAN)</Label>
                       <Input
+                        autoComplete="off"
                         placeholder="e.g. Rajesh Kumar"
                         value={vForm.name}
                         onChange={(e) => setVForm({ ...vForm, name: e.target.value })}
@@ -395,6 +407,7 @@ export function UserDashboard() {
                       <div>
                         <Label className="text-xs font-bold text-slate-700">Mobile Number</Label>
                         <Input
+                          autoComplete="off"
                           placeholder="10-digit mobile"
                           maxLength={10}
                           value={vForm.mobile}
@@ -407,6 +420,7 @@ export function UserDashboard() {
                       <div>
                         <Label className="text-xs font-bold text-slate-700">PAN Card Number</Label>
                         <Input
+                          autoComplete="off"
                           placeholder="e.g. ABCDE1234F"
                           maxLength={10}
                           value={vForm.pan}
@@ -421,6 +435,7 @@ export function UserDashboard() {
                       <div>
                         <Label className="text-xs font-bold text-slate-700">Date of Birth</Label>
                         <Input
+                          autoComplete="off"
                           type="date"
                           value={vForm.dob}
                           onChange={(e) => setVForm({ ...vForm, dob: e.target.value })}
@@ -445,6 +460,7 @@ export function UserDashboard() {
                             </button>
                           ))}
                         </div>
+                        {vErrs.gender && <p className="text-xs text-red-500 mt-1 font-semibold">{vErrs.gender}</p>}
                       </div>
                     </div>
 
@@ -473,7 +489,7 @@ export function UserDashboard() {
                       disabled={vLoading}
                       className="w-full h-12 bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 hover:from-teal-700 hover:to-emerald-800 text-white font-bold text-sm rounded-xl shadow-lg shadow-teal-600/20"
                     >
-                      {vLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Verify Identity & Unlock Dashboard"}
+                      {vLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Pay ₹299 & Unlock Credit Dashboard"}
                     </Button>
                   </form>
                 </CardContent>
