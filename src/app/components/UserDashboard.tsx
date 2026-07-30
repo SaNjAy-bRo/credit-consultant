@@ -73,8 +73,8 @@ export function UserDashboard() {
   const [activeSession, setActiveSessionState] = useState<ContactRecord | null>(null);
   const [showCheckModal, setShowCheckModal] = useState(false);
 
-  // In-page quick verification form state
-  const [vForm, setVForm] = useState({ name: "", mobile: "", pan: "", dob: "", gender: "M" as "M"|"F", consent: true });
+  // In-page quick verification form state (starts completely blank)
+  const [vForm, setVForm] = useState({ name: "", mobile: "", pan: "", dob: "", gender: "" as "M"|"F"|"", consent: true });
   const [vErrs, setVErrs] = useState<Record<string, string>>({});
   const [vLoading, setVLoading] = useState(false);
   const [vStatus, setVStatus] = useState("");
@@ -142,6 +142,7 @@ export function UserDashboard() {
     if (!/^[6-9]\d{9}$/.test(vForm.mobile)) errs.mobile = "Enter a valid 10-digit mobile number";
     if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(vForm.pan.toUpperCase())) errs.pan = "Enter a valid PAN (e.g. ABCDE1234F)";
     if (!vForm.dob) errs.dob = "Date of birth is required";
+    if (!vForm.gender) errs.gender = "Please select your gender";
     if (!vForm.consent) errs.consent = "Consent is required";
     setVErrs(errs);
     if (Object.keys(errs).length > 0) return;
@@ -169,7 +170,7 @@ export function UserDashboard() {
         mobile: vForm.mobile.trim(),
         pan: vForm.pan.toUpperCase().trim(),
         dob: vForm.dob,
-        gender: vForm.gender,
+        gender: (vForm.gender || "M") as "M"|"F",
         consent: "Y",
       });
 
