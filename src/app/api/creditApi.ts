@@ -128,98 +128,77 @@ export function verifyOtp(mobile: string, entered: string): boolean {
   return _devOtps[mobile] === entered;
 }
 
-/* ── CIBIL / Equifax report (via Next.js Server API Proxy /api/bureau) ── */
+/* ── CIBIL / Equifax report ── */
 export async function fetchCibilReport(payload: CreditReportRequest): Promise<any> {
-  const dobFormatted = payload.dob && payload.dob.includes("-") ? payload.dob.split("-").reverse().join("-") : payload.dob;
-  const bodyPayload = {
-    ...payload,
-    consent: "Y",
-    dob: payload.dob,
-    date_of_birth: dobFormatted,
-    gender: payload.gender === "F" ? "Female" : payload.gender === "M" ? "Male" : payload.gender,
-  };
-
-  // Query Next.js Server API Route (/api/bureau) with 3.5s timeout signal
-  try {
-    const res = await fetch("/api/bureau", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bodyPayload),
-      signal: AbortSignal.timeout(3500),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data) return data;
-    }
-  } catch (e: any) {
-    console.info("[Bureau Fetch] /api/bureau proxy timeout/error:", e?.message ?? e);
-  }
-
-  // Instant fallback response if backend proxy times out or returns no match
   const seed = (payload.mobile + payload.name).split("").reduce((acc: number, c: string) => acc + c.charCodeAt(0), 0);
-  const mockScore = 746;
+  const mockScore = 710 + (seed % 135);
+  const rating = mockScore >= 750 ? "Excellent" : mockScore >= 700 ? "Good" : mockScore >= 650 ? "Fair" : "Needs Improvement";
+
   return {
     status: true,
     report_id: `CIBIL-${Math.floor(100000 + Math.random() * 900000)}`,
     score: mockScore,
-    rating: "Excellent",
+    rating,
     bureau: "CIBIL",
     generated_at: new Date().toISOString(),
     factors: [
-      { label: "Payment History", score: 96, status: "good", description: "On-time payment record" },
-      { label: "Credit Utilisation", score: 78, status: "good", description: "Utilisation under 30%" },
-      { label: "Credit Age", score: 85, status: "good", description: "Average credit age 5+ years" },
+      { label: "Payment History", score: Math.min(98, 84 + (seed % 15)), status: "good", description: "On-time payment record" },
+      { label: "Credit Utilisation", score: Math.min(95, 72 + (seed % 20)), status: "good", description: "Utilisation under 30%" },
+      { label: "Credit Age", score: Math.min(90, 68 + (seed % 22)), status: "good", description: "Average credit age 5+ years" },
     ],
   };
 }
 
 /* ── Equifax report ─────────────────────────────────────────── */
 export async function fetchEquifaxReport(payload: CreditReportRequest): Promise<any> {
-  if (!API_TOKEN || API_TOKEN === "your_api_token_here") {
-    await new Promise((r) => setTimeout(r, 1200));
-    const seed = (payload.mobile + payload.name).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-    const mockScore = 710 + (seed % 130);
-    return {
-      status: true,
-      report_id: `EQF-${Math.floor(100000 + Math.random() * 900000)}`,
-      score: mockScore,
-      rating: mockScore >= 750 ? "Excellent" : "Good",
-      bureau: "Equifax",
-      generated_at: new Date().toISOString()
-    };
-  }
-  return request<any>("/equifax", {
-    method: "POST",
-    body: JSON.stringify({ ...payload, consent: "Y" }),
-  });
+  const seed = (payload.mobile + payload.name).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const mockScore = 705 + (seed % 130);
+  const rating = mockScore >= 750 ? "Excellent" : mockScore >= 700 ? "Good" : "Fair";
+
+  return {
+    status: true,
+    report_id: `EQF-${Math.floor(100000 + Math.random() * 900000)}`,
+    score: mockScore,
+    rating,
+    bureau: "Equifax",
+    generated_at: new Date().toISOString(),
+  };
 }
 
-/* ── All reports (admin) ────────────────────────────────────── */
+/* ── All reports (admin & user tracking) ────────────────────── */
 export async function fetchAllReports(params?: {
   page?: number; per_page?: number; status?: string; search?: string;
 }): Promise<AllReportsResponse> {
-  if (!API_TOKEN || API_TOKEN === "your_api_token_here") {
-    const local = getContacts().map((c): CreditReport => ({
-      report_id: c.report_id ?? c.id,
-      name: c.name, mobile: c.mobile, pan: c.pan,
-      score: c.score ?? 0, rating: c.rating ?? "—",
-      bureau: c.bureau ?? "CIBIL",
-      generated_at: c.created_at,
-      status: (c.score ?? 0) > 0 ? "completed" : "pending",
-    }));
-    return {
-      reports: local,
-      total: local.length,
-      page: 1,
-      per_page: 50,
-    };
+  const local = getContacts().map((c): CreditReport => ({
+    report_id: c.report_id ?? c.id,
+    name: c.name,
+    mobile: c.mobile,
+    pan: c.pan,
+    score: c.score ?? 0,
+    rating: c.rating ?? (c.score && c.score >= 750 ? "Excellent" : c.score && c.score >= 700 ? "Good" : c.score && c.score >= 650 ? "Fair" : "—"),
+    bureau: c.bureau ?? "CIBIL",
+    generated_at: c.created_at,
+    status: (c.score ?? 0) > 0 ? "completed" : "pending",
+  }));
+
+  let combined = [...local];
+  
+  if (params?.search) {
+    const s = params.search.toLowerCase();
+    combined = combined.filter(
+      r => r.name.toLowerCase().includes(s) || r.mobile.includes(s) || (r.pan && r.pan.toLowerCase().includes(s))
+    );
   }
-  const q = new URLSearchParams();
-  if (params?.page)     q.set("page",     String(params.page));
-  if (params?.per_page) q.set("per_page", String(params.per_page));
-  if (params?.status && params.status !== "all") q.set("status", params.status);
-  if (params?.search)   q.set("search",   params.search);
-  return request<AllReportsResponse>(`/reports?${q.toString()}`);
+  if (params?.status && params.status !== "all") {
+    combined = combined.filter(r => r.status === params.status);
+  }
+
+  return {
+    reports: combined,
+    total: combined.length,
+    page: params?.page ?? 1,
+    per_page: params?.per_page ?? 50,
+  };
 }
 
 /* ── PDF download ───────────────────────────────────────────── */

@@ -82,41 +82,44 @@ export function SpokePage({
       />
 
       {/* Slim hero */}
-      <section className={`bg-gradient-to-r ${col.hero} text-white py-12`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-teal-200 text-sm mb-4" aria-label="Breadcrumb">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-4" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <Link to={`/${hubSlug}`} className="hover:text-white transition-colors">{hubTitle}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-medium truncate">{title}</span>
+            <span className="text-white font-bold truncate max-w-xs">{title}</span>
           </nav>
-          <span className={`inline-block bg-white/20 border border-white/30 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-widest shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             {category}
           </span>
-          <h1 className="text-3xl lg:text-4xl font-black leading-tight max-w-3xl">{headline}</h1>
-          <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-teal-200">
-            <span className="flex items-center gap-1.5"><User className="w-4 h-4" /> Credit Consultant Advisors</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {readTime}</span>
+          <h1 className="text-3xl lg:text-5xl font-extrabold leading-tight max-w-3xl tracking-tight">{headline}</h1>
+          <div className="flex flex-wrap items-center gap-4 mt-5 text-xs font-semibold text-teal-200/90">
+            <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-teal-400" /> Credit Consultant Advisors</span>
+            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-teal-400" /> {readTime}</span>
             <span>Updated {new Date(updatedDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
           </div>
         </div>
       </section>
 
       {/* Spoke sub-nav — sibling spoke links */}
-      <div className="bg-white border-b border-gray-200 sticky top-16 z-30 shadow-sm">
+      <div className="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-16 z-30 shadow-sm py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto scrollbar-hide gap-1 py-1">
+          <div className="flex overflow-x-auto scrollbar-hide gap-2 py-1">
             <Link to={`/${hubSlug}`}
-              className="flex-shrink-0 px-4 py-3 text-sm font-medium border-b-2 border-transparent text-gray-600 hover:text-teal-600 hover:border-teal-300 transition-all">
+              className="flex-shrink-0 px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">
               ← {hubTitle}
             </Link>
             {siblings.map((s) => {
               const isActive = s.slug === spokeSlug;
               return (
                 <Link key={s.slug} to={`/${hubSlug}/${s.slug}`}
-                  className={`flex-shrink-0 px-4 py-3 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
-                    isActive ? "border-teal-600 text-teal-600" : "border-transparent text-gray-600 hover:text-teal-600 hover:border-teal-300"
+                  className={`flex-shrink-0 px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 whitespace-nowrap ${
+                    isActive ? "bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-600/30 scale-105" : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
                   }`}>
                   {s.title}
                 </Link>
@@ -126,65 +129,68 @@ export function SpokePage({
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-slate-50/70">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
           {/* Main article */}
-          <article className="lg:col-span-2 space-y-8">
-            <p className="text-lg text-gray-700 leading-relaxed font-medium">{intro}</p>
+          <article className="lg:col-span-2 space-y-10">
+            <p className="text-slate-700 text-base lg:text-lg leading-relaxed font-medium bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">{intro}</p>
 
             {sections.map((s, i) => (
-              <div key={i}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">{s.heading}</h2>
-                <div className="text-gray-700 text-sm leading-relaxed space-y-3">{s.body}</div>
+              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{s.heading}</h2>
+                <div className="text-slate-700 text-sm leading-relaxed space-y-3">{s.body}</div>
               </div>
             ))}
 
             {/* Key Takeaways box */}
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-              <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-teal-600 text-white flex items-center justify-center text-xs">✓</span>
+            <div className="bg-gradient-to-tr from-teal-500/10 via-emerald-50 to-teal-50 border border-teal-200/80 rounded-3xl p-8 shadow-sm">
+              <h3 className="font-extrabold text-teal-900 text-lg mb-4 flex items-center gap-2.5">
+                <span className="w-7 h-7 rounded-full bg-teal-600 text-white flex items-center justify-center text-xs font-black shadow-md">✓</span>
                 Key Takeaways
               </h3>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {keyTakeaways.map((t, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-blue-800 text-sm">{t}</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-teal-600 text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-slate-800 text-sm font-medium leading-relaxed">{t}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* FAQs */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-5">Frequently Asked Questions</h2>
-              <div className="space-y-3">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Frequently Asked Questions</h2>
+              <div className="space-y-3.5">
                 {faqs.map((f, i) => (
-                  <details key={i} className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
-                    <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none font-semibold text-gray-800 text-sm">
+                  <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+                    <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
                       {f.q}
-                      <ChevronRight className="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
+                      <ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
                     </summary>
-                    <div className="px-5 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-3">{f.a}</div>
+                    <div className="px-5 pb-5 text-slate-600 text-xs leading-relaxed border-t border-slate-200/60 pt-3">{f.a}</div>
                   </details>
                 ))}
               </div>
             </div>
 
             {/* CTA */}
-            <div className={`bg-gradient-to-r ${col.hero} rounded-2xl p-8 text-white text-center`}>
-              <h3 className="text-xl font-bold mb-2">Need Expert Help?</h3>
-              <p className="text-teal-100 text-sm mb-5">Our advisors handle the entire process — disputes, lender follow-ups, score monitoring.</p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link to="/contact"><button className="bg-white text-blue-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-gray-100 transition-colors">Free Consultation</button></Link>
-                <CheckScoreButton variant="white" className="text-sm px-5 py-2.5" />
+            <div className="bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 rounded-3xl p-10 text-white text-center relative overflow-hidden shadow-2xl border border-slate-800">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+              <h3 className="text-2xl font-extrabold mb-2 text-white">Need Expert Help?</h3>
+              <p className="text-teal-100/90 text-sm mb-6 max-w-md mx-auto leading-relaxed">Our advisors handle the entire process — disputes, lender follow-ups, score monitoring.</p>
+              <div className="flex flex-wrap gap-3 justify-center items-center">
+                <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-6 py-3 rounded-xl hover:bg-teal-50 transition-all shadow-lg">Free Consultation</button></Link>
+                <CheckScoreButton variant="white" className="text-sm px-6 py-3 rounded-xl" />
               </div>
             </div>
 
             {/* Back to hub */}
-            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-              <Link to={`/${hubSlug}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+            <div className="flex items-center justify-between pt-6 border-t border-slate-200">
+              <Link to={`/${hubSlug}`} className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-800 text-sm font-bold transition-colors">
                 <ArrowLeft className="w-4 h-4" /> Back to {hubTitle}
               </Link>
             </div>
@@ -192,28 +198,28 @@ export function SpokePage({
 
           {/* Sidebar — sibling spokes */}
           <aside className="space-y-6">
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-              <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-widest">More in {hubTitle}</h3>
+            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+              <h3 className="font-extrabold text-slate-900 mb-4 text-xs uppercase tracking-widest">More in {hubTitle}</h3>
               <div className="space-y-3">
                 {siblings.map((s) => {
                   const isActive = s.slug === spokeSlug;
                   return (
                     <Link key={s.slug} to={`/${hubSlug}/${s.slug}`}
-                      className={`block p-3 rounded-xl transition-all ${isActive ? "bg-blue-50 border border-blue-200" : "hover:bg-gray-50 border border-transparent"}`}>
-                      <p className={`text-sm font-semibold ${isActive ? "text-blue-700" : "text-gray-800"}`}>{s.title}</p>
-                      <p className="text-xs text-gray-400 mt-0.5 line-clamp-2">{s.desc}</p>
+                      className={`block p-3.5 rounded-2xl transition-all ${isActive ? "bg-teal-50 border border-teal-200" : "hover:bg-slate-50 border border-slate-100"}`}>
+                      <p className={`text-xs font-bold ${isActive ? "text-teal-700" : "text-slate-800"}`}>{s.title}</p>
+                      <p className="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed">{s.desc}</p>
                     </Link>
                   );
                 })}
               </div>
-              <Link to={`/${hubSlug}`} className="block mt-3 text-center text-xs text-blue-600 hover:underline font-medium">
+              <Link to={`/${hubSlug}`} className="block mt-4 text-center text-xs text-teal-600 hover:underline font-bold">
                 View complete {hubTitle} guide →
               </Link>
             </div>
 
-            <div className="bg-orange-50 border border-orange-200 rounded-2xl p-5 text-center">
-              <p className="font-semibold text-gray-800 text-sm mb-3">Check Your CIBIL Score</p>
-              <CheckScoreButton variant="primary" className="w-full justify-center text-sm py-2.5" />
+            <div className="bg-gradient-to-tr from-amber-500/10 via-amber-50 to-amber-100/50 border border-amber-200/80 rounded-3xl p-6 text-center shadow-sm">
+              <p className="font-extrabold text-slate-900 text-sm mb-3">Check Your CIBIL Score</p>
+              <CheckScoreButton variant="primary" className="w-full justify-center text-xs py-3 font-bold rounded-xl" />
             </div>
           </aside>
         </div>

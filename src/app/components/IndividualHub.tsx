@@ -61,46 +61,56 @@ export function IndividualMainHub() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-teal-200 text-sm mb-5">
-            <Link to="/" className="hover:text-white">Home</Link>
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-medium">Individual Services</span>
+            <span className="text-white font-bold">Individual Services</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="inline-block bg-white/20 border border-white/30 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">Individual Credit Services</span>
-            <h1 className="text-4xl lg:text-5xl font-black mb-4">Personal CIBIL Score Repair & Advisory Across India</h1>
-            <p className="text-lg text-teal-100 mb-8">Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.</p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/contact"><button className="bg-white text-blue-700 font-bold text-sm px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors flex items-center gap-2">Free Consultation <ArrowRight className="w-4 h-4" /></button></Link>
-              <CheckScoreButton variant="white" className="text-sm px-6 py-3" />
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Individual Credit Services
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight">Personal CIBIL Score Repair & Advisory Across India</h1>
+            <p className="text-base lg:text-xl text-teal-100/90 mb-8 leading-relaxed font-normal">Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.</p>
+            <div className="flex flex-wrap gap-3.5 items-center">
+              <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-7 py-3 rounded-xl hover:bg-teal-50 transition-all flex items-center gap-2 shadow-xl shadow-teal-950/50">Free Consultation <ArrowRight className="w-4 h-4 text-teal-700" /></button></Link>
+              <CheckScoreButton variant="white" className="text-sm px-7 py-3 rounded-xl" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Not Commercial — clear separation */}
-      <div className="bg-amber-50 border-b border-amber-200 py-3">
+      <div className="bg-amber-500/10 border-b border-amber-200/60 py-3.5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3">
-          <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full">Individual Only</span>
-          <p className="text-xs text-amber-700">This section covers <strong>personal / individual</strong> credit services. For business credit, see <Link to="/commercial" className="underline font-semibold">Commercial Services →</Link></p>
+          <span className="text-xs font-extrabold text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Individual Only</span>
+          <p className="text-xs font-medium text-amber-900">This section covers <strong>personal / individual</strong> credit services. For business credit, see <Link to="/commercial" className="underline font-bold text-amber-900 hover:text-teal-700">Commercial Services →</Link></p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-slate-50/70 space-y-16">
 
         {/* Services */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Individual Credit Services We Offer</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Service Spectrum</span>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-slate-900 mb-6 tracking-tight">Individual Credit Services We Offer</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {INDIVIDUAL_SERVICES.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.title} className="bg-blue-50 border border-blue-100 rounded-2xl p-5 hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center mb-3"><Icon className="w-5 h-5 text-white" /></div>
-                  <p className="font-bold text-gray-900 text-sm mb-1.5">{s.title}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
+                <div key={s.title} className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 shadow-md shadow-teal-600/30 group-hover:scale-110 transition-transform">
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <p className="font-extrabold text-slate-900 text-base mb-2 group-hover:text-teal-700 transition-colors">{s.title}</p>
+                    <p className="text-slate-600 text-xs leading-relaxed">{s.desc}</p>
+                  </div>
                 </div>
               );
             })}
@@ -109,28 +119,30 @@ export function IndividualMainHub() {
 
         {/* Regional hubs */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Select Your Region</h2>
-          <p className="text-gray-500 text-sm mb-6">Individual credit services available across all four regions of India</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Pan-India Network</span>
+          <h2 className="text-2xl lg:text-3xl font-extrabold text-slate-900 mb-2 tracking-tight">Select Your Region</h2>
+          <p className="text-slate-600 text-sm mb-8 font-medium">Individual credit services available across all four regions of India</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {ALL_REGION_KEYS.map((rk) => {
               const r = REGIONS[rk];
               const cities = REGION_CITIES[rk];
               const metros = cities.filter((c) => c.tier === "metro");
-              const c = COLOR_MAP[r.color];
               return (
                 <Link key={rk} to={`/${SERVICE_SLUG}/${rk}`}
-                  className={`group block p-6 rounded-2xl border ${c.border} ${c.bg} hover:shadow-lg transition-all`}>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className={`font-black text-xl ${c.text}`}>{r.shortName}</h3>
-                    <ArrowRight className={`w-5 h-5 ${c.text} group-hover:translate-x-1 transition-transform`} />
+                  className="group block p-7 rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors">{r.shortName}</h3>
+                    <div className="w-9 h-9 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all">
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
-                  <p className="text-gray-800 font-semibold text-sm mb-1">{r.name}</p>
-                  <p className="text-gray-500 text-xs mb-3">{cities.length} cities · {metros.length} metro</p>
+                  <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
+                  <p className="text-slate-500 text-xs font-semibold mb-4">{cities.length} cities · {metros.length} metro</p>
                   <div className="flex flex-wrap gap-1.5">
                     {metros.slice(0, 3).map((city) => (
-                      <span key={city.slug} className={`text-xs font-medium px-2 py-0.5 rounded-full ${c.badge}`}>{city.name}</span>
+                      <span key={city.slug} className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">{city.name}</span>
                     ))}
-                    {cities.length > 3 && <span className="text-xs text-gray-400">+{cities.length - 3} more</span>}
+                    {cities.length > 3 && <span className="text-[10px] text-slate-400 font-bold self-center">+{cities.length - 3} more</span>}
                   </div>
                 </Link>
               );
@@ -139,15 +151,15 @@ export function IndividualMainHub() {
         </div>
 
         {/* FAQs */}
-        <div className="max-w-3xl">
-          <h2 className="text-2xl font-bold text-gray-900 mb-5">FAQs — Individual Credit Services</h2>
-          <div className="space-y-3">
+        <div className="max-w-3xl bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">FAQs — Individual Credit Services</h2>
+          <div className="space-y-3.5">
             {INDIVIDUAL_FAQS.map((f, i) => (
-              <details key={i} className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
-                <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none font-semibold text-gray-800 text-sm">
-                  {f.q}<ChevronRight className="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
+              <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+                <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
+                  {f.q}<ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
                 </summary>
-                <div className="px-5 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-3">{f.a}</div>
+                <div className="px-5 pb-5 text-slate-600 text-xs leading-relaxed border-t border-slate-200/60 pt-3">{f.a}</div>
               </details>
             ))}
           </div>
@@ -196,48 +208,76 @@ export function IndividualRegionHub() {
       />
 
       {/* Hero */}
-      <section className={`bg-gradient-to-r ${c.hero} text-white py-14`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-sm mb-5 flex-wrap">
-            <Link to="/" className="hover:text-white">Home</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white">Individual Services</Link><ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-medium">{r.name}</span>
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6 flex-wrap">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white transition-colors">Individual Services</Link><ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-white font-bold">{r.name}</span>
           </nav>
-          <h1 className="text-3xl lg:text-4xl font-black mb-3">Individual Credit Services — {r.name}</h1>
-          <p className="text-lg text-white/80 mb-6 max-w-2xl">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact"><button className="bg-white text-blue-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-gray-100 transition-colors">Free Consultation</button></Link>
-            <CheckScoreButton variant="white" className="text-sm px-5 py-2.5" />
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            {r.shortName} India Hub · {cities.length} Cities Covered
+          </span>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight">Individual Credit Services — <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">{r.name}</span></h1>
+          <p className="text-base lg:text-xl text-teal-100/90 mb-8 max-w-2xl font-normal leading-relaxed">Personal CIBIL score repair and home loan advisory for individuals in {r.tagline}.</p>
+          <div className="flex flex-wrap gap-3.5 items-center">
+            <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-7 py-3 rounded-xl hover:bg-teal-50 transition-all shadow-xl">Free Consultation</button></Link>
+            <CheckScoreButton variant="white" className="text-sm px-7 py-3 rounded-xl" />
           </div>
         </div>
       </section>
 
       {/* Individual-only banner */}
-      <div className="bg-amber-50 border-b border-amber-200 py-2.5">
+      <div className="bg-amber-500/10 border-b border-amber-200/60 py-3.5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3">
-          <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full">Individual Only</span>
-          <p className="text-xs text-amber-700">For business credit services in {r.name}, see <Link to={`/commercial/${rk}`} className="underline font-semibold">Commercial {r.shortName} →</Link></p>
+          <span className="text-xs font-extrabold text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Individual Only</span>
+          <p className="text-xs font-medium text-amber-900">For business credit services in {r.name}, see <Link to={`/commercial/${rk}`} className="underline font-bold hover:text-teal-700">Commercial {r.shortName} →</Link></p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      {/* Regional Global Stats Banner */}
+      <section className="bg-white border-b border-slate-200/80 py-8 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              { label: "Regional Coverage", value: `${cities.length} Cities` },
+              { label: "Success Rate", value: "98% Client Gains" },
+              { label: "Bureau Resolution", value: "30-Day SLA" },
+              { label: "Partner Lenders", value: "50+ Banks & NBFCs" },
+            ].map((st) => (
+              <div key={st.label} className="p-3">
+                <p className="text-xl lg:text-2xl font-black text-slate-900 mb-0.5">{st.value}</p>
+                <p className="text-xs font-bold text-teal-700 uppercase tracking-wider">{st.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-slate-50/70 space-y-14">
 
         {/* Metro cities */}
         {metros.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Metro Cities — {r.shortName}</h2>
-            <p className="text-gray-500 text-sm mb-5">Individual credit services in major metros</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Primary Metros</span>
+            <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metro Cities — {r.shortName}</h2>
+            <p className="text-slate-500 text-xs mb-6 font-medium">Individual credit services in major metros</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {metros.map((city) => (
                 <Link key={city.slug} to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Credit Report Repair Agency in ${city.name}`}
-                  className={`group flex items-center gap-2 p-3 rounded-xl border ${c.border} ${c.bg} hover:shadow-md transition-all`}>
-                  <MapPin className={`w-4 h-4 ${c.text} flex-shrink-0`} />
+                  className="group flex items-center gap-3 p-4.5 rounded-2xl border border-slate-200/80 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20 group-hover:scale-105 transition-transform">
+                    <MapPin className="w-4.5 h-4.5" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-gray-800 group-hover:text-teal-700 text-sm">
-                      Credit Report Repair Agency in {city.name}
+                    <p className="font-bold text-slate-900 group-hover:text-teal-700 text-xs transition-colors">
+                      Credit Repair Agency in {city.name}
                     </p>
-                    <p className="text-[10px] text-gray-400">{city.state} · {city.tier === "metro" ? "Metro" : "Metropolitan"}</p>
+                    <p className="text-[10px] text-slate-400 font-semibold">{city.state} · Metro</p>
                   </div>
                 </Link>
               ))}
@@ -248,19 +288,20 @@ export function IndividualRegionHub() {
         {/* Metropolitan cities */}
         {metros2.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Metropolitan Cities — {r.shortName}</h2>
-            <p className="text-gray-500 text-sm mb-5">Individual credit services across all major cities</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Extended Cities</span>
+            <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metropolitan Cities — {r.shortName}</h2>
+            <p className="text-slate-500 text-xs mb-6 font-medium">Individual credit services across all major cities</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5">
               {metros2.map((city) => (
-                <Link key={city.slug} to={`/${SERVICE_SLUG}/${rk}/${city.slug}`}
+                <Link key={city.slug} to={`/${INDIVIDUAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Credit Report Repair Agency in ${city.name}, ${city.state}`}
-                  className="group flex items-center gap-2 p-3 rounded-xl border border-gray-100 hover:border-teal-200 hover:bg-teal-50 bg-white transition-all">
-                  <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-teal-500 flex-shrink-0" />
+                  className="group flex items-center gap-2.5 p-3.5 rounded-2xl border border-slate-200/70 hover:border-teal-300 hover:shadow-lg bg-white transition-all duration-300 shadow-sm">
+                  <MapPin className="w-4 h-4 text-slate-400 group-hover:text-teal-600 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-gray-700 group-hover:text-teal-700 text-xs">
+                    <p className="font-bold text-slate-800 group-hover:text-teal-700 text-xs">
                       Credit Repair Agency in {city.name}
                     </p>
-                    <p className="text-[10px] text-gray-400">{city.state}</p>
+                    <p className="text-[10px] text-slate-400 font-medium">{city.state}</p>
                   </div>
                 </Link>
               ))}
@@ -269,13 +310,13 @@ export function IndividualRegionHub() {
         )}
 
         {/* Other regions */}
-        <div className="bg-gray-50 rounded-2xl p-6">
-          <p className="text-sm font-semibold text-gray-500 mb-4">Individual Services in Other Regions</p>
+        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 shadow-sm">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Individual Services in Other Regions</p>
           <div className="flex flex-wrap gap-3">
             {ALL_REGION_KEYS.filter((k) => k !== rk).map((k) => (
               <Link key={k} to={`/${SERVICE_SLUG}/${k}`}
-                className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-blue-600 bg-white border border-gray-200 px-3 py-1.5 rounded-xl hover:border-blue-300 transition-all">
-                {REGIONS[k].name} <ArrowRight className="w-3.5 h-3.5" />
+                className="flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-teal-700 bg-slate-50 border border-slate-200/80 px-4 py-2.5 rounded-xl hover:border-teal-300 transition-all shadow-sm">
+                {REGIONS[k].name} <ArrowRight className="w-3.5 h-3.5 text-teal-600" />
               </Link>
             ))}
           </div>
@@ -289,15 +330,26 @@ export function IndividualRegionHub() {
    CITY PAGE — /individual/:region/:city
 ════════════════════════════════════════════════════════════ */
 export function IndividualCityPage() {
-  const { city } = useParams<{ city: string }>();
-  const found = city ? findCityAcrossRegions(city) : undefined;
-  if (!found) return <Navigate to={`/${SERVICE_SLUG}`} replace />;
+  const params = useParams<{ city?: string }>();
+  let citySlug = params?.city;
+  if (!citySlug && typeof window !== 'undefined') {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    citySlug = parts[parts.length - 1];
+  }
+
+  const found = citySlug ? findCityAcrossRegions(citySlug) : undefined;
+  if (!found) {
+    if (typeof window !== 'undefined' && citySlug) {
+      return <Navigate to={`/${SERVICE_SLUG}`} replace />;
+    }
+    return null;
+  }
   const { city: cityData, region: rk } = found;
   const r = REGIONS[rk];
 
   const c = COLOR_MAP[r.color];
   const pageTitle = `Credit Report Repair Agency in ${cityData.name}`;
-  const canonicalUrl = `${BASE}/${INDIVIDUAL_CITY_BASE}/${city}`;
+  const canonicalUrl = `${BASE}/${INDIVIDUAL_CITY_BASE}/${citySlug}`;
 
   const citySchema = {
     "@context": "https://schema.org", "@type": "Service",
@@ -325,54 +377,57 @@ export function IndividualCityPage() {
           { name: "Home", path: "/" },
           { name: "Individual Services", path: `/${SERVICE_SLUG}` },
           { name: r.name, path: `/${SERVICE_SLUG}/${rk}` },
-          { name: `Credit Report Repair Agency in ${cityData.name}`, path: `/${INDIVIDUAL_CITY_BASE}/${city}` },
+          { name: `Credit Report Repair Agency in ${cityData.name}`, path: `/${INDIVIDUAL_CITY_BASE}/${citySlug}` },
         ])]}
       />
 
       {/* Hero */}
-      <section className={`bg-gradient-to-r ${c.hero} text-white py-14`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-white/60 text-sm mb-5 flex-wrap">
-            <Link to="/" className="hover:text-white">Home</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white">Individual</Link><ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/${SERVICE_SLUG}/${rk}`} className="hover:text-white">{r.shortName}</Link><ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-medium">{cityData.name}</span>
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <nav className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6 flex-wrap">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}`} className="hover:text-white transition-colors">Individual</Link><ChevronRight className="w-3.5 h-3.5" />
+            <Link to={`/${SERVICE_SLUG}/${rk}`} className="hover:text-white transition-colors">{r.shortName}</Link><ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-white font-bold">{cityData.name}</span>
           </nav>
-          <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-4 ${cityData.tier === "metro" ? "bg-yellow-400 text-gray-900" : "bg-white/20 text-white border border-white/30"}`}>
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             {cityData.tier === "metro" ? "Metro City" : "Metropolitan"} · {r.shortName} India
           </span>
-          <h1 className="text-3xl lg:text-4xl font-black mb-3">Credit Report Repair Agency in {cityData.name}</h1>
-          <p className="text-white/80 mb-6 max-w-2xl">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact"><button className="bg-white text-blue-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-gray-100">Free Consultation</button></Link>
-            <a href="tel:+919538049888"><button className="bg-green-500 hover:bg-green-400 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-colors flex items-center gap-2"><Phone className="w-4 h-4" /> Call Now</button></a>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight">Credit Report Repair Agency in <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-400">{cityData.name}</span></h1>
+          <p className="text-base lg:text-xl text-teal-100/90 mb-8 max-w-2xl font-normal leading-relaxed">Trusted credit report repair agency in {cityData.name}, {cityData.state} — personal CIBIL score repair, dispute resolution and home loan advisory. Fully remote service, no office visit required.</p>
+          <div className="flex flex-wrap gap-3.5 items-center">
+            <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-7 py-3 rounded-xl hover:bg-teal-50 transition-all shadow-xl">Free Consultation</button></Link>
+            <a href="tel:+919538049888"><button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-7 py-3 rounded-xl transition-colors flex items-center gap-2 shadow-lg"><Phone className="w-4 h-4" /> Call Now</button></a>
           </div>
         </div>
       </section>
 
       {/* Individual-only separator */}
-      <div className="bg-amber-50 border-b border-amber-200 py-2.5">
+      <div className="bg-amber-500/10 border-b border-amber-200/60 py-3 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3">
-          <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full">Individual Only</span>
-          <p className="text-xs text-amber-700">For business credit in {cityData.name}, see <Link to={`/company-credit-information-report/${city}`} className="underline font-semibold">Company Credit Info Report {cityData.name} →</Link></p>
+          <span className="text-xs font-extrabold text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">Individual Only</span>
+          <p className="text-xs font-medium text-amber-900">For business credit in {cityData.name}, see <Link to={`/company-credit-information-report/${cityData.slug}`} className="underline font-bold hover:text-teal-700">Company Credit Info Report {cityData.name} →</Link></p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-slate-50/70">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-10">
 
             {/* Services */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-5">Credit Report Repair Services in {cityData.name}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Credit Report Repair Services in {cityData.name}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {INDIVIDUAL_SERVICES.map((s) => {
                   const Icon = s.icon;
                   return (
-                    <div key={s.title} className={`p-4 rounded-xl border ${c.border} ${c.bg}`}>
-                      <div className="flex items-start gap-3">
-                        <div className={`w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0`}><Icon className={`w-5 h-5 ${c.text}`} /></div>
-                        <div><p className="font-bold text-gray-900 text-sm">{s.title}</p><p className="text-gray-500 text-xs mt-0.5">{s.desc}</p></div>
+                    <div key={s.title} className="p-5 rounded-2xl border border-slate-200/80 bg-slate-50/70">
+                      <div className="flex items-start gap-3.5">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20"><Icon className="w-5 h-5 text-white" /></div>
+                        <div><p className="font-extrabold text-slate-900 text-sm mb-1">{s.title}</p><p className="text-slate-600 text-xs leading-relaxed">{s.desc}</p></div>
                       </div>
                     </div>
                   );
@@ -382,19 +437,19 @@ export function IndividualCityPage() {
 
             {/* Local insight — unique per city */}
             {(cityData.localFact || cityData.individualNote) && (
-              <div className={`rounded-2xl border ${c.border} ${c.bg} p-5`}>
-                <h3 className="font-bold text-gray-900 mb-3 text-sm uppercase tracking-widest">
+              <div className="rounded-3xl border border-slate-200/80 bg-white p-8 shadow-sm">
+                <h3 className="font-extrabold text-slate-900 mb-4 text-xs uppercase tracking-widest">
                   Credit Insight — {cityData.name}
                 </h3>
-                {cityData.localFact && <p className="text-gray-700 text-sm mb-2">{cityData.localFact}</p>}
-                {cityData.individualNote && <p className="text-gray-700 text-sm italic border-l-2 border-blue-300 pl-3">{cityData.individualNote}</p>}
+                {cityData.localFact && <p className="text-slate-700 text-sm mb-3 leading-relaxed font-medium">{cityData.localFact}</p>}
+                {cityData.individualNote && <p className="text-slate-700 text-xs italic border-l-4 border-teal-500 pl-4 py-1 bg-teal-50/50 rounded-r-xl">{cityData.individualNote}</p>}
                 {cityData.localIndustry && (
-                  <p className="text-xs text-gray-400 mt-3">Key industries: {cityData.localIndustry}</p>
+                  <p className="text-xs text-slate-400 font-bold mt-4">Key industries: {cityData.localIndustry}</p>
                 )}
                 {cityData.localLenders && (
-                  <div className="flex flex-wrap gap-1.5 mt-2">
+                  <div className="flex flex-wrap gap-2 mt-3">
                     {cityData.localLenders.map((l) => (
-                      <span key={l} className="text-xs bg-white border border-gray-200 text-gray-600 px-2 py-0.5 rounded-full">{l}</span>
+                      <span key={l} className="text-xs bg-slate-100 border border-slate-200 text-slate-700 font-bold px-3 py-1 rounded-full">{l}</span>
                     ))}
                   </div>
                 )}
@@ -402,9 +457,9 @@ export function IndividualCityPage() {
             )}
 
             {/* Why choose */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Why {cityData.name} Residents Choose Us</h2>
-              <ul className="space-y-3">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Why {cityData.name} Residents Choose Us</h2>
+              <ul className="space-y-4">
                 {[
                   `Free credit consultation for ${cityData.name} individuals — no upfront fees`,
                   `Certified credit counsellors familiar with ${cityData.state} lenders and banks`,
@@ -413,24 +468,26 @@ export function IndividualCityPage() {
                   "98% success rate across 10,000+ individual clients pan-India",
                   "Loan placement with 50+ partner lenders at the best available rates",
                 ].map((b, i) => (
-                  <li key={i} className="flex items-start gap-2.5">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm">{b}</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                    </div>
+                    <span className="text-slate-700 text-sm font-semibold">{b}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* FAQs */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">FAQs — Individual Credit in {cityData.name}</h2>
-              <div className="space-y-3">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">FAQs — Individual Credit in {cityData.name}</h2>
+              <div className="space-y-3.5">
                 {cityFaqs.map((f, i) => (
-                  <details key={i} className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
-                    <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none font-semibold text-gray-800 text-sm">
-                      {f.q}<ChevronRight className="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
+                  <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+                    <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
+                      {f.q}<ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
                     </summary>
-                    <div className="px-5 pb-4 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-3">{f.a}</div>
+                    <div className="px-5 pb-5 text-slate-600 text-xs leading-relaxed border-t border-slate-200/60 pt-3">{f.a}</div>
                   </details>
                 ))}
               </div>
@@ -438,29 +495,30 @@ export function IndividualCityPage() {
           </div>
 
           {/* Sidebar */}
-          <aside className="space-y-5">
-            <div className={`rounded-2xl bg-gradient-to-br ${c.hero} p-6 text-white`}>
-              <h3 className="font-bold text-lg mb-2">Get Help in {cityData.name}</h3>
-              <p className="text-white/80 text-sm mb-4">Free individual credit consultation — no obligations.</p>
-              <Link to="/contact"><button className="w-full bg-white text-blue-700 font-bold text-sm py-2.5 rounded-xl hover:bg-gray-100">Book Free Consultation</button></Link>
-              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-2 bg-green-500 hover:bg-green-400 text-white font-bold text-sm py-2.5 rounded-xl">💬 WhatsApp</button></a>
+          <aside className="space-y-6">
+            <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 p-7 text-white shadow-xl relative overflow-hidden border border-slate-800">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 rounded-full filter blur-2xl pointer-events-none" />
+              <h3 className="font-extrabold text-xl mb-2 text-white">Get Help in {cityData.name}</h3>
+              <p className="text-teal-100/90 text-xs mb-6 leading-relaxed">Free individual credit consultation — no obligations.</p>
+              <Link to="/contact"><button className="w-full bg-white text-teal-900 font-bold text-xs py-3 rounded-xl hover:bg-teal-50 transition-colors shadow-lg">Book Free Consultation</button></Link>
+              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-md">💬 WhatsApp</button></a>
             </div>
 
             {/* Commercial link */}
-            <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5">
-              <p className="text-xs font-semibold text-gray-500 mb-3">Looking for Business Credit?</p>
-              <Link to={`/company-credit-information-report/${city}`} className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
-                Company Credit Info Report in {cityData.name} <ArrowRight className="w-4 h-4" />
+            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Looking for Business Credit?</p>
+              <Link to={`/company-credit-information-report/${cityData.slug}`} className="flex items-center gap-2 text-xs font-bold text-teal-600 hover:text-teal-800 transition-colors">
+                Company Credit Info Report in {cityData.name} <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
             {/* Region link */}
-            <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5">
-              <p className="text-xs font-semibold text-gray-500 mb-3">More Cities in {r.name}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {REGION_CITIES[rk].filter((c) => c.slug !== city).slice(0, 8).map((nc) => (
+            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">More Cities in {r.name}</p>
+              <div className="flex flex-wrap gap-2">
+                {REGION_CITIES[rk].filter((c) => c.slug !== citySlug).slice(0, 8).map((nc) => (
                   <Link key={nc.slug} to={`/${INDIVIDUAL_CITY_BASE}/${nc.slug}`}
-                    className="text-xs text-gray-600 hover:text-teal-600 hover:underline">{nc.name}</Link>
+                    className="text-xs font-bold text-slate-600 bg-slate-100 hover:bg-teal-600 hover:text-white px-3 py-1.5 rounded-xl transition-all border border-slate-200">{nc.name}</Link>
                 ))}
               </div>
             </div>

@@ -1,5 +1,4 @@
-'use client';
-
+import { useEffect } from 'react';
 import NextLink from 'next/link';
 import { usePathname, useParams as useNextParams } from 'next/navigation';
 
@@ -23,9 +22,11 @@ export function useParams<T extends Record<string, string | string[]> = Record<s
 }
 
 export function Navigate({ to, replace }: { to: string; replace?: boolean }) {
-  if (typeof window !== 'undefined') {
-    if (replace) window.location.replace(to);
-    else window.location.href = to;
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (replace) window.location.replace(to);
+      else window.location.href = to;
+    }
+  }, [to, replace]);
   return null;
 }

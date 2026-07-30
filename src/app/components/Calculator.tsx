@@ -65,29 +65,38 @@ export function Calculator() {
         schema={ORG_SCHEMA}
       />
       {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">EMI Calculator</h1>
-          <p className="text-lg text-teal-100 max-w-2xl mx-auto">
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Financial Planning
+          </span>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight">
+            EMI <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">Calculator</span>
+          </h1>
+          <p className="text-base lg:text-xl text-teal-100/90 max-w-2xl mx-auto font-normal leading-relaxed">
             Calculate your monthly EMI instantly. Adjust loan amount, interest rate, and tenure to plan your finances.
           </p>
         </div>
       </section>
 
       {/* Loan Type Tabs */}
-      <div className="bg-white border-b border-gray-200 sticky top-16 z-40 shadow-sm">
+      <div className="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-16 z-40 shadow-sm py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto">
+          <div className="flex overflow-x-auto gap-2 py-1 justify-start sm:justify-center">
             {loanTypes.map((l) => {
               const Icon = l.icon;
+              const isActive = activeType === l.id;
               return (
                 <button
                   key={l.id}
                   onClick={() => handleTypeChange(l.id)}
-                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-all ${
-                    activeType === l.id
-                      ? "border-teal-600 text-teal-600"
-                      : "border-transparent text-gray-600 hover:text-teal-600 hover:border-teal-300"
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${
+                    isActive
+                      ? "bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-600/30 scale-105"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -100,22 +109,22 @@ export function Calculator() {
       </div>
 
       {/* Calculator Body */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-slate-50/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Sliders */}
-            <Card className="shadow-md">
-              <CardHeader>
-                <CardTitle>{loan.label} Calculator</CardTitle>
+            <Card className="rounded-3xl border border-slate-200/80 bg-white shadow-xl p-2">
+              <CardHeader className="p-7 pb-4">
+                <CardTitle className="text-2xl font-bold text-slate-900">{loan.label} Calculator</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-10">
+              <CardContent className="p-7 pt-2 space-y-10">
                 {/* Loan Amount */}
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
-                      <IndianRupee className="w-4 h-4" /> Loan Amount
+                  <div className="flex justify-between mb-3">
+                    <label className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                      <IndianRupee className="w-4 h-4 text-teal-600" /> Loan Amount
                     </label>
-                    <span className="text-sm font-bold text-teal-600">{formatINR(amount)}</span>
+                    <span className="text-base font-extrabold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100">{formatINR(amount)}</span>
                   </div>
                   <input
                     type="range"
@@ -124,9 +133,9 @@ export function Calculator() {
                     step={50000}
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
-                    className="w-full accent-teal-600"
+                    className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 font-medium mt-2">
                     <span>₹1 L</span>
                     <span>{formatINR(amountMax)}</span>
                   </div>
@@ -134,11 +143,11 @@ export function Calculator() {
 
                 {/* Interest Rate */}
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
-                      <Percent className="w-4 h-4" /> Interest Rate (p.a.)
+                  <div className="flex justify-between mb-3">
+                    <label className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                      <Percent className="w-4 h-4 text-teal-600" /> Interest Rate (p.a.)
                     </label>
-                    <span className="text-sm font-bold text-teal-600">{rate.toFixed(1)}%</span>
+                    <span className="text-base font-extrabold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100">{rate.toFixed(1)}%</span>
                   </div>
                   <input
                     type="range"
@@ -147,9 +156,9 @@ export function Calculator() {
                     step={0.1}
                     value={rate}
                     onChange={(e) => setRate(Number(e.target.value))}
-                    className="w-full accent-teal-600"
+                    className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 font-medium mt-2">
                     <span>6%</span>
                     <span>24%</span>
                   </div>
@@ -157,11 +166,11 @@ export function Calculator() {
 
                 {/* Tenure */}
                 <div>
-                  <div className="flex justify-between mb-2">
-                    <label className="text-sm font-medium text-gray-700 flex items-center gap-1">
-                      <Clock className="w-4 h-4" /> Tenure
+                  <div className="flex justify-between mb-3">
+                    <label className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                      <Clock className="w-4 h-4 text-teal-600" /> Tenure
                     </label>
-                    <span className="text-sm font-bold text-teal-600">{tenure} {tenure === 1 ? "Year" : "Years"}</span>
+                    <span className="text-base font-extrabold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100">{tenure} {tenure === 1 ? "Year" : "Years"}</span>
                   </div>
                   <input
                     type="range"
@@ -170,42 +179,42 @@ export function Calculator() {
                     step={1}
                     value={tenure}
                     onChange={(e) => setTenure(Number(e.target.value))}
-                    className="w-full accent-teal-600"
+                    className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <div className="flex justify-between text-xs text-slate-400 font-medium mt-2">
                     <span>1 Year</span>
                     <span>{tenureMax} Years</span>
                   </div>
                 </div>
 
                 {/* Manual Inputs */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 border-t border-gray-100">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-slate-100">
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Amount (₹)</label>
+                    <label className="block text-xs font-semibold text-slate-500 mb-1">Amount (₹)</label>
                     <input
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(Math.min(amountMax, Math.max(100000, Number(e.target.value))))}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Rate (%)</label>
+                    <label className="block text-xs font-semibold text-slate-500 mb-1">Rate (%)</label>
                     <input
                       type="number"
                       step={0.1}
                       value={rate}
                       onChange={(e) => setRate(Math.min(24, Math.max(6, Number(e.target.value))))}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-gray-500 mb-1">Tenure (Yrs)</label>
+                    <label className="block text-xs font-semibold text-slate-500 mb-1">Tenure (Yrs)</label>
                     <input
                       type="number"
                       value={tenure}
                       onChange={(e) => setTenure(Math.min(tenureMax, Math.max(1, Number(e.target.value))))}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500"
                     />
                   </div>
                 </div>
@@ -215,69 +224,70 @@ export function Calculator() {
             {/* Results */}
             <div className="space-y-6">
               {/* EMI Highlight */}
-              <Card className="shadow-md bg-gradient-to-br from-teal-600 to-teal-900 text-white">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <p className="text-teal-200 text-sm mb-2">Monthly EMI</p>
-                  <p className="text-5xl font-bold mb-1">{formatINR(Math.round(emi))}</p>
-                  <p className="text-teal-200 text-sm">per month for {tenure * 12} months</p>
+              <Card className="rounded-3xl shadow-xl bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 text-white overflow-hidden relative border border-slate-800">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+                <CardContent className="p-8 text-center relative z-10">
+                  <p className="text-teal-300 text-xs font-bold uppercase tracking-widest mb-2">Monthly EMI</p>
+                  <p className="text-5xl font-black tracking-tight mb-2 text-white">{formatINR(Math.round(emi))}</p>
+                  <p className="text-teal-200/90 text-sm font-medium">per month for {tenure * 12} months</p>
                 </CardContent>
               </Card>
 
               {/* Breakup Cards */}
               <div className="grid grid-cols-2 gap-4">
-                <Card className="shadow-sm">
-                  <CardContent className="pt-6 pb-6 text-center">
-                    <p className="text-xs text-gray-500 mb-1">Principal Amount</p>
-                    <p className="text-xl font-bold text-gray-900">{formatINR(Math.round(amount))}</p>
+                <Card className="rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+                  <CardContent className="p-5 text-center">
+                    <p className="text-xs font-medium text-slate-500 mb-1">Principal Amount</p>
+                    <p className="text-xl font-extrabold text-slate-900">{formatINR(Math.round(amount))}</p>
                   </CardContent>
                 </Card>
-                <Card className="shadow-sm">
-                  <CardContent className="pt-6 pb-6 text-center">
-                    <p className="text-xs text-gray-500 mb-1">Total Interest</p>
-                    <p className="text-xl font-bold text-orange-500">{formatINR(Math.round(totalInterest))}</p>
+                <Card className="rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+                  <CardContent className="p-5 text-center">
+                    <p className="text-xs font-medium text-slate-500 mb-1">Total Interest</p>
+                    <p className="text-xl font-extrabold text-amber-600">{formatINR(Math.round(totalInterest))}</p>
                   </CardContent>
                 </Card>
-                <Card className="shadow-sm col-span-2">
-                  <CardContent className="pt-6 pb-6 text-center">
-                    <p className="text-xs text-gray-500 mb-1">Total Payment</p>
-                    <p className="text-2xl font-bold text-gray-900">{formatINR(Math.round(totalPayment))}</p>
+                <Card className="rounded-2xl border border-slate-200/80 bg-white shadow-sm col-span-2">
+                  <CardContent className="p-5 text-center">
+                    <p className="text-xs font-medium text-slate-500 mb-1">Total Payment</p>
+                    <p className="text-2xl font-black text-slate-900">{formatINR(Math.round(totalPayment))}</p>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Pie Chart */}
-              <Card className="shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-base">Payment Breakup</CardTitle>
+              <Card className="rounded-3xl border border-slate-200/80 bg-white shadow-sm p-2">
+                <CardHeader className="p-6 pb-2">
+                  <CardTitle className="text-lg font-bold text-slate-900">Payment Breakup</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-6 pt-0">
                   <ResponsiveContainer width="100%" height={220}>
                     <PieChart>
                       <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={3} dataKey="value">
                         {pieData.map((entry, index) => (
-                          <Cell key={`cell-${entry.name}`} fill={index === 0 ? "#2563eb" : "#f97316"} />
+                          <Cell key={`cell-${entry.name}`} fill={index === 0 ? "#0d9488" : "#f59e0b"} />
                         ))}
                       </Pie>
                       <Tooltip formatter={(v: number) => formatINR(Math.round(v))} />
                       <Legend />
                     </PieChart>
                   </ResponsiveContainer>
-                  <div className="flex justify-around mt-2">
+                  <div className="flex justify-around mt-4 pt-4 border-t border-slate-100">
                     <div className="text-center">
-                      <div className="flex items-center gap-1 justify-center mb-0.5">
+                      <div className="flex items-center gap-1.5 justify-center mb-0.5">
                         <span className="w-3 h-3 rounded-full bg-teal-600 inline-block" />
-                        <span className="text-xs text-gray-500">Principal</span>
+                        <span className="text-xs font-medium text-slate-500">Principal</span>
                       </div>
-                      <p className="text-sm font-semibold">
+                      <p className="text-sm font-bold text-slate-900">
                         {((amount / totalPayment) * 100).toFixed(1)}%
                       </p>
                     </div>
                     <div className="text-center">
-                      <div className="flex items-center gap-1 justify-center mb-0.5">
-                        <span className="w-3 h-3 rounded-full bg-orange-400 inline-block" />
-                        <span className="text-xs text-gray-500">Interest</span>
+                      <div className="flex items-center gap-1.5 justify-center mb-0.5">
+                        <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
+                        <span className="text-xs font-medium text-slate-500">Interest</span>
                       </div>
-                      <p className="text-sm font-semibold">
+                      <p className="text-sm font-bold text-slate-900">
                         {((totalInterest / totalPayment) * 100).toFixed(1)}%
                       </p>
                     </div>
@@ -288,17 +298,17 @@ export function Calculator() {
           </div>
 
           {/* Amortisation Table */}
-          <div className="mt-12">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Year-wise Amortisation Schedule</h3>
-            <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+          <div className="mt-16 bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">Year-wise Amortisation Schedule</h3>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
               <table className="w-full text-sm">
-                <thead className="bg-teal-600 text-white">
+                <thead className="bg-slate-900 text-white">
                   <tr>
-                    <th className="px-4 py-3 text-left">Year</th>
-                    <th className="px-4 py-3 text-right">Opening Balance</th>
-                    <th className="px-4 py-3 text-right">Principal Paid</th>
-                    <th className="px-4 py-3 text-right">Interest Paid</th>
-                    <th className="px-4 py-3 text-right">Closing Balance</th>
+                    <th className="px-5 py-3.5 text-left font-semibold">Year</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Opening Balance</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Principal Paid</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Interest Paid</th>
+                    <th className="px-5 py-3.5 text-right font-semibold">Closing Balance</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -327,12 +337,12 @@ export function Calculator() {
                     }
                     const closingBalance = Math.max(0, runningBalance);
                     return (
-                      <tr key={yi} className={yi % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                        <td className="px-4 py-3 font-medium text-gray-700">{yi + 1}</td>
-                        <td className="px-4 py-3 text-right text-gray-600">{formatINR(Math.round(openingBalance))}</td>
-                        <td className="px-4 py-3 text-right text-blue-600 font-medium">{formatINR(Math.round(principalPaid))}</td>
-                        <td className="px-4 py-3 text-right text-orange-500 font-medium">{formatINR(Math.round(interestPaid))}</td>
-                        <td className="px-4 py-3 text-right text-gray-600">{formatINR(Math.round(closingBalance))}</td>
+                      <tr key={yi} className={yi % 2 === 0 ? "bg-white" : "bg-slate-50/70"}>
+                        <td className="px-5 py-3.5 font-bold text-slate-900">{yi + 1}</td>
+                        <td className="px-5 py-3.5 text-right text-slate-600">{formatINR(Math.round(openingBalance))}</td>
+                        <td className="px-5 py-3.5 text-right text-teal-700 font-semibold">{formatINR(Math.round(principalPaid))}</td>
+                        <td className="px-5 py-3.5 text-right text-amber-600 font-semibold">{formatINR(Math.round(interestPaid))}</td>
+                        <td className="px-5 py-3.5 text-right text-slate-600">{formatINR(Math.round(closingBalance))}</td>
                       </tr>
                     );
                   })}
@@ -342,14 +352,15 @@ export function Calculator() {
           </div>
 
           {/* CTA */}
-          <div className="mt-16 bg-gradient-to-r from-teal-600 to-teal-900 rounded-2xl p-10 text-center text-white">
-            <h3 className="text-2xl font-bold mb-3">Happy with the numbers?</h3>
-            <p className="text-teal-100 mb-6 max-w-md mx-auto">
+          <div className="mt-16 bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 rounded-3xl p-10 text-center text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+            <h3 className="text-3xl font-extrabold mb-3 tracking-tight">Happy with the numbers?</h3>
+            <p className="text-teal-100/90 mb-6 max-w-md mx-auto text-base">
               Talk to our loan advisors and get the best rate for your profile.
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50">
-                Apply Now <ArrowRight className="ml-2 w-4 h-4" />
+              <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold rounded-xl shadow-xl shadow-teal-950/50">
+                Apply Now <ArrowRight className="ml-2 w-4 h-4 text-teal-700" />
               </Button>
             </Link>
           </div>

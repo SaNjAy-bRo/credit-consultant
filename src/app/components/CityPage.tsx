@@ -902,50 +902,56 @@ export function CityPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-2 text-teal-200 text-sm mb-4">
+            <div className="flex items-center gap-2 text-teal-200/80 text-xs font-semibold mb-6">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
-              <span className="text-white font-medium">{data.name}</span>
+              <span className="text-white font-bold">{data.name}</span>
             </div>
-            <h1 className="text-4xl lg:text-5xl font-black mb-5 leading-tight">
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Credit Advisory • {data.name}
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
               Credit Consultant in{" "}
-              <span className="text-yellow-300">{data.name}</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-400">{data.name}</span>
             </h1>
-            <p className="text-lg text-teal-100 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-base lg:text-xl text-teal-100/90 mb-8 leading-relaxed max-w-2xl font-normal">
               {data.description}
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 items-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold">
-                  Free Consultation <ArrowRight className="ml-2 w-5 h-5" />
+                <Button size="lg" className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-extrabold text-sm px-8 py-3.5 rounded-xl shadow-xl shadow-amber-500/20 transition-all">
+                  Free Consultation <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <CheckScoreButton variant="white" className="h-11 px-6 text-sm" />
+              <CheckScoreButton variant="white" className="h-12 px-7 text-sm font-bold rounded-xl" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Local insight */}
-      <section className="bg-blue-50 border-b border-blue-100 py-8">
+      <section className="bg-teal-900/10 border-b border-teal-200/60 py-8 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <MapPin className="w-5 h-5 text-white" />
+          <div className="flex items-start gap-4 bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md shadow-teal-600/30">
+              <MapPin className="w-6 h-6 text-white" />
             </div>
             <div>
-              <p className="font-semibold text-gray-800 mb-1">Why {data.name} residents need credit advisory</p>
-              <p className="text-gray-600 text-sm leading-relaxed">{data.localFact}</p>
+              <p className="font-extrabold text-slate-900 text-base mb-1">Why {data.name} residents need credit advisory</p>
+              <p className="text-slate-600 text-sm leading-relaxed">{data.localFact}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-12 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
@@ -954,9 +960,9 @@ export function CityPage() {
               { value: "+150",    label: "Avg Score Improvement" },
               { value: "15+",     label: "Years of Experience" },
             ].map((s) => (
-              <div key={s.label}>
-                <p className="text-3xl font-black text-blue-600 mb-1">{s.value}</p>
-                <p className="text-sm text-gray-500">{s.label}</p>
+              <div key={s.label} className="p-6 rounded-3xl bg-slate-50/70 border border-slate-200/60 hover:shadow-lg transition-all duration-300">
+                <p className="text-3xl lg:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 mb-1">{s.value}</p>
+                <p className="text-xs font-bold text-slate-500">{s.label}</p>
               </div>
             ))}
           </div>
@@ -973,59 +979,67 @@ export function CityPage() {
       />
 
       {/* Areas covered */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <div className="bg-slate-50/80 p-8 rounded-3xl border border-slate-200/80">
+              <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Local Coverage</span>
+              <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">
                 Areas We Serve in {data.name}
               </h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-slate-600 mb-6 text-sm leading-relaxed">
                 Our advisory services cover all major localities in {data.name}, {data.state}.
                 All services are available remotely — no office visit required.
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {data.areas.map((area) => (
-                  <span key={area} className="bg-blue-50 text-blue-700 text-sm font-medium px-3 py-1.5 rounded-full border border-blue-100">
-                    {area}
+                  <span key={area} className="bg-white text-teal-900 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 hover:shadow-md transition-all">
+                    📍 {area}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">Why Choose Us in {data.name}?</h3>
-              {[
-                `Free credit consultation for all ${data.name} residents`,
-                "Personalised CIBIL score improvement plan",
-                "Direct bureau dispute management",
-                "Loan matching with 50+ lenders",
-                "No upfront fees — pay only for results",
-                "24/7 advisor support via phone and WhatsApp",
-              ].map((b) => (
-                <div key={b} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700 text-sm">{b}</span>
-                </div>
-              ))}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">Why Choose Us in {data.name}?</h3>
+              <div className="space-y-4">
+                {[
+                  `Free credit consultation for all ${data.name} residents`,
+                  "Personalised CIBIL score improvement plan",
+                  "Direct bureau dispute management",
+                  "Loan matching with 50+ lenders",
+                  "No upfront fees — pay only for results",
+                  "24/7 advisor support via phone and WhatsApp",
+                ].map((b) => (
+                  <div key={b} className="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                    </div>
+                    <span className="text-slate-800 text-sm font-semibold">{b}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-slate-50/70">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Frequently Asked Questions — {data.name}
-          </h2>
+          <div className="text-center mb-10">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">City FAQs</span>
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+              Frequently Asked Questions — {data.name}
+            </h2>
+          </div>
           <div className="space-y-4">
             {data.faqs.map((faq, i) => (
-              <Card key={i} className="border-0 shadow-sm">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-semibold text-gray-800">{faq.q}</CardTitle>
+              <Card key={i} className="border border-slate-200/80 rounded-3xl bg-white shadow-sm overflow-hidden">
+                <CardHeader className="p-6 pb-2">
+                  <CardTitle className="text-base font-bold text-slate-900">{faq.q}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+                <CardContent className="px-6 pb-6">
+                  <p className="text-slate-600 text-sm leading-relaxed">{faq.a}</p>
                 </CardContent>
               </Card>
             ))}
@@ -1034,37 +1048,38 @@ export function CityPage() {
       </section>
 
       {/* Testimonial */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-1 mb-3">
-            {[1,2,3,4,5].map(s => <Star key={s} className="w-5 h-5 text-yellow-400 fill-yellow-400" />)}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-gradient-to-tr from-teal-50 to-emerald-50 border border-teal-200/80 rounded-3xl p-10 text-center shadow-sm">
+          <div className="flex justify-center gap-1.5 mb-4">
+            {[1,2,3,4,5].map(s => <Star key={s} className="w-5 h-5 text-amber-400 fill-amber-400" />)}
           </div>
-          <blockquote className="text-center text-lg text-gray-700 max-w-2xl mx-auto font-medium">
+          <blockquote className="text-center text-lg lg:text-xl text-slate-800 font-extrabold leading-relaxed mb-4">
             "Credit Consultant helped me improve my CIBIL score by 140 points in just 5 months.
             I finally got my home loan approved in {data.name} at the best interest rate!"
           </blockquote>
-          <p className="text-center text-sm text-gray-400 mt-3">— Verified Client from {data.name}</p>
+          <p className="text-center text-xs font-bold text-teal-700 uppercase tracking-widest">— Verified Client from {data.name}</p>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-teal-600 to-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
+      <section className="py-20 bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl lg:text-4xl font-extrabold mb-4 tracking-tight">
             Ready to Improve Your Credit Score in {data.name}?
           </h2>
-          <p className="text-teal-100 mb-8 max-w-xl mx-auto">
+          <p className="text-teal-100/90 mb-8 max-w-xl mx-auto text-base leading-relaxed">
             Get a free consultation today. Our {data.name} credit advisors are available Mon–Fri 9 AM–6 PM and Sat 9 AM–2 PM.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a href="tel:+919538049888">
-              <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50 font-bold">
-                <Phone className="mr-2 w-5 h-5" /> Call +91 95380 49888
+              <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold text-sm px-7 py-3 rounded-xl shadow-lg">
+                <Phone className="mr-2 w-4 h-4 text-teal-700" /> Call +91 95380 49888
               </Button>
             </a>
             <a href="mailto:accounts@creditconsultant.in">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                <Mail className="mr-2 w-5 h-5" /> accounts@creditconsultant.in
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-bold text-sm px-7 py-3 rounded-xl">
+                <Mail className="mr-2 w-4 h-4 text-teal-300" /> accounts@creditconsultant.in
               </Button>
             </a>
           </div>
@@ -1072,19 +1087,19 @@ export function CityPage() {
       </section>
 
       {/* Hub links — internal linking to pillar pages */}
-      <section className="py-10 bg-white border-t border-gray-100">
+      <section className="py-12 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5 text-center">Complete Guides for {data.name} Residents</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Complete Guides for {data.name} Residents</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { to: "/cibil-score", title: "CIBIL Score Guide", desc: `Everything about your CIBIL score — check free, improve, dispute. Tailored for ${data.name} residents.`, color: "blue" },
               { to: "/credit-repair", title: "Credit Repair Guide", desc: `Remove write-offs, repair settlements and dispute bureau errors in ${data.name}.`, color: "purple" },
               { to: "/loans", title: "Loan Products", desc: `Best home, business, personal and car loan rates for ${data.name} borrowers.`, color: "green" },
             ].map((h) => (
               <Link key={h.to} to={h.to}
-                className="block p-4 rounded-xl border border-gray-100 hover:border-teal-300 hover:bg-teal-50 transition-all group">
-                <p className="font-semibold text-gray-800 group-hover:text-teal-700 text-sm mb-1">{h.title} →</p>
-                <p className="text-xs text-gray-500">{h.desc}</p>
+                className="block p-6 rounded-3xl border border-slate-200/80 bg-white hover:border-teal-300 hover:shadow-xl transition-all duration-300 group">
+                <p className="font-extrabold text-slate-900 group-hover:text-teal-700 text-base mb-2">{h.title} →</p>
+                <p className="text-xs text-slate-500 leading-relaxed">{h.desc}</p>
               </Link>
             ))}
           </div>
@@ -1092,17 +1107,17 @@ export function CityPage() {
       </section>
 
       {/* Other cities */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-14 bg-slate-50/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">
+          <p className="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">
             We Also Serve
           </p>
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-2.5 justify-center">
             {Object.entries(CITIES)
               .filter(([slug]) => slug !== city)
               .map(([slug, c]) => (
                 <Link key={slug} to={`/${slug}`}
-                  className="text-sm text-blue-600 hover:text-blue-800 hover:underline px-2 py-1 transition-colors">
+                  className="text-xs font-bold text-slate-600 bg-white hover:bg-teal-600 hover:text-white px-3.5 py-2 rounded-xl transition-all border border-slate-200 shadow-sm">
                   {c.name}
                 </Link>
               ))}

@@ -15,48 +15,7 @@ import {
   generateReportPdf, downloadPdf, type ContactRecord,
 } from "../api/creditApi";
 
-type Step = "mobile" | "otp" | "details" | "fetching" | "result";
-
-/* ── OTP boxes ──────────────────────────────────────────────── */
-function OtpInput({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const refs = useRef<(HTMLInputElement | null)[]>([]);
-  const digits = value.padEnd(6, "").split("").slice(0, 6);
-
-  const handleChange = (i: number, raw: string) => {
-    const char = raw.replace(/\D/g, "").slice(-1);
-    const next = digits.map((d, idx) => (idx === i ? char : d)).join("");
-    onChange(next);
-    if (char && i < 5) refs.current[i + 1]?.focus();
-  };
-  const handleKey = (i: number, e: React.KeyboardEvent) => {
-    if (e.key === "Backspace") {
-      onChange(digits.map((d, idx) => (idx === i ? "" : d)).join(""));
-      if (i > 0) refs.current[i - 1]?.focus();
-    }
-  };
-  const handlePaste = (e: React.ClipboardEvent) => {
-    const p = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
-    onChange(p);
-    refs.current[Math.min(p.length, 5)]?.focus();
-    e.preventDefault();
-  };
-
-  return (
-    <div className="flex gap-1.5 sm:gap-2 justify-center max-w-full px-1">
-      {digits.map((d, i) => (
-        <input key={i}
-          ref={(el) => { refs.current[i] = el; }}
-          type="text" inputMode="numeric" maxLength={1} value={d}
-          onChange={(e) => handleChange(i, e.target.value)}
-          onKeyDown={(e) => handleKey(i, e)} onPaste={handlePaste}
-          className={`w-10 sm:w-11 h-11 sm:h-12 text-center text-base sm:text-lg font-bold rounded-lg sm:rounded-xl border-2 outline-none transition-all
-            ${d ? "border-teal-600 bg-blue-50 text-blue-700" : "border-gray-200 bg-gray-50"}
-            focus:border-blue-500 focus:bg-white`}
-        />
-      ))}
-    </div>
-  );
-}
+type Step = "details" | "fetching" | "result";
 
 /* ── Score ring ─────────────────────────────────────────────── */
 function ScoreRing({ score }: { score: number }) {
@@ -140,70 +99,37 @@ interface Props { open: boolean; onClose: () => void; }
 
 export function CheckScoreModal({ open, onClose }: Props) {
   if (!open) return null;
-  const [step, setStep]     = useState<Step>("mobile");
+  const [step, setStep]     = useState<Step>("details");
   const [mobile, setMobile] = useState("");
-  const [otp, setOtp]       = useState("");
-  const [devOtp, setDevOtp] = useState<string | null>(null);
-  const [timer, setTimer]   = useState(0);
-  const [form, setForm]     = useState({ name: "", idType: "PAN" as "PAN"|"Aadhaar", idNumber: "", dob: "", gender: "" as "M"|"F"|"", consent: false });
+  const [form, setForm]     = useState({ name: "", idType: "PAN" as "PAN"|"Aadhaar", idNumber: "", dob: "", gender: "" as "M"|"F"|"", consent: true });
 
   const [mobileErr, setMobileErr] = useState("");
-  const [otpErr, setOtpErr]       = useState("");
   const [formErrs, setFormErrs]   = useState<Record<string, string>>({});
 
-  const [otpLoading,    setOtpLoading]    = useState(false);
-  const [verifyLoading, setVerifyLoading] = useState(false);
-  const [apiLoading,    setApiLoading]    = useState(false);
-  const [fetchStatus,   setFetchStatus]   = useState("");
+  const [apiLoading,  setApiLoading]  = useState(false);
+  const [fetchStatus, setFetchStatus] = useState("");
 
-  const [result,    setResult]    = useState<any>(null);
-  const [contact,   setContact]   = useState<ContactRecord | null>(null);
-  const [pdfBlob,   setPdfBlob]   = useState<Blob | null>(null);
+  const [result,     setResult]     = useState<any>(null);
+  const [contact,    setContact]    = useState<ContactRecord | null>(null);
+  const [pdfBlob,    setPdfBlob]    = useState<Blob | null>(null);
   const [pdfLoading, setPdfLoading] = useState(false);
-
-  useEffect(() => {
-    if (timer <= 0) return;
-    const id = setTimeout(() => setTimer(t => t - 1), 1000);
-    return () => clearTimeout(id);
-  }, [timer]);
 
   if (!open) return null;
 
   const reset = () => {
-    setStep("mobile"); setMobile(""); setOtp(""); setDevOtp(null); setTimer(0);
-    setForm({ name: "", idType: "PAN", idNumber: "", dob: "", gender: "", consent: false });
-    setMobileErr(""); setOtpErr(""); setFormErrs({});
+    setStep("details"); setMobile("");
+    setForm({ name: "", idType: "PAN", idNumber: "", dob: "", gender: "", consent: true });
+    setMobileErr(""); setFormErrs({});
     setResult(null); setContact(null); setPdfBlob(null);
   };
   const handleClose = () => { onClose(); setTimeout(reset, 300); };
 
-  /* ── Step 1: Send OTP ── */
-  const handleSendOtp = async () => {
-    if (!/^[6-9]\d{9}$/.test(mobile)) { setMobileErr("Enter a valid 10-digit mobile number"); return; }
-    setMobileErr(""); setOtpLoading(true);
-    try {
-      const res = await sendOtp(mobile);
-      if (res.devOtp) setDevOtp(res.devOtp); // show in dev mode
-      setTimer(30); setStep("otp");
-    } catch (e: any) {
-      setMobileErr(e.message ?? "Failed to send OTP");
-    } finally { setOtpLoading(false); }
-  };
-
-  /* ── Step 2: Verify OTP ── */
-  const handleVerifyOtp = async () => {
-    if (otp.length < 6) { setOtpErr("Enter the 6-digit OTP"); return; }
-    setOtpErr(""); setVerifyLoading(true);
-    await new Promise(r => setTimeout(r, 800));
-    if (!verifyOtp(mobile, otp)) { setOtpErr("Incorrect OTP. Please try again."); setVerifyLoading(false); return; }
-    setVerifyLoading(false); setStep("details");
-  };
-
-  /* ── Step 3: Submit & fetch report ── */
+  /* ── Direct CIBIL Submit & fetch report ── */
   const handleFetchReport = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (!form.name.trim()) errs.name = "Name is required";
+    if (!form.name.trim()) errs.name = "Full name is required";
+    if (!/^[6-9]\d{9}$/.test(mobile)) errs.mobile = "Enter a valid 10-digit mobile number";
     if (form.idType === "PAN" && !/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(form.idNumber.toUpperCase()))
       errs.idNumber = "Enter a valid PAN (e.g. ABCDE1234F)";
     if (form.idType === "Aadhaar" && !/^\d{12}$/.test(form.idNumber))
@@ -238,7 +164,7 @@ export function CheckScoreModal({ open, onClose }: Props) {
       setFetchStatus("Connecting to credit bureau…");
       await new Promise(r => setTimeout(r, 800));
 
-      setFetchStatus("Verifying PAN with CIBIL…");
+      setFetchStatus("Verifying identity with CIBIL…");
       const timeoutPromise = new Promise((_, reject) =>
         setTimeout(() => reject(new Error("Request timeout")), 5000)
       );
@@ -251,7 +177,7 @@ export function CheckScoreModal({ open, onClose }: Props) {
         timeoutPromise,
       ]);
 
-      setFetchStatus("Generating report…");
+      setFetchStatus("Generating CIBIL report…");
       await new Promise(r => setTimeout(r, 600));
 
       // Parse score from API response using deep extractor
@@ -267,9 +193,21 @@ export function CheckScoreModal({ open, onClose }: Props) {
         report_id: raw?.report_id ?? contactId,
       };
 
-      // Generate & store PDF
+      // Generate & store PDF (Use live PDF from AV Management if present)
       setFetchStatus("Preparing PDF…");
-      const blob = generateReportPdf(updatedContact, raw);
+      let blob: Blob;
+      if (raw?.pdf_base64) {
+        try {
+          const binary = atob(raw.pdf_base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+          blob = new Blob([bytes], { type: "application/pdf" });
+        } catch {
+          blob = generateReportPdf(updatedContact, raw);
+        }
+      } else {
+        blob = generateReportPdf(updatedContact, raw);
+      }
       saveContact(updatedContact);
 
       setContact(updatedContact);
@@ -301,8 +239,8 @@ export function CheckScoreModal({ open, onClose }: Props) {
   };
 
   /* ── Step bar ── */
-  const STEPS = [{ key: "mobile", label: "Mobile" }, { key: "otp", label: "OTP" }, { key: "details", label: "Details" }, { key: "result", label: "Report" }];
-  const stepIdx = step === "fetching" ? 3 : STEPS.findIndex(s => s.key === step);
+  const STEPS = [{ key: "details", label: "Details" }, { key: "result", label: "Report" }];
+  const stepIdx = step === "fetching" ? 1 : STEPS.findIndex(s => s.key === step);
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
@@ -318,8 +256,8 @@ export function CheckScoreModal({ open, onClose }: Props) {
               <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-7 w-auto object-contain" />
             </div>
             <div className="border-l border-white/30 pl-3">
-              <p className="text-white font-bold text-base leading-none">Check Credit Score</p>
-              <p className="text-teal-200 text-xs mt-0.5">Free · Instant · No impact on score</p>
+              <p className="text-white font-bold text-base leading-none">Direct CIBIL Score Check</p>
+              <p className="text-teal-200 text-xs mt-0.5">Instant Bureau Verification · Free & Safe</p>
             </div>
           </div>
           <button onClick={handleClose} className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10">
@@ -347,59 +285,7 @@ export function CheckScoreModal({ open, onClose }: Props) {
           </div>
         )}
 
-        {/* ── STEP 1: MOBILE ── */}
-        {step === "mobile" && (
-          <div className="px-6 pb-7 pt-3 space-y-4">
-            <p className="text-sm text-gray-600">Enter your mobile number to receive a one-time password.</p>
-            <div>
-              <Label htmlFor="cs-mobile">Mobile Number *</Label>
-              <div className="flex mt-1">
-                <span className="inline-flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-xl text-sm text-gray-500">+91</span>
-                <Input id="cs-mobile" placeholder="10-digit number" inputMode="numeric" maxLength={10}
-                  value={mobile} onChange={(e) => { setMobile(e.target.value.replace(/\D/g, "")); setMobileErr(""); }}
-                  className={`rounded-l-none ${mobileErr ? "border-red-400" : ""}`}
-                  onKeyDown={(e) => e.key === "Enter" && handleSendOtp()} />
-              </div>
-              {mobileErr && <p className="text-xs text-red-500 mt-1">{mobileErr}</p>}
-            </div>
-            <Button onClick={handleSendOtp} disabled={otpLoading} className="w-full bg-teal-600 hover:bg-teal-700 h-11">
-              {otpLoading ? <><Loader2 className="w-4 h-4 animate-spin mr-2" />Sending OTP…</> : <><Phone className="w-4 h-4 mr-2" />Send OTP</>}
-            </Button>
-          </div>
-        )}
-
-        {/* ── STEP 2: OTP ── */}
-        {step === "otp" && (
-          <div className="px-6 pb-7 pt-3 space-y-5">
-            <p className="text-sm text-gray-600 text-center">
-              OTP sent to <span className="font-semibold text-gray-800">+91 {mobile}</span>.{" "}
-              <button onClick={() => setStep("mobile")} className="text-blue-600 underline text-xs">Change</button>
-            </p>
-            {devOtp && (
-              <div
-                onClick={() => setOtp(devOtp)}
-                className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-xs text-amber-800 flex items-center justify-between cursor-pointer hover:bg-amber-100 transition-colors shadow-sm"
-              >
-                <span>Dev mode OTP: <span className="font-extrabold text-amber-900 text-sm ml-1">{devOtp}</span></span>
-                <span className="text-[10px] bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Click to fill</span>
-              </div>
-            )}
-            <div className="space-y-2">
-              <Label className="block text-center text-sm">Enter 6-digit OTP</Label>
-              <OtpInput value={otp} onChange={(v) => { setOtp(v); setOtpErr(""); }} />
-              {otpErr && <p className="text-xs text-red-500 text-center">{otpErr}</p>}
-            </div>
-            <Button onClick={handleVerifyOtp} disabled={verifyLoading || otp.length < 6} className="w-full bg-teal-600 hover:bg-teal-700 h-11">
-              {verifyLoading ? <><Loader2 className="w-4 h-4 animate-spin mr-2" />Verifying…</> : <><ShieldCheck className="w-4 h-4 mr-2" />Verify OTP</>}
-            </Button>
-            <p className="text-center text-xs text-gray-400">
-              {timer > 0 ? <>Resend in <span className="text-blue-600 font-semibold">{timer}s</span></> :
-                <button onClick={handleSendOtp} className="text-blue-600 underline font-medium">Resend OTP</button>}
-            </p>
-          </div>
-        )}
-
-        {/* ── STEP 3: DETAILS ── */}
+        {/* ── STEP: DETAILS (DIRECT CIBIL FORM) ── */}
         {step === "details" && (
           <form onSubmit={handleFetchReport} className="px-6 pb-7 pt-3 space-y-4">
             {/* Name */}
@@ -409,6 +295,18 @@ export function CheckScoreModal({ open, onClose }: Props) {
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className={`mt-1 ${formErrs.name ? "border-red-400" : ""}`} />
               {formErrs.name && <p className="text-xs text-red-500 mt-1">{formErrs.name}</p>}
+            </div>
+
+            {/* Mobile Number */}
+            <div>
+              <Label htmlFor="cs-mobile">Mobile Number *</Label>
+              <div className="flex mt-1">
+                <span className="inline-flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-xl text-sm text-gray-500">+91</span>
+                <Input id="cs-mobile" placeholder="10-digit mobile number" inputMode="numeric" maxLength={10}
+                  value={mobile} onChange={(e) => { setMobile(e.target.value.replace(/\D/g, "")); setFormErrs({ ...formErrs, mobile: "" }); }}
+                  className={`rounded-l-none ${formErrs.mobile ? "border-red-400" : ""}`} />
+              </div>
+              {formErrs.mobile && <p className="text-xs text-red-500 mt-1">{formErrs.mobile}</p>}
             </div>
 
             {/* ID Type + Number */}
@@ -467,13 +365,13 @@ export function CheckScoreModal({ open, onClose }: Props) {
                 onChange={(e) => setForm({ ...form, consent: e.target.checked })}
                 className="mt-0.5 w-4 h-4 accent-teal-600 flex-shrink-0" />
               <span className="text-xs text-gray-700 leading-snug">
-                I give consent (Hard Pull) * — I authorise Credit Consultant to fetch my full credit report from the bureau. This may appear as an enquiry on my credit profile.
+                I give consent (Hard Pull) * — I authorise Credit Consultant to fetch my full CIBIL credit report.
               </span>
             </label>
             {formErrs.consent && <p className="text-xs text-red-500">{formErrs.consent}</p>}
 
             <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700 h-11">
-              <TrendingUp className="w-4 h-4 mr-2" /> Fetch My Credit Score
+              <TrendingUp className="w-4 h-4 mr-2" /> Direct CIBIL Check
             </Button>
           </form>
         )}

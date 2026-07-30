@@ -104,37 +104,45 @@ export function FAQPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-14">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-black mb-3">Frequently Asked Questions</h1>
-          <p className="text-teal-100 mb-8 max-w-xl mx-auto">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Knowledge Base
+          </span>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight">Frequently Asked <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">Questions</span></h1>
+          <p className="text-base lg:text-lg text-teal-100/90 mb-8 max-w-xl mx-auto font-normal">
             Expert-verified answers to India's most common credit and loan questions
           </p>
           {/* Search */}
-          <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" />
+          <div className="relative max-w-lg mx-auto">
+            <Search className="absolute left-4 top-4 w-5 h-5 text-slate-400" />
             <input
               type="search"
               placeholder="Search any question…"
               value={searchQuery}
               onChange={(e) => { setSearchQuery(e.target.value); setOpenIndex(null); }}
-              className="w-full pl-12 pr-4 py-3 rounded-2xl text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-lg"
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl text-slate-900 text-sm font-medium bg-white focus:outline-none focus:ring-4 focus:ring-teal-500/30 shadow-2xl border border-white/20"
             />
           </div>
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Category tabs */}
         {!searchQuery && (
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2.5 mb-10 justify-center">
             {faqCategories.map((c) => (
               <button key={c.id} onClick={() => { setActiveCategory(c.id); setOpenIndex(null); }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === c.id ? "bg-teal-600 text-white shadow-sm" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                  activeCategory === c.id 
+                    ? "bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-600/30 scale-105" 
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
                 }`}>
-                {c.label} <span className="opacity-60 text-xs ml-1">({faqCategories.find(x => x.id === c.id)?.faqs.length})</span>
+                {c.label} <span className="opacity-70 text-[10px] ml-1">({faqCategories.find(x => x.id === c.id)?.faqs.length})</span>
               </button>
             ))}
           </div>
@@ -142,32 +150,32 @@ export function FAQPage() {
 
         {/* Search results header */}
         {searchQuery && (
-          <p className="text-sm text-gray-500 mb-5">
+          <p className="text-sm text-slate-500 mb-6 font-medium">
             {filtered.length} result{filtered.length !== 1 ? "s" : ""} for "<strong>{searchQuery}</strong>"
-            <button onClick={() => setSearchQuery("")} className="ml-2 text-blue-600 hover:underline">Clear</button>
+            <button onClick={() => setSearchQuery("")} className="ml-2 text-teal-600 hover:underline font-bold">Clear</button>
           </p>
         )}
 
         {/* FAQ accordion */}
-        <div className="space-y-2" itemScope itemType="https://schema.org/FAQPage">
+        <div className="space-y-3.5" itemScope itemType="https://schema.org/FAQPage">
           {filtered.length === 0 && (
-            <p className="text-gray-400 text-center py-10">No questions found. Try a different search term.</p>
+            <p className="text-slate-400 text-center py-12 text-base font-medium">No questions found. Try a different search term.</p>
           )}
           {filtered.map((f, i) => (
-            <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm"
+            <div key={i} className={`rounded-2xl border transition-all duration-300 overflow-hidden ${openIndex === i ? "border-teal-300 bg-teal-50/20 shadow-md" : "border-slate-200/80 bg-white hover:border-slate-300 shadow-sm"}`}
               itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left transition-colors"
               >
-                <span className="font-semibold text-gray-800 text-sm pr-4" itemProp="name">{f.q}</span>
+                <span className="font-bold text-slate-900 text-base pr-4" itemProp="name">{f.q}</span>
                 {openIndex === i
-                  ? <ChevronUp className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                  : <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />}
+                  ? <ChevronUp className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                  : <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />}
               </button>
               {openIndex === i && (
                 <div className="px-5 pb-5" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                  <p className="text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-3" itemProp="text">
+                  <p className="text-slate-600 text-sm leading-relaxed border-t border-slate-200/60 pt-3.5" itemProp="text">
                     {f.a}
                   </p>
                 </div>
@@ -177,26 +185,27 @@ export function FAQPage() {
         </div>
 
         {/* Still have questions CTA */}
-        <div className="mt-14 bg-blue-50 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Still have questions?</h3>
-          <p className="text-gray-500 text-sm mb-5 max-w-md mx-auto">
+        <div className="mt-16 bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 rounded-3xl p-10 text-center text-white relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+          <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 tracking-tight">Still have questions?</h3>
+          <p className="text-teal-100/90 text-sm mb-6 max-w-md mx-auto leading-relaxed">
             Our credit advisors are available Mon–Fri 9 AM–6 PM and Saturday 9 AM–2 PM to answer any question personally.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/contact">
-              <button className="bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors">
+              <button className="bg-white hover:bg-teal-50 text-teal-900 text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-lg">
                 Ask an Advisor
               </button>
             </Link>
-            <CheckScoreButton variant="outline" className="text-sm px-5 py-2.5" />
+            <CheckScoreButton variant="white" className="text-sm px-6 py-3 rounded-xl" />
           </div>
         </div>
 
         {/* Link to blogs */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-10 text-center">
+          <p className="text-sm text-slate-500 font-medium">
             Looking for in-depth guides?{" "}
-            <Link to="/blogs" className="text-blue-600 hover:underline font-medium">
+            <Link to="/blogs" className="text-teal-600 hover:underline font-bold">
               Browse our Financial Blog →
             </Link>
           </p>

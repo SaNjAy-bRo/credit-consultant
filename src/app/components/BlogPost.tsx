@@ -1117,52 +1117,53 @@ export function BlogPost() {
       />
 
       {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b border-gray-100 py-3">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-sm text-gray-500 flex-wrap">
-          <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
+      <div className="bg-slate-100/70 border-b border-slate-200 py-3.5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs font-semibold text-slate-500 flex-wrap">
+          <Link to="/" className="hover:text-teal-600 transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/blogs" className="hover:text-blue-600 transition-colors">Blogs</Link>
+          <Link to="/blogs" className="hover:text-teal-600 transition-colors">Blogs</Link>
           <span>/</span>
-          <span className="text-gray-700 truncate">{post.title}</span>
+          <span className="text-slate-800 truncate max-w-xs">{post.title}</span>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
-        <div className="mb-8">
-          <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 ${post.categoryColor}`}>{post.category}</span>
-          <h1 className="text-3xl lg:text-4xl font-black text-gray-900 leading-tight mb-4">{post.title}</h1>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 pb-6 border-b border-gray-100">
-            <span className="flex items-center gap-1.5"><User className="w-4 h-4" />{post.author}</span>
-            <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />Updated {new Date(post.updateDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{post.readTime}</span>
-            <span className="flex items-center gap-1.5"><Tag className="w-4 h-4" />{post.wordCount.toLocaleString()} words</span>
+        <div className="mb-10">
+          <span className={`inline-block text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-4 shadow-sm ${post.categoryColor}`}>{post.category}</span>
+          <h1 className="text-3xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight mb-6">{post.title}</h1>
+          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 pb-6 border-b border-slate-200">
+            <span className="flex items-center gap-1.5"><User className="w-4 h-4 text-teal-600" />{post.author}</span>
+            <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-teal-600" />Updated {new Date(post.updateDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</span>
+            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-teal-600" />{post.readTime}</span>
+            <span className="flex items-center gap-1.5"><Tag className="w-4 h-4 text-teal-600" />{post.wordCount.toLocaleString()} words</span>
           </div>
         </div>
 
         {/* Article body */}
-        <div className="mb-12">{post.content}</div>
+        <div className="mb-14 prose prose-teal max-w-none">{post.content}</div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-900 rounded-2xl p-8 text-white text-center mb-10">
-          <h3 className="text-xl font-bold mb-2">Need Personalised Credit Advice?</h3>
-          <p className="text-teal-100 text-sm mb-5 max-w-md mx-auto">Our certified credit advisors offer free consultations to help you improve your CIBIL score and get the best loan deals.</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link to="/contact"><button className="bg-white text-blue-600 font-semibold text-sm px-5 py-2.5 rounded-xl hover:bg-gray-100 transition-colors">Free Consultation</button></Link>
-            <CheckScoreButton variant="white" className="text-sm px-5 py-2.5" />
+        <div className="bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 rounded-3xl p-10 text-white text-center mb-14 relative overflow-hidden shadow-2xl border border-slate-800">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
+          <h3 className="text-2xl font-extrabold mb-3 text-white">Need Personalised Credit Advice?</h3>
+          <p className="text-teal-100/90 text-sm mb-6 max-w-md mx-auto leading-relaxed">Our certified credit advisors offer free consultations to help you improve your CIBIL score and get the best loan deals.</p>
+          <div className="flex flex-wrap gap-3 justify-center items-center">
+            <Link to="/contact"><button className="bg-white text-teal-900 font-bold text-sm px-6 py-3 rounded-xl hover:bg-teal-50 transition-all shadow-lg">Free Consultation</button></Link>
+            <CheckScoreButton variant="white" className="text-sm px-6 py-3 rounded-xl" />
           </div>
         </div>
 
         {/* FAQs */}
         {post.faqs && (
-          <div className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-5">Frequently Asked Questions</h2>
-            <div className="space-y-3">
+          <div className="mb-14 bg-slate-50/70 p-8 rounded-3xl border border-slate-200/80">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
+            <div className="space-y-4">
               {post.faqs.map((f, i) => (
-                <Card key={i} className="border-0 shadow-sm">
-                  <CardContent className="pt-4 pb-4">
-                    <p className="font-semibold text-gray-800 mb-2">{f.q}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">{f.a}</p>
+                <Card key={i} className="border border-slate-200/80 rounded-2xl bg-white shadow-sm">
+                  <CardContent className="p-6">
+                    <p className="font-bold text-slate-900 text-base mb-2">{f.q}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{f.a}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -1173,21 +1174,21 @@ export function BlogPost() {
         {/* Related posts */}
         {relatedPosts.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Related Articles</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Related Articles</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPosts.map((p) => (
-                <Link key={p.slug} to={`/blogs/${p.slug}`} className="group block p-4 rounded-xl border border-gray-100 hover:border-teal-300 hover:bg-teal-50 transition-all">
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${p.categoryColor}`}>{p.category}</span>
-                  <p className="text-sm font-semibold text-gray-800 group-hover:text-teal-700 mt-2 leading-snug line-clamp-2">{p.title}</p>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 mt-2">{p.readTime} <ArrowRight className="w-3 h-3" /></span>
+                <Link key={p.slug} to={`/blogs/${p.slug}`} className="group block p-6 rounded-3xl border border-slate-200/80 bg-white hover:border-teal-300 hover:shadow-xl transition-all duration-300">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${p.categoryColor}`}>{p.category}</span>
+                  <p className="text-base font-bold text-slate-900 group-hover:text-teal-700 mt-3 leading-snug line-clamp-2">{p.title}</p>
+                  <span className="text-xs text-slate-400 font-medium flex items-center gap-1 mt-3">{p.readTime} <ArrowRight className="w-3.5 h-3.5 text-teal-600" /></span>
                 </Link>
               ))}
             </div>
           </div>
         )}
 
-        <div className="mt-10 pt-6 border-t border-gray-100">
-          <Link to="/blogs" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+        <div className="mt-12 pt-8 border-t border-slate-200">
+          <Link to="/blogs" className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-800 text-sm font-bold transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to All Articles
           </Link>
         </div>

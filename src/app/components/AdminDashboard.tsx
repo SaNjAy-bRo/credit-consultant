@@ -102,7 +102,7 @@ export function AdminDashboard() {
     setApiError(null);
     try {
       const res = await fetchAllReports({ search, status: statusFilter, per_page: 50 });
-      setReports(res.reports);
+      setReports(Array.isArray(res?.reports) ? res.reports : []);
       setIsLive(true);
     } catch (e: any) {
       setApiError(e.message ?? "Failed to fetch reports");

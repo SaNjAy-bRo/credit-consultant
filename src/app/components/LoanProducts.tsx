@@ -228,20 +228,26 @@ export function LoanProducts() {
         schema={ORG_SCHEMA}
       />
       {/* Hero */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Loan Products</h1>
-          <p className="text-lg text-teal-100 max-w-2xl mx-auto mb-8">
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Tailored Financing
+          </span>
+          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight">Loan <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">Products</span></h1>
+          <p className="text-base lg:text-xl text-teal-100/90 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
             Tailored financing solutions for every milestone — home, business, personal needs, and beyond.
           </p>
-          <CheckScoreButton variant="white" className="h-11 text-sm px-7 mx-auto" />
+          <CheckScoreButton variant="white" className="h-12 text-sm font-bold px-8 rounded-xl shadow-xl shadow-teal-950/50" />
         </div>
       </section>
 
       {/* Tab Bar */}
-      <div className="sticky top-16 z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div className="sticky top-16 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto scrollbar-hide">
+          <div className="flex overflow-x-auto gap-2 py-1 justify-start sm:justify-center scrollbar-hide">
             {loans.map((l) => {
               const Icon = l.icon;
               const isActive = l.id === activeTab;
@@ -249,10 +255,10 @@ export function LoanProducts() {
                 <button
                   key={l.id}
                   onClick={() => handleTabChange(l.id)}
-                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-all ${
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${
                     isActive
-                      ? `border-teal-600 text-teal-600`
-                      : "border-transparent text-gray-600 hover:text-teal-600 hover:border-teal-300"
+                      ? `bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-600/30 scale-105`
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -265,27 +271,28 @@ export function LoanProducts() {
       </div>
 
       {/* Loan Detail */}
-      <section className="py-16">
+      <section className="py-20 bg-slate-50/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Intro */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 ${colors.badge}`}>
+              <span className={`inline-block px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 ${colors.badge}`}>
                 {loan.label}
               </span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{loan.tagline}</h2>
-              <p className="text-lg text-gray-600 mb-8">{loan.description}</p>
+              <h2 className="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">{loan.tagline}</h2>
+              <p className="text-base lg:text-lg text-slate-600 mb-8 leading-relaxed">{loan.description}</p>
               <Link to="/contact">
-                <Button className={`${colors.btn} text-white`}>
+                <Button className={`bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-bold rounded-xl h-12 px-8 shadow-lg shadow-teal-600/30`}>
                   Apply Now <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
             </div>
-            <div>
+            <div className="relative">
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-teal-500/20 to-emerald-500/20 filter blur-lg -z-10" />
               <img
                 src={loan.image}
                 alt={loan.label}
-                className="rounded-2xl shadow-xl w-full h-72 object-cover"
+                className="rounded-3xl shadow-xl w-full h-80 object-cover border border-slate-100"
               />
             </div>
           </div>
@@ -295,10 +302,12 @@ export function LoanProducts() {
             {loan.highlights.map((h, i) => {
               const Icon = h.icon;
               return (
-                <div key={i} className={`rounded-xl border p-6 text-center ${colors.highlight}`}>
-                  <Icon className="w-8 h-8 mx-auto mb-3 text-gray-600" />
-                  <p className="text-xs text-gray-500 mb-1">{h.label}</p>
-                  <p className="font-bold text-gray-900 text-sm">{h.value}</p>
+                <div key={i} className={`rounded-3xl border border-slate-200/80 bg-white p-6 text-center shadow-sm hover:shadow-lg transition-all ${colors.highlight}`}>
+                  <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-3 shadow-inner">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <p className="text-xs font-medium text-slate-500 mb-1">{h.label}</p>
+                  <p className="font-extrabold text-slate-900 text-base">{h.value}</p>
                 </div>
               );
             })}
@@ -306,34 +315,38 @@ export function LoanProducts() {
 
           {/* Features + Eligibility */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <Card>
-              <CardHeader>
-                <CardTitle>Key Features</CardTitle>
-                <CardDescription>What makes our {loan.label.toLowerCase()} stand out</CardDescription>
+            <Card className="rounded-3xl border border-slate-200/80 bg-white shadow-sm p-2">
+              <CardHeader className="p-7 pb-4">
+                <CardTitle className="text-2xl font-bold text-slate-900">Key Features</CardTitle>
+                <CardDescription className="text-slate-500 text-sm">What makes our {loan.label.toLowerCase()} stand out</CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
+              <CardContent className="p-7 pt-0">
+                <ul className="space-y-3.5">
                   {loan.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{f}</span>
+                      <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                      </div>
+                      <span className="text-slate-700 text-sm font-medium">{f}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Eligibility Criteria</CardTitle>
-                <CardDescription>Requirements to apply for this loan</CardDescription>
+            <Card className="rounded-3xl border border-slate-200/80 bg-white shadow-sm p-2">
+              <CardHeader className="p-7 pb-4">
+                <CardTitle className="text-2xl font-bold text-slate-900">Eligibility Criteria</CardTitle>
+                <CardDescription className="text-slate-500 text-sm">Requirements to apply for this loan</CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
+              <CardContent className="p-7 pt-0">
+                <ul className="space-y-3.5">
                   {loan.eligibility.map((e, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{e}</span>
+                      <div className="w-5 h-5 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className="w-3.5 h-3.5 text-teal-600" />
+                      </div>
+                      <span className="text-slate-700 text-sm font-medium">{e}</span>
                     </li>
                   ))}
                 </ul>
@@ -342,28 +355,28 @@ export function LoanProducts() {
           </div>
 
           {/* ── Inline EMI Calculator ──────────────────────────── */}
-          <div className="mt-14">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="mt-20 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/80 shadow-xl">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">
               {loan.label} EMI Calculator
             </h3>
-            <p className="text-gray-500 text-sm mb-8">
+            <p className="text-slate-500 text-sm sm:text-base mb-8">
               Adjust the sliders to estimate your monthly repayment for a {loan.label.toLowerCase()}.
             </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Sliders */}
-              <Card className="shadow-sm">
-                <CardContent className="pt-6 space-y-8">
+              <Card className="rounded-2xl border border-slate-100 bg-slate-50/50 shadow-inner p-2">
+                <CardContent className="p-6 space-y-8">
                   {/* Amount */}
                   <div>
                     <div className="flex justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">Loan Amount</label>
-                      <span className="text-sm font-bold text-teal-600">{fmtINR(amount)}</span>
+                      <label className="text-sm font-semibold text-slate-700">Loan Amount</label>
+                      <span className="text-sm font-bold text-teal-600 bg-teal-50 px-3 py-0.5 rounded-full border border-teal-100">{fmtINR(amount)}</span>
                     </div>
                     <input type="range" min={100000} max={def.maxAmount} step={50000}
                       value={amount} onChange={(e) => setAmount(Number(e.target.value))}
-                      className="w-full accent-teal-600" />
-                    <div className="flex justify-between text-xs text-gray-400 mt-1">
+                      className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer" />
+                    <div className="flex justify-between text-xs text-slate-400 font-medium mt-1">
                       <span>₹1 L</span><span>{fmtINR(def.maxAmount)}</span>
                     </div>
                   </div>
@@ -371,13 +384,13 @@ export function LoanProducts() {
                   {/* Rate */}
                   <div>
                     <div className="flex justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">Interest Rate (p.a.)</label>
-                      <span className="text-sm font-bold text-teal-600">{rate.toFixed(1)}%</span>
+                      <label className="text-sm font-semibold text-slate-700">Interest Rate (p.a.)</label>
+                      <span className="text-sm font-bold text-teal-600 bg-teal-50 px-3 py-0.5 rounded-full border border-teal-100">{rate.toFixed(1)}%</span>
                     </div>
                     <input type="range" min={6} max={24} step={0.1}
                       value={rate} onChange={(e) => setRate(Number(e.target.value))}
-                      className="w-full accent-teal-600" />
-                    <div className="flex justify-between text-xs text-gray-400 mt-1">
+                      className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer" />
+                    <div className="flex justify-between text-xs text-slate-400 font-medium mt-1">
                       <span>6%</span><span>24%</span>
                     </div>
                   </div>
@@ -385,13 +398,13 @@ export function LoanProducts() {
                   {/* Tenure */}
                   <div>
                     <div className="flex justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">Tenure</label>
-                      <span className="text-sm font-bold text-teal-600">{tenure} {tenure === 1 ? "Year" : "Years"}</span>
+                      <label className="text-sm font-semibold text-slate-700">Tenure</label>
+                      <span className="text-sm font-bold text-teal-600 bg-teal-50 px-3 py-0.5 rounded-full border border-teal-100">{tenure} {tenure === 1 ? "Year" : "Years"}</span>
                     </div>
                     <input type="range" min={1} max={def.maxTenure} step={1}
                       value={tenure} onChange={(e) => setTenure(Number(e.target.value))}
-                      className="w-full accent-teal-600" />
-                    <div className="flex justify-between text-xs text-gray-400 mt-1">
+                      className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer" />
+                    <div className="flex justify-between text-xs text-slate-400 font-medium mt-1">
                       <span>1 Yr</span><span>{def.maxTenure} Yrs</span>
                     </div>
                   </div>
@@ -401,45 +414,41 @@ export function LoanProducts() {
               {/* Results */}
               <div className="space-y-4">
                 {/* EMI */}
-                <div className={`rounded-2xl p-6 text-white text-center ${
-                  activeTab === "home" ? "bg-teal-600" : activeTab === "business" ? "bg-indigo-600" : activeTab === "personal" ? "bg-purple-600" : "bg-cyan-600"
-                }`}>
-                  <p className="text-sm opacity-80 mb-1">Monthly EMI</p>
+                <div className="rounded-2xl p-6 text-white text-center bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 border border-slate-800 shadow-xl">
+                  <p className="text-xs font-bold text-teal-300 uppercase tracking-widest mb-1">Monthly EMI</p>
                   <p className="text-4xl font-black">{fmtINR(Math.round(emi))}</p>
-                  <p className="text-xs opacity-70 mt-1">for {tenure * 12} months</p>
+                  <p className="text-xs text-teal-200/80 mt-1 font-medium">for {tenure * 12} months</p>
                 </div>
 
                 {/* Breakdown */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { label: "Principal",       value: fmtINR(amount),                      color: "text-gray-900" },
-                    { label: "Total Interest",  value: fmtINR(Math.round(totalInterest)),   color: "text-orange-500" },
-                    { label: "Total Payment",   value: fmtINR(Math.round(totalPayment)),    color: "text-teal-600" },
+                    { label: "Principal",       value: fmtINR(amount),                      color: "text-slate-900" },
+                    { label: "Total Interest",  value: fmtINR(Math.round(totalInterest)),   color: "text-amber-600" },
+                    { label: "Total Payment",   value: fmtINR(Math.round(totalPayment)),    color: "text-teal-700" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-gray-50 rounded-xl p-3 text-center">
-                      <p className={`text-base font-bold ${s.color}`}>{s.value}</p>
-                      <p className="text-[10px] text-gray-400 mt-0.5">{s.label}</p>
+                    <div key={s.label} className="bg-slate-50 border border-slate-200/70 rounded-2xl p-3.5 text-center">
+                      <p className={`text-base font-extrabold ${s.color}`}>{s.value}</p>
+                      <p className="text-[10px] text-slate-400 font-medium mt-0.5">{s.label}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Visual bar */}
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-xs font-semibold text-gray-500 mb-3">Payment Breakup</p>
-                  <div className="h-4 rounded-full overflow-hidden flex">
-                    <div className="bg-blue-500 h-full transition-all duration-500" style={{ width: `${principalPct}%` }} />
-                    <div className="bg-orange-400 h-full transition-all duration-500" style={{ width: `${interestPct}%` }} />
+                <div className="bg-slate-50 border border-slate-200/70 rounded-2xl p-4">
+                  <p className="text-xs font-bold text-slate-500 mb-3">Payment Breakup</p>
+                  <div className="h-4 rounded-full overflow-hidden flex bg-slate-200">
+                    <div className="bg-teal-600 h-full transition-all duration-500" style={{ width: `${principalPct}%` }} />
+                    <div className="bg-amber-500 h-full transition-all duration-500" style={{ width: `${interestPct}%` }} />
                   </div>
-                  <div className="flex gap-4 mt-2 text-xs">
-                    <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block" /> Principal {principalPct}%</span>
-                    <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-orange-400 inline-block" /> Interest {interestPct}%</span>
+                  <div className="flex gap-4 mt-2.5 text-xs font-semibold">
+                    <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-teal-600 inline-block" /> Principal {principalPct}%</span>
+                    <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block" /> Interest {interestPct}%</span>
                   </div>
                 </div>
 
                 <Link to="/contact" className="block">
-                  <Button className={`w-full text-white ${
-                    activeTab === "home" ? "bg-teal-600 hover:bg-teal-700" : activeTab === "business" ? "bg-indigo-600 hover:bg-indigo-700" : activeTab === "personal" ? "bg-purple-600 hover:bg-purple-700" : "bg-cyan-600 hover:bg-cyan-700"
-                  }`}>
+                  <Button className="w-full text-white bg-gradient-to-r from-teal-600 to-emerald-600 font-bold rounded-xl h-12 shadow-lg shadow-teal-600/30">
                     Apply for {loan.label} <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
@@ -450,19 +459,20 @@ export function LoanProducts() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-teal-600 to-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Your Loan Approved?</h2>
-          <p className="text-teal-100 text-lg mb-8 max-w-xl mx-auto">
+      <section className="py-20 bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl lg:text-5xl font-extrabold mb-4 tracking-tight">Ready to Get Your Loan Approved?</h2>
+          <p className="text-teal-100/90 text-base lg:text-xl mb-8 max-w-xl mx-auto font-normal">
             Our loan advisors will guide you through the entire process — from application to disbursal.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50">
-                Talk to a Loan Expert <ArrowRight className="ml-2 w-5 h-5" />
+              <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold rounded-xl shadow-xl shadow-teal-950/50">
+                Talk to a Loan Expert <ArrowRight className="ml-2 w-5 h-5 text-teal-700" />
               </Button>
             </Link>
-            <CheckScoreButton variant="white" className="h-11 text-sm px-6" />
+            <CheckScoreButton variant="white" className="h-11 text-sm px-6 rounded-xl" />
           </div>
         </div>
       </section>

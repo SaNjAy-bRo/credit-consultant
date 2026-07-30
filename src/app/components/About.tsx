@@ -79,13 +79,19 @@ export function About() {
         schema={ORG_SCHEMA}
       />
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              About Credit Consultant
+      <section className="relative overflow-hidden py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-teal-950 text-white">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-blue-600/20 rounded-full filter blur-[90px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-teal-500/20 to-emerald-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+              Who We Are
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+              About <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-200 to-amber-300">Credit Consultant</span>
             </h1>
-            <p className="text-lg lg:text-xl text-teal-100 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-teal-100/90 font-normal leading-relaxed">
               Your trusted partner in credit repair and financial wellness since 2011
             </p>
           </div>
@@ -93,14 +99,15 @@ export function About() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Est. 2011</span>
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-700">
+              <div className="space-y-4 text-slate-700 leading-relaxed text-base">
                 <p>
                   Credit Consultant was founded in 2011 with a simple mission: to help individuals and businesses achieve financial freedom through better credit management.
                 </p>
@@ -115,11 +122,12 @@ export function About() {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="relative">
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-teal-500/20 to-emerald-500/20 filter blur-lg -z-10" />
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1764231467854-db276777da58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBwbGFubmluZyUyMGRvY3VtZW50c3xlbnwxfHx8fDE3NzQ4MDg0Njd8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Our Team"
-                className="rounded-lg shadow-xl w-full h-[500px] object-cover"
+                className="rounded-3xl shadow-xl w-full h-[480px] object-cover border border-slate-100"
               />
             </div>
           </div>
@@ -127,28 +135,28 @@ export function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-slate-50/70 border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="bg-white">
-              <CardContent className="pt-6">
-                <div className="w-14 h-14 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                  <Target className="w-7 h-7 text-teal-600" />
+            <Card className="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 bg-gradient-to-tr from-teal-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-teal-600 shadow-inner">
+                  <Target className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                <p className="text-gray-700">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Mission</h3>
+                <p className="text-slate-600 leading-relaxed text-base">
                   To empower individuals and businesses to achieve financial freedom through expert credit repair, financial education, and personalized consulting services. We are committed to providing transparent, ethical, and effective solutions that make a real difference in our clients' lives.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white">
-              <CardContent className="pt-6">
-                <div className="w-14 h-14 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                  <Eye className="w-7 h-7 text-teal-600" />
+            <Card className="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 bg-gradient-to-tr from-teal-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-teal-600 shadow-inner">
+                  <Eye className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                <p className="text-gray-700">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Vision</h3>
+                <p className="text-slate-600 leading-relaxed text-base">
                   To be India's leading credit repair and financial consulting firm, recognized for our integrity, expertise, and unwavering commitment to client success. We envision a future where every individual has access to the knowledge and resources needed to maintain excellent credit and achieve financial wellness.
                 </p>
               </CardContent>
@@ -158,13 +166,14 @@ export function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Our DNA</span>
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
               Our Core Values
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base lg:text-lg text-slate-600 max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </div>
@@ -173,15 +182,15 @@ export function About() {
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon className="w-8 h-8 text-teal-600" />
+                <Card key={index} className="text-center rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 bg-gradient-to-tr from-teal-500/10 to-emerald-500/10 text-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-inner">
+                      <Icon className="w-8 h-8" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-gray-600">{value.description}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{value.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -191,28 +200,32 @@ export function About() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-slate-50/70 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="relative">
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-teal-500/15 to-emerald-500/15 filter blur-lg -z-10" />
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzc0Nzg2MTQwfDA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Achievements"
-                className="rounded-lg shadow-xl w-full h-[400px] object-cover"
+                className="rounded-3xl shadow-xl w-full h-[420px] object-cover border border-slate-100"
               />
             </div>
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <span className="inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Proven Track Record</span>
+              <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
                 Our Achievements
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-base lg:text-lg text-slate-600 mb-8 leading-relaxed">
                 We're proud of what we've accomplished and the trust our clients place in us.
               </p>
               <div className="space-y-4">
                 {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-700 text-lg">{achievement}</span>
+                  <div key={index} className="flex items-center gap-3.5 bg-white p-3.5 rounded-2xl border border-slate-200/70 shadow-sm">
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-emerald-600" />
+                    </div>
+                    <span className="text-slate-800 font-medium text-base">{achievement}</span>
                   </div>
                 ))}
               </div>
@@ -222,33 +235,35 @@ export function About() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Leadership</span>
+            <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
               Meet Our Team
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base lg:text-lg text-slate-600 max-w-2xl mx-auto">
               Experienced professionals dedicated to your financial success
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-square relative">
+              <Card key={index} className="rounded-3xl border border-slate-200/80 bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <div className="aspect-square relative overflow-hidden">
                   <ImageWithFallback
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <CardContent className="pt-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                <CardContent className="p-7">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-teal-700 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-blue-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600">{member.description}</p>
+                  <p className="text-teal-600 font-semibold text-sm mb-3">{member.role}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed">{member.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -257,18 +272,19 @@ export function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-teal-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      <section className="py-20 bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl lg:text-5xl font-extrabold mb-6 tracking-tight">
             Ready to Work With Us?
           </h2>
-          <p className="text-lg lg:text-xl mb-8 text-teal-100 max-w-2xl mx-auto">
+          <p className="text-base lg:text-xl mb-8 text-teal-100/90 max-w-2xl mx-auto font-normal">
             Join thousands of satisfied clients who have transformed their financial lives with our help
           </p>
           <Link to="/contact">
-            <Button size="lg" className="bg-white text-teal-700 hover:bg-teal-50">
+            <Button size="lg" className="bg-white text-teal-900 hover:bg-teal-50 font-bold rounded-xl shadow-xl shadow-teal-950/50">
               Get Your Free Consultation
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-5 h-5 text-teal-700" />
             </Button>
           </Link>
         </div>

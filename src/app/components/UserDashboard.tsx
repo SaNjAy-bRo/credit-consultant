@@ -107,9 +107,10 @@ export function UserDashboard() {
     setLoading(true);
     try {
       const res = await fetchAllReports({ per_page: 10 });
-      setLiveReports(res.reports);
+      setLiveReports(Array.isArray(res?.reports) ? res.reports : []);
       setIsLive(true);
     } catch {
+      setLiveReports([]);
       setIsLive(false);
     } finally {
       setLoading(false);
@@ -130,10 +131,14 @@ export function UserDashboard() {
   };
 
   // Use live data if available, else fall back to static demo
-  const latestReport = liveReports[0];
-  const displayScore  = latestReport?.score  ?? user.score;
-  const displayRating = latestReport?.rating ?? user.rating;
-  const displayReports = liveReports.length > 0 ? liveReports : reports;
+  const safeLiveReports = Array.isArray(liveReports) ? liveReports : [];
+  const latestReport  = safeLiveReports[0];
+  const displayName   = latestReport?.name ?? user.name;
+  const displayMobile = latestReport?.mobile ? `+91 ${latestReport.mobile}` : user.mobile;
+  const displayPan    = latestReport?.pan ?? user.pan;
+  const displayScore  = latestReport?.score && latestReport.score > 0 ? latestReport.score : user.score;
+  const displayRating = latestReport?.rating && latestReport.rating !== "—" ? latestReport.rating : user.rating;
+  const displayReports = safeLiveReports.length > 0 ? safeLiveReports : reports;
   const improvement = user.score - user.prevScore;
 
   return (
@@ -148,11 +153,11 @@ export function UserDashboard() {
         <div className="p-4 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-sm">
-              {user.name.charAt(0)}
+              {displayName.charAt(0)}
             </div>
-            <div>
-              <p className="text-sm font-semibold text-gray-800 leading-tight">{user.name}</p>
-              <p className="text-xs text-gray-400">{user.mobile}</p>
+            <div className="overflow-hidden">
+              <p className="text-sm font-semibold text-gray-800 leading-tight truncate">{displayName}</p>
+              <p className="text-xs text-gray-400 truncate">{displayMobile}</p>
             </div>
           </div>
         </div>
@@ -200,13 +205,13 @@ export function UserDashboard() {
               {activeTab === "overview" ? "My Credit Overview" : activeTab === "reports" ? "My Reports" : "Score History"}
             </h1>
             <div className="flex items-center gap-2 mt-0.5">
-              {isLive ? (
-                <span className="flex items-center gap-1 text-xs text-green-600 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Live data
+              {safeLiveReports.length > 0 ? (
+                <span className="flex items-center gap-1 text-xs text-emerald-600 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Local Data Tracked ({safeLiveReports.length} {safeLiveReports.length === 1 ? "report" : "reports"})
                 </span>
               ) : (
-                <span className="flex items-center gap-1 text-xs text-yellow-600 font-medium">
-                  <WifiOff className="w-3 h-3" /> Demo data
+                <span className="flex items-center gap-1 text-xs text-slate-500 font-medium">
+                  <Shield className="w-3 h-3 text-teal-600" /> Demo & Local Tracking Ready
                 </span>
               )}
             </div>
@@ -215,9 +220,9 @@ export function UserDashboard() {
             <button className="relative p-2 rounded-xl hover:bg-gray-100">
               <Bell className="w-5 h-5 text-gray-500" />
             </button>
-            <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5">
+            <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5 font-bold">
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
-              {loading ? "Loading…" : "Refresh Score"}
+              {loading ? "Loading…" : "Refresh Reports"}
             </Button>
           </div>
         </header>
@@ -228,7 +233,7 @@ export function UserDashboard() {
           {activeTab === "overview" && (
             <>
               {/* Score hero */}
-              <div className="bg-gradient-to-r from-teal-600 to-teal-900 rounded-3xl p-8 text-white flex flex-col lg:flex-row items-center gap-8">
+              <div className="bg-gradient-to-r from-teal-600 to-teal-900 rounded-3xl p-8 text-white flex flex-col lg:flex-row items-center gap-8 shadow-xl">
                 <ScoreRing score={displayScore} color="#93c5fd" />
                 <div className="flex-1 text-center lg:text-left">
                   <p className="text-teal-200 text-sm mb-1">Your CIBIL Score {latestReport && <span className="text-xs opacity-70">· {latestReport.bureau}</span>}</p>
@@ -239,16 +244,16 @@ export function UserDashboard() {
                     <span className="text-blue-300 text-sm">since Jan 2026</span>
                   </div>
                   <p className="text-teal-200 text-sm mt-3 max-w-md">
-                    Your score is in the Good range. A few improvements in credit utilisation can push you to Excellent.
+                    Your score is in the {displayRating} range. A few improvements in credit utilisation can push you to Excellent.
                   </p>
                 </div>
                 <div className="hidden lg:flex flex-col gap-3 text-sm">
                   {[
                     { label: "Range", value: "300–900" },
                     { label: "Percentile", value: "Top 35%" },
-                    { label: "PAN", value: user.pan },
+                    { label: "PAN", value: displayPan },
                   ].map((m) => (
-                    <div key={m.label} className="bg-white/10 rounded-xl px-4 py-2.5 flex justify-between gap-8">
+                    <div key={m.label} className="bg-white/10 rounded-xl px-4 py-2.5 flex justify-between gap-8 backdrop-blur-md">
                       <span className="text-teal-200">{m.label}</span>
                       <span className="font-bold">{m.value}</span>
                     </div>
