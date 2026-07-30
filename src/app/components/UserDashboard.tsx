@@ -14,7 +14,7 @@ import { Link } from "./routerShim";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 import {
   getActiveSession, clearActiveSession, saveContact, fetchCibilReport,
-  fetchAllReports, downloadEquifaxPdf, type ContactRecord, type CreditReport,
+  fetchAllReports, downloadEquifaxPdf, syncAllStoredContactsToHubSpot, type ContactRecord, type CreditReport,
   generateReportPdf, downloadPdf,
 } from "../api/creditApi";
 import { openRazorpayCheckout } from "../api/razorpay";
@@ -92,6 +92,7 @@ export function UserDashboard() {
 
   useEffect(() => {
     syncSession();
+    syncAllStoredContactsToHubSpot().catch(() => {});
     const handleUpdate = () => syncSession();
     window.addEventListener("cc_session_updated", handleUpdate);
     window.addEventListener("storage", handleUpdate);

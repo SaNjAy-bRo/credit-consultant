@@ -153,6 +153,25 @@ export function saveContact(record: ContactRecord) {
   }
 }
 
+export async function syncAllStoredContactsToHubSpot(): Promise<{ synced: number; total: number }> {
+  if (typeof window === "undefined") return { synced: 0, total: 0 };
+  const contacts = getContacts();
+  let count = 0;
+  for (const contact of contacts) {
+    try {
+      const res = await fetch("/api/hubspot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contact),
+      });
+      if (res.ok) count++;
+    } catch {
+      /* ignore */
+    }
+  }
+  return { synced: count, total: contacts.length };
+}
+
 /* ── OTP (Fast2SMS — replace key in .env) ───────────────────── */
 const OTP_KEY = typeof process !== "undefined" ? (process.env.NEXT_PUBLIC_FAST2SMS_KEY || process.env.VITE_FAST2SMS_KEY || "") : "";
 
