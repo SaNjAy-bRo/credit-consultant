@@ -85,17 +85,65 @@ export interface ContactRecord {
   source: "Check Credit Score";
 }
 
-const CONTACTS_KEY = "cc_contacts";
-
-export function saveContact(c: ContactRecord) {
-  const existing: ContactRecord[] = JSON.parse(localStorage.getItem(CONTACTS_KEY) ?? "[]");
-  const idx = existing.findIndex((e) => e.id === c.id);
-  if (idx >= 0) existing[idx] = c; else existing.unshift(c);
-  localStorage.setItem(CONTACTS_KEY, JSON.stringify(existing));
-}
+const STORAGE_KEY = "cc_contacts";
+const SESSION_KEY = "cc_active_session";
 
 export function getContacts(): ContactRecord[] {
-  return JSON.parse(localStorage.getItem(CONTACTS_KEY) ?? "[]");
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function getActiveSession(): ContactRecord | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as ContactRecord;
+  } catch {
+    return null;
+  }
+}
+
+export function setActiveSession(contact: ContactRecord) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(contact));
+    window.dispatchEvent(new CustomEvent("cc_session_updated", { detail: contact }));
+  } catch {
+    /* ignore */
+  }
+}
+
+export function clearActiveSession() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(SESSION_KEY);
+    window.dispatchEvent(new CustomEvent("cc_session_updated", { detail: null }));
+  } catch {
+    /* ignore */
+  }
+}
+
+export function saveContact(record: ContactRecord) {
+  if (typeof window === "undefined") return;
+  try {
+    const existing = getContacts();
+    const idx = existing.findIndex((c) => c.id === record.id || (c.mobile === record.mobile && c.name === record.name));
+    if (idx >= 0) {
+      existing[idx] = { ...existing[idx], ...record };
+    } else {
+      existing.unshift(record);
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+    setActiveSession(record);
+  } catch {
+    /* ignore */
+  }
 }
 
 /* ── OTP (Fast2SMS — replace key in .env) ───────────────────── */

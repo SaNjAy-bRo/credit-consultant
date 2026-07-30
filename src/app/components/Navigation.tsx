@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "./routerShim";
-import { Menu, X, LayoutDashboard, Calculator, Star, Building2, ShieldCheck, PhoneCall } from "lucide-react";
+import { Menu, X, LayoutDashboard, Calculator, Star, Building2, ShieldCheck, PhoneCall, UserCheck } from "lucide-react";
 import { Button } from "./ui/button";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 import { GetStartedModal } from "./GetStartedModal";
+import { getActiveSession } from "../api/creditApi";
 
 function TopBar() {
   return (
@@ -37,7 +38,19 @@ function TopBar() {
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [showGetStarted, setShowGetStarted] = useState(false);
+  const [activeSession, setActiveSession] = useState<any>(null);
   const location = useLocation();
+
+  useEffect(() => {
+    const check = () => setActiveSession(getActiveSession());
+    check();
+    window.addEventListener("cc_session_updated", check);
+    window.addEventListener("storage", check);
+    return () => {
+      window.removeEventListener("cc_session_updated", check);
+      window.removeEventListener("storage", check);
+    };
+  }, []);
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -86,8 +99,25 @@ export function Navigation() {
                 </Link>
               ))}
               <Link to="/dashboard" title="My Dashboard">
-                <Button variant="outline" size="sm" className="gap-1.5 border-gray-300 text-gray-600 hover:text-blue-600 hover:border-blue-400">
-                  <LayoutDashboard className="w-4 h-4" /> My Dashboard
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={`gap-1.5 font-semibold ${
+                    activeSession
+                      ? "border-emerald-500 text-emerald-700 bg-emerald-50/70 hover:bg-emerald-100"
+                      : "border-gray-300 text-gray-700 hover:text-blue-600 hover:border-blue-400"
+                  }`}
+                >
+                  {activeSession ? (
+                    <>
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <UserCheck className="w-4 h-4 text-emerald-600" /> Dashboard
+                    </>
+                  ) : (
+                    <>
+                      <LayoutDashboard className="w-4 h-4" /> My Dashboard
+                    </>
+                  )}
                 </Button>
               </Link>
               <Button onClick={() => setShowGetStarted(true)} className="bg-gradient-to-r from-blue-600 to-[#31b0d0] hover:from-blue-700 hover:to-[#259ab8] text-white font-bold shadow-md shadow-sky-500/20">
