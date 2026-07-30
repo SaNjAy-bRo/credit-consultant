@@ -29,7 +29,7 @@ const faqCategories = [
       { q: "Is credit repair legal in India?", a: "Yes, completely legal. Credit repair involves disputing inaccurate information, negotiating with lenders, and strategically managing credit behaviour — all permitted under consumer protection laws and RBI guidelines." },
       { q: "Can a settled loan be removed from my CIBIL report?", a: "A settled loan remains on your credit report for 7 years. However, once you pay the full outstanding amount (converting it from 'Settled' to 'Closed'), lenders view it more favourably even before it ages off the report." },
       { q: "What is the difference between 'Settled' and 'Written Off' on a credit report?", a: "'Settled' means you paid less than the full amount owed and the bank agreed to close the account. 'Written Off' means the bank has given up on collecting — it's even more damaging. Both are serious negative marks but can be recovered from with time and professional help." },
-      { q: "Can I dispute a CIBIL entry myself?", a: "Yes. You can file disputes directly at dispute.cibil.com. However, complex disputes — especially involving multiple lenders or settlement entries — benefit from professional handling as the process requires follow-up and documentation." },
+      { q: "Can I dispute a CIBIL entry myself?", a: "Yes. You can file disputes directly through the official credit bureau portal or request guided assistance from Credit Consultant for multi-bureau or complex settlement disputes." },
     ],
   },
   {
@@ -69,7 +69,7 @@ const faqCategories = [
     faqs: [
       { q: "What is FOIR and how does it affect loan eligibility?", a: "FOIR (Fixed Obligation to Income Ratio) is the percentage of your monthly income committed to existing EMIs and fixed obligations. Most banks cap this at 40–55%. If your FOIR is already at 50%, you may not qualify for additional loans regardless of your credit score." },
       { q: "What is the difference between CIBIL, Equifax, Experian and CRIF?", a: "India has four licensed credit bureaus: TransUnion CIBIL, Equifax, Experian and CRIF High Mark. They all collect the same data from lenders but may compute scores slightly differently. All four are equally valid; lenders may check one or more bureaus." },
-      { q: "How do I get my free credit report in India?", a: "Under RBI guidelines, each bureau must provide one free report per year. Get yours from: cibil.com/freecreditreport, equifax.co.in, experian.in, and crifhighmark.com. Additional reports cost ₹399–₹550 per bureau." },
+      { q: "How do I get my free credit report in India?", a: "Under RBI guidelines, each bureau must provide one free report per year. You can check your free report on Credit Consultant or request it directly from the licensed credit bureaus (CIBIL, Equifax, Experian, CRIF High Mark)." },
       { q: "What is the difference between a hard and soft credit inquiry?", a: "A hard inquiry occurs when a lender checks your credit for a loan application — it temporarily reduces your score by 5–10 points. A soft inquiry (checking your own score, pre-approval checks) has zero impact on your score." },
       { q: "Does being a credit card holder with no dues improve my CIBIL score?", a: "Having a credit card and never using it has minimal benefit. Using it for 10–20% of your credit limit and paying the full bill on time each month optimally builds your credit score through consistent positive payment history and low utilisation." },
     ],

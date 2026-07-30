@@ -233,12 +233,12 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step-by-Step Process to Resolve a Write-Off</h2>
         {[
-          { step: "01", title: "Pull Your Full CIBIL Report", desc: "Get your CIBIL report from cibil.com and identify all write-off entries. Note the lender name, account number, outstanding amount, and date of last payment." },
+          { step: "01", title: "Pull Your Full CIBIL Report", desc: "Get your official credit report and identify all write-off entries. Note the lender name, account number, outstanding amount, and date of last payment." },
           { step: "02", title: "Contact the Original Lender", desc: "Reach out to the bank or NBFC that wrote off the loan. Request the exact outstanding amount including principal, interest, and any penalties. Get this in writing." },
           { step: "03", title: "Negotiate the Outstanding Amount", desc: "In some cases, lenders may accept a settlement for less than the full amount. However, paying the full amount and getting a 'Closed' status is far better for your credit than a 'Settled' status." },
           { step: "04", title: "Pay in Full & Obtain NOC", desc: "Pay the complete outstanding amount and obtain a No Objection Certificate (NOC) or No Dues Certificate from the lender. This is critical documentation — keep it permanently." },
           { step: "05", title: "Request CIBIL Status Update", desc: "Ask the lender to update your CIBIL record to 'Post Write-Off Closed' (new RBI 2025 status) or 'Closed'. The lender must do this under RBI guidelines." },
-          { step: "06", title: "Raise a CIBIL Dispute if Needed", desc: "If the lender delays the update beyond 45 days, raise a dispute at dispute.cibil.com with your NOC and payment proof. CIBIL will investigate within 30 days." },
+          { step: "06", title: "Raise a CIBIL Dispute if Needed", desc: "If the lender delays the update beyond 45 days, raise an official dispute with your NOC and payment proof. CIBIL will investigate within 30 days." },
         ].map((s) => (
           <div key={s.step} className="flex gap-4 mt-5">
             <div className="w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">{s.step}</div>
@@ -390,7 +390,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 1: Get Your Free Credit Report & Dispute All Errors</h2>
         <p className="text-gray-700 leading-relaxed">A 2024 study found over 25% of Indian credit reports contain errors. These include accounts that don't belong to you, closed accounts still showing as open, or incorrectly reported missed payments. Disputing and removing these errors is the <em>fastest</em> way to improve your score — improvements can show within 30–45 days.</p>
-        <p className="text-gray-700 leading-relaxed mt-3">Get your free report from all four bureaus (CIBIL, Equifax, Experian, CRIF) and raise disputes at <strong>dispute.cibil.com</strong> for any inaccuracies.</p>
+        <p className="text-gray-700 leading-relaxed mt-3">Get your free report from all four bureaus (CIBIL, Equifax, Experian, CRIF) and raise official bureau disputes for any inaccuracies.</p>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 2: Never Miss an EMI or Credit Card Payment</h2>
         <p className="text-gray-700 leading-relaxed">Payment history is 35% of your CIBIL score. Set up auto-debit NACH mandates for all loan EMIs today. For credit cards, at minimum pay the minimum due by the due date — but aim to clear the full balance to avoid interest at 36–42% per year.</p>
@@ -458,7 +458,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         <p className="text-lg font-medium text-gray-800 leading-relaxed">A strong CIBIL score — ideally 750 or above — unlocks lower loan interest rates, higher credit card limits, and faster approvals across all Indian lenders. Whether your score is 580 or 680, the path to 750+ follows the same set of evidence-backed strategies.</p>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Strategy 1: Regularly Check Your CIBIL Report</h2>
-        <p className="text-gray-700 leading-relaxed">You cannot improve what you don't measure. Get your free annual CIBIL report at <strong>cibil.com</strong> and review it for errors, unrecognised accounts, or outdated entries. Over 25% of Indian credit reports contain at least one error that is dragging the score down unnecessarily.</p>
+        <p className="text-gray-700 leading-relaxed">You cannot improve what you don't measure. Get your free annual credit report and review it for errors, unrecognised accounts, or outdated entries. Over 25% of Indian credit reports contain at least one error that is dragging the score down unnecessarily.</p>
         <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 my-4">
           <p className="text-teal-800 text-sm font-semibold mb-1">Pro Tip</p>
           <p className="text-teal-700 text-sm">Check all four bureaus — CIBIL, Equifax, Experian, and CRIF High Mark — as different lenders report to different bureaus. An error on one may not appear on another.</p>
@@ -476,7 +476,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         </ul>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Strategy 4: Dispute All Inaccurate Entries</h2>
-        <p className="text-gray-700 leading-relaxed">Raise disputes for any account you don't recognise, any closed account showing as open, or any payment marked missed when you paid on time. File disputes at <strong>dispute.cibil.com</strong>. CIBIL must resolve disputes within 30 days under RBI guidelines.</p>
+        <p className="text-gray-700 leading-relaxed">Raise disputes for any account you don't recognise, any closed account showing as open, or any payment marked missed when you paid on time. File disputes directly through official bureau dispute channels. Credit bureaus must resolve disputes within 30 days under RBI guidelines.</p>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Strategy 5: Avoid Multiple Loan Applications</h2>
         <p className="text-gray-700 leading-relaxed">Each loan or credit card application creates a hard inquiry that can drop your score by 5–10 points. Multiple applications in a short window signal desperation for credit. During your repair period, apply only when essential.</p>
@@ -724,12 +724,12 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step-by-Step: Using the CIBIL Chatbox to Dispute an Error</h2>
         <div className="space-y-4 mt-3">
           {[
-            { step: "01", title: "Get Your CIBIL Report", desc: "Log in at cibil.com and download your full credit report. Review every account, payment history entry, and personal detail carefully. Note the exact account number and the nature of each error." },
-            { step: "02", title: "Access the CIBIL Chatbox", desc: "On the CIBIL website, locate the Chatbox (usually in the bottom-right corner or under the 'Help' section). It is available 24/7 and handles dispute initiation, status tracking, and general queries." },
+            { step: "01", title: "Get Your CIBIL Report", desc: "Download your full credit report. Review every account, payment history entry, and personal detail carefully. Note the exact account number and the nature of each error." },
+            { step: "02", title: "Access the CIBIL Chatbox", desc: "On the official portal, locate the Chatbox (usually in the bottom-right corner or under the 'Help' section). It is available 24/7 and handles dispute initiation, status tracking, and general queries." },
             { step: "03", title: "Select 'Dispute a Report Entry'", desc: "In the chatbox menu, select the dispute option. You will be asked to specify whether the dispute relates to an account, a personal detail, an enquiry, or an identity issue. Select the appropriate category." },
             { step: "04", title: "Enter the Dispute Details", desc: "Provide the specific account number or entry you are disputing, the nature of the error, and the correct information. Be precise — vague disputes take longer to resolve." },
             { step: "05", title: "Upload Supporting Documents", desc: "Attach proof: bank statement showing payment, NOC from lender, closure certificate, or any other document that substantiates your claim. Upload clear, legible scans or photos." },
-            { step: "06", title: "Note Your Dispute Reference Number", desc: "After submission, CIBIL will provide a dispute reference number. Save this. Use the chatbox to track the status of your dispute using this number throughout the 30-day resolution period." },
+            { step: "06", title: "Note Your Dispute Reference Number", desc: "After submission, you will receive a dispute reference number. Save this. Use the chatbox to track the status of your dispute using this number throughout the 30-day resolution period." },
             { step: "07", title: "Follow Up with the Lender if Needed", desc: "CIBIL disputes work by contacting the lender who reported the information. Sometimes the lender needs additional documentation from you. Respond promptly to any lender requests to avoid delays." },
           ].map((s) => (
             <div key={s.step} className="flex gap-4 items-start">
@@ -851,7 +851,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
     excerpt: "Rectifying mistakes on your CIBIL report requires diligence and persistence — but it is absolutely achievable. Here is the complete step-by-step process, including escalation options if initial disputes are rejected.",
     relatedSlugs: ["solve-cibil-errors-using-the-cibil-chatbox", "remov-write-off-from-cibil-report", "how-to-improve-cibil-score"],
     faqs: [
-      { q: "How do I know if there is an error on my CIBIL report?", a: "Download your full CIBIL report from cibil.com and review every section: personal details (PAN, DOB, address), account section (check each loan and credit card — status, outstanding balance, payment history), and enquiry section (verify each lender inquiry was actually initiated by you)." },
+      { q: "How do I know if there is an error on my CIBIL report?", a: "Download your full CIBIL report and review every section: personal details (PAN, DOB, address), account section (check each loan and credit card — status, outstanding balance, payment history), and enquiry section (verify each lender inquiry was actually initiated by you)." },
       { q: "What if CIBIL does not correct the error after 30 days?", a: "Escalate to the RBI Ombudsman for Digital and Payment Services, or file a complaint with CIBIL's grievance redressal officer. You can also approach the consumer court if the error has caused demonstrable financial harm. Professional credit advisors can handle this escalation process on your behalf." },
       { q: "Can I remove a genuine negative entry from my CIBIL report?", a: "Genuine negative entries (actual missed payments, settlements, write-offs) cannot be removed — only inaccurate entries can be disputed. However, adding a positive payment track record over 12–24 months will progressively reduce the impact of older negative entries on your score." },
     ],
@@ -860,7 +860,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         <p className="text-lg font-medium text-gray-800 leading-relaxed">Your CIBIL report is a financial identity document. Errors on it — wrong account statuses, incorrect personal details, unrecognised accounts — can cause loan rejections, higher interest rates, and immense frustration. The good news: all errors are correctable through a formal, RBI-governed dispute process.</p>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 1: Obtain Your Full CIBIL Report</h2>
-        <p className="text-gray-700 leading-relaxed">Visit <strong>cibil.com</strong> and purchase your full credit report (the free annual report gives you the score but not the complete account details). Review every section carefully:</p>
+        <p className="text-gray-700 leading-relaxed">Access your full credit report and review every section carefully:</p>
         <ul className="list-disc pl-6 space-y-2 text-gray-700 mt-3">
           <li><strong>Personal Information:</strong> Name, PAN, date of birth, addresses — all must be exact</li>
           <li><strong>Account Information:</strong> Each loan and credit card — check status, outstanding amount, and payment history</li>
@@ -885,7 +885,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 3: Raise a Formal Dispute with CIBIL</h2>
-        <p className="text-gray-700 leading-relaxed">Go to <strong>dispute.cibil.com</strong>. Log in, select the specific entry you want to dispute, choose the nature of the error, and submit with supporting documentation. You will receive a Dispute Reference Number — keep it safe for tracking.</p>
+        <p className="text-gray-700 leading-relaxed">Access the official CIBIL dispute portal. Log in, select the specific entry you want to dispute, choose the nature of the error, and submit with supporting documentation. You will receive a Dispute Reference Number — keep it safe for tracking.</p>
 
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 4: Contact the Lender Directly (Parallel Track)</h2>
         <p className="text-gray-700 leading-relaxed">Do not rely solely on CIBIL's investigation. Simultaneously write to the lender's credit reporting department (most banks have a dedicated email ID for this). Attach all your evidence. Under RBI guidelines, lenders are required to update credit bureau records within 30 days of a confirmed correction.</p>
@@ -893,7 +893,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-3">Step 5: Track and Escalate</h2>
         <div className="space-y-3 mt-3">
           {[
-            { timeline: "Day 1–15", action: "Track dispute status using your reference number on dispute.cibil.com" },
+            { timeline: "Day 1–15", action: "Track dispute status using your reference number on the official dispute portal" },
             { timeline: "Day 15–30", action: "Follow up with the lender if their response to CIBIL is pending" },
             { timeline: "Day 30+", action: "If unresolved, escalate to RBI Ombudsman at cms.rbi.org.in" },
             { timeline: "Day 45+", action: "Consult a professional credit advisor or approach consumer court" },

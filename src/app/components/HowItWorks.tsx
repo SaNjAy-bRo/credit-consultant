@@ -17,7 +17,7 @@ const steps = [
   {
     number: "02", icon: Send, color: "indigo",
     title: "File Bureau Disputes",
-    desc: "We file formal disputes via dispute.cibil.com, Equifax, Experian and CRIF simultaneously, and send lender letters as required by RBI guidelines — covering all four bureaus at once.",
+    desc: "We file formal disputes via official CIBIL, Equifax, Experian and CRIF portals simultaneously, and send lender letters as required by RBI guidelines — covering all four bureaus at once.",
     tag: "Official Disputes",
     cibil: "Matches CIBIL Step 2: Bureau notifies the lender — 30-day window begins",
   },
@@ -79,7 +79,7 @@ interface Props {
 
 export function HowItWorks({
   title = "How It Works",
-  subtitle = "Our CIBIL dispute process follows RBI guidelines exactly — the same methodology used at cibil.com, applied by our certified experts on your behalf.",
+  subtitle = "Our CIBIL dispute process follows RBI guidelines exactly — the official methodology applied by our certified experts on your behalf.",
   cityName,
   showCTA = true,
   bg = "white",

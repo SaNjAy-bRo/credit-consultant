@@ -73,7 +73,7 @@ const spokeData: Record<string, any> = {
       },
       {
         heading: "Step-by-Step: Check Your Free CIBIL Score",
-        body: <><p>1. Go to <strong>cibil.com/freecreditreport</strong> — click "Get Free Credit Report"</p><p className="mt-2">2. Create an account or log in with your PAN and Aadhaar</p><p className="mt-2">3. Verify your identity with an OTP sent to your registered mobile</p><p className="mt-2">4. Your full credit report and score are displayed — download and save the PDF</p><p className="mt-2">5. Repeat at <strong>equifax.co.in</strong>, <strong>experian.in</strong> and <strong>crifhighmark.com</strong></p></>
+        body: <><p>1. Click <strong>Check Credit Score</strong> on Credit Consultant to get your verified report</p><p className="mt-2">2. Enter your basic details, mobile number and PAN</p><p className="mt-2">3. Verify your identity with an OTP sent to your registered mobile</p><p className="mt-2">4. Your full credit report and score are displayed — download and save the report</p><p className="mt-2">5. Cross-verify across all four licensed credit bureaus in India (CIBIL, Equifax, Experian, CRIF High Mark)</p></>
       },
       {
         heading: "What to Look for in Your Credit Report",
@@ -165,11 +165,11 @@ const spokeData: Record<string, any> = {
     intro: "Inaccurate information on your CIBIL report can silently block loan approvals and cost you higher interest rates. The good news: every inaccuracy can be disputed, and bureaus are legally required to resolve disputes within 30 days under RBI guidelines.",
     sections: [
       { heading: "What Can You Dispute with CIBIL?", body: <><p>You can dispute: wrong personal information (name, PAN, DOB, address), accounts that don't belong to you, incorrect payment status (showing missed when paid), closed accounts marked as open, wrong outstanding balances, and duplicate account entries.</p></> },
-      { heading: "Step-by-Step: Filing a CIBIL Dispute", body: <><p>1. Go to <strong>dispute.cibil.com</strong> and log in or create an account</p><p className="mt-2">2. Navigate to "Raise a Dispute" and select the account or field you want to dispute</p><p className="mt-2">3. Select the type of dispute from the dropdown (e.g., "Amount in dispute", "Ownership dispute")</p><p className="mt-2">4. Upload supporting documents (bank statement, payment receipt, NOC from lender)</p><p className="mt-2">5. Submit — you'll receive a dispute reference number by email/SMS</p><p className="mt-2">6. CIBIL notifies the lender within 5–7 days. Lender has 30 days to respond.</p></> },
+      { heading: "Step-by-Step: Filing a CIBIL Dispute", body: <><p>1. Access the official credit bureau dispute portal or let Credit Consultant handle your dispute</p><p className="mt-2">2. Navigate to "Raise a Dispute" and select the account or field you want to dispute</p><p className="mt-2">3. Select the type of dispute from the dropdown (e.g., "Amount in dispute", "Ownership dispute")</p><p className="mt-2">4. Upload supporting documents (bank statement, payment receipt, NOC from lender)</p><p className="mt-2">5. Submit — you'll receive a dispute reference number by email/SMS</p><p className="mt-2">6. The bureau notifies the lender within 5–7 days. Lender has 30 days to respond.</p></> },
       { heading: "What If the Lender Doesn't Respond?", body: <><p>If the lender fails to respond within 30 days, CIBIL is required by RBI to close the dispute in your favour and update your report accordingly. Always keep your dispute reference number and follow up after 30 days if you haven't received resolution.</p></> },
     ],
     keyTakeaways: [
-      "File disputes at dispute.cibil.com — free and available 24/7",
+      "File disputes directly through the official credit bureau portal — free and available 24/7",
       "Upload supporting documents (payment receipts, NOC) to strengthen your dispute",
       "RBI mandates resolution within 30 days — escalate if it takes longer",
       "If lender doesn't respond in 30 days, CIBIL closes dispute in your favour",
