@@ -347,15 +347,12 @@ export function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start w-full max-w-md lg:max-w-none mx-auto lg:mx-0" style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}>
-              <Link to="/contact" className="w-full sm:w-auto">
-                <Button size="lg"
-                  style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
-                  className="w-full sm:w-auto h-14 sm:h-13 rounded-xl text-lg sm:text-base font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white shadow-xl shadow-orange-500/30 border border-white/20 flex items-center justify-center gap-2 px-7">
-                  <span>Get Free Consultation</span>
-                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                </Button>
-              </Link>
-              <Link to="/calculator" className="hidden sm:inline-flex w-full sm:w-auto">
+              <CheckScoreButton
+                variant="primary"
+                style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
+                className="w-full sm:w-auto h-14 sm:h-13 text-lg sm:text-base px-7 justify-center rounded-xl font-bold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20"
+              />
+              <Link to="/calculator" className="w-full sm:w-auto">
                 <button
                   style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
                   className="w-full sm:w-auto h-14 sm:h-13 px-7 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300/80 transition-all flex items-center justify-center gap-2 shadow-md hover:border-slate-400 active:scale-95 text-lg sm:text-base">
@@ -363,11 +360,6 @@ export function Home() {
                   <span>EMI Calculator</span>
                 </button>
               </Link>
-              <CheckScoreButton
-                variant="primary"
-                style={{ fontFamily: "'Google Sans Flex', 'Google Sans', sans-serif" }}
-                className="w-full sm:w-auto h-14 sm:h-13 text-lg sm:text-base px-7 justify-center rounded-xl font-bold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20"
-              />
             </div>
 
             {/* Trust badges — ultra-clean inline feature list */}
@@ -928,9 +920,89 @@ export function Home() {
                 <span className="text-xs font-bold bg-slate-700 text-white px-3 py-1 rounded-full">For Businesses</span>
               </div>
               <h3 className="text-2xl font-black text-slate-900 mb-2">Commercial Credit Information Report Services</h3>
-              <p className="text-slate-600 text-sm mb-5 leading-relaxed">
+              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
                 Business CIBIL CMR repair, commercial credit building, MSME loan advisory and B2B debt management for proprietorships, partnerships, LLPs and private limited companies across India.
               </p>
+
+              {/* Dummy Business Credit Information Report Card Illustration */}
+              <div className="relative mb-5">
+                <div className="absolute -top-1.5 -right-1 z-10">
+                  <span className="text-[9px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-full tracking-wide shadow">SAMPLE</span>
+                </div>
+                <svg
+                  viewBox="0 0 380 220"
+                  className="w-full max-w-sm mx-auto rounded-xl shadow-lg border border-slate-300"
+                  style={{ filter: "drop-shadow(0 4px 16px rgba(15,23,42,0.18))" }}
+                  aria-label="Sample Company Credit Information Report — for illustration only"
+                >
+                  <defs>
+                    <linearGradient id="bizBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f8fafc" />
+                      <stop offset="100%" stopColor="#e2e8f0" />
+                    </linearGradient>
+                    <linearGradient id="bizHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#0f172a" />
+                      <stop offset="100%" stopColor="#1e293b" />
+                    </linearGradient>
+                    <linearGradient id="rankBadge" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#059669" />
+                      <stop offset="100%" stopColor="#10b981" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Card Background */}
+                  <rect width="380" height="220" rx="12" ry="12" fill="url(#bizBg)" />
+
+                  {/* Header Bar */}
+                  <rect width="380" height="42" rx="12" ry="12" fill="url(#bizHeader)" />
+                  <rect y="20" width="380" height="22" fill="url(#bizHeader)" />
+
+                  {/* Company Icon */}
+                  <g transform="translate(16, 10)">
+                    <rect x="2" y="6" width="18" height="14" rx="2" fill="none" stroke="#38bdf8" strokeWidth="1.8" />
+                    <path d="M7 6V4A2 2 0 0 1 9 2H13A2 2 0 0 1 15 4V6" fill="none" stroke="#38bdf8" strokeWidth="1.8" />
+                  </g>
+
+                  {/* Header Text */}
+                  <text x="46" y="18" fontFamily="sans-serif" fontSize="8" fontWeight="bold" fill="#f8fafc" letterSpacing="1.2">COMPANY CREDIT INFORMATION REPORT</text>
+                  <text x="46" y="30" fontFamily="sans-serif" fontSize="7" fill="#94a3b8" letterSpacing="0.6">COMMERCIAL CIBIL &amp; CMR BUREAU REPORT</text>
+
+                  {/* CMR Rank Badge */}
+                  <rect x="250" y="52" width="115" height="34" rx="6" fill="url(#rankBadge)" />
+                  <text x="307.5" y="66" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="bold" fill="#ecfdf5" letterSpacing="0.5">CMR RANK</text>
+                  <text x="307.5" y="79" textAnchor="middle" fontFamily="sans-serif" fontSize="11" fontWeight="extrabold" fill="#ffffff">RANK 1 (LOW RISK)</text>
+
+                  {/* Company Details */}
+                  <text x="18" y="62" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Company / Entity Name</text>
+                  <text x="18" y="75" fontFamily="sans-serif" fontSize="10" fontWeight="bold" fill="#0f172a">ACME ENTERPRISES PVT LTD</text>
+
+                  <text x="18" y="93" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Corporate Identification Number (CIN)</text>
+                  <text x="18" y="105" fontFamily="monospace" fontSize="8.5" fontWeight="bold" fill="#1e293b">U74999DL2020PTC123456</text>
+
+                  <text x="18" y="123" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">GSTIN / Registration</text>
+                  <text x="18" y="135" fontFamily="monospace" fontSize="8.5" fontWeight="bold" fill="#1e293b">07ABCDE1234F1Z5</text>
+
+                  <text x="18" y="153" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Commercial Credit Status</text>
+                  <text x="18" y="166" fontFamily="sans-serif" fontSize="9" fontWeight="bold" fill="#059669">✓ Regular Accounts (Zero Delinquency)</text>
+
+                  {/* Score Indicator Meter Graphic */}
+                  <rect x="250" y="100" width="115" height="68" rx="8" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
+                  <text x="307.5" y="115" textAnchor="middle" fontFamily="sans-serif" fontSize="6.5" fontWeight="bold" fill="#475569">Commercial Score</text>
+                  <text x="307.5" y="138" textAnchor="middle" fontFamily="sans-serif" fontSize="18" fontWeight="black" fill="#0f172a">785</text>
+                  <text x="307.5" y="152" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="bold" fill="#059669">Excellent Profile</text>
+                  <rect x="260" y="158" width="95" height="4" rx="2" fill="#e2e8f0" />
+                  <rect x="260" y="158" width="82" height="4" rx="2" fill="#10b981" />
+
+                  {/* Footer Line */}
+                  <line x1="18" y1="195" x2="362" y2="195" stroke="#cbd5e1" strokeWidth="0.8" />
+                  <text x="18" y="208" fontFamily="sans-serif" fontSize="6.5" fill="#64748b">Verified B2B Commercial Credit Record • Bureau Compliant SLA</text>
+
+                  {/* Watermark */}
+                  <text x="190" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="26" fontWeight="bold" fill="#0f172a" opacity="0.04" transform="rotate(-20, 190, 130)">SAMPLE CCIR</text>
+                </svg>
+                <p className="text-center text-[10px] text-slate-400 mt-1.5 italic">Sample Commercial Credit Information Report (CCIR) — for illustration only</p>
+              </div>
+
               <ul className="space-y-2 mb-6">
                 {["Business CIBIL CMR Rank Repair", "Commercial Loan Advisory", "MSME / Mudra Loan Facilitation", "B2B Debt Management"].map((s) => (
                   <li key={s} className="flex items-center gap-2 text-sm text-slate-700">

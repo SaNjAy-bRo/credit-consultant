@@ -51,22 +51,40 @@ export function About() {
 
   const team = [
     {
-      name: "Vikram Mehta",
-      role: "Founder & CEO",
-      description: "15+ years experience in credit repair and financial consulting",
-      image: "https://images.unsplash.com/photo-1666113604293-d34734339acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGJ1c2luZXNzJTIwY29uc3VsdGFudHxlbnwxfHx8fDE3NzQ4Nzg4OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      name: "Anand B",
+      role: "Operations Head",
+      description: "Oversees daily credit repair operations, bureau SLA tracking, and quality management.",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
     },
     {
-      name: "Anjali Reddy",
-      role: "Head of Credit Analysis",
-      description: "Expert in credit report analysis and dispute resolution",
-      image: "https://images.unsplash.com/photo-1739298061766-e2751d92e9db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZlcnNlJTIwYnVzaW5lc3MlMjB0ZWFtJTIwbWVldGluZ3xlbnwxfHx8fDE3NzQ4MzkxMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      name: "Vivekanand S",
+      role: "Acquisition Team Head",
+      description: "Leads client onboarding, financial growth strategy, and strategic institutional partnerships.",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
     },
     {
-      name: "Suresh Kumar",
-      role: "Financial Planning Director",
-      description: "Specializes in debt management and financial planning",
-      image: "https://images.unsplash.com/photo-1758518730384-be3d205838e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhhbmRzaGFrZSUyMHByb2Zlc3Npb25hbHxlbnwxfHx8fDE3NzQ4NjQ1OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      name: "Nandeesh",
+      role: "Service Team Head",
+      description: "Manages client dispute resolution workflows, bureau communications, and advisory services.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      name: "Kaustubha",
+      role: "Administration Manager",
+      description: "Manages operational compliance, office administration, and client documentation processing.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      name: "Shruti",
+      role: "Administration Head",
+      description: "Heads administrative governance, executive coordination, and service quality control.",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      name: "Harsh M",
+      role: "IT Head",
+      description: "Leads technology infrastructure, secure client portal architecture, and data privacy.",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
     },
   ];
 

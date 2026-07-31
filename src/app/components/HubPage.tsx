@@ -189,12 +189,12 @@ export function HubPage({
             </div>
 
             {/* FAQs */}
-            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+            <div className="py-2">
               <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">Quick Answers</span>
               <h2 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">Frequently Asked Questions</h2>
               <div className="space-y-3.5">
                 {faqs.map((f, i) => (
-                  <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+                  <details key={i} className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden transition-all hover:border-teal-200">
                     <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
                       {f.q}
                       <ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
@@ -214,17 +214,17 @@ export function HubPage({
           {/* Sidebar */}
           <aside className="space-y-6">
             {/* CTA card */}
-            <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 p-7 text-white shadow-xl relative overflow-hidden border border-slate-800">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 rounded-full filter blur-2xl pointer-events-none" />
+            <div className="rounded-3xl bg-gradient-to-br from-[#0A192F] via-[#0F294A] to-[#1E3A8A] p-7 text-white shadow-xl relative overflow-hidden border border-blue-900/60">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full filter blur-2xl pointer-events-none" />
               <h3 className="font-extrabold text-xl mb-2 text-white">Need Expert Help?</h3>
-              <p className="text-teal-100/90 text-xs mb-6 leading-relaxed">Our certified credit advisors offer a free consultation — no obligations, no hidden fees.</p>
+              <p className="text-blue-100/90 text-xs mb-6 leading-relaxed">Our certified credit advisors offer a free consultation — no obligations, no hidden fees.</p>
               <Link to="/contact">
-                <button className="w-full bg-white text-teal-900 font-bold text-xs py-3 rounded-xl hover:bg-teal-50 transition-colors shadow-lg">
+                <button className="w-full bg-white text-blue-950 font-extrabold text-xs py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-lg">
                   Free Consultation →
                 </button>
               </Link>
               <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer">
-                <button className="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-md">
+                <button className="w-full mt-3 bg-[#00BC7D] hover:bg-[#00a36c] text-white font-extrabold text-xs py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-1.5">
                   💬 WhatsApp Us
                 </button>
               </a>

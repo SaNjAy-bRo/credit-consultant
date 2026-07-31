@@ -73,23 +73,66 @@ export function IndividualMainHub() {
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-900 font-bold">Individual Services</span>
           </nav>
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              Individual Credit Services
-            </span>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">
-              Personal CIBIL Score Repair &amp; Advisory Across India
-            </h1>
-            <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">
-              Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.
-            </p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
-                <span>Free Consultation</span>
-                <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
-              </Link>
-              <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                Individual Credit Services
+              </span>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">
+                Personal CIBIL Score Repair &amp; Advisory Across India
+              </h1>
+              <p className="text-base lg:text-lg text-slate-600 mb-8 leading-relaxed font-normal">
+                Expert individual credit repair for salaried professionals, self-employed individuals, NRIs and homebuyers — available in all major cities across North, South, East and West India.
+              </p>
+              <div className="flex flex-wrap gap-4 items-center">
+                <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+                  <span>Free Consultation</span>
+                  <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
+                </Link>
+                <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
+              </div>
+            </div>
+
+            {/* Desktop Visual Card — Fills empty space on right */}
+            <div className="lg:col-span-5 hidden lg:block">
+              <div className="bg-slate-900 text-white rounded-3xl p-7 shadow-2xl border border-slate-800 relative overflow-hidden">
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none" />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-extrabold text-sm">
+                      CIBIL
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium">Target Score</p>
+                      <p className="text-sm font-extrabold text-white">780+ Excellent</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    ● Bureau SLA 30-45 Days
+                  </span>
+                </div>
+
+                <div className="space-y-3.5 mb-6">
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">Average CIBIL Score Gain</span>
+                    <span className="text-xs font-extrabold text-emerald-400">+120 Points</span>
+                  </div>
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">Disputes &amp; Errors Removed</span>
+                    <span className="text-xs font-extrabold text-teal-400 font-mono">50,000+ Reports</span>
+                  </div>
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">Home &amp; Personal Loan Approvals</span>
+                    <span className="text-xs font-extrabold text-sky-400">98% Success Rate</span>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-medium">
+                  <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-emerald-400" /> RBI Compliant Removal</span>
+                  <span>Free Initial Audit</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,54 +184,54 @@ export function IndividualMainHub() {
                 <Link
                   key={rk}
                   to={`/${SERVICE_SLUG}/${rk}`}
-                  className="group relative block p-6 sm:p-7 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+                  className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
                 >
-                  {/* Top Accent Gradient Bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 group-hover:h-2 transition-all" />
+                  <div>
+                    {/* Top Accent Gradient Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 group-hover:h-2 transition-all" />
 
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">
-                        Region Hub
-                      </span>
-                      <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors mt-1">
-                        {r.shortName}
-                      </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">
+                          Region Hub
+                        </span>
+                        <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors mt-1">
+                          {r.shortName}
+                        </h3>
+                      </div>
+                      <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-teal-600 group-hover:to-emerald-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md group-hover:scale-110">
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
                     </div>
-                    <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-teal-600 group-hover:to-emerald-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md group-hover:scale-110">
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+
+                    <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
+                    <p className="text-slate-500 text-xs font-semibold mb-4">
+                      {cities.length} cities · {metros.length} metro hubs
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mb-5 min-h-[52px] content-start">
+                      {metros.slice(0, 3).map((city) => (
+                        <span
+                          key={city.slug}
+                          className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/80 group-hover:bg-teal-50/70 group-hover:text-teal-800 group-hover:border-teal-200 transition-colors"
+                        >
+                          {city.name}
+                        </span>
+                      ))}
+                      {cities.length > 3 && (
+                        <span className="text-[10px] text-slate-500 font-bold self-center">
+                          +{cities.length - 3} more
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
-                  <p className="text-slate-500 text-xs font-semibold mb-4">
-                    {cities.length} cities · {metros.length} metro hubs
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {metros.slice(0, 3).map((city) => (
-                      <span
-                        key={city.slug}
-                        className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/80 group-hover:bg-teal-50/70 group-hover:text-teal-800 group-hover:border-teal-200 transition-colors"
-                      >
-                        {city.name}
-                      </span>
-                    ))}
-                    {cities.length > 3 && (
-                      <span className="text-[10px] text-slate-500 font-bold self-center">
-                        +{cities.length - 3} more
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Explicit Action CTA Button Bar */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-teal-700 group-hover:text-teal-800 transition-colors">
-                      View All Cities →
-                    </span>
-                    <span className="text-xs font-extrabold text-white bg-slate-900 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1">
-                      Explore <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
+                  {/* Clean Full-Width Bottom CTA Button */}
+                  <div className="mt-auto pt-4 border-t border-slate-100">
+                    <div className="w-full bg-slate-900 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 text-white text-xs font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm group-hover:shadow-md">
+                      <span>Explore {r.shortName} Hub</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </Link>
               );
@@ -197,11 +240,14 @@ export function IndividualMainHub() {
         </div>
 
         {/* FAQs */}
-        <div className="max-w-3xl bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">FAQs — Individual Credit Services</h2>
+        <div className="max-w-3xl mx-auto py-4">
+          <div className="text-center mb-8">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Help &amp; Support</span>
+            <h2 className="text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">FAQs — Individual Credit Services</h2>
+          </div>
           <div className="space-y-3.5">
             {INDIVIDUAL_FAQS.map((f, i) => (
-              <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+              <details key={i} className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden transition-all hover:border-teal-200">
                 <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
                   {f.q}<ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
                 </summary>
@@ -582,12 +628,12 @@ export function IndividualCityPage() {
 
           {/* Sidebar */}
           <aside className="space-y-6">
-            <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 p-7 text-white shadow-xl relative overflow-hidden border border-slate-800">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 rounded-full filter blur-2xl pointer-events-none" />
+            <div className="rounded-3xl bg-gradient-to-br from-[#0A192F] via-[#0F294A] to-[#1E3A8A] p-7 text-white shadow-xl relative overflow-hidden border border-blue-900/60">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full filter blur-2xl pointer-events-none" />
               <h3 className="font-extrabold text-xl mb-2 text-white">Get Help in {cityData.name}</h3>
-              <p className="text-teal-100/90 text-xs mb-6 leading-relaxed">Free individual credit consultation — no obligations.</p>
-              <Link to="/contact"><button className="w-full bg-white text-teal-900 font-bold text-xs py-3 rounded-xl hover:bg-teal-50 transition-colors shadow-lg">Book Free Consultation</button></Link>
-              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-md">💬 WhatsApp</button></a>
+              <p className="text-blue-100/90 text-xs mb-6 leading-relaxed">Free individual credit consultation — no obligations.</p>
+              <Link to="/contact"><button className="w-full bg-white text-blue-950 font-extrabold text-xs py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-lg">Book Free Consultation</button></Link>
+              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-3 bg-[#00BC7D] hover:bg-[#00a36c] text-white font-extrabold text-xs py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-1.5">💬 WhatsApp</button></a>
             </div>
 
             {/* Commercial link */}

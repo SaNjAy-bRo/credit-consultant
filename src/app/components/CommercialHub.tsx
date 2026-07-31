@@ -77,19 +77,62 @@ export function CommercialMainHub() {
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-900 font-bold">Commercial Services</span>
           </nav>
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              Commercial Credit Services
-            </span>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">Business Credit Repair &amp; Commercial Loan Advisory Across India</h1>
-            <p className="text-base lg:text-xl text-slate-600 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
-                <span>Free Business Consultation</span>
-                <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
-              </Link>
-              <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <span className="inline-flex items-center gap-2 bg-blue-100/80 border border-blue-200 text-blue-900 text-xs font-extrabold px-3.5 py-1.5 rounded-full mb-6 tracking-widest uppercase shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                Commercial Credit Services
+              </span>
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 leading-tight tracking-tight text-slate-900">Business Credit Repair &amp; Commercial Loan Advisory Across India</h1>
+              <p className="text-base lg:text-lg text-slate-600 mb-8 leading-relaxed font-normal">Business CIBIL CMR improvement, commercial credit building, MSME loan advisory and B2B debt management for proprietors, partnerships, private limited companies and public sector enterprises across all regions of India.</p>
+              <div className="flex flex-wrap gap-4 items-center">
+                <Link to="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 underline underline-offset-4 font-extrabold text-base hover:no-underline transition-all py-2.5 px-1">
+                  <span>Free Business Consultation</span>
+                  <ArrowRight className="w-4.5 h-4.5 text-blue-600" />
+                </Link>
+                <CheckScoreButton variant="primary" className="h-12 px-7 text-sm rounded-xl font-extrabold bg-[#00BC7D] hover:bg-[#00a36c] text-white shadow-xl shadow-[#00BC7D]/30 border border-white/20 transition-all transform hover:-translate-y-0.5" />
+              </div>
+            </div>
+
+            {/* Desktop Visual Card — Fills empty space on right */}
+            <div className="lg:col-span-5 hidden lg:block">
+              <div className="bg-slate-900 text-white rounded-3xl p-7 shadow-2xl border border-slate-800 relative overflow-hidden">
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-teal-500/20 rounded-full blur-2xl pointer-events-none" />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-2xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-teal-400 font-extrabold text-sm">
+                      CMR
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium">Company Rank</p>
+                      <p className="text-sm font-extrabold text-white">Rank 1 (Lowest Risk)</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    ● Verified Bureau SLA
+                  </span>
+                </div>
+
+                <div className="space-y-3.5 mb-6">
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">CMR Dispute Success Rate</span>
+                    <span className="text-xs font-extrabold text-teal-400">98.4% Approved</span>
+                  </div>
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">Commercial Loans Facilitated</span>
+                    <span className="text-xs font-extrabold text-amber-400 font-mono">₹500Cr+</span>
+                  </div>
+                  <div className="bg-slate-800/80 rounded-2xl p-3.5 border border-slate-700/60 flex items-center justify-between">
+                    <span className="text-xs text-slate-300 font-semibold">Partner Bank Network</span>
+                    <span className="text-xs font-extrabold text-sky-400">50+ Lenders</span>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-medium">
+                  <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-teal-400" /> RBI Compliant Process</span>
+                  <span>100% Confidential</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,54 +184,54 @@ export function CommercialMainHub() {
                 <Link
                   key={rk}
                   to={`/${SERVICE_SLUG}/${rk}`}
-                  className="group relative block p-6 sm:p-7 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
+                  className="group relative flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl border border-slate-200/90 bg-white shadow-md hover:shadow-2xl hover:border-teal-400/80 hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer"
                 >
-                  {/* Top Accent Gradient Bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 group-hover:h-2 transition-all" />
+                  <div>
+                    {/* Top Accent Gradient Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-sky-500 group-hover:h-2 transition-all" />
 
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">
-                        Commercial Hub
-                      </span>
-                      <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors mt-1">
-                        {r.shortName}
-                      </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <div>
+                        <span className="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100 uppercase tracking-widest">
+                          Commercial Hub
+                        </span>
+                        <h3 className="font-black text-2xl text-slate-900 group-hover:text-teal-700 transition-colors mt-1">
+                          {r.shortName}
+                        </h3>
+                      </div>
+                      <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-teal-600 group-hover:to-emerald-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md group-hover:scale-110">
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
                     </div>
-                    <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-teal-600 group-hover:to-emerald-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md group-hover:scale-110">
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+
+                    <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
+                    <p className="text-slate-500 text-xs font-semibold mb-4">
+                      {cities.length} cities · {metros.length} metro hubs
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 mb-5 min-h-[52px] content-start">
+                      {metros.slice(0, 3).map((city) => (
+                        <span
+                          key={city.slug}
+                          className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/80 group-hover:bg-teal-50/70 group-hover:text-teal-800 group-hover:border-teal-200 transition-colors"
+                        >
+                          {city.name}
+                        </span>
+                      ))}
+                      {cities.length > 3 && (
+                        <span className="text-[10px] text-slate-500 font-bold self-center">
+                          +{cities.length - 3} more
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  <p className="text-slate-800 font-extrabold text-sm mb-1">{r.name}</p>
-                  <p className="text-slate-500 text-xs font-semibold mb-4">
-                    {cities.length} cities · {metros.length} metro hubs
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {metros.slice(0, 3).map((city) => (
-                      <span
-                        key={city.slug}
-                        className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100/90 text-slate-700 border border-slate-200/80 group-hover:bg-teal-50/70 group-hover:text-teal-800 group-hover:border-teal-200 transition-colors"
-                      >
-                        {city.name}
-                      </span>
-                    ))}
-                    {cities.length > 3 && (
-                      <span className="text-[10px] text-slate-500 font-bold self-center">
-                        +{cities.length - 3} more
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Explicit Action CTA Button Bar */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-teal-700 group-hover:text-teal-800 transition-colors">
-                      View Commercial Hub →
-                    </span>
-                    <span className="text-xs font-extrabold text-white bg-slate-900 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 px-3.5 py-1.5 rounded-xl transition-all shadow-sm flex items-center gap-1">
-                      Explore <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
+                  {/* Clean Full-Width Bottom CTA Button */}
+                  <div className="mt-auto pt-4 border-t border-slate-100">
+                    <div className="w-full bg-slate-900 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 text-white text-xs font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm group-hover:shadow-md">
+                      <span>Explore {r.shortName} Hub</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </Link>
               );
@@ -197,11 +240,14 @@ export function CommercialMainHub() {
         </div>
 
         {/* FAQs */}
-        <div className="max-w-3xl bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">FAQs — Commercial Credit Services</h2>
+        <div className="max-w-3xl mx-auto py-4">
+          <div className="text-center mb-8">
+            <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Help &amp; Support</span>
+            <h2 className="text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">FAQs — Commercial Credit Services</h2>
+          </div>
           <div className="space-y-3.5">
             {COMMERCIAL_FAQS.map((f, i) => (
-              <details key={i} className="group bg-slate-50/80 rounded-2xl border border-slate-200/70 overflow-hidden transition-all">
+              <details key={i} className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden transition-all hover:border-teal-200">
                 <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-bold text-slate-900 text-sm">
                   {f.q}<ChevronRight className="w-4 h-4 text-slate-400 group-open:rotate-90 transition-transform flex-shrink-0 ml-3" />
                 </summary>
@@ -292,49 +338,73 @@ export function CommercialRegionHub() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-slate-50/70 space-y-14">
+        {/* Metro cities */}
         {metros.length > 0 && (
           <div>
             <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Commercial Metros</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metro Cities — {r.shortName}</h2>
-            <p className="text-slate-500 text-xs mb-6 font-medium">Commercial credit services in major metros</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <p className="text-slate-500 text-xs mb-6 font-medium">Tap any city below to access commercial credit services</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {metros.map((city) => (
-                <Link key={city.slug} to={`/${COMMERCIAL_CITY_BASE}/${city.slug}`}
+                <Link
+                  key={city.slug}
+                  to={`/${COMMERCIAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Company Credit Information Report in ${city.name}`}
-                  className="group flex items-center gap-3 p-4.5 rounded-2xl border border-slate-200/80 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm">
-                  <div className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-slate-950/20 group-hover:bg-teal-600 transition-all">
-                    <MapPin className="w-4.5 h-4.5" />
+                  className="group flex items-center justify-between gap-3 p-4 rounded-2xl border border-slate-200/90 bg-white hover:border-teal-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20 group-hover:scale-105 transition-transform">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-extrabold text-slate-900 group-hover:text-teal-700 text-xs transition-colors truncate">
+                        Commercial Credit in {city.name}
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-semibold flex items-center gap-1 mt-0.5">
+                        <span>{city.state}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-300" />
+                        <span className="text-teal-700 font-bold">Open Page →</span>
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-slate-900 group-hover:text-teal-700 text-xs transition-colors truncate">
-                      Company Credit Info in {city.name}
-                    </p>
-                    <p className="text-[10px] text-slate-400 font-semibold">{city.state}</p>
+                  <div className="w-7 h-7 rounded-full bg-teal-50 border border-teal-100 text-teal-700 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 flex items-center justify-center flex-shrink-0 transition-all shadow-xs">
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
-                  <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">Metro</span>
                 </Link>
               ))}
             </div>
           </div>
         )}
 
+        {/* Metropolitan / Industrial Hubs */}
         {metros2.length > 0 && (
           <div>
             <span className="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Industrial Hubs</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mb-1 tracking-tight">Metropolitan Cities — {r.shortName}</h2>
             <p className="text-slate-500 text-xs mb-6 font-medium">Commercial credit services across all major cities</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
               {metros2.map((city) => (
-                <Link key={city.slug} to={`/${COMMERCIAL_CITY_BASE}/${city.slug}`}
+                <Link
+                  key={city.slug}
+                  to={`/${COMMERCIAL_CITY_BASE}/${city.slug}`}
                   aria-label={`Company Credit Information Report in ${city.name}, ${city.state}`}
-                  className="group flex items-center gap-2.5 p-3.5 rounded-2xl border border-slate-200/70 hover:border-teal-300 hover:shadow-lg bg-white transition-all duration-300 shadow-sm">
-                  <MapPin className="w-4 h-4 text-slate-400 group-hover:text-teal-600 flex-shrink-0" />
-                  <div>
-                    <p className="font-bold text-slate-800 group-hover:text-teal-700 text-xs">
-                      Company Credit Info Report in {city.name}
-                    </p>
-                    <p className="text-[10px] text-slate-400 font-medium">{city.state}</p>
+                  className="group flex items-center justify-between gap-2.5 p-3.5 rounded-2xl border border-slate-200/90 hover:border-teal-400 hover:shadow-lg bg-white transition-all duration-300 shadow-sm active:scale-95 cursor-pointer"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-extrabold text-slate-800 group-hover:text-teal-700 text-xs truncate">
+                        Commercial Credit in {city.name}
+                      </p>
+                      <p className="text-[10px] text-slate-500 font-semibold flex items-center gap-1">
+                        <span>{city.state}</span>
+                        <span className="text-teal-700 font-bold">· Tap to View →</span>
+                      </p>
+                    </div>
                   </div>
+                  <ChevronRight className="w-4 h-4 text-teal-600 flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               ))}
             </div>
@@ -497,12 +567,12 @@ export function CommercialCityPage() {
           </div>
 
           <aside className="space-y-6">
-            <div className="rounded-3xl bg-gradient-to-r from-slate-950 via-teal-950 to-slate-900 p-7 text-white shadow-xl relative overflow-hidden border border-slate-800">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/10 rounded-full filter blur-2xl pointer-events-none" />
+            <div className="rounded-3xl bg-gradient-to-br from-[#0A192F] via-[#0F294A] to-[#1E3A8A] p-7 text-white shadow-xl relative overflow-hidden border border-blue-900/60">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full filter blur-2xl pointer-events-none" />
               <h3 className="font-extrabold text-xl mb-2 text-white">Business Enquiry — {cityData.name}</h3>
-              <p className="text-teal-100/90 text-xs mb-6 leading-relaxed">Free commercial credit consultation for your business.</p>
-              <Link to="/contact"><button className="w-full bg-white text-teal-900 font-bold text-xs py-3 rounded-xl hover:bg-teal-50 transition-colors shadow-lg">Book Free Consultation</button></Link>
-              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-md">💬 WhatsApp</button></a>
+              <p className="text-blue-100/90 text-xs mb-6 leading-relaxed">Free commercial credit consultation for your business.</p>
+              <Link to="/contact"><button className="w-full bg-white text-blue-950 font-extrabold text-xs py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-lg">Book Free Consultation</button></Link>
+              <a href="https://wa.me/919538049888" target="_blank" rel="noopener noreferrer"><button className="w-full mt-3 bg-[#00BC7D] hover:bg-[#00a36c] text-white font-extrabold text-xs py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-1.5">💬 WhatsApp</button></a>
             </div>
 
             <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
