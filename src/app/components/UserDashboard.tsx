@@ -15,7 +15,7 @@ import cibilLogo from "@/imports/CIBIL_Logo.png";
 import {
   getActiveSession, clearActiveSession, saveContact, getContacts, fetchCibilReport,
   fetchAllReports, downloadEquifaxPdf, syncAllStoredContactsToHubSpot, type ContactRecord, type CreditReport,
-  generateReportPdf, downloadPdf,
+  generateReportPdf, downloadPdf, downloadInvoicePdf,
 } from "../api/creditApi";
 import { openRazorpayCheckout } from "../api/razorpay";
 import { CheckScoreModal } from "./CheckScoreModal";
@@ -697,7 +697,19 @@ export function UserDashboard() {
                               }
                             }}
                           >
-                            <Download className="w-3.5 h-3.5" /> Download PDF
+                            <Download className="w-3.5 h-3.5" /> Download Equifax PDF
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="gap-1.5 text-xs font-bold h-9 border-blue-200 text-blue-800 hover:bg-blue-50"
+                            onClick={() => {
+                              if (activeSession) {
+                                downloadInvoicePdf(activeSession);
+                              }
+                            }}
+                          >
+                            <FileText className="w-3.5 h-3.5 text-blue-600" /> GST Invoice
                           </Button>
                         </div>
                       </div>

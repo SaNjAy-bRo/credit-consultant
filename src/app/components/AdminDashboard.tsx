@@ -408,7 +408,57 @@ export function AdminDashboard() {
 
           {/* ── ANALYTICS TAB ── */}
           {activeTab === "analytics" && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div className="space-y-6">
+              {/* Monthly Tax & GST Liability Summary */}
+              {(() => {
+                const compCount = reports.filter((r) => r.status === "completed").length;
+                const grossRev  = compCount * 299;
+                const netSales  = compCount * 253.39;
+                const totalGst  = compCount * 45.61;
+                const cgstVal   = totalGst / 2;
+                const sgstVal   = totalGst / 2;
+
+                return (
+                  <Card className="border border-slate-200/90 shadow-md bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 text-white">
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-base font-bold text-white flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-teal-400" /> Current Month Tax & GST Liability Summary
+                        </CardTitle>
+                        <span className="text-xs font-bold px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                          GST Rate: 18% (SAC 998311)
+                        </span>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-2 pb-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2">
+                        <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
+                          <p className="text-[11px] text-slate-300 font-medium">Gross Collections</p>
+                          <p className="text-2xl font-black text-white mt-1">₹ {grossRev.toLocaleString("en-IN")}</p>
+                          <p className="text-[10px] text-slate-400 mt-0.5">{compCount} Completed Payments</p>
+                        </div>
+                        <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
+                          <p className="text-[11px] text-slate-300 font-medium">Net Base Sales</p>
+                          <p className="text-2xl font-black text-teal-300 mt-1">₹ {netSales.toFixed(2)}</p>
+                          <p className="text-[10px] text-slate-400 mt-0.5">Excl. 18% Tax</p>
+                        </div>
+                        <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
+                          <p className="text-[11px] text-slate-300 font-medium">Total Monthly GST</p>
+                          <p className="text-2xl font-black text-amber-300 mt-1">₹ {totalGst.toFixed(2)}</p>
+                          <p className="text-[10px] text-amber-200/80 mt-0.5">18% Payable</p>
+                        </div>
+                        <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
+                          <p className="text-[11px] text-slate-300 font-medium">CGST / SGST Split</p>
+                          <p className="text-xs font-bold text-white mt-1">CGST (9%): ₹ {cgstVal.toFixed(2)}</p>
+                          <p className="text-xs font-bold text-white mt-0.5">SGST (9%): ₹ {sgstVal.toFixed(2)}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })()}
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               <Card className="border-0 shadow-sm">
                 <CardHeader><CardTitle className="text-base">Score Distribution</CardTitle></CardHeader>
                 <CardContent>
@@ -469,7 +519,8 @@ export function AdminDashboard() {
                 </CardContent>
               </Card>
             </div>
-          )}
+          </div>
+        )}
         </main>
       </div>
 

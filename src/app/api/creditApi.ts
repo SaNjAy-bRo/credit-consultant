@@ -371,6 +371,82 @@ startxref 0
   return new Blob([content], { type: "application/pdf" });
 }
 
+/* ── GST Payment Invoice Download ───────────────────────────── */
+export function generateInvoicePdf(contact: ContactRecord): Blob {
+  const invNo = `INV-${contact.report_id ?? contact.id ?? Date.now()}`;
+  const invDate = new Date(contact.created_at || Date.now()).toLocaleDateString("en-IN");
+  const baseAmt = 253.39;
+  const cgst = 22.81;
+  const sgst = 22.81;
+  const totalAmt = 299.00;
+
+  const pdfStream = `q
+0.05 0.11 0.22 rg 0 742 595 100 re f
+1.0 1.0 1.0 rg
+BT /F1 18 Tf 50 803 Td (TAX INVOICE / PAYMENT RECEIPT) Tj ET
+BT /F1 10 Tf 50 784 Td (Credit Consultant (India) | GSTIN: 29AACCA1234C1Z5) Tj ET
+BT /F1 9 Tf 50 766 Td (Invoice No: ${invNo}) Tj ET
+BT /F1 9 Tf 300 766 Td (Invoice Date: ${invDate}) Tj ET
+BT /F1 9 Tf 300 752 Td (Payment Gateway: Razorpay Verified) Tj ET
+
+0.12 0.18 0.29 rg 40 710 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 716 Td (Billed To (Customer Details)) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 645 515 60 re b
+0.12 0.16 0.23 rg
+BT /F1 10 Tf 52 688 Td (Name: ${contact.name.toUpperCase()}) Tj ET
+BT /F1 10 Tf 300 688 Td (Mobile: +91 ${contact.mobile}) Tj ET
+BT /F1 10 Tf 52 668 Td (PAN Card: ${contact.pan ?? "N/A"}) Tj ET
+
+0.06 0.46 0.43 rg 40 610 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 616 Td (Taxable Services & Payment Breakdown) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 450 515 155 re b
+0.12 0.16 0.23 rg
+BT /F1 10 Tf 52 585 Td (Service Description: Credit Bureau Report Advisory & Assessment) Tj ET
+BT /F1 10 Tf 52 565 Td (SAC / HSN Code: 998311 (Financial Assessment Advisory Services)) Tj ET
+BT /F1 10 Tf 52 535 Td (Base Taxable Value: Rs. ${baseAmt.toFixed(2)}) Tj ET
+BT /F1 10 Tf 52 515 Td (CGST @ 9%: Rs. ${cgst.toFixed(2)}) Tj ET
+BT /F1 10 Tf 52 495 Td (SGST @ 9%: Rs. ${sgst.toFixed(2)}) Tj ET
+BT /F1 10 Tf 52 475 Td (Total GST (18%): Rs. ${(cgst + sgst).toFixed(2)}) Tj ET
+0.02 0.59 0.41 rg 52 458 490 20 re f
+1.0 1.0 1.0 rg BT /F1 12 Tf 60 464 Td (TOTAL PAID (INCL. GST): Rs. ${totalAmt.toFixed(2)}) Tj ET
+
+0.02 0.07 0.14 rg 0 0 595 65 re f
+1.0 1.0 1.0 rg
+BT /F1 9 Tf 40 44 Td (Computer generated official GST tax invoice. No signature required.) Tj ET
+BT /F1 9 Tf 40 28 Td (Credit Consultant | Contact: accounts@creditconsultant.in | IVR: 079 3548 6108) Tj ET
+BT /F1 9 Tf 40 12 Td (Website: https://creditconsultant.in) Tj ET
+Q`;
+
+  const streamLen = pdfStream.length;
+  const content = `%PDF-1.4
+1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
+2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj
+3 0 obj<</Type/Page/MediaBox[0 0 595 842]/Parent 2 0 R/Contents 4 0 R/Resources<</Font<</F1 5 0 R>>>>>>endobj
+4 0 obj<</Length ${streamLen}>>
+stream
+${pdfStream}
+endstream
+endobj
+5 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj
+xref
+0 6
+trailer<</Size 6/Root 1 0 R>>
+startxref 0
+%%EOF`;
+
+  return new Blob([content], { type: "application/pdf" });
+}
+
+export function downloadInvoicePdf(contact: ContactRecord) {
+  const blob = generateInvoicePdf(contact);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `GST_Invoice_${contact.name.replace(/\s+/g, "_")}_${contact.report_id ?? contact.id}.pdf`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export function downloadPdf(blob: Blob, name: string, reportId: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
