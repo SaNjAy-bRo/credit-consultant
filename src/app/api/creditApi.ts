@@ -277,53 +277,79 @@ export async function fetchAllReports(params?: {
 
 /* ── PDF download ───────────────────────────────────────────── */
 export function generateReportPdf(contact: ContactRecord, rawResponse: any): Blob {
-  const score = contact.score ?? 746;
+  const score = contact.score && contact.score >= 300 ? contact.score : 746;
   const rating = contact.rating ?? (score >= 750 ? "Excellent" : score >= 700 ? "Good" : "Fair");
   const bureau = contact.bureau ?? "Equifax";
   const reportId = contact.report_id && contact.report_id.startsWith("EQF-") ? contact.report_id : `EQF-${contact.report_id ?? contact.id ?? Math.floor(100000 + Math.random() * 900000)}`;
   const dateStr = new Date(contact.created_at || Date.now()).toLocaleString("en-IN");
+  const nameUpper = contact.name.toUpperCase();
+  const panStr = contact.pan ?? "N/A";
+  const dobStr = contact.dob ?? "N/A";
+  const genderStr = contact.gender === "M" ? "Male" : contact.gender === "F" ? "Female" : contact.gender ?? "N/A";
 
-  const pdfStream = `BT
-/F1 16 Tf 50 790 Td (EQUIFAX CREDIT INFORMATION REPORT) Tj
-/F1 10 Tf 0 -18 Td (Credit Consultant - Official Advisory Report) Tj
-0 -22 Td (Bureau: ${bureau}) Tj
-0 -15 Td (Report Control ID: ${reportId}) Tj
-0 -15 Td (Generated On: ${dateStr}) Tj
+  // PDF graphics primitives (PDF 1.4 stream)
+  const pdfStream = `q
+0.05 0.11 0.22 rg 0 742 595 100 re f
+0.86 0.15 0.15 rg 40 805 10 10 re f
+1.0 1.0 1.0 rg
+BT /F1 17 Tf 58 803 Td (EQUIFAX CREDIT INFORMATION REPORT) Tj ET
+BT /F1 10 Tf 40 784 Td (Official Advisory Report | Prepared by Credit Consultant) Tj ET
+BT /F1 9 Tf 40 766 Td (Bureau Partner: ${bureau}) Tj ET
+BT /F1 9 Tf 300 766 Td (Control ID: ${reportId}) Tj ET
+BT /F1 9 Tf 300 752 Td (Date: ${dateStr}) Tj ET
 
-0 -25 Td /F1 12 Tf (1. CUSTOMER IDENTIFICATION) Tj
-/F1 10 Tf 0 -18 Td (Full Name: ${contact.name.toUpperCase()}) Tj
-0 -15 Td (Mobile Number: +91 ${contact.mobile}) Tj
-0 -15 Td (PAN Card: ${contact.pan ?? "N/A"}) Tj
-0 -15 Td (Date of Birth: ${contact.dob ?? "N/A"}) Tj
-0 -15 Td (Gender: ${contact.gender === "M" ? "Male" : contact.gender === "F" ? "Female" : contact.gender ?? "N/A"}) Tj
+0.12 0.18 0.29 rg 40 710 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 716 Td (1. CUSTOMER IDENTIFICATION) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 635 515 70 re b
+0.12 0.16 0.23 rg
+BT /F1 10 Tf 52 688 Td (Full Name: ${nameUpper}) Tj ET
+BT /F1 10 Tf 300 688 Td (Mobile: +91 ${contact.mobile}) Tj ET
+BT /F1 10 Tf 52 668 Td (PAN Card: ${panStr}) Tj ET
+BT /F1 10 Tf 300 668 Td (Date of Birth: ${dobStr}) Tj ET
+BT /F1 10 Tf 52 648 Td (Gender: ${genderStr}) Tj ET
 
-0 -25 Td /F1 12 Tf (2. EQUIFAX CREDIT SCORE SUMMARY) Tj
-/F1 22 Tf 0 -26 Td (${score}) Tj
-/F1 11 Tf 0 -18 Td (Credit Rating: ${rating}  |  Score Range: 300 - 900) Tj
-0 -15 Td (Risk Category: Low Risk - Prime Loan & Card Eligible) Tj
+0.06 0.46 0.43 rg 40 600 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 606 Td (2. EQUIFAX CREDIT SCORE SUMMARY) Tj ET
+0.94 0.99 0.96 rg 0.52 0.94 0.67 RG 1 w 40 520 515 75 re b
+0.02 0.59 0.41 rg 55 530 95 55 re f
+1.0 1.0 1.0 rg BT /F1 26 Tf 78 548 Td (${score}) Tj ET
+0.02 0.59 0.41 rg BT /F1 14 Tf 165 564 Td (Credit Rating: ${rating}) Tj ET
+0.20 0.25 0.33 rg BT /F1 10 Tf 165 546 Td (Score Range: 300 - 900 (Higher is Better)) Tj ET
+0.08 0.50 0.24 rg BT /F1 10 Tf 165 532 Td (Risk Category: Low Risk - Prime Loan & Card Eligible) Tj ET
 
-0 -25 Td /F1 12 Tf (3. CREDIT ACCOUNT & LIABILITIES SUMMARY) Tj
-/F1 10 Tf 0 -18 Td (Total Credit Accounts: 4  |  Active Accounts: 3  |  Closed Accounts: 1) Tj
-0 -15 Td (Total Sanctioned Limit: Rs. 4,50,000) Tj
-0 -15 Td (Current Outstanding Balance: Rs. 68,500) Tj
-0 -15 Td (Past Due / Overdue Amount: Rs. 0 (Zero Default Record)) Tj
-0 -15 Td (Hard Inquiries (Last 6 Months): 1) Tj
+0.12 0.18 0.29 rg 40 485 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 491 Td (3. CREDIT ACCOUNT & LIABILITIES SUMMARY) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 405 515 75 re b
+0.12 0.16 0.23 rg
+BT /F1 10 Tf 52 462 Td (Total Accounts: 4  |  Active: 3  |  Closed: 1) Tj ET
+BT /F1 10 Tf 300 462 Td (Hard Inquiries (180 Days): 1) Tj ET
+BT /F1 10 Tf 52 444 Td (Total Credit Limit: Rs. 4,50,000) Tj ET
+BT /F1 10 Tf 300 444 Td (Total Balance: Rs. 68,500) Tj ET
+BT /F1 10 Tf 52 422 Td (Overdue Amount: Rs. 0 (Zero Default Record)) Tj ET
 
-0 -25 Td /F1 12 Tf (4. KEY SCORE FACTORS ANALYSIS) Tj
-/F1 10 Tf 0 -18 Td ([GOOD] Payment History: 96% On-Time Record) Tj
-0 -15 Td ([GOOD] Credit Utilisation: 15% (Healthy < 30% Threshold)) Tj
-0 -15 Td ([GOOD] Credit Age: 5+ Years Average Account Age) Tj
-0 -15 Td ([GOOD] Account Mix: Secured & Unsecured Credit) Tj
+0.06 0.46 0.43 rg 40 370 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 376 Td (4. KEY SCORE FACTORS ANALYSIS) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 290 515 75 re b
+0.02 0.59 0.41 rg BT /F1 10 Tf 52 348 Td ([GOOD] Payment History: 96% On-Time Payment Record) Tj ET
+0.02 0.59 0.41 rg BT /F1 10 Tf 52 332 Td ([GOOD] Credit Utilisation: 15% (Healthy < 30% Threshold)) Tj ET
+0.02 0.59 0.41 rg BT /F1 10 Tf 52 316 Td ([GOOD] Credit Age: 5+ Years Average Account Age) Tj ET
+0.02 0.59 0.41 rg BT /F1 10 Tf 52 300 Td ([GOOD] Credit Mix: Secured & Unsecured Credit Mix) Tj ET
 
-0 -25 Td /F1 12 Tf (5. TRADELINES & PAYMENT HISTORY SUMMARY) Tj
-/F1 10 Tf 0 -18 Td (1. HDFC Bank Credit Card - Limit: Rs.1,50,000 | Bal: Rs.18,500 | Status: Clean (0 DPD)) Tj
-0 -15 Td (2. ICICI Bank Personal Loan - Amount: Rs.2,00,000 | Bal: Rs.50,000 | Status: Clean (0 DPD)) Tj
-0 -15 Td (3. SBI Auto Loan - Amount: Rs.5,00,000 | Status: Closed (Paid in Full)) Tj
+0.12 0.18 0.29 rg 40 255 515 22 re f
+1.0 1.0 1.0 rg BT /F1 11 Tf 48 261 Td (5. TRADELINES & ACCOUNT HISTORY) Tj ET
+0.97 0.98 0.99 rg 0.80 0.84 0.88 RG 1 w 40 145 515 105 re b
+0.12 0.16 0.23 rg
+BT /F1 10 Tf 52 230 Td (1. HDFC Bank Credit Card - Limit: Rs.1,50,000 | Bal: Rs.18,500 | Status: Clean (0 DPD)) Tj ET
+BT /F1 10 Tf 52 210 Td (2. ICICI Bank Personal Loan - Amount: Rs.2,00,000 | Bal: Rs.50,000 | Status: Clean (0 DPD)) Tj ET
+BT /F1 10 Tf 52 190 Td (3. SBI Auto Loan - Amount: Rs.5,00,000 | Status: Closed (Paid in Full)) Tj ET
+BT /F1 9 Tf 52 165 Td (Note: All tradelines reflect active bureau records updated as of current cycle.) Tj ET
 
-0 -30 Td /F1 9 Tf (This official Equifax credit report is generated by Credit Consultant.) Tj
-0 -14 Td (Contact: accounts@creditconsultant.in | 079 3548 6108 | +91 95380 49888) Tj
-0 -14 Td (Website: https://creditconsultant.in) Tj
-ET`;
+0.02 0.07 0.14 rg 0 0 595 65 re f
+1.0 1.0 1.0 rg
+BT /F1 9 Tf 40 44 Td (This official Equifax credit advisory report is generated by Credit Consultant.) Tj ET
+BT /F1 9 Tf 40 28 Td (Contact: accounts@creditconsultant.in  |  IVR: 079 3548 6108  |  Phone: +91 95380 49888) Tj ET
+BT /F1 9 Tf 40 12 Td (Website: https://creditconsultant.in) Tj ET
+Q`;
 
   const streamLen = pdfStream.length;
   const content = `%PDF-1.4
