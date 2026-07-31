@@ -77,7 +77,11 @@ export async function openRazorpayCheckout({
   try {
     const rzp = new (window as any).Razorpay(options);
     rzp.on("payment.failed", function (response: any) {
-      console.error("Razorpay payment failed:", response.error);
+      const desc = response?.error?.description || response?.error?.reason || "Payment was not completed";
+      console.error("Razorpay payment failed:", response?.error);
+      if (typeof window !== "undefined" && response?.error?.description) {
+        alert(`Razorpay Gateway Notice: ${response.error.description}`);
+      }
       if (onDismiss) onDismiss();
     });
     rzp.open();
