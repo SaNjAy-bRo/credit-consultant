@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Root } from './components/Root';
 import '../styles/index.css';
