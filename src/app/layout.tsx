@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     type: 'website',
   },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/apple-touch-icon.png',
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Credit Consultant — Live life debt free',
