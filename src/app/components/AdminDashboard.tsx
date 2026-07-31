@@ -50,8 +50,8 @@ const ratingColor: Record<string, string> = {
 
 export function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [loginEmail, setLoginEmail] = useState("deejye@gmail.com");
-  const [loginPassword, setLoginPassword] = useState("Thinkpadl@430");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);

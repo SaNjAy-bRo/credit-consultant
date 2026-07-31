@@ -5,7 +5,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, mobile, pan, dob, gender, score, rating, bureau, report_id, source } = body;
 
-    const hubspotToken = process.env.HUBSPOT_ACCESS_TOKEN || process.env.NEXT_PUBLIC_HUBSPOT_ACCESS_TOKEN;
+    const hubspotToken = process.env.HUBSPOT_ACCESS_TOKEN;
 
     if (!hubspotToken) {
       // Log lead payload when token is pending configuration
