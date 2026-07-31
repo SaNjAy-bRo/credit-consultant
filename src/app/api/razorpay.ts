@@ -41,7 +41,7 @@ export async function openRazorpayCheckout({
   onDismiss,
 }: OpenRazorpayOptions) {
   const isLoaded = await loadRazorpayScript();
-  const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "rzp_live_TJgT6WXz7yXKf0";
+  const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || (typeof process !== "undefined" ? (process.env as any).VITE_RAZORPAY_KEY_ID : "") || process.env.RAZORPAY_KEY_ID || "rzp_live_TJgT6WXz7yXKf0";
 
   if (!isLoaded || !(window as any).Razorpay) {
     // If script is blocked or offline, fallback to simulated payment for development testing
