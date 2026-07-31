@@ -924,83 +924,91 @@ export function Home() {
                 Business CIBIL CMR repair, commercial credit building, MSME loan advisory and B2B debt management for proprietorships, partnerships, LLPs and private limited companies across India.
               </p>
 
-              {/* Dummy Business Credit Information Report Card Illustration */}
+              {/* Dummy Company PAN Card Illustration */}
               <div className="relative mb-5">
                 <div className="absolute -top-1.5 -right-1 z-10">
-                  <span className="text-[9px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-full tracking-wide shadow">SAMPLE</span>
+                  <span className="text-[9px] font-bold bg-orange-500 text-white px-2 py-0.5 rounded-full tracking-wide shadow">SAMPLE</span>
                 </div>
                 <svg
                   viewBox="0 0 380 220"
                   className="w-full max-w-sm mx-auto rounded-xl shadow-lg border border-slate-300"
                   style={{ filter: "drop-shadow(0 4px 16px rgba(15,23,42,0.18))" }}
-                  aria-label="Sample Company Credit Information Report — for illustration only"
+                  aria-label="Sample Company PAN Card — for illustration only"
                 >
+                  {/* Card background */}
                   <defs>
-                    <linearGradient id="bizBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#f8fafc" />
-                      <stop offset="100%" stopColor="#e2e8f0" />
+                    <linearGradient id="compPanBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f0f7ff" />
+                      <stop offset="100%" stopColor="#dbeafe" />
                     </linearGradient>
-                    <linearGradient id="bizHeader" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#0f172a" />
-                      <stop offset="100%" stopColor="#1e293b" />
+                    <linearGradient id="compPanHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#1a3a6b" />
+                      <stop offset="100%" stopColor="#0e4f9e" />
                     </linearGradient>
-                    <linearGradient id="rankBadge" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#059669" />
-                      <stop offset="100%" stopColor="#10b981" />
-                    </linearGradient>
+                    <pattern id="compAshoka" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                      <circle cx="15" cy="15" r="10" fill="none" stroke="#1e40af" strokeWidth="0.3" strokeDasharray="2,2" opacity="0.15" />
+                    </pattern>
                   </defs>
 
-                  {/* Card Background */}
-                  <rect width="380" height="220" rx="12" ry="12" fill="url(#bizBg)" />
+                  {/* Card body */}
+                  <rect width="380" height="220" rx="12" ry="12" fill="url(#compPanBg)" />
+                  <rect width="380" height="220" rx="12" ry="12" fill="url(#compAshoka)" />
 
-                  {/* Header Bar */}
-                  <rect width="380" height="42" rx="12" ry="12" fill="url(#bizHeader)" />
-                  <rect y="20" width="380" height="22" fill="url(#bizHeader)" />
+                  {/* Header bar */}
+                  <rect width="380" height="42" rx="12" ry="12" fill="url(#compPanHeader)" />
+                  <rect y="20" width="380" height="22" fill="url(#compPanHeader)" />
 
-                  {/* Company Icon */}
-                  <g transform="translate(16, 10)">
-                    <rect x="2" y="6" width="18" height="14" rx="2" fill="none" stroke="#38bdf8" strokeWidth="1.8" />
-                    <path d="M7 6V4A2 2 0 0 1 9 2H13A2 2 0 0 1 15 4V6" fill="none" stroke="#38bdf8" strokeWidth="1.8" />
+                  {/* Ashoka Pillar emblem */}
+                  <g transform="translate(18, 6)">
+                    <rect x="10" y="8" width="4" height="18" rx="1" fill="#f59e0b" />
+                    <ellipse cx="12" cy="8" rx="7" ry="4" fill="#f59e0b" />
+                    <ellipse cx="12" cy="4" rx="4" ry="2.5" fill="#fbbf24" />
                   </g>
 
-                  {/* Header Text */}
-                  <text x="46" y="18" fontFamily="sans-serif" fontSize="8" fontWeight="bold" fill="#f8fafc" letterSpacing="1.2">COMPANY CREDIT INFORMATION REPORT</text>
-                  <text x="46" y="30" fontFamily="sans-serif" fontSize="7" fill="#94a3b8" letterSpacing="0.6">COMMERCIAL CIBIL &amp; CMR BUREAU REPORT</text>
+                  {/* Header text */}
+                  <text x="50" y="16" fontFamily="serif" fontSize="8" fontWeight="bold" fill="#fde68a" letterSpacing="1.5">INCOME TAX DEPARTMENT</text>
+                  <text x="50" y="28" fontFamily="serif" fontSize="7" fill="#bfdbfe" letterSpacing="0.8">GOVT. OF INDIA • COMPANY PAN CARD</text>
 
-                  {/* CMR Rank Badge */}
-                  <rect x="250" y="52" width="115" height="34" rx="6" fill="url(#rankBadge)" />
-                  <text x="307.5" y="66" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="bold" fill="#ecfdf5" letterSpacing="0.5">CMR RANK</text>
-                  <text x="307.5" y="79" textAnchor="middle" fontFamily="sans-serif" fontSize="11" fontWeight="extrabold" fill="#ffffff">RANK 1 (LOW RISK)</text>
+                  {/* Permanent Account Number label */}
+                  <text x="18" y="62" fontFamily="serif" fontSize="7.5" fill="#1e3a5f" letterSpacing="0.5">Permanent Account Number (Company)</text>
+                  {/* PAN number (4th character 'C' = Company) */}
+                  <text x="18" y="80" fontFamily="monospace" fontSize="14" fontWeight="bold" fill="#1a3a6b" letterSpacing="3">AACCA1234C</text>
 
-                  {/* Company Details */}
-                  <text x="18" y="62" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Company / Entity Name</text>
-                  <text x="18" y="75" fontFamily="sans-serif" fontSize="10" fontWeight="bold" fill="#0f172a">ACME ENTERPRISES PVT LTD</text>
+                  {/* Official Company Seal / QR Hologram box on right */}
+                  <rect x="285" y="52" width="78" height="82" rx="6" fill="#ffffff" stroke="#93c5fd" strokeWidth="1.2" />
+                  <text x="324" y="66" textAnchor="middle" fontFamily="sans-serif" fontSize="6.5" fontWeight="bold" fill="#1e3a5f">COMPANY SEAL</text>
 
-                  <text x="18" y="93" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Corporate Identification Number (CIN)</text>
-                  <text x="18" y="105" fontFamily="monospace" fontSize="8.5" fontWeight="bold" fill="#1e293b">U74999DL2020PTC123456</text>
+                  {/* Company Logo Icon inside Seal Box */}
+                  <g transform="translate(305, 74)">
+                    <rect x="2" y="6" width="32" height="24" rx="3" fill="#1e40af" opacity="0.1" stroke="#1d4ed8" strokeWidth="1.2" />
+                    <path d="M12 6V3A2 2 0 0 1 14 1H22A2 2 0 0 1 24 3V6" fill="none" stroke="#1d4ed8" strokeWidth="1.2" />
+                    <text x="18" y="21" textAnchor="middle" fontFamily="sans-serif" fontSize="8" fontWeight="bold" fill="#1d4ed8">P.LTD</text>
+                  </g>
+                  <text x="324" y="124" textAnchor="middle" fontFamily="sans-serif" fontSize="6" fontWeight="bold" fill="#059669">✓ REGISTERED</text>
 
-                  <text x="18" y="123" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">GSTIN / Registration</text>
-                  <text x="18" y="135" fontFamily="monospace" fontSize="8.5" fontWeight="bold" fill="#1e293b">07ABCDE1234F1Z5</text>
+                  {/* Company Fields */}
+                  <text x="18" y="105" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">Name of Company / Firm</text>
+                  <text x="18" y="117" fontFamily="serif" fontSize="10" fontWeight="bold" fill="#1e293b">ACME ENTERPRISES PRIVATE LIMITED</text>
 
-                  <text x="18" y="153" fontFamily="sans-serif" fontSize="6.5" fill="#64748b" fontWeight="600">Commercial Credit Status</text>
-                  <text x="18" y="166" fontFamily="sans-serif" fontSize="9" fontWeight="bold" fill="#059669">✓ Regular Accounts (Zero Delinquency)</text>
+                  <text x="18" y="133" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">Date of Incorporation / Formation</text>
+                  <text x="18" y="145" fontFamily="serif" fontSize="9.5" fontWeight="bold" fill="#1e293b">15/08/2015</text>
 
-                  {/* Score Indicator Meter Graphic */}
-                  <rect x="250" y="100" width="115" height="68" rx="8" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1" />
-                  <text x="307.5" y="115" textAnchor="middle" fontFamily="sans-serif" fontSize="6.5" fontWeight="bold" fill="#475569">Commercial Score</text>
-                  <text x="307.5" y="138" textAnchor="middle" fontFamily="sans-serif" fontSize="18" fontWeight="black" fill="#0f172a">785</text>
-                  <text x="307.5" y="152" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="bold" fill="#059669">Excellent Profile</text>
-                  <rect x="260" y="158" width="95" height="4" rx="2" fill="#e2e8f0" />
-                  <rect x="260" y="158" width="82" height="4" rx="2" fill="#10b981" />
+                  <text x="18" y="161" fontFamily="sans-serif" fontSize="6.5" fill="#6b7280">Category of Assessee</text>
+                  <text x="18" y="173" fontFamily="serif" fontSize="9.5" fontWeight="bold" fill="#1e293b">COMPANY / CORPORATE ENTITY</text>
 
-                  {/* Footer Line */}
-                  <line x1="18" y1="195" x2="362" y2="195" stroke="#cbd5e1" strokeWidth="0.8" />
-                  <text x="18" y="208" fontFamily="sans-serif" fontSize="6.5" fill="#64748b">Verified B2B Commercial Credit Record • Bureau Compliant SLA</text>
+                  {/* Signature / Authorized Officer line */}
+                  <line x1="18" y1="198" x2="160" y2="198" stroke="#94a3b8" strokeWidth="0.8" />
+                  <text x="18" y="210" fontFamily="sans-serif" fontSize="6.5" fill="#94a3b8">Authorized Director Signature</text>
+
+                  {/* Hologram */}
+                  <circle cx="262" cy="185" r="22" fill="none" stroke="#7c3aed" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.5" />
+                  <circle cx="262" cy="185" r="14" fill="none" stroke="#0891b2" strokeWidth="0.7" opacity="0.5" />
+                  <text x="262" y="189" textAnchor="middle" fontFamily="sans-serif" fontSize="6" fill="#7c3aed" opacity="0.7">◈ ITD</text>
 
                   {/* Watermark */}
-                  <text x="190" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="26" fontWeight="bold" fill="#0f172a" opacity="0.04" transform="rotate(-20, 190, 130)">SAMPLE CCIR</text>
+                  <text x="190" y="130" textAnchor="middle" fontFamily="sans-serif" fontSize="28" fontWeight="bold" fill="#1e40af" opacity="0.04" transform="rotate(-22, 190, 130)">SAMPLE</text>
                 </svg>
-                <p className="text-center text-[10px] text-slate-400 mt-1.5 italic">Sample Commercial Credit Information Report (CCIR) — for illustration only</p>
+                <p className="text-center text-[10px] text-slate-400 mt-1.5 italic">Sample Company PAN card — for illustration only</p>
               </div>
 
               <ul className="space-y-2 mb-6">
