@@ -157,7 +157,7 @@ export function UserDashboard() {
       mobile: vForm.mobile.trim(),
       amountInRupees: 299,
       onSuccess: async (payment) => {
-        setVStatus(`Payment Verified (${payment.razorpay_payment_id}). Connecting to CIBIL…`);
+        setVStatus(`Payment Verified (${payment.razorpay_payment_id}). Connecting to Equifax…`);
         const contactId = `CS-${Date.now()}`;
         const baseContact: ContactRecord = {
           id: contactId,
@@ -183,7 +183,7 @@ export function UserDashboard() {
 
           const score = raw?.score && raw.score >= 300 ? raw.score : 745;
           const rating = raw?.rating ?? (score >= 750 ? "Excellent" : score >= 700 ? "Good" : "Fair");
-          const bureau = raw?.bureau ?? "CIBIL";
+          const bureau = raw?.bureau ?? "Equifax";
 
           const verifiedContact: ContactRecord = {
             ...baseContact,
@@ -202,7 +202,7 @@ export function UserDashboard() {
             ...baseContact,
             score: mockScore,
             rating: mockScore >= 750 ? "Excellent" : "Good",
-            bureau: "CIBIL",
+            bureau: "Equifax",
           };
           saveContact(verifiedContact);
           setActiveSessionState(verifiedContact);
@@ -386,7 +386,7 @@ export function UserDashboard() {
                     </div>
                   </div>
                   <p className="text-teal-100/90 text-xs leading-relaxed max-w-xl">
-                    To safeguard personal data and generate your CIBIL credit report, complete your identity details and ₹299 payment checkout below.
+                    To safeguard personal data and generate your Equifax credit report, complete your identity details and ₹299 payment checkout below.
                   </p>
                 </div>
 

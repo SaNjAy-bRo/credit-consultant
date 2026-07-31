@@ -181,12 +181,12 @@ export function CheckScoreModal({ open, onClose }: Props) {
             timeoutPromise,
           ]);
 
-          setFetchStatus("Generating CIBIL report…");
+          setFetchStatus("Generating Equifax report…");
           await new Promise(r => setTimeout(r, 600));
 
           const score  = extractScore(raw);
           const rating = extractRating(raw, score);
-          const bureau = raw?.bureau ?? raw?.data?.bureau ?? "CIBIL";
+          const bureau = raw?.bureau ?? raw?.data?.bureau ?? "Equifax";
 
           const updatedContact: ContactRecord = {
             ...baseContact,
@@ -217,7 +217,7 @@ export function CheckScoreModal({ open, onClose }: Props) {
           setResult(raw);
           setStep("result");
         } catch (err: any) {
-          const updatedContact: ContactRecord = { ...baseContact, score: 0, rating: "—", bureau: "CIBIL" };
+          const updatedContact: ContactRecord = { ...baseContact, score: 0, rating: "—", bureau: "Equifax" };
           saveContact(updatedContact);
           setContact(updatedContact);
           setStep("result");
