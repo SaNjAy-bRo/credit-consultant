@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/aklvuy/:path*",
+      "destination": "http://162.241.27.47/aklvuy/:path*"
+    }
+  ]
+}

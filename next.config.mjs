@@ -4,6 +4,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/aklvuy/:path*',
+        destination: 'http://162.241.27.47/aklvuy/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
