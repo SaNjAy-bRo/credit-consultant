@@ -13,7 +13,7 @@ import { Label } from "./ui/label";
 import { Link } from "./routerShim";
 import cibilLogo from "@/imports/CIBIL_Logo.png";
 import {
-  getActiveSession, clearActiveSession, saveContact, fetchCibilReport,
+  getActiveSession, clearActiveSession, saveContact, getContacts, fetchCibilReport,
   fetchAllReports, downloadEquifaxPdf, syncAllStoredContactsToHubSpot, type ContactRecord, type CreditReport,
   generateReportPdf, downloadPdf,
 } from "../api/creditApi";
@@ -87,7 +87,18 @@ export function UserDashboard() {
   // Sync session state from localStorage and listen to session updates
   const syncSession = () => {
     const session = getActiveSession();
-    setActiveSessionState(session);
+    if (session && session.score && session.score > 0) {
+      setActiveSessionState(session);
+    } else {
+      const contacts = getContacts();
+      if (contacts.length > 0) {
+        const latest = contacts.find((c) => (c.score ?? 0) > 0) || contacts[0];
+        if (latest) {
+          saveContact(latest);
+          setActiveSessionState(latest);
+        }
+      }
+    }
   };
 
   useEffect(() => {
@@ -216,6 +227,34 @@ export function UserDashboard() {
         setVStatus("");
       },
     });
+  };
+
+  const handleQuickRelogin = () => {
+    const contacts = getContacts();
+    const mob = vForm.mobile.trim();
+    const pan = vForm.pan.trim().toUpperCase();
+    const name = vForm.name.trim().toLowerCase();
+
+    if (!mob && !pan && !name) {
+      if (contacts.length > 0) {
+        saveContact(contacts[0]);
+        setActiveSessionState(contacts[0]);
+        return;
+      }
+      alert("Please enter your Mobile Number or PAN to retrieve your previous report.");
+      return;
+    }
+
+    const match = contacts.find(
+      (c) => (mob && c.mobile === mob) || (pan && c.pan && c.pan.toUpperCase() === pan) || (name && c.name.toLowerCase().includes(name))
+    );
+
+    if (match) {
+      saveContact(match);
+      setActiveSessionState(match);
+    } else {
+      alert("No previous report found for this Mobile/PAN. You can generate a new report below.");
+    }
   };
 
   const isVerified = Boolean(activeSession && activeSession.score && activeSession.score > 0);
@@ -391,6 +430,25 @@ export function UserDashboard() {
                 </div>
 
                 <CardContent className="p-8">
+                  <div className="bg-blue-50/90 border border-blue-200 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                    <div>
+                      <p className="text-xs font-bold text-blue-950 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Returning User / Already Checked Score?
+                      </p>
+                      <p className="text-[11px] text-blue-700 mt-0.5">
+                        Enter your Mobile Number or PAN below and click to unlock and download your previous report instantly.
+                      </p>
+                    </div>
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={handleQuickRelogin}
+                      className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold whitespace-nowrap shadow-sm self-start sm:self-auto"
+                    >
+                      Retrieve Previous Report
+                    </Button>
+                  </div>
+
                   <form onSubmit={handleInlineVerify} className="space-y-4">
                     <div>
                       <Label className="text-xs font-bold text-slate-700">Full Name (as per PAN)</Label>
