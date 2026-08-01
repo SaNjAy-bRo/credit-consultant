@@ -141,8 +141,6 @@ export function Footer() {
             <Link to="/sitemap" className="hover:text-blue-400 transition-colors">Sitemap</Link>
             <span>·</span>
             <Link to="/dashboard" className="hover:text-blue-400 transition-colors">My Dashboard</Link>
-            <span>·</span>
-            <Link to="/admin" className="hover:text-blue-400 transition-colors">Admin Portal</Link>
           </div>
         </div>
       </div>
