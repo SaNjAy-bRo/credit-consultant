@@ -80,7 +80,7 @@ export function AdminDashboard() {
 
     setTimeout(() => {
       const emailMatch = loginEmail.trim().toLowerCase() === "deejye@gmail.com" || loginEmail.trim().toLowerCase() === "admin";
-      const passMatch = loginPassword === "Thinkpadl@430" || loginPassword === "admin123";
+      const passMatch = loginPassword === (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123");
 
       if (emailMatch && passMatch) {
         localStorage.setItem("admin_auth", "true");
@@ -223,8 +223,8 @@ export function AdminDashboard() {
           </form>
 
           <div className="mt-6 pt-4 border-t border-slate-800 text-center">
-            <p className="text-[11px] text-slate-400 font-mono">
-              Credentials: <span className="text-blue-400 font-bold">deejye@gmail.com</span> / <span className="text-blue-400 font-bold">Thinkpadl@430</span>
+            <p className="text-[11px] text-slate-400">
+              Authorized RS Fintech administrator access only.
             </p>
           </div>
         </div>
