@@ -282,7 +282,7 @@ export function UserDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50/80 flex flex-col lg:flex-row w-full relative">
+    <div className="min-h-screen bg-slate-50 flex flex-col lg:flex-row w-full">
       {/* ── Mobile Top Tab Bar (< lg screens) ── */}
       <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-xs">
         <div className="flex items-center justify-between gap-3 mb-2.5">
@@ -333,7 +333,7 @@ export function UserDashboard() {
       </div>
 
       {/* ── Desktop Sidebar (>= lg screens) ── */}
-      <aside className="hidden lg:flex w-64 bg-white border-r border-slate-200/90 flex-col sticky top-[92px] h-[calc(100vh-92px)] z-30 shrink-0 shadow-xs">
+      <aside className="hidden lg:flex w-64 bg-white border-r border-slate-200 flex-col shrink-0 min-h-[calc(100vh-6rem)]">
         <div className="p-5 border-b border-slate-100">
           <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-8 w-auto" />
           <p className="text-slate-400 text-xs mt-1.5 font-medium">User Credit Portal</p>
@@ -342,7 +342,7 @@ export function UserDashboard() {
         {isVerified ? (
           <div className="p-4 border-b border-slate-100 bg-teal-50/50">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-600 to-emerald-700 flex items-center justify-center text-white font-bold text-sm shadow-md">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-600 to-emerald-700 flex items-center justify-center text-white font-bold text-sm shadow-md shrink-0">
                 {displayName.charAt(0)}
               </div>
               <div className="overflow-hidden">
@@ -365,7 +365,7 @@ export function UserDashboard() {
           </div>
         )}
 
-        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 px-3 py-4 space-y-1">
           {[
             { label: "Overview",   icon: TrendingUp, tab: "overview" },
             { label: "My Reports", icon: FileText,   tab: "reports"  },
@@ -410,52 +410,51 @@ export function UserDashboard() {
       </aside>
 
       {/* ── Main Canvas ── */}
-      <div className="flex-1 min-w-0 flex flex-col min-h-screen">
-        {/* Topbar */}
-        <header className="bg-white border-b border-slate-200/90 px-4 sm:px-8 py-4 flex items-center justify-between sticky top-[92px] z-20 shadow-xs">
-          <div>
-            <h1 className="text-lg sm:text-xl font-bold text-slate-900">
-              {!isVerified
-                ? "Identity Verification Required"
-                : activeTab === "overview"
-                ? "My Credit Overview"
-                : activeTab === "reports"
-                ? "My Reports"
-                : "Score History"}
-            </h1>
-            <div className="flex items-center gap-2 mt-0.5">
+      <div className="flex-1 min-w-0 flex flex-col">
+        <main className="p-4 sm:p-6 lg:p-8 space-y-6 flex-1">
+          {/* Action Header Row inside Main Canvas */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs">
+            <div>
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                {!isVerified
+                  ? "Identity Verification Required"
+                  : activeTab === "overview"
+                  ? "My Credit Overview"
+                  : activeTab === "reports"
+                  ? "My Reports"
+                  : "Score History"}
+              </h1>
+              <div className="flex items-center gap-2 mt-1">
+                {isVerified ? (
+                  <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Verified Session · {displayName} ({displayPan})
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1 text-xs text-amber-700 font-semibold">
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-600" /> Enter PAN & Mobile to Unlock Dashboard
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5 self-stretch sm:self-auto justify-end">
               {isVerified ? (
-                <span className="flex items-center gap-1.5 text-xs text-emerald-600 font-bold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Verified Session · {displayName} ({displayPan})
-                </span>
+                <>
+                  <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5 font-bold text-xs sm:text-sm">
+                    <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
+                    <span>{loading ? "Refreshing…" : "Refresh Report"}</span>
+                  </Button>
+                  <Button size="sm" variant="outline" onClick={handleLogout} className="text-red-600 border-red-200 hover:bg-red-50 font-semibold text-xs sm:text-sm">
+                    Reset
+                  </Button>
+                </>
               ) : (
-                <span className="flex items-center gap-1 text-xs text-amber-700 font-semibold">
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-600" /> Enter PAN & Mobile to Unlock Dashboard
-                </span>
+                <Button size="sm" onClick={() => setShowCheckModal(true)} className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold gap-1.5 shadow-md text-xs sm:text-sm">
+                  <Sparkles className="w-3.5 h-3.5" /> Check Score Modal
+                </Button>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3">
-            {isVerified ? (
-              <>
-                <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5 font-bold text-xs sm:text-sm">
-                  <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
-                  <span className="hidden sm:inline">{loading ? "Refreshing…" : "Refresh Report"}</span>
-                  <span className="sm:hidden">{loading ? "…" : "Refresh"}</span>
-                </Button>
-                <Button size="sm" variant="outline" onClick={handleLogout} className="text-red-600 border-red-200 hover:bg-red-50 font-semibold text-xs sm:text-sm">
-                  Reset
-                </Button>
-              </>
-            ) : (
-              <Button size="sm" onClick={() => setShowCheckModal(true)} className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold gap-1.5 shadow-md text-xs sm:text-sm">
-                <Sparkles className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Check Score Modal</span><span className="sm:hidden">Check Score</span>
-              </Button>
-            )}
-          </div>
-        </header>
-
-        <main className="px-4 sm:px-8 py-6 sm:py-8 space-y-6 flex-1">
 
           {/* ═══════════════════════════════════════════════════════════
              UNVERIFIED STATE — LOCK SCREEN / IN-PAGE VERIFICATION FORM
