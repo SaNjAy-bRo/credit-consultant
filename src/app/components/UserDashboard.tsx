@@ -282,30 +282,79 @@ export function UserDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* ── Sidebar ── */}
-      <aside className="w-60 bg-white border-r border-gray-200 flex flex-col fixed top-0 left-0 h-full z-30 shadow-sm">
-        <div className="p-5 border-b border-gray-100">
+    <div className="min-h-screen bg-slate-50/80 flex flex-col lg:flex-row w-full relative">
+      {/* ── Mobile Top Tab Bar (< lg screens) ── */}
+      <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-xs">
+        <div className="flex items-center justify-between gap-3 mb-2.5">
+          <div className="flex items-center gap-2">
+            <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-7 w-auto" />
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
+              User Portal
+            </span>
+          </div>
+          {isVerified ? (
+            <span className="text-xs font-bold text-emerald-700 flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> {displayName}
+            </span>
+          ) : (
+            <span className="text-[11px] font-bold text-amber-800 flex items-center gap-1 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+              <Lock className="w-3 h-3 text-amber-600" /> Locked
+            </span>
+          )}
+        </div>
+
+        {/* Mobile Tab Navigation */}
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          {[
+            { label: "Overview", icon: TrendingUp, tab: "overview" },
+            { label: "Reports",  icon: FileText,   tab: "reports"  },
+            { label: "History",  icon: Star,       tab: "history"  },
+          ].map((item) => {
+            const Icon = item.icon;
+            const active = activeTab === item.tab;
+            return (
+              <button
+                key={item.tab}
+                disabled={!isVerified}
+                onClick={() => setActiveTab(item.tab as any)}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                  !isVerified
+                    ? "opacity-40 cursor-not-allowed text-slate-400"
+                    : active
+                    ? "bg-teal-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" /> {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Desktop Sidebar (>= lg screens) ── */}
+      <aside className="hidden lg:flex w-64 bg-white border-r border-slate-200/90 flex-col sticky top-[92px] h-[calc(100vh-92px)] z-30 shrink-0 shadow-xs">
+        <div className="p-5 border-b border-slate-100">
           <img src={cibilLogo.src ?? (cibilLogo as any)} alt="Credit Consultant" className="h-8 w-auto" />
-          <p className="text-gray-400 text-xs mt-2">User Credit Portal</p>
+          <p className="text-slate-400 text-xs mt-1.5 font-medium">User Credit Portal</p>
         </div>
 
         {isVerified ? (
-          <div className="p-4 border-b border-gray-100 bg-teal-50/50">
+          <div className="p-4 border-b border-slate-100 bg-teal-50/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-600 to-emerald-700 flex items-center justify-center text-white font-bold text-sm shadow-md">
                 {displayName.charAt(0)}
               </div>
               <div className="overflow-hidden">
-                <p className="text-sm font-bold text-gray-900 leading-tight truncate">{displayName}</p>
+                <p className="text-sm font-bold text-slate-900 leading-tight truncate">{displayName}</p>
                 <p className="text-xs text-teal-700 font-medium truncate">{displayMobile}</p>
               </div>
             </div>
           </div>
         ) : (
-          <div className="p-4 border-b border-gray-100 bg-amber-50/60">
+          <div className="p-4 border-b border-slate-100 bg-amber-50/60">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs shrink-0">
                 <Lock className="w-4 h-4" />
               </div>
               <div>
@@ -316,7 +365,7 @@ export function UserDashboard() {
           </div>
         )}
 
-        <nav className="flex-1 px-3 py-4 space-y-1">
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {[
             { label: "Overview",   icon: TrendingUp, tab: "overview" },
             { label: "My Reports", icon: FileText,   tab: "reports"  },
@@ -329,12 +378,12 @@ export function UserDashboard() {
                 key={item.tab}
                 disabled={!isVerified}
                 onClick={() => setActiveTab(item.tab as any)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all ${
                   !isVerified
-                    ? "opacity-50 cursor-not-allowed text-gray-400"
+                    ? "opacity-50 cursor-not-allowed text-slate-400"
                     : active
                     ? "bg-teal-600 text-white shadow-sm"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                 }`}
               >
                 <Icon className="w-4 h-4" /> {item.label}
@@ -343,16 +392,16 @@ export function UserDashboard() {
           })}
         </nav>
 
-        <div className="p-3 border-t border-gray-100 space-y-1">
+        <div className="p-3 border-t border-slate-100 space-y-1">
           <Link to="/">
-            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-100 transition-all font-medium">
+            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:bg-slate-100 transition-all font-semibold">
               <Home className="w-4 h-4" /> Back to Site
             </button>
           </Link>
           {isVerified && (
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-600 hover:bg-red-50 transition-all font-medium"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-red-600 hover:bg-red-50 transition-all font-semibold"
             >
               <LogOut className="w-4 h-4" /> Switch / Reset
             </button>
@@ -361,11 +410,11 @@ export function UserDashboard() {
       </aside>
 
       {/* ── Main Canvas ── */}
-      <div className="ml-60 flex-1">
+      <div className="flex-1 min-w-0 flex flex-col min-h-screen">
         {/* Topbar */}
-        <header className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+        <header className="bg-white border-b border-slate-200/90 px-4 sm:px-8 py-4 flex items-center justify-between sticky top-[92px] z-20 shadow-xs">
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
+            <h1 className="text-lg sm:text-xl font-bold text-slate-900">
               {!isVerified
                 ? "Identity Verification Required"
                 : activeTab === "overview"
@@ -386,26 +435,27 @@ export function UserDashboard() {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {isVerified ? (
               <>
-                <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5 font-bold">
+                <Button size="sm" onClick={loadReports} disabled={loading} className="bg-teal-600 hover:bg-teal-700 gap-1.5 font-bold text-xs sm:text-sm">
                   <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
-                  {loading ? "Refreshing…" : "Refresh Report"}
+                  <span className="hidden sm:inline">{loading ? "Refreshing…" : "Refresh Report"}</span>
+                  <span className="sm:hidden">{loading ? "…" : "Refresh"}</span>
                 </Button>
-                <Button size="sm" variant="outline" onClick={handleLogout} className="text-red-600 border-red-200 hover:bg-red-50 font-semibold">
+                <Button size="sm" variant="outline" onClick={handleLogout} className="text-red-600 border-red-200 hover:bg-red-50 font-semibold text-xs sm:text-sm">
                   Reset
                 </Button>
               </>
             ) : (
-              <Button size="sm" onClick={() => setShowCheckModal(true)} className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold gap-1.5 shadow-md">
-                <Sparkles className="w-3.5 h-3.5" /> Check Score Modal
+              <Button size="sm" onClick={() => setShowCheckModal(true)} className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold gap-1.5 shadow-md text-xs sm:text-sm">
+                <Sparkles className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Check Score Modal</span><span className="sm:hidden">Check Score</span>
               </Button>
             )}
           </div>
         </header>
 
-        <main className="px-8 py-8 space-y-6">
+        <main className="px-4 sm:px-8 py-6 sm:py-8 space-y-6 flex-1">
 
           {/* ═══════════════════════════════════════════════════════════
              UNVERIFIED STATE — LOCK SCREEN / IN-PAGE VERIFICATION FORM
