@@ -28,7 +28,7 @@ function ScoreRing({ score, color }: { score: number; color: string }) {
   return (
     <div className="relative w-36 h-36 flex items-center justify-center">
       <svg className="absolute -rotate-90" width="144" height="144" viewBox="0 0 144 144">
-        <circle cx="72" cy="72" r={r} fill="none" stroke="#e5e7eb" strokeWidth="10" />
+        <circle cx="72" cy="72" r={r} fill="none" stroke="#1e293b" strokeWidth="10" />
         <circle
           cx="72" cy="72" r={r} fill="none" stroke={color} strokeWidth="10"
           strokeDasharray={`${circ * pct} ${circ}`} strokeLinecap="round"
@@ -36,8 +36,8 @@ function ScoreRing({ score, color }: { score: number; color: string }) {
         />
       </svg>
       <div className="text-center z-10">
-        <div className="text-3xl font-black text-gray-900">{score > 0 ? score : "---"}</div>
-        <div className="text-[10px] text-gray-400 uppercase tracking-widest">out of 900</div>
+        <div className="text-4xl font-black text-white drop-shadow-md">{score > 0 ? score : "---"}</div>
+        <div className="text-[10px] text-teal-300 font-bold uppercase tracking-widest mt-0.5">out of 900</div>
       </div>
     </div>
   );
