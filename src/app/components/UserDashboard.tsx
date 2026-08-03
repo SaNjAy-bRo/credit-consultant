@@ -622,29 +622,34 @@ export function UserDashboard() {
               {activeTab === "overview" && (
                 <>
                   {/* Score hero */}
-                  <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-teal-950 rounded-3xl p-8 text-white flex flex-col lg:flex-row items-center gap-8 shadow-xl relative overflow-hidden border border-slate-800">
+                  <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-teal-950 rounded-3xl p-6 sm:p-8 text-white flex flex-col lg:flex-row items-center gap-6 sm:gap-8 shadow-xl relative overflow-hidden border border-slate-800">
                     <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 rounded-full filter blur-3xl pointer-events-none" />
                     <ScoreRing score={displayScore} color="#34d399" />
                     <div className="flex-1 text-center lg:text-left z-10">
-                      <p className="text-teal-200 text-xs font-bold uppercase tracking-widest mb-1">
-                        Live Bureau Score · {displayBureau}
-                      </p>
-                      <h2 className="text-4xl font-black mb-1">{displayScore} — {displayRating}</h2>
+                      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-1.5">
+                        <span className="px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[10px] font-bold uppercase tracking-wider">
+                          Official {displayBureau} Report
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
+                          Control ID: EQF-{activeSession?.id ? activeSession.id.slice(-6) : "884209"}
+                        </span>
+                      </div>
+                      <h2 className="text-3xl sm:text-4xl font-black mb-1 tracking-tight">{displayScore} — {displayRating}</h2>
                       <div className="flex items-center gap-2 justify-center lg:justify-start mt-2">
                         <ArrowUpRight className="w-5 h-5 text-emerald-400" />
                         <span className="text-emerald-400 font-bold">+124 pts potential</span>
                         <span className="text-slate-400 text-xs">with repair plan</span>
                       </div>
-                      <p className="text-slate-300 text-xs mt-3 max-w-md leading-relaxed font-normal">
-                        Your credit profile for <strong>{displayName}</strong> is in the {displayRating} bracket. A structured 60-day dispute resolution plan can elevate your profile to Tier 1 lender eligibility.
+                      <p className="text-slate-300 text-xs sm:text-sm mt-3 max-w-md leading-relaxed font-normal">
+                        Your credit profile for <strong className="text-white font-bold">{displayName}</strong> is in the {displayRating} bracket. A structured 60-day dispute resolution plan can elevate your profile to Tier 1 lender eligibility.
                       </p>
                     </div>
-                    <div className="hidden lg:flex flex-col gap-2.5 text-xs z-10 min-w-[200px]">
+                    <div className="hidden lg:flex flex-col gap-2.5 text-xs z-10 min-w-[220px]">
                       {[
                         { label: "Customer", value: displayName },
-                        { label: "PAN", value: displayPan },
+                        { label: "PAN Card", value: displayPan },
                         { label: "Mobile", value: displayMobile },
-                        { label: "Bureau SLA", value: "30 Days" },
+                        { label: "Bureau SLA", value: "30 Days SLA" },
                       ].map((m) => (
                         <div key={m.label} className="bg-white/10 rounded-xl px-4 py-2.5 flex justify-between gap-6 backdrop-blur-md border border-white/10">
                           <span className="text-slate-300 font-medium">{m.label}</span>
@@ -668,12 +673,12 @@ export function UserDashboard() {
                         indigo: "bg-indigo-50 text-indigo-600", yellow: "bg-yellow-50 text-yellow-600",
                       };
                       return (
-                        <Card key={s.label} className="border border-slate-200/80 shadow-sm">
+                        <Card key={s.label} className="border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
                           <CardContent className="pt-5 pb-5">
                             <div className="flex items-center justify-between">
                               <div>
-                                <p className="text-xs text-gray-400 mb-1">{s.label}</p>
-                                <p className="text-xl font-black text-gray-900">{s.value}</p>
+                                <p className="text-xs text-slate-400 mb-1 font-medium">{s.label}</p>
+                                <p className="text-xl font-black text-slate-900">{s.value}</p>
                               </div>
                               <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${colMap[s.color]}`}>
                                 <Icon className="w-5 h-5" />
@@ -685,27 +690,68 @@ export function UserDashboard() {
                     })}
                   </div>
 
-                  {/* Factors */}
-                  <Card className="border border-slate-200/80 shadow-sm">
-                    <CardHeader>
-                      <CardTitle className="text-base font-bold text-slate-900">Score Factors & Analysis</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      {factors.map((f) => (
-                        <FactorBar key={f.label} {...f} />
-                      ))}
-                    </CardContent>
-                  </Card>
+                  {/* Factors & Actionable Dispute Plan */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Factors */}
+                    <Card className="border border-slate-200/80 shadow-xs">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
+                          <TrendingUp className="w-5 h-5 text-teal-600" /> Score Factors & Analysis
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {factors.map((f) => (
+                          <FactorBar key={f.label} {...f} />
+                        ))}
+                      </CardContent>
+                    </Card>
+
+                    {/* Recommended Advisory Actions */}
+                    <Card className="border border-slate-200/80 shadow-xs bg-gradient-to-br from-white to-slate-50">
+                      <CardHeader className="pb-3">
+                        <CardTitle className="text-base font-bold text-slate-900 flex items-center gap-2">
+                          <ShieldCheck className="w-5 h-5 text-emerald-600" /> Recommended Dispute Actions
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        {[
+                          { title: "Delinquency Dispute Letter", desc: "Submit formal dispute for late payment marks.", target: "+45 pts" },
+                          { title: "Card Utilisation Audit", desc: "Maintain total card usage below 30% limit.", target: "+35 pts" },
+                          { title: "Hard Inquiry Clean-up", desc: "Challenge unauthorized bank loan queries.", target: "+25 pts" },
+                        ].map((act) => (
+                          <div key={act.title} className="p-3.5 bg-white rounded-xl border border-slate-200/80 flex items-center justify-between gap-3 shadow-2xs hover:border-teal-300 transition-all">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <p className="text-xs font-bold text-slate-900">{act.title}</p>
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                                  {act.target}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-500 mt-0.5">{act.desc}</p>
+                            </div>
+                            <a
+                              href="https://wa.me/919538049888?text=Hi%2C%20I%20want%20to%20start%20my%20dispute%20resolution%20plan"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs font-bold text-teal-700 hover:text-teal-800 whitespace-nowrap"
+                            >
+                              Request →
+                            </a>
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  </div>
 
                   {/* CTA */}
-                  <div className="bg-gradient-to-r from-teal-900 to-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg border border-slate-800">
+                  <div className="bg-gradient-to-r from-teal-950 via-slate-900 to-teal-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg border border-slate-800">
                     <div>
                       <p className="font-bold text-white mb-1">Want to improve your CIBIL score faster?</p>
                       <p className="text-xs text-teal-200/90">Talk to a certified Credit Consultant advisor for a personalized repair plan.</p>
                     </div>
                     <a href="tel:+919538049888">
                       <Button className="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold whitespace-nowrap gap-2">
-                        <Phone className="w-4 h-4" /> Call Advisor
+                        <Phone className="w-4 h-4" /> Call Advisor (+91 95380 49888)
                       </Button>
                     </a>
                   </div>
