@@ -22,15 +22,16 @@ export async function POST(req: Request) {
     const cleanMobile = (mobile || '').replace(/\D/g, '');
     const contactEmail = body.email && body.email.includes('@') ? body.email : `${cleanMobile || 'lead'}@creditconsultant.in`;
 
-    // Standard HubSpot CRM v3 Contact Properties
-    // Use 'description' instead of invalid 'message' property
+    // Universal HubSpot CRM v3 Built-in Contact Properties
+    // Uses 'jobtitle' and 'address' which are guaranteed built-in fields in all HubSpot portals
     const properties: Record<string, string> = {
       firstname,
       lastname,
       phone: cleanMobile || mobile || '',
       email: contactEmail,
       company: bureau || 'Equifax',
-      description: `PAN: ${pan || 'N/A'} | DOB: ${dob || 'N/A'} | Gender: ${gender || 'N/A'} | Credit Score: ${score || 0} | Rating: ${rating || 'N/A'} | Report ID: ${report_id || 'N/A'} | Source: ${source || 'Credit Consultant Web'}`,
+      jobtitle: `Credit Score: ${score || 0} (${rating || 'Good'})`,
+      address: `PAN: ${pan || 'N/A'} | DOB: ${dob || 'N/A'} | Gender: ${gender || 'N/A'} | Report ID: ${report_id || 'N/A'} | Source: ${source || 'Credit Consultant Web'}`,
     };
 
     // 1. Attempt to CREATE new contact
